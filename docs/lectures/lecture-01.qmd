@@ -1,0 +1,750 @@
+---
+pagetitle: "ETC5513: Reproducible and Collaborative Practices"
+subtitle: "Basic communication theory and practice"
+author: "Michael Lydeamore"
+email: "michael.lydeamore@monash.edu"
+date: "Week 1"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "rcp.numbat.space"
+footer: "ETC5513 Week 1"
+format: 
+  revealjs:
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: c
+    multiplex: false
+    theme: assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 750
+    css: [assets/tachyons-addon.css, assets/custom.css, assets/lecture-01.css]
+    include-after-body: "assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+execute:
+  echo: false
+  fig-align: "center"
+---
+
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## {#aim}
+
+::: {.callout-important}
+
+## Aim
+* Understand the aims and structure of the unit
+* Explain the need for reproducible and collaborative practices
+* Introduce the main tools that we will be using during lectures and tutorials
+* Get to know your classmates
+
+:::
+
+
+## 👩🏻‍🏫 ETC5513 Teaching Team
+
+::: flex
+
+::: w-0
+
+<img class="circle-img" src="images/lecture-00/michael-lydeamore.jpg" height = "200px"/>
+
+Dr. Michael Lydeamore
+
+*Lecturer & Chief Examiner*
+
+
+:::
+
+::: w-30
+
+<img  class="circle-img" src="images/lecture-00/cynthia-huang.jpg" height = "200px"/>
+
+Cynthia Huang
+
+*Tutor*
+
+:::
+
+::: w-30
+
+<img  class="circle-img" src="images/lecture-00/janith-wanniarachchi.jpg" height = "200px"/>
+
+Janith Wanniarachchi
+
+*Tutor*
+
+:::
+
+:::
+
+::: w-80
+::: callout-note
+
+## Contacting the teaching team
+
+* For private matters, contact [michael.lydeamore@monash.edu](mailto:michael.lydeamore@monash.edu) using your Monash student email and citing the unit name.
+* For non-private matters, you should post this in the Moodle discussion board. 
+
+:::
+:::
+
+```{css, echo = FALSE}
+.circle-img {
+  border-radius: 50%;
+}
+```
+
+## 👩🏻‍🏫 ETC5513 Teaching Team
+
+Most material in this course was developed by 
+
+::: center 
+
+<img class="circle-img" src="assets/PM.png" height="200px" />
+
+Dr. Patricia Menendez
+
+:::
+
+<br />
+
+Patricia is a strong believer and trailblazer in reproducible research.
+
+
+## 🎯 ETC5513 Learning Objectives
+
+
+::: callout-important
+
+## Learning objectives
+
+1. Develop skills to create reproducible data analyses, reports and presentations.
+2. Understand the operation of version control systems.
+3. Advance use of Git and GitHub.
+3. Utilize version control to integrate data analysis efforts of team members.
+4. Effectively work with a group to construct collaborative data science projects.
+
+:::
+
+**All that combined with the learning of statistical concepts!**
+
+::: fragment
+
+::: {.callout-tip}
+
+Please participate during the lectures and tutorials. The success of the unit depends not only on the teaching team but also you as part of this unit's team.
+
+:::
+
+:::
+
+## ETC5513 Program {.smaller}
+
+1.	Course introduction to collaborative and reproducible practices
+2.	Reproducible reports using R markdown
+3.	Introduction to version control systems: Git and GitHub
+4.	Reproducible reporting using R markdown, Git and GitHub 
+5.	Collaborative practices requests and issues
+6.	Reproducible and collaborative practices in industry 
+7.	Reproducible reporting and version control systems
+8.	Workflows for reproducible data analysis
+9.	Reproducible reporting for specialized and broad audiences
+10.	Advanced collaborative practices 
+11.	Reproducible workflows in consultancy
+12.	Summary and Recap
+
+## 🏛️ ETC5513 unit structure 
+
+::: {.columns .fragment}
+
+::: {.column width="66%" .center}
+
+Start with individual projects 
+
+:::
+
+::: {.column width="33%"}
+
+![](images/william-iven-gcsNOsPEXfs-unsplash.jpg){width="50%"}
+
+:::
+
+:::
+
+::: {.columns .fragment}
+
+::: {.column width="66%" .center}
+
+Will continue with a class group project 
+
+:::
+
+::: {.column width="33%"}
+
+![](images/helloquence-5fNmWej4tAA-unsplash.jpg){width="50%"}
+
+:::
+
+:::
+
+::: {.columns .fragment}
+
+::: {.column width="66%" .center}
+
+Finally, you will work on yuour own projects
+
+:::
+
+::: {.column width="33%"}
+
+![](images/baim-hanif-pYWuOMhtc6k-unsplash.jpg){width="50%"}
+
+:::
+
+:::
+
+## Unit structure and resources
+
+* **2 hour lectures** are *interactive sessions*:
+  - during the lecture we *demonstrate*, *discuss* and  *complete tasks* in small groups
+* **1.5 hour tutorial** → only go to the one you are assigned to!
+
+The **lectures** will be a combination of presentations with interactive exercises.
+
+## Unit structure and resources
+
+Each lecture will commence with a [open frame]{.monash-green2} (5 minutes), where **you** can talk about your learning, share comments, issues and resources with the rest of the class. 
+
+That time can also be used for questions (as can any other time in the lecture).
+
+
+::: {.fragment}
+
+The **tutorials** will be entirely based on computer practicals and you will be working individually as well as in groups.
+
+:::
+
+## Lecture structure
+
+* Open Frame
+* Recap from previous lecture
+* Summary of today's lecture content
+* Lecture delivery
+
+## Lecture tips
+
+* Come prepared to be an active learner
+* Engage yourself in the lecture
+* Share responsibility for learning
+* Bring your computer
+
+## Tutorials
+
+[**Go over the material before the tutorial**]{.monash-green2}
+
+Goal is to [practice the ideas covered in lectures]{.monash-green2} by working through activies and exercises individually and in groups.
+
+::: {.callout-tip}
+
+* You will get instructions with the tasks that need to be completed during the tutorial
+* Your tutors will be there to guide and help you through the activities
+* Tutorials also rpovide a great opportunity for you to discuss and work with your peers
+
+:::
+
+## 🪵 Materials
+
+::: callout-note
+
+## Unit website 
+
+<center>
+[[<i class="fa-solid fa-link"></i> rcp.numbat.space](https://rcp.numbat.space/)]{.f1}
+</center>
+
+:::
+
+* Lecture slides and tutorial materials are available on the unit website
+* Lecture videos and assessments will be available on Moodle
+
+::: callout-note
+
+Materials are designed to develop your **hard and soft skills**.
+
+:::
+
+
+## ✋ Consultation hours
+
+* [Michael]{.monash-blue}: Test
+* [Tutor 1]{.monash-blue}: Test
+* [Tutor 2]{.monash-blue}: Test
+
+
+**Please see Moodle for Zoom details**
+
+
+
+## 💯 Course assessments
+
+* **Weekly quizzess**: Submitted on Moodle, look under assessments: [5%]{.monash-green2}  
+The quiz opens Tuesdays at 9pm and close on Thursday 5pm each week (W2-W11)
+* **3 Assignments:**
+  * [**A1**]{.monash-blue}: Released week 3, due week 5: [15%]{.monash-green2}
+  * [**A2**]{.monash-blue}: Released week 7, due week 9: [15%]{.monash-green2}
+  * [**A3**]{.monash-blue}: Released week 10, due week 12: [20%]{.monash-green2}
+* **Oral interview:** Based on A1 and W1-W12 content: Week 12: [20%]{.monash-green2}
+
+## ETC5513 Code of Conduct
+
+* Please feel free to ask questions and share ideas with the class.
+* All questions, suggestions or comments **are welcomed and must be respected** by the group.
+* Remember, while working in teams, [clarity, organisation and communication]{.monash-blue} are extremely important
+* Please let me know about suggestions, problems and/or complaints at any time.
+
+## Interactions with the teaching team
+
+✅ Consultation hours: *We are here to help you!*
+
+✅ Moodle discussion forum
+
+Get used to using the forum - helping your peers is a fantastic way to learn.
+
+# Questions? {.center}
+
+# ![](https://media.giphy.com/media/3aGZA6WLI9Jde/giphy.gif)
+
+## The classic analysis pipeline
+
+
+::: {.incremental}
+1. You carry out your analysis in R, Python or MATLAB (with some code), or perhaps you use Excel
+2. You paste you results into your Word document or Google Doc.
+:::
+
+::: {.fragment .center}
+
+::: {.callout-warning style="text-align: center !important;"}
+
+## Question
+
+What is the problem with this approach?
+
+:::
+
+:::
+
+# Critical Issue
+
+![](https://media.giphy.com/media/11fDMHAzihB8D6/giphy.gif)
+
+## How about...?
+
+If one parameter or one number changes in your data?
+
+::: {.fragment .center style="color: red; font-size: 2em;"}
+**GAME OVER**
+:::
+
+::: {.fragment}
+We start all over again 😭😭😭
+:::
+
+::: {.fragment}
+Maybe we copy and paste into a new script
+:::
+
+::: {.fragment}
+After a week, a month, a year... it gets very hard to remember all the steps!
+:::
+
+## Reproducible research and replicability
+
+**Definitions by the USA National Academies of Science, Engineering and Medicine**:
+
+- [Reproducibility]{.monash-green2} ("computational reproducibility") means obtaining consistent computational results using the same input data, computational steps, methods, code, and conditions of analysis. 
+
+- [Replicability]{.monash-green2} means obtaining consistent results across studies aimed at answering the same scientific question, each of which has obtained its own data
+
+[Reference here: Report on reproducibility and replicability](https://www.nap.edu/read/25303/chapter/1#xix)
+
+## Combining text and data analysis in the same document
+
+::: {.callout-note}
+
+## Literate programming
+
+Literate programming is an approach to writing reports using software that weaves together the source code and text at the time of creation. 
+
+:::
+
+Donald Knuth coined the term literate programming in the 1970s to refer to a source file that could be both run by a computer and “woven” with a formatted presentation document
+
+::: aside
+[Knuth, 1992, https://www-cs-faculty.stanford.edu/~knuth/lp.html](https://www-cs-faculty.stanford.edu/~knuth/lp.html)
+:::
+
+## Reproducibility
+
+::: {.center .monash-blue}
+Reproducibility is a way of thinking and approaching projects
+:::
+
+::: {.columns}
+
+::: {.column width="50%" .center}
+![](images/diego-ph-fIq0tET6llw-unsplash.jpg){width="50%"}
+:::
+
+::: {.column width="50%"}
+* Requires planning
+* Needs extra upfront effort
+* Demands us to be organised
+* Challenges us to think more broadly
+:::
+:::
+
+::: {.aside .tiny}
+Photo by <a href="https://unsplash.com/@jdiegoph?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Diego PH</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+:::
+
+## Reproducible research {.smaller}
+
+* Working to make your research reproducible does require extra upfront effort.
+* Making a project reproducible from the start encourages you to use better work habits.
+* It should push you to bring your data and source code up to a higher level of quality than you might if you “thought ‘no one was looking’ ” [Donoho, 2010, 386]. 
+* Reproducible research needs to be stored so that other researchers can actually access the data and source code. 
+* Changes are easier to implement especially when using dynamic reproducible documents.
+* Reproducible research has higher impact.
+
+## Reproducibility complexity
+
+#### [Complexity varies]{.monash-green2}
+
+Some projects require a single tool (be that R, Python, MATLAB or many others) and may only involve one person.
+
+Others might involve different teams and require many different tools
+
+::: {.right}
+
+![](images/hiclipart.png){width="20%" fig-align="right"}
+
+:::
+
+## Project example
+
+![](images/environmental-data-science-r4ds-general.png){width="75%" fig-align="center"}
+
+::: {.aside}
+
+Artwork by @allison_horst
+
+:::
+
+## Complex workflow example
+
+![](images/ereefs.png){fig-align="center"}
+
+::: {.columns}
+
+::: {.column width="50%"}
+![](images/ereefs1.png){width="150%" fig-align="center"}
+:::
+
+::: {.column width="50%"}
+![](images/ereefs2.png){width="50%" fig-align="center"}
+:::
+:::
+
+::: {.aside}
+[https://www.ereefs.org.au/about/](https://www.ereefs.org.au/about/)
+:::
+
+# Complex projects need more than literate programming
+
+## Reproducibility: How?
+
+Using tools for reproducible research and reporting
+
+![](images/how.jpg){width="50%" fig-align="center"}
+
+::: {.aside}
+Photo by <a href="https://unsplash.com/@toddquackenbush?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Todd Quackenbush</a> on <a href="https://unsplash.com/s/photos/tools?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+:::
+
+## Dynamic documents
+
+::: {.callout-tip}
+## Definition: Dynamic Documents
+
+A dynamic document includes [code]{.monash-blue} used for data analysis _and_ report [text]{.monash-blue}
+:::
+
+These two things produce your [report/paper/presentation]{.monash-green2}
+
+::: {.fragment}
+All in a [sequential]{.monash-green2} and [dynamic]{.monash-green2} way!
+:::
+
+# Let's start from the beginning
+
+Code?
+
+# R & RStudio?
+
+::: {.columns}
+
+::: {.column width="50%"}
+![](images/1000px-R_logo.svg.png){width="45%"}
+:::
+
+::: {.column width="50%"}
+![](https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg)
+:::
+:::
+
+::: {.fragment}
+They are related but they are not the same. [Why?]{.monash-blue}
+:::
+
+## Tools for reproducible research {.smaller}
+
+### R Programming Language
+
+* R enables researchers to read data, create data visualizations and run statistical analyses.
+* R has thousands of libraries
+* R has a very active development community that is constantly expanding.
+
+### R Libraries & Packages [facilitate reproducibility]{.monash-blue}
+
+* `knitr` and `quarto` allow us to connected R-based analyses to a presentation, papers, and report documents created with markup languages such as LaTeX and Markdown.
+
+::: {.fragment}
+R by itself has the capabilities to gather and analyse data, and with a little help from `knitr` and `quarto`, with some markup languages, present results in a way that is highly reproducible.
+:::
+
+## RStudio
+
+Is an integrated developer environment (IDE)
+
+::: {.aside}
+Other IDEs exist, mainly [VSCode](https://code.visualstudio.com/) which is rapidly gaining popularity
+:::
+
+We don't _need_ RStudio, but it lets us do things more easily.
+
+* A happy medium between R's text-based interface and a pure GUI
+* It is closely integrated with `git` (version control)
+
+::: {.fragment}
+It has a cloud counterpart called [**RStudio Cloud**]{.monash-blue}
+:::
+
+## Important distinction
+
+### R is the [programming language]{.monash-blue}
+
+![](images/R.png){fig-align="center"}
+
+## Important distinction
+
+### RStudio is the [integrated development environment]{.monash-blue}
+
+![](images/Rstudio.png){width="80%" fig-align="center"}
+
+## RStudio Cloud
+It's RStudio, in the cloud.
+
+![](images/Rstudiocloud.png){width="80%" fig-align="center"}
+
+::: {.fragment}
+[**Why?**]{.monash-blue}
+:::
+
+## RStudio Cloud
+
+* Allows the users to run reproducible reports without the need of installing any additional software or configurations in their own computer. It basically looks exactly like Rstudio but it runs in the cloud and can be loaded using any browser.  
+* Rstudio Cloud allows us to work in the same environment regardless the computer operating system that each of you have in your computers.
+* Rstudio will provide the means for us to first focus on learning R and Rstudio without having to worry about installing them locally in each computer (we'll do that later once you are more familiar with the language and the Rstudio environment).
+
+## Version Control
+
+::: {.callout-note}
+## Definition: Version Control
+
+A system that records changes to a file or a set of files over time, so that you can recall specific versions later.
+
+:::
+
+![](images/marco-lermer-bHZ2_D4bTfg-unsplash.jpg){fig-align="center" width="40%"}
+
+::: {.aside}
+Photo by <a href="https://unsplash.com/@malepics?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Marco Lermer</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+:::
+
+## `git`
+
+::: {.callout-note}
+## Definition: `git`
+
+Git is a distributed version-control system for tracking changes in source  code during software development. It is designed for coordinating work among  programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity,  and support for distributed, non-linear workflows
+:::
+
+![](images/Git-Logo-Black.png){fig-align="center" width="40%"}
+
+::: {.aside}
+[https://en.wikipedia.org/wiki/Git](https://en.wikipedia.org/wiki/Git)
+:::
+
+## GitHub, BitBucket, and others
+
+::: {.columns}
+::: {.column width="50%"}
+![](images/Atlassian_Bitbucket_Logo.png){fig-align="center"}
+:::
+::: {.column width="50%"}
+![](images/GitHub_Logo.png){fig-align="center"}
+:::
+:::
+
+* Both are cloud-based hosting services to manage `git` repositories
+* Are code hosting platforms for version control and collaboration
+
+::: {.fragment}
+#### It lets you and others work together on projects from anywhere {.center} 
+:::
+
+## `git` and GitHub
+
+![](images/Gitvs.Github-1a.jpg){fig-align="center" width="60%"}
+
+::: {.aside}
+Source: [https://blog.devmountain.com/git-vs-github-whats-the-difference/](https://blog.devmountain.com/git-vs-github-whats-the-difference/)
+:::
+
+# Reproducibility setup depends on the project
+
+::: {.fragment}
+We will learn general practical tips for reproducible workflows
+:::
+::: {.fragment}
+[There is no one-size-fits-all approach!]{.monash-blue}
+:::
+
+## Recomendations summary
+
+::: {.incremental}
+1. Plan in advance
+2. Consider adequate file systems for the project
+3. Create accessible, connected workflows
+4. Document, document, document
+5. Consider using a code environment container
+6. Add a license for sharing your work
+:::
+
+## ETC5513 Ingredients
+
+![](images/caitlin-mclean-L2iyrw_soPQ-unsplash.jpg){width="50%" fig-align="center"}
+
+::: {.aside}
+Photo by <a href="https://unsplash.com/@ul01?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Caitlin Mclean</a> on <a href="https://unsplash.com/@ul01?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+:::
+
+## Main tools
+
+* R
+* RStudio
+* [Command Line Interface]{.monash-green2}
+* `git`
+* GitHub
+* VSCode
+
+::: {.fragment}
+During this semester these tools will be _essential_ for us to build reproducible and collaborative research practices.
+:::
+
+## Tutorial
+
+This week the tutorial will focus on providing an introduction to different resources.
+
+* These slides are on Moodle and the course website
+* You will also find the tutorial for this week
+* Familiarise yourself with _all_ the resources in the tutorial and get to know your colleagues (this is quite important!)
+* Overview of RStudio and an introduction to R
+
+## Week 1 Lesson
+
+::: {.callout-important}
+## Summary
+
+* What are reproducible practices?
+* What tools are available to us for reproducibility?
+* When should we consider reproducible practices?
+:::
+
+::: {.callout-tip}
+## Resources
+
+* Learning R: [https://learnr.numbat.space](https://learnr.numbat.space)
+* [`git` manual](https://git-scm.com/docs) 
+:::
+
+
+

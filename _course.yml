@@ -1,0 +1,87 @@
+schedule:
+  - week: 0
+    lecturer: Michael
+    topic: "Information"
+  - week: 1
+    lecturer: Michael
+    topic: "Introduction to collaborative and reproducible practices"
+    tools: ""
+    readings: ""
+  - week: 2
+    lecturer: Michael
+    tools: ""
+    topic: "Reproducible reports using RMarkdown"
+    readings: ""
+  - week: 3
+    lecturer: Michael
+    topic: "Introduction to version control systems: git and GitHub"
+    tools: ""
+    readings: ""
+    assessment: Assignment 1 released
+  - week: 4
+    lecturer: Michael
+    tools: ""
+    topic: "Reproducible reports using RMarkdown"
+    readings: ""
+  - week: 5
+    lecturer: Michael
+    tools: ""
+    topic: "Collaborative practices requests and issues"
+    assessment: Assignment 1 due
+    readings: ""
+  - week: 6
+    lecturer: Michael
+    topic: "Reproducible and collaborative practices in industry"
+    tools: ""
+    readings: ""
+  - week: 7
+    lecturer: Michael
+    topic: Reproducible reporting and version control systems
+    tools: ""
+    readings: ""
+    assessment: Assignment 2 released
+  - week: 8
+    lecturer: Michael
+    topic: Workflows for reproducible data analysis
+    tools: ""
+    readings: ""
+  - week: 9
+    lecturer: Michael
+    topic: Reproducible reporting for specialised and broad audiences
+    tools: ""
+    readings: ""
+    assessment: Assignment 2 due
+  - week: 10
+    lecturer: Michael
+    topic: Advanced collaborative practices
+    tools: ""
+    readings: ""
+    assessment: Assignment 3 released
+  - week: 11
+    lecturer: Michael
+    topic: Reproducible workflows in consultncy
+    tools: ""
+    readings: ""
+  - week: 12
+    lecturer: Michael
+    topic: Course recap
+    tools: ""
+    readings: ""
+    assessment: Assignment 3 due, Oral Interview
+
+team:
+  - name: Michael Lydeamore (Chief Examiner)
+    role: lecturer
+    consult: TBC
+  - name: TBC
+    role: tutor
+    consult: TBC
+  - name: TBC
+    role: tutor
+    consult: TBC
+timetable:
+  lecture: Thu 10.00-12.00pm
+  tutorial:
+    - Mon 5.30-7.00pm
+    - Tue 4.00-5.30pm
+    - Tue 5.30-7.00pm

@@ -1,0 +1,934 @@
+---
+pagetitle: "ETC5513: Reproducible and Collaborative Practices"
+subtitle: "Reproducible reports using Quarto"
+author: "Michael Lydeamore"
+email: "michael.lydeamore@monash.edu"
+date: "Week 2"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "rcp.numbat.space"
+footer: "ETC5513 Week 2"
+format: 
+  revealjs:
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: c
+    multiplex: false
+    theme: assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 750
+    css: [assets/tachyons-addon.css, assets/custom.css, assets/lecture-01.css]
+    include-after-body: "assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+execute:
+  echo: true
+---
+
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## Open Frame
+
+![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
+
+## Recap
+
+1. Set the basis for the unit
+2. Unit structure
+3. Assessment
+4. Introduction to reproducibility
+5. Looked at R, RStudio and `git`
+
+::: {.fragment}
+In the tutorial, you got to know more about R, and some of the available R and RStudio resources to help you through the semester.
+:::
+
+::: {.fragment}
+You were also introduced to ChatGPT that you can use to assist in your learning. We will be using ChatGPT ethically [as per the University guidelines](https://www.monash.edu/learnhq/build-digital-capabilities/create-online/using-artificial-intelligence).
+:::
+
+
+
+## Today's plan {#aim}
+
+::: {.callout-important}
+
+## Aim
+* Quarto documents
+* R Code Chunk Options
+* Including images and figures
+* Computer file architecture
+* RStudio Projects
+* Good coding practices
+:::
+
+Second hour: hands on practice
+
+# Scaffolding of reproducible research & reporting
+
+## Think of reproducible reporting as a project
+
+The project needs to contain [all the resources needed]{.monash-green2} to produce a reproducible output.
+
+::: {.callout-tip}
+## Definition: Computational Reproducibility
+
+Obtaining consistent computational results using the same input data, computational steps, methods, code, and conditions of analysis.
+:::
+
+## Elements of a reproducible project
+
+#### We need to have a plan to organise, store and make all the project files available {.center}
+
+* All the elements of the project should be files
+* All files should be stored within the project location (typically a folder)
+* All your files should be explicitly tied together
+
+## Project organisation example
+
+![](images/project1.png){fig-align="center"}
+
+## Workflow for reproducible research
+
+![](images/data-science.png){fig-align="center"}
+
+::: {.aside}
+Allison Horst (@allisonhorst)
+:::
+
+## Stages for reproducible data analysis and reporting
+
+::: {.incremental}
+* Clear research questions to be investigated
+* Clear objectives: what is the goal of this report?
+* Data gathering
+* Exploratory data analysis
+* Data analysis
+* Results presentation
+:::
+
+::: {.fragment}
+#### All of the above needs to be documented and tied together {.center}
+:::
+
+## In this unit
+
+We will [create documents that are reproducible]{.monash-green2}
+
+* Incorporate analyses that are reproducible
+* Include report text
+* All combined together
+
+Our reproducible documents will be created using the scripting language [R]{.monash-blue} combined with [`quarto`]{.monash-blue}.
+
+## What is Markdown?
+
+Markdown is a lightweight markup language that you can use to add formatting elements to plain text documents.
+
+It was created by John Gruber in 2004. [Read more here](https://www.markdownguide.org/getting-started/)
+
+* Markdown is a "text" formatting syntax
+* Can be rendered to more complex formats such as pdf, html, pdf, doc, ...
+
+# Good news!
+ We can use markdown inside a type of documents called [Quarto files]{.monash-green2}
+
+Today, we'll learn how to do it.
+
+## Main tools for combining R code and text
+
+Our main tool is going to be `R` and it's packages. We will be using `R` via RStudio.
+
+* `R` is structured into libraries
+* For reproducibility, we have two libraries that are crucial
+* Does anyone know which ones are those?
+
+![](images/Rstudio.png){fig-align="center" width="40%"}
+
+# Quarto and `knitr`
+
+* Quarto is a new piece of software (with corresponding R package) that allows us to create documents using **Markdown**
+* `knitr` is an R package that allows us to render `quarto` code into html, pdf, doc etc
+
+::: {.columns}
+::: {.column width="50%"}
+![](images/quarto_hex.svg){fig-align="center" width="40%"}
+:::
+::: {.column width="50%"}
+![](images/knitr_0.png){fig-align="center" width="40%"}
+:::
+:::
+
+## Quarto documents
+
+* Quarto could be considered a file format, for making dynamic documents with R.
+* Quarto documents have extension `qmd`
+
+## Quarto
+
+::: {.callout-tip}
+## Quarto
+* Provides an environment where you can write your complete analysis, and combines your text and code together into a rich document
+* You write your code as code chunks, put your text around that, and then you get a fully reproducible document
+:::
+
+## Elements in a Quarto Document
+
+#### There are three parts to a Quarto document {.center}
+
+1. Metadata (YAML)
+2. Text (formatted with Markdown)
+3. Code (code formatting)
+
+::: {.fragment}
+Before we dive into the Quarto file structure, let's talk about Markdown.
+:::
+
+## Dynamic documents
+
+Quarto + `knitr` = Dynamic document
+
+* Quarto allows us to not only use Markdown to write the [text]{.monash-green2} in the report, it also allows us to include [R code]{.monash-green2}.
+* `knitr` combines with `pandoc` to render documents that contain a mixture of these components
+* `pandoc` is used by the `quarto` package to [**render**]{.monash-blue} a `qmd` file into a new format.
+
+::: {.aside}
+Pandoc is a universal document converter. 
+
+It takes Markdown, word documents, powerpoint slides, LaTeX and a bunch of other documents and converts between them.
+You can read more about Pandoc [here](https://pandoc.org).
+:::
+
+## Possible outputs
+
+![](images/qmd-system.png){fig-align="center" width="40%"}
+
+## Quarto file structure
+
+Three main components: **YAML**, **text** and **R code chunks**.
+
+![](images/qmd-file-structure.png){fig-align="center" width="60%"}
+
+## Component breakdown: YAML
+
+**Metadata** is written at the top of the file, between `---` in YAML.
+
+```yaml
+---
+title: "ETC5513"
+author: "Michael Lydeamore"
+output: html_document
+---
+```
+
+## Component breakdown: Text
+
+**Text** is written in Markdown
+
+```markdown
+# This is a section header
+```
+### This is a section header
+
+```markdown
+## This is a subsection header
+```
+#### This is a subsection header
+
+```markdown
+In this section, something is **important**
+```
+In this section, something is **important**
+
+## Writing text, hyperlinks and sections
+
+[Using Markdown:]{.monash-green2} we can write plain text as we would do in any text processor.
+
+::: {.fragment}
+We can easily add hyperlinks:
+
+::: {.columns}
+::: {.column width="50%"}
+Code:
+```markdown
+[More info about Quarto here](https://quarto.org)
+```
+:::
+::: {.column width="50%"}
+Result:
+
+[More info about Quarto here](https://quarto.org)
+:::
+:::
+:::
+
+## Font types
+
+We can write things in italic or bold:
+
+::: {.columns}
+::: {.column width="50%"}
+Code:
+```markdown
+__bold__, **bold**,
+
+_italic_, *italic*
+```
+:::
+::: {.column width="50%"}
+Result:
+
+__bold__, **bold**,
+
+_italic_, *italic*
+:::
+
+:::
+
+## Markdown example
+
+::: {.columns}
+::: {.column width='50%'}
+Code:
+```markdown
+# Header 1
+## Header 2
+
+* Unordered list 1
+
+_This is italic_
+
+*So is this*
+
+**This is bold**
+
+1. Ordered list 1
+```
+:::
+::: {.column width='50%'}
+Result:
+
+### Header 1
+#### Header 2
+
+* Unordered list 1
+
+_This is italic_
+
+*So is this*
+
+**This is bold**
+
+1. Ordered list 1
+:::
+:::
+
+## Markdown component: code
+R Code is included in [chunks]{.monash-green2}:
+
+::: {.columns}
+::: {.column width='50%'}
+Code:
+
+````
+```{{r}}
+#| echo: false
+
+library(ggplot2)
+ggplot(cars, 
+       aes(x = speed, 
+           y = dist)
+       ) +
+  geom_point()
+``` 
+````
+
+:::
+::: {.column width='50%'}
+Result:
+
+```{r}
+#| echo: false
+
+library(ggplot2)
+ggplot(cars, 
+       aes(x = speed, 
+           y = dist)
+       ) +
+  geom_point()
+``` 
+:::
+:::
+
+## R code {.scrollable}
+
+::: {.columns}
+::: {.column width='50%'}
+Code:
+
+````
+```{{r}}
+#| echo: false
+
+library(ggplot2)
+
+data = data(InsectSprays)
+
+head(InsectSprays)
+```
+...
+```{{r}}
+#| echo: false
+ggplot(data = InsectSprays,
+       aes(x = spray,
+           y = count,
+           fill = spray)
+       ) +
+  geom_boxplot(alpha = 0.6) +
+  ggtitle("Insect sprays boxplots")
+```
+
+````
+:::
+::: {.column width='50%'}
+Result:
+
+```{r}
+#| echo: false
+
+library(ggplot2)
+
+data = data(InsectSprays)
+
+head(InsectSprays)
+```
+...
+```{r}
+#| echo: false
+ggplot(data = InsectSprays,
+       aes(x = spray,
+           y = count,
+           fill = spray)
+       ) +
+  geom_boxplot(alpha = 0.6) +
+  ggtitle("Insect sprays boxplots")
+```
+:::
+:::
+
+## R Code Chunks {.smaller}
+
+You can quickly insert an R code chunk into your file with:
+
+* Keyboard shortcut [Ctrl + Alt + I]{.monash-green2} (Mac: Cmd + Option + I)
+* The [Add Chunk]{.monash-green2} command in the editor toolbar or
+* Typing the chunk delimeters (```)
+
+::: {.fragment}
+Chunk output can be customised with [Chunk execution options](https://quarto.org/docs/computations/execution-options.html), which are at the top of a chunk, starting with `#|`.
+
+* `include: false` prevents code and results appearing in the finished file. The code is still run and results can be used in other chunks.
+* `echo: false` prevents code but not results appearing in the finished file. This is a useful way to embed figures.
+:::
+
+## More chunk options
+
+* `eval: false` does not evaluate (or run) this code chunk when knitting
+* `message: false` prevents messages that are generated by code appearing in the finished file
+* `warning: false` prevents warnings that are generated appearing in the finished file
+* `fig.cap = "Text"` adds a caption to a figure
+* `fig-align = "center"` sets the position it will appear
+
+::: {.fragment}
+There are loads more of these - see the Quarto documentation for a complete list.
+:::
+
+## Global options
+
+To set **global options** that paply to every chunk in your file, call `knitr::opts_chunk$set()` in a code chunk. 
+
+These will be treated as a global default _that can be overwritten_ by individual chunk headers.
+
+Example:
+
+`knitr::opts_chunk$set(echo = FALSE)`
+
+## Caching
+
+Long documents can take a long time to run. Quarto has a caching system that can help manage this long execution time.
+
+You can set cache as either a chunk option (using `#|`) or globally in YAML:
+
+```yaml
+execute:
+  cache: true
+```
+
+More info on caching is in the [Quarto manual](https://quarto.org/docs/projects/code-execution.html)
+
+::: {.fragment}
+Use these with care: It is easy to accidentally _not_ refresh an updated chunk!
+:::
+
+## Example
+
+::: {.columns}
+::: {.column width='50%'}
+![](images/first-quarto.jpg){fig-align="center"}
+:::
+::: {.column width='50%'}
+![](images/first-quarto-render.jpg){fig-align="center"}
+:::
+:::
+
+## Rendering Quarto to HTML
+
+Use the "Render" button at the top
+
+![](images/quarto-export-demo.png)
+
+## Rendering Quarto to PDF
+
+We can also knit to a PDF:
+
+::: {.columns}
+::: {.column width='50%'}
+![](images/first-quarto-pdf.jpg){fig-align="center" width="90%"}
+:::
+::: {.column width='50%'}
+![](images/first-quarto-pdf-render.jpg){fig-align="center"}
+:::
+:::
+
+::: {.aside}
+Rendering a PDF requires LaTeX installed. LaTeX is a high-quality typesetting system, and includes features designed for the production of technical and scientific documentation. We will be using the `tinytex` [R package](https://yihui.org/tinytex/)
+:::
+
+## `knitr` and Pandoc
+
+::: {.columns}
+::: {.column width='50%'}
+![](images/knitr_0.png){fig-align="center"}
+:::
+::: {.column width='50%'}
+Pandoc: The document converter
+
+[https://pandoc.org/index.html](https://pandoc.org/index.html)
+:::
+:::
+
+* `knitr` executes the code and converts the .qmd to a .md
+* Pandoc renders the .md to the output format you want
+
+## Let's learn about YAML
+
+```yaml
+title: "R Notebook"
+author: "Michael Lydeamore"
+format: 
+  html:
+    toc: true
+    theme: solar
+  pdf:
+    toc: true
+  docx:
+    toc: true
+```
+
+`toc`: Table of contents. You can read more abotu that [here](https://quarto.org/docs/output-formats/html-basics.html#table-of-contents)
+
+## This is the resulting HTML
+
+![](images/quarto-new-theme.jpg)
+
+## Tables and Captions {.scrollable}
+
+Code:
+
+```{{r}}
+library(dslabs)
+data(murders)
+table_data <- head(murders, 5)
+
+knitr::kable(table_data, 
+             caption = "Gun murder data
+             from FBI reports by state",
+             digits = 2)
+```
+
+Result:
+
+```{r}
+#| echo: false
+library(dslabs)
+data(murders)
+table_data <- head(murders, 5)
+
+knitr::kable(table_data, 
+             caption = "Gun murder data
+             from FBI reports by state",
+             digits = 2)
+```
+
+## Tables and Captions
+
+Code:
+
+```{{r}}
+library(dslabs)
+data(murders)
+table_data <- head(murders, 5)
+
+knitr::kable(table_data, 
+             caption = "Gun murder data
+             from FBI reports by state",
+             digits = 2)
+```
+
+For more information, type `knitr::kable()` into your R console.
+
+## Figures and captions
+
+Figures from R are created inside code chunks.
+
+Typically, we will generate figures using `ggplot2`
+
+Inside the code chunk, we use the `fig-cap` chunk option to generate a caption.
+
+You will also want to include `fig-label` so it gets a number.
+
+## Figures and captions
+
+```{{r}}
+#| fig-label: cars-plot
+#| fig-cap: "Distance taken for a car to stop, against it's speed during the test."
+
+library(ggplot2)
+ggplot(cars, 
+       aes(x = speed, 
+           y = dist)
+       ) +
+  geom_point()
+``` 
+
+```{r}
+#| echo: false
+#| fig-label: cars-plot
+#| fig-cap: "Distance taken for a car to stop, against it's speed during the test."
+
+library(ggplot2)
+ggplot(cars, 
+       aes(x = speed, 
+           y = dist)
+       ) +
+  geom_point()
+``` 
+
+## Inserting external images/photos/figures
+
+There are two different ways to include external pictures.
+
+```{{r}}
+#| out-width: "80%"
+knitr::include_graphics("images/R.png")
+```
+
+or
+
+```
+![](images/R.png){width="80%"}
+```
+
+I recommend the latter unless for some reason you need some specific R processing.
+
+::: {.fragment}
+Note these don't have to be local links. URLs work just fine!
+
+::: {.columns}
+::: {.column width='75%'}
+```
+![](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif)
+```
+
+:::
+::: {.column width='25%'}
+![](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif){width="50%" fig-align="right"}
+:::
+:::
+
+:::
+
+## Now we know how to create a qmd file
+
+#### But there is more to a project than that {.center}
+
+A project might have:
+
+* Data,
+* Other R or Quarto scripts
+* Figures etc
+
+All the documents related to a project should be in one _folder_, often under an RStudio Project.
+
+# Let's talk about computer paths
+
+And then RStudio Projects
+
+# Computer paths
+
+![](images/nathan-anderson-uq5JjGK_4SE-unsplash.jpg){fig-align="center"}
+
+Where are files and folders stored on our computer?
+
+## Computer paths
+
+::: {.callout-tip}
+## Definition: Path
+
+A _path_ is the complete location or name of where a computer file, directory, device, or web page is located
+:::
+
+Some examples:
+
+* Windows: `C:\Documents\ETC5513`
+* Mac/Linux: `/Users/Documents/ETC5513`
+* Internet: `http://rcp.numbat.space/`
+
+## Absolute and Relative Paths
+
+::: {.callout-tip}
+## Definition: Absolute Path
+
+An _absolute_ or _full_ path begins from the lowest level, typically a drive letter or root (`/`)
+:::
+
+::: {.callout-tip}
+## Definition: Relative Path
+
+A relative path refers to a location that is _relative_ to the current directory. They typically start with a `.` (although this may be hidden from the user)
+:::
+
+Examples:
+
+* Absolute path: `C:\Documents\ETC5513-Assignment-Solutions`
+* Relative path: `./assignment-solutions`
+
+## Absolute and Relative paths
+
+Absolute paths are generally to be avoided - it is extremely unlikely another person will have the same absolute path as you.
+
+Relative paths can work on different systems.
+
+::: {.fragment}
+#### It is essential you understand where directories and files are within your computer {.center .monash-blue}
+
+Having clarity about that and the projects file architecture gives you total control about their organisation.
+:::
+
+## Order versus mess
+
+::: {.columns}
+::: {.column width='50%'}
+![](images/omid-kashmari-s34f0Wxbens-unsplash.jpg){fig-align="center" width="60%"}
+:::
+::: {.column width='50%'}
+![](images/sharon-mccutcheon-tn57JI3CewI-unsplash.jpg){fig-align="center" width="60%"}
+:::
+:::
+
+## Work projects
+
+* Give each project a unique working directory/folder
+* Clean file system: all files related to a single project should be in the same folder
+  * data (typically a folder)
+  * figures (typically a folder)
+  * code
+  * notes
+* All paths should be relative to the project folder. [Why?]{.monash-green2}
+* Remember, absolute paths are __not__ reproducible
+
+## RStudio Project Example
+
+* Data folder: Contains all the data for the project
+* Images/Figures folder: Contains all pictures not produced by your code in the qmd file
+* .Rproj file: [This gets added when we create an RStudio project]{.monash-green2}
+* qmd file
+* Other R scripts etc...
+
+![](images/project-example.jpg)
+
+## RStudio projects
+
+RStudio projects automatically handle relative paths and working directories
+
+You can create an RStudio project
+
+* In a brand new directory
+* In an existing directory where you already have R Code and data
+* From a version control repository
+
+[Read more on Rstudio projects here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+
+
+::: {.aside}
+They are specific to RStudio -> If you use a different IDE you need a different solution
+:::
+
+## Creating a new project
+
+File > New project > Fill out the Options
+
+![](images/newproject.png){fig-align="center"}
+
+## RStudio Project Advantages
+
+When you make a new RStudio Project, it:
+
+* Creates a project file (with the `.Rproj` extension) within the project directory
+  * This file can be used a as a shortcut to open the project directly
+* Creates a hidden directory (`.Rproj.user`) where project-specific temporary fiels are stored
+* Loads the project into RStudio and displays it's name in the Projects toolbar
+
+# Good Coding Style
+
+![](https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif)
+
+## Good Coding Style
+
+Coding style is an opinion-based phenomenon
+
+There are different styles and it is important to be careful about how you write your code.
+
+**Bad example**:
+
+```{{r}}
+library(ggplot2)
+data = data(InsectSprays)
+ggplot(data=InsectSprays, aes(spray, count, fill=spray))+geom_boxplot(alpha=0.6)+ggtitle("Insect sprays boxplots")
+```
+
+::: {.fragment}
+Long lines, no spaces, no structure: makes it _very_ hard to read and debug
+:::
+
+## Good example
+
+```{{r}}
+library(ggplot2)
+
+ggplot(data = InsectSprays,
+       aes(x = spray, 
+           y = count,
+           fill = spray)
+       ) +
+  geom_boxplot(alpha = 0.6) +
+  ggtitle("Insect sprays boxplots")
+```
+
+We will (mostly) follow the Tidyverse style guide
+
+* <https://style.tidyverse.org>
+* <http://adv-r.had.co.nz/Style.html>
+
+## Good coding principles
+
+* Source code should be readable by humans and self-explanatory
+* Long sentences are not good (maximum 80-100 characters)
+* Inside R code chunks, the `tidyverse` style guide is a good guide:
+  * Use spaces around `<-`, `+`, `=`, `-`, after `,` and before `{`
+  * For comments inside yoru code, use `#`
+
+::: {.callout-important}
+The more organised you are writing your code, the eaiser it will be to read it and debug it
+:::
+
+## Practices for reproducible research
+
+* Have a plan to [organise]{.monash-green2}, [store]{.monash-green2}, and make your files [available]{.monash-green2}
+* Set up an [RStudio Project]{.monash-green2} for each of your projects
+* Make sure all the steps in your analysis are documented
+* All files should be human readable
+* All files related to a project should be explicitly tied together
+
+## Reproducible workflow
+![](images/environmental-data-science-r4ds-general.png){fig-align="center" width="70%"}
+
+## Week 2 Lesson
+
+::: {.callout-important}
+## Summary
+
+* Quarto documents
+* R Code Chunk Options
+* Including figures, tables, captions
+* RStudio projects
+* Good Coding Practices
+:::
+
+::: {.callout-tip}
+## Resources
+
+* <https://quarto.org/>
+* <https://www.markdownguide.org/getting-started/>
+* <https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects>
+* <https://style.tidyverse.org>
+:::
+
+
+

@@ -1,0 +1,98 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Tutorial 1"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html:
+        output-file: tutorial-01-question.html
+        embed-resources: true
+---
+
+
+```{r setup}
+#| include: false
+#| eval: true
+source("setup.R")
+```
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+
+## `r emo::ji("target")` Objectives
+
+* Getting to know your colleagues
+* Getting setup with R, RStudio and GitHub
+* What is R and why do we need it?
+* Getting some practice in R
+* Learn about R and RStudio Resources
+
+## Install R on your computer
+
+R is maintained by an international team of developers and is available via The Comprehensive R Archive Network (CRAN) webpage. Please select the appropriate download option depending on your operating system: Windows, Mac, or Linux.
+
+::: {.callout-tip}
+## R
+[Install R here](https://cran.r-project.org/)
+:::
+
+You can find some further infomartion about how to install R [here](https://learnr.numbat.space/chapter1).
+
+## Install RStudio on your computer
+
+RStudio is an integrated development environment for R, a programming language for statistical computing and graphics. It is available in two formats: RStudio Desktop is a regular desktop application while RStudio Server runs on a remote server and allows accessing RStudio using a web browser. (Source: Wikipedia)
+
+::: {.callout-tip}
+## RStudio
+[Install RStudio here](https://posit.co/download/rstudio-desktop/)
+:::
+
+## Get yourself a free GitHub Student Developer pack
+
+Sign up for a free GitHub Student Developer Pack. You will have to use your Monash email account (which you can add to your existing GitHub account if you like) and make sure you remember your login details!
+
+To sign up, click [here](https://education.github.com/pack).
+
+## Getting to know more abour R
+
+Have a read about R [here](https://www.r-project.org/about.html).
+
+## Get a ChatGPT account
+
+Sign up for a free ChatGPT account [here](https://chat.openai.com/auth/login). You can use your Monash email address if you like.
+
+Ask ChatGPT to give you an example of R code, then copy the code into RStudio and execute it. Compare with your colleagues at your table. Is it the same? Is it different? Is it correct?
+
+## R in practice
+
+There are plenty of resources to start getting to know how R works. Here are a couple:
+
+1. [LearnR](https://learnr.numbat.space)
+2. [Posit (R) Primers](https://posit.cloud/learn/recipes)
+
+For today's session, please complete Chapter 1, Section 3 of the LearnR website [here](https://learnr.numbat.space/chapter1).
+
+# R and Rstudio Cheat Sheets 
+
+There are lots of Cheat Sheets and you don't need to learn all about them in this tutorial.
+The goal here is that you get familiar with those resources so that you can use them when you need to during the semester.
+Browse over the site and get an idea about what is available.
+
+You can find the cheat sheets [here](https://rstudio.com/resources/cheatsheets/)
+
+## Data wrangling with tidyverse
+
+[Video on data wrangling](https://rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/)
+
+
+## Familiarize yourself with userful resources for R programming
+
+There are lots of wonderful R, Rstudio and Data science using R resources that will help you during the semester. Below there is a list to get you started: 
+
+
+* [Hands-On Programming with R](https://rstudio-education.github.io/hopr/index.html)
+* [R for Data Science](https://r4ds.had.co.nz/index.html)
+
+A more comprehensive list of books that are freely available can be fond on the following webpage: [Book list](https://rstudio.com/resources/books/)

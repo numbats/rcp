@@ -1,0 +1,446 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Tutorial 2"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html:
+        output-file: tutorial-02-question.html
+        embed-resources: true
+    unilur-html+solution:
+        output-file: tutorial-02-solution.html
+        embed-resources: true
+---
+
+
+```{r setup}
+#| include: false
+#| eval: true
+source("setup.R")
+```
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+
+## `r emo::ji("target")` Objectives
+
+* Working on a reproducible RStudio Project
+* Working on a HTML report and example different YAML themes
+* Practice Markdown syntax
+* Practice R
+* Practice R chunk options
+* Gain experience on data wrangling using the `tidyverse` suite of packages
+* Producing exploratory data analysis figures using the package `ggplot2`
+* Learn how to add figure captions
+* Create HTML tables and learn how to add captions
+
+::: {.callout-note collapse="true"}
+
+## Preparation
+
+To complete this tutorial, you'll need the pre-built RStudio project. Go to Moodle, under Week 2, download the Tutorial 2 RStudio Project zip.
+
+Save this file on your computer and unzip it. You can open the `.Rproj` file and that should launch RStudio.
+
+:::
+
+## Exercise 1: RStudio Projects
+
+1. Knit the `Tutorial2.qmd` file into a HTML and a PDF. Note you might have to install the `tinytex` package to be able to knit into a PDF.
+2. Write your name as an author in the YAML.
+3. Change the HTML theme to `cerulean`.
+
+::: {.unilur-solution}
+
+Your YAML block should now look something like this:
+
+```yaml
+title: "ETC5513: Tutorial 2 solution"
+author: "Michael Lydeamore"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+```
+
+:::
+
+## Exercise 2: YAML and R Chunk Options
+
+Carefully inspect the YAML and the first R code chunk in your Quarto file.
+
+1. What is the first R chunk of code doing?  
+Hint: Remember all the libraries used in an analysis should be listed together at the top of the file.
+2. Change the R chunk option from `message: false` to `message: true` and add the option `warning: true`. What happens when you knit the file?
+3. Create a new section called Introduction and type using markdown the following:  
+"In this tutorial we are looking at the *Coronavirus* cases detected within the Hubei area as reported in the Lancet Journal website as of March 12, 2019."  
+Hint: Think about the `#` character.
+4. Remove all the R chunk messages from the Chunk called `Chunk 1` and write the following under that section using markdown:  
+"In this section we are loading all the required libraries for the tutorial"
+5. For the same R Chunk, add the chunk option `echo: false`. What does this do?
+6. Using markdown, link the word "Lancet" to the website https://www.thelancet.com/coronavirus
+
+::: {.unilur-solution}
+1. The first R chunk is loading all the libraries we will need for the analysis.
+2. Chunk options in Quarto are specified using the hashpipe, `#|`. Setting `message: true` and `warning: true` provides messages about packages being successfully loaded, and potentially having mismatched versions.
+
+For the remainder of the questions, your markdown should look like this:
+
+
+````verbatim
+# Introduction
+
+In this tutorial we are looking at the *Coronavirus* cases detected within the Hubei area as reported in the [Lancet](https://www.thelancet.com/coronavirus) Journal website as of March 12, 2019.
+
+```{{r Chunk 1}}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+library(rmarkdown)
+library(knitr)
+library(tidyverse)
+library(readr)
+library(kableExtra)
+library(ggplot2)
+library(lubridate)
+library(gridExtra)
+```
+In this section we are loading all the required libraries for the tutorial.
+
+````
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(rmarkdown)
+library(knitr)
+library(tidyverse)
+library(readr)
+library(kableExtra)
+library(ggplot2)
+library(lubridate)
+library(gridExtra)
+
+dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+```
+
+## Exercise 3: Hands on practice with COVID-19 Data
+
+1. The data for the tutorial is inside a folder called Data, which is bundled with the RStudio Project. Find that file in the lower right pane where all your files are listed.
+2. Create a new section heading in your `qmd` document to read the data with the title "Reading Coronavirus Data"  
+Hint: Use `#`
+3. Inside this new section, create an R Code Chunk with options `echo: true`, `warning: false`, `message: false` called "Reading data" and insert the following code:  
+```r
+dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+```
+4. Insert a new R Chunk and find out what information you can get from the command `head(dat)`
+5. Modify the `head` command to display 10 rows.
+6. Create another two R chunks and use in each of them the R functions `glimpse()` and `str()`. What information can you get from those commands?  
+Hint: For more information on R functions, type in the R conolse `?glimpse()`.
+7. Using an R inline command, write the dimension of the dataset in a sentence.  
+Hint: Have a look at `ncol` and `nrow`.
+8. Add a new subsection heading (`###`) with "Why is it important to know the dimension of your dataset?" and write a brief sentence with the explanation
+9. Add a new subsection heading (`###`) with "What are the variable names in the dataset?" and display the names of the dataset variables using R.  
+Hint: `?names()` in the R consolee
+10. Select two variables and use a markdown list to briefly explain what each of the variables are measuring.
+
+::: {.unilur-solution}
+
+2. The R chunk should look like this:  
+
+````verbatim
+# Reading data
+
+```{{r loading_data}}
+#| echo: true
+#| warning: false
+#| message: false
+
+dat <- read_csv("Data/COVID19_March12_Hubei.csv")
+```
+````
+
+4.  `head(dat)` will print the top five rows of the dataset.
+5. `head(dat, n=10)`
+6. `glimpse` prints the columns as rows, and the data across the screen. It shows the first view values and the type (class) of each column. `str` is similar but shows you detailed information about the dataframe object (as opposd to just the data).
+```{r}
+glimpse(dat)
+```
+```{r}
+str(dat)
+```
+
+and for good measure
+
+```{r}
+head(dat, n=10)
+```
+
+7. Code example:  
+```{verbatim}
+The dataset has `r nrow(dat)` rows and `r ncol(dat)` variables.
+```
+
+Output:
+The dataset has `r nrow(dat)` rows and `r ncol(dat)` variables.
+
+8. Example markdown:  
+
+````{verbatim}
+### Why is it important to know the dimension of your dataset?
+It is important because it will help you to better understand the 
+structure of your data set. It will provide a clear information
+about how many variables and how many individual cases  are 
+in your data.
+
+### What are the variable names in the dataset?
+```{{r}}
+names(dat)
+```
+````
+
+* `age`: Contains the age in years of the individual. Class `character`.
+* `sex`: Provides the sex of the individual. One of `male` or `female`. Class `character`.
+
+Output:
+
+### Why is it important to know the dimension of your dataset?
+It is important because it will help you to better understand the 
+structure of your data set. It will provide a clear information
+about how many variables and how many individual cases  are 
+in your data.
+
+### What are the variable names in the dataset?
+```{r}
+names(dat)
+```
+
+:::
+
+## Exercise 4: COVID19 Data Wrangling
+
+1. Using the R package `dplyr` (which is loaded with `tidyverse`), and using the pipe (`|>`), create a new dataset called `data_cleaned` that only contains the following variables:  
+    * `country`
+    * `age`
+    * `sex`
+    * `city`
+    * `province`
+    * `latitude`
+    * `longitude`
+
+```{r}
+#| unilur-solution: true
+data_cleaned <- dat %>%
+    select(country, age, sex, city, province, latitude, longitude)
+```
+
+2. Inspect `data_cleaned` and describe using a markdown list the type of variables in this new dataset. Write the names of the variables in bold. Do you think the variable attributes are correct?
+
+::: {.unilur-solution}
+```{verbatim}
+* `age` is a character (`<chr>`)
+* `sex` is a character (`<chr>`)
+* `city` is a character  `<chr>`
+* `province` is a character  `<chr>`
+* `latitute` is double (numeric) `<dbl>`
+* `Longitude` is double (numeric) `<dbl>`
+```
+
+We would expect `age` to be numeric not a character.
+:::
+
+
+3. Convert the variable `age` into a numeric vector
+
+::: {.unilur-solution}
+
+We'll overwrite `data_cleaned` here but you could but it in a new object if we wanted to.
+
+```{r}
+data_cleaned <- data_cleaned |>
+    mutate(age = as.numeric(age))
+```
+:::
+
+4. Inspect the first 20 values of `age`. What do you observe? What is the proportion of missing values in the variable `age`? Make sure you round the results to two decimal numbers.
+
+::: {.unilur-solution}
+```{r}
+head(data_cleaned$age, 20)
+```
+
+We can see here there are a lot of missing values. The proportion of missing values can be calculated as 
+
+```{r}
+round(sum(is.na(data_cleaned$age))/length(data_cleaned$age), digits = 2)
+```
+:::
+
+5. Remove cases for which we don't have information on the person's age and keep cases for which the gender of the patient is known. Give this new data set the name `data_filtered`.
+
+::: {.unilur-solution}
+
+```{r}
+data_filtered <- data_cleaned |>
+    filter(!is.na(age), sex %in% c("male", "female"))
+```
+:::
+
+6. What is the dimension of this new data set? Compare it with the dimension of `cleaned_data`. How many cases have we lost?
+
+::: {.unilur-solution}
+
+```{r}
+dim(data_filtered)
+dim(data_cleaned)
+```
+
+We have lost `r nrow(data_cleaned)-nrow(data_filtered)` cases for which we did not have information about age or gender.
+:::
+
+7. Examine the variable age using the function `summary()`. Do you see any problems in the data?
+
+::: {.unilur-solution}
+
+```{r}
+summary(data_filtered$age)
+```
+
+Currently the age of the youngest patient is `min(data_filtered$Eage)`, and since we do not have any information about how that age was coded in the dataset (metadata), we are going to filter out any entries below 1.
+:::
+
+8. Remove patient entries with age below 1. You can save this back into `data_filtered`.
+
+::: {.unilur-solution}
+
+```{r}
+data_filtered <- data_filtered |>
+    filter(age >= 1)
+```
+:::
+
+9. Provide a table summary of the variable age using the `kable()` function from the `kableExtra` package. Give it the caption "COVID-19 Age Summary".
+
+::: {.unilur-solution}
+
+```{r}
+data_filtered |>
+    select(age) |>
+    summary() |>
+    kable(caption = "COVID-19 Age Summary")
+```
+
+:::
+
+10. Visualize the age distribution using a histogram and give an explanation about the information that a histogram convey. In addition change the x label in the plot to *Age* and remove the y axis label.  
+Hint: You'll need to use `ggplot2` for this.
+
+::: {.unilur-solution}
+
+```{r}
+data_filtered |>
+    ggplot(aes(x=age)) +
+    geom_histogram(binwidth = 5) +
+    labs(x="Age", y="")
+```
+:::
+
+
+11. Change the color of the histogram using  `geom_histogram(color = "blue", fill = "white")`
+
+::: {.unilur-solution}
+
+```{r}
+data_filtered |>
+    ggplot(aes(x = age)) +
+    geom_histogram(color = "blue", fill="white", binwidth = 5) +
+    labs(x = "Age", y = "")
+```
+
+:::
+
+
+12. Visualize the age distribution for females and males and add the following caption to the figure *"Age frequencies of COVID19 patients in China per gender"*  
+(Hint: `facet_wrap()`)
+
+::: {.unilur-solution}
+
+```{{r}}
+#| fig-cap: Age frequencies of COVID19 patients in China per gender
+data_filtered |>
+    ggplot(aes(x = age)) +
+    geom_histogram(color = "blue", fill = "white", binwidth = 5) +
+    labs(x = "Age", y = "") +
+    facet_wrap(~sex)
+```
+
+```{r}
+#| echo: false
+#| fig-cap: Age frequencies of COVID19 patients in China per gender
+data_filtered |>
+    ggplot(aes(x = age)) +
+    geom_histogram(color = "blue", fill = "white", binwidth = 5) +
+    labs(x = "Age", y = "") +
+    facet_wrap(~sex)
+```
+
+:::
+
+
+13. Count the number of cases per province and display a table of the top 10 provinces. Store results into an object called `cases_by_province`.  
+Hint: Replace XXX by the adequate variable names in the code below.
+
+```{{r}}
+cases_by_province <- data_filtered |>
+  select(XXX) |>
+  filter(!is.na(XXX)) |>
+  group_by(province) |>
+  summarise(cases = n())|>
+  arrange(-XXX) 
+```
+
+::: {.unilur-solution}
+
+```{r}
+cases_by_province <- data_filtered |>
+  select(province) |>
+  filter(!is.na(province)) |>
+  group_by(province) |>
+  summarise(cases = n()) |>
+  arrange(-cases) 
+
+cases_by_province |>
+    slice(1:10) |>
+    kable(caption = "Number of cases by province")
+```
+:::
+
+
+14. Recreate this table using the below code:  
+
+```{{r}}
+cases_by_province_alternative <- data_filtered |>
+    filter(!is.na(province)) |>
+    count(province, name="cases", sort=TRUE)
+```
+
+::: {.unilur-solution}
+
+```{r}
+cases_by_province_alternative <- data_filtered |>
+    filter(!is.na(province)) |>
+    count(province, name="cases", sort=TRUE)
+
+cases_by_province_alternative |>
+    slice(1:10) |>
+    kable(caption = "Number of cases by province")
+```
+:::
