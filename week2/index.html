@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.549">
+
+  <meta name="author" content="Michael Lydeamore">
+  <meta name="dcterms.date" content="2001-02-01">
+  <title>ETC5513: Reproducible and Collaborative Practices</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../assets/tachyons-addon.css">
+  <link rel="stylesheet" href="../assets/custom.css">
+  <link rel="stylesheet" href="../assets/lecture-01.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="etc5513-title" class="slide level2" data-background-image="images/bg-01.png">
+<h2><br><span class="monash-blue title">ETC5513: Reproducible and Collaborative Practices</span></h2>
+<h3 id="reproducible-reports-using-quarto">Reproducible reports using Quarto</h3>
+<p>Lecturer: <em>Michael Lydeamore</em></p>
+<p>Department of Econometrics and Business Statistics</p>
+<div class="tl">
+<p><br></p>
+<ul class="fa-ul">
+<li>
+<p><span class="fa-li"><i class="fas fa-envelope"></i></span>michael.lydeamore@monash.edu</p>
+</li>
+<li>
+<p><span class="fa-li"><i class="fas fa-calendar-alt"></i></span> Week 2</p>
+</li>
+<li>
+<p><span class="fa-li"><i class="fa-solid fa-globe"></i></span><a href="rcp.numbat.space">rcp.numbat.space</a></p>
+</li>
+</ul>
+<p><br></p>
+</div>
+</section>
+<section id="open-frame" class="slide level2">
+<h2>Open Frame</h2>
+
+<img data-src="images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="recap" class="slide level2">
+<h2>Recap</h2>
+<ol type="1">
+<li>Set the basis for the unit</li>
+<li>Unit structure</li>
+<li>Assessment</li>
+<li>Introduction to reproducibility</li>
+<li>Looked at R, RStudio and <code>git</code></li>
+</ol>
+<div class="fragment">
+<p>In the tutorial, you got to know more about R, and some of the available R and RStudio resources to help you through the semester.</p>
+</div>
+<div class="fragment">
+<p>You were also introduced to ChatGPT that you can use to assist in your learning. We will be using ChatGPT ethically <a href="https://www.monash.edu/learnhq/build-digital-capabilities/create-online/using-artificial-intelligence">as per the University guidelines</a>.</p>
+</div>
+</section>
+<section id="aim" class="slide level2">
+<h2>Today’s plan</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Aim</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Quarto documents</li>
+<li>R Code Chunk Options</li>
+<li>Including images and figures</li>
+<li>Computer file architecture</li>
+<li>RStudio Projects</li>
+<li>Good coding practices</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Second hour: hands on practice</p>
+</section>
+<section>
+<section id="scaffolding-of-reproducible-research-reporting" class="title-slide slide level1 center">
+<h1>Scaffolding of reproducible research &amp; reporting</h1>
+
+</section>
+<section id="think-of-reproducible-reporting-as-a-project" class="slide level2">
+<h2>Think of reproducible reporting as a project</h2>
+<p>The project needs to contain <span class="monash-green2">all the resources needed</span> to produce a reproducible output.</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition: Computational Reproducibility</strong></p>
+</div>
+<div class="callout-content">
+<p>Obtaining consistent computational results using the same input data, computational steps, methods, code, and conditions of analysis.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="elements-of-a-reproducible-project" class="slide level2">
+<h2>Elements of a reproducible project</h2>
+<h4 class="center" id="we-need-to-have-a-plan-to-organise-store-and-make-all-the-project-files-available">We need to have a plan to organise, store and make all the project files available</h4>
+<ul>
+<li>All the elements of the project should be files</li>
+<li>All files should be stored within the project location (typically a folder)</li>
+<li>All your files should be explicitly tied together</li>
+</ul>
+</section>
+<section id="project-organisation-example" class="slide level2">
+<h2>Project organisation example</h2>
+
+<img data-src="images/project1.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="workflow-for-reproducible-research" class="slide level2">
+<h2>Workflow for reproducible research</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/data-science.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>Allison Horst (<span class="citation" data-cites="allisonhorst">@allisonhorst</span>)</p>
+</div></aside></section>
+<section id="stages-for-reproducible-data-analysis-and-reporting" class="slide level2">
+<h2>Stages for reproducible data analysis and reporting</h2>
+<div>
+<ul>
+<li class="fragment">Clear research questions to be investigated</li>
+<li class="fragment">Clear objectives: what is the goal of this report?</li>
+<li class="fragment">Data gathering</li>
+<li class="fragment">Exploratory data analysis</li>
+<li class="fragment">Data analysis</li>
+<li class="fragment">Results presentation</li>
+</ul>
+</div>
+<div class="fragment">
+<!-- -->
+<h4 class="center" id="all-of-the-above-needs-to-be-documented-and-tied-together">All of the above needs to be documented and tied together</h4>
+</div>
+</section>
+<section id="in-this-unit" class="slide level2">
+<h2>In this unit</h2>
+<p>We will <span class="monash-green2">create documents that are reproducible</span></p>
+<ul>
+<li>Incorporate analyses that are reproducible</li>
+<li>Include report text</li>
+<li>All combined together</li>
+</ul>
+<p>Our reproducible documents will be created using the scripting language <span class="monash-blue">R</span> combined with <span class="monash-blue"><code>quarto</code></span>.</p>
+</section>
+<section id="what-is-markdown" class="slide level2">
+<h2>What is Markdown?</h2>
+<p>Markdown is a lightweight markup language that you can use to add formatting elements to plain text documents.</p>
+<p>It was created by John Gruber in 2004. <a href="https://www.markdownguide.org/getting-started/">Read more here</a></p>
+<ul>
+<li>Markdown is a “text” formatting syntax</li>
+<li>Can be rendered to more complex formats such as pdf, html, pdf, doc, …</li>
+</ul>
+</section></section>
+<section>
+<section id="good-news" class="title-slide slide level1 center">
+<h1>Good news!</h1>
+<p>We can use markdown inside a type of documents called <span class="monash-green2">Quarto files</span></p>
+<p>Today, we’ll learn how to do it.</p>
+</section>
+<section id="main-tools-for-combining-r-code-and-text" class="slide level2">
+<h2>Main tools for combining R code and text</h2>
+<p>Our main tool is going to be <code>R</code> and it’s packages. We will be using <code>R</code> via RStudio.</p>
+<ul>
+<li><code>R</code> is structured into libraries</li>
+<li>For reproducibility, we have two libraries that are crucial</li>
+<li>Does anyone know which ones are those?</li>
+</ul>
+
+<img data-src="images/Rstudio.png" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"></section></section>
+<section>
+<section id="quarto-and-knitr" class="title-slide slide level1 center">
+<h1>Quarto and <code>knitr</code></h1>
+<ul>
+<li>Quarto is a new piece of software (with corresponding R package) that allows us to create documents using <strong>Markdown</strong></li>
+<li><code>knitr</code> is an R package that allows us to render <code>quarto</code> code into html, pdf, doc etc</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/quarto_hex.svg" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/knitr_0.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="quarto-documents" class="slide level2">
+<h2>Quarto documents</h2>
+<ul>
+<li>Quarto could be considered a file format, for making dynamic documents with R.</li>
+<li>Quarto documents have extension <code>qmd</code></li>
+</ul>
+</section>
+<section id="quarto" class="slide level2">
+<h2>Quarto</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Quarto</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Provides an environment where you can write your complete analysis, and combines your text and code together into a rich document</li>
+<li>You write your code as code chunks, put your text around that, and then you get a fully reproducible document</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="elements-in-a-quarto-document" class="slide level2">
+<h2>Elements in a Quarto Document</h2>
+<h4 class="center" id="there-are-three-parts-to-a-quarto-document">There are three parts to a Quarto document</h4>
+<ol type="1">
+<li>Metadata (YAML)</li>
+<li>Text (formatted with Markdown)</li>
+<li>Code (code formatting)</li>
+</ol>
+<div class="fragment">
+<p>Before we dive into the Quarto file structure, let’s talk about Markdown.</p>
+</div>
+</section>
+<section id="dynamic-documents" class="slide level2">
+<h2>Dynamic documents</h2>
+<p>Quarto + <code>knitr</code> = Dynamic document</p>
+<ul>
+<li>Quarto allows us to not only use Markdown to write the <span class="monash-green2">text</span> in the report, it also allows us to include <span class="monash-green2">R code</span>.</li>
+<li><code>knitr</code> combines with <code>pandoc</code> to render documents that contain a mixture of these components</li>
+<li><code>pandoc</code> is used by the <code>quarto</code> package to <span class="monash-blue"><strong>render</strong></span> a <code>qmd</code> file into a new format.</li>
+</ul>
+
+<aside><div>
+<p>Pandoc is a universal document converter.</p>
+<p>It takes Markdown, word documents, powerpoint slides, LaTeX and a bunch of other documents and converts between them. You can read more about Pandoc <a href="https://pandoc.org">here</a>.</p>
+</div></aside></section>
+<section id="possible-outputs" class="slide level2">
+<h2>Possible outputs</h2>
+
+<img data-src="images/qmd-system.png" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"></section>
+<section id="quarto-file-structure" class="slide level2">
+<h2>Quarto file structure</h2>
+<p>Three main components: <strong>YAML</strong>, <strong>text</strong> and <strong>R code chunks</strong>.</p>
+
+<img data-src="images/qmd-file-structure.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"></section>
+<section id="component-breakdown-yaml" class="slide level2">
+<h2>Component breakdown: YAML</h2>
+<p><strong>Metadata</strong> is written at the top of the file, between <code>---</code> in YAML.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a></a><span class="pp">---</span></span>
+<span id="cb1-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"ETC5513"</span></span>
+<span id="cb1-3"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Michael Lydeamore"</span></span>
+<span id="cb1-4"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb1-5"><a></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="component-breakdown-text" class="slide level2">
+<h2>Component breakdown: Text</h2>
+<p><strong>Text</strong> is written in Markdown</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="fu"># This is a section header</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="this-is-a-section-header">This is a section header</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="fu">## This is a subsection header</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="this-is-a-subsection-header">This is a subsection header</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a>In this section, something is **important**</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this section, something is <strong>important</strong></p>
+</section>
+<section id="writing-text-hyperlinks-and-sections" class="slide level2">
+<h2>Writing text, hyperlinks and sections</h2>
+<p><span class="monash-green2">Using Markdown:</span> we can write plain text as we would do in any text processor.</p>
+<div class="fragment">
+<p>We can easily add hyperlinks:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Code:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="co">[</span><span class="ot">More info about Quarto here</span><span class="co">](https://quarto.org)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<p>Result:</p>
+<p><a href="https://quarto.org">More info about Quarto here</a></p>
+</div>
+</div>
+</div>
+</section>
+<section id="font-types" class="slide level2">
+<h2>Font types</h2>
+<p>We can write things in italic or bold:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Code:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a>__bold__, **bold**,</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>_italic_, *italic*</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<p>Result:</p>
+<p><strong>bold</strong>, <strong>bold</strong>,</p>
+<p><em>italic</em>, <em>italic</em></p>
+</div>
+</div>
+</section>
+<section id="markdown-example" class="slide level2">
+<h2>Markdown example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Code:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="fu"># Header 1</span></span>
+<span id="cb7-2"><a></a><span class="fu">## Header 2</span></span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a><span class="ss">* </span>Unordered list 1</span>
+<span id="cb7-5"><a></a></span>
+<span id="cb7-6"><a></a>_This is italic_</span>
+<span id="cb7-7"><a></a></span>
+<span id="cb7-8"><a></a>*So is this*</span>
+<span id="cb7-9"><a></a></span>
+<span id="cb7-10"><a></a>**This is bold**</span>
+<span id="cb7-11"><a></a></span>
+<span id="cb7-12"><a></a><span class="ss">1. </span>Ordered list 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<p>Result:</p>
+<h3 id="header-1">Header 1</h3>
+<h4 id="header-2">Header 2</h4>
+<ul>
+<li>Unordered list 1</li>
+</ul>
+<p><em>This is italic</em></p>
+<p><em>So is this</em></p>
+<p><strong>This is bold</strong></p>
+<ol type="1">
+<li>Ordered list 1</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="markdown-component-code" class="slide level2">
+<h2>Markdown component: code</h2>
+<p>R Code is included in <span class="monash-green2">chunks</span>:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Code:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a></a><span class="in">#| echo: false</span></span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a><span class="in">library(ggplot2)</span></span>
+<span id="cb8-5"><a></a><span class="in">ggplot(cars, </span></span>
+<span id="cb8-6"><a></a><span class="in">       aes(x = speed, </span></span>
+<span id="cb8-7"><a></a><span class="in">           y = dist)</span></span>
+<span id="cb8-8"><a></a><span class="in">       ) +</span></span>
+<span id="cb8-9"><a></a><span class="in">  geom_point()</span></span>
+<span id="cb8-10"><a></a><span class="in">```</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<p>Result:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/index.rmarkdown/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="r-code" class="slide level2 scrollable">
+<h2>R code</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Code:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a></a><span class="in">#| echo: false</span></span>
+<span id="cb9-3"><a></a></span>
+<span id="cb9-4"><a></a><span class="in">library(ggplot2)</span></span>
+<span id="cb9-5"><a></a></span>
+<span id="cb9-6"><a></a><span class="in">data = data(InsectSprays)</span></span>
+<span id="cb9-7"><a></a></span>
+<span id="cb9-8"><a></a><span class="in">head(InsectSprays)</span></span>
+<span id="cb9-9"><a></a><span class="in">```</span></span>
+<span id="cb9-10"><a></a>...</span>
+<span id="cb9-11"><a></a><span class="in">```{r}</span></span>
+<span id="cb9-12"><a></a><span class="in">#| echo: false</span></span>
+<span id="cb9-13"><a></a><span class="in">ggplot(data = InsectSprays,</span></span>
+<span id="cb9-14"><a></a><span class="in">       aes(x = spray,</span></span>
+<span id="cb9-15"><a></a><span class="in">           y = count,</span></span>
+<span id="cb9-16"><a></a><span class="in">           fill = spray)</span></span>
+<span id="cb9-17"><a></a><span class="in">       ) +</span></span>
+<span id="cb9-18"><a></a><span class="in">  geom_boxplot(alpha = 0.6) +</span></span>
+<span id="cb9-19"><a></a><span class="in">  ggtitle("Insect sprays boxplots")</span></span>
+<span id="cb9-20"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<p>Result:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>  count spray
+1    10     A
+2     7     A
+3    20     A
+4    14     A
+5    14     A
+6    12     A</code></pre>
+</div>
+</div>
+<p>…</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/index.rmarkdown/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="r-code-chunks" class="slide level2 smaller">
+<h2>R Code Chunks</h2>
+<p>You can quickly insert an R code chunk into your file with:</p>
+<ul>
+<li>Keyboard shortcut <span class="monash-green2">Ctrl + Alt + I</span> (Mac: Cmd + Option + I)</li>
+<li>The <span class="monash-green2">Add Chunk</span> command in the editor toolbar or</li>
+<li>Typing the chunk delimeters (```)</li>
+</ul>
+<div class="fragment">
+<p>Chunk output can be customised with <a href="https://quarto.org/docs/computations/execution-options.html">Chunk execution options</a>, which are at the top of a chunk, starting with <code>#|</code>.</p>
+<ul>
+<li><code>include: false</code> prevents code and results appearing in the finished file. The code is still run and results can be used in other chunks.</li>
+<li><code>echo: false</code> prevents code but not results appearing in the finished file. This is a useful way to embed figures.</li>
+</ul>
+</div>
+</section>
+<section id="more-chunk-options" class="slide level2">
+<h2>More chunk options</h2>
+<ul>
+<li><code>eval: false</code> does not evaluate (or run) this code chunk when knitting</li>
+<li><code>message: false</code> prevents messages that are generated by code appearing in the finished file</li>
+<li><code>warning: false</code> prevents warnings that are generated appearing in the finished file</li>
+<li><code>fig.cap = "Text"</code> adds a caption to a figure</li>
+<li><code>fig-align = "center"</code> sets the position it will appear</li>
+</ul>
+<div class="fragment">
+<p>There are loads more of these - see the Quarto documentation for a complete list.</p>
+</div>
+</section>
+<section id="global-options" class="slide level2">
+<h2>Global options</h2>
+<p>To set <strong>global options</strong> that paply to every chunk in your file, call <code>knitr::opts_chunk$set()</code> in a code chunk.</p>
+<p>These will be treated as a global default <em>that can be overwritten</em> by individual chunk headers.</p>
+<p>Example:</p>
+<p><code>knitr::opts_chunk$set(echo = FALSE)</code></p>
+</section>
+<section id="caching" class="slide level2">
+<h2>Caching</h2>
+<p>Long documents can take a long time to run. Quarto has a caching system that can help manage this long execution time.</p>
+<p>You can set cache as either a chunk option (using <code>#|</code>) or globally in YAML:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb11-2"><a></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>More info on caching is in the <a href="https://quarto.org/docs/projects/code-execution.html">Quarto manual</a></p>
+<div class="fragment">
+<p>Use these with care: It is easy to accidentally <em>not</em> refresh an updated chunk!</p>
+</div>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/first-quarto.jpg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/first-quarto-render.jpg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="rendering-quarto-to-html" class="slide level2">
+<h2>Rendering Quarto to HTML</h2>
+<p>Use the “Render” button at the top</p>
+
+<img data-src="images/quarto-export-demo.png" class="r-stretch"></section>
+<section id="rendering-quarto-to-pdf" class="slide level2">
+<h2>Rendering Quarto to PDF</h2>
+<p>We can also knit to a PDF:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/first-quarto-pdf.jpg" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/first-quarto-pdf-render.jpg" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Rendering a PDF requires LaTeX installed. LaTeX is a high-quality typesetting system, and includes features designed for the production of technical and scientific documentation. We will be using the <code>tinytex</code> <a href="https://yihui.org/tinytex/">R package</a></p>
+</div></aside></section>
+<section id="knitr-and-pandoc" class="slide level2">
+<h2><code>knitr</code> and Pandoc</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/knitr_0.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Pandoc: The document converter</p>
+<p><a href="https://pandoc.org/index.html">https://pandoc.org/index.html</a></p>
+</div>
+</div>
+<ul>
+<li><code>knitr</code> executes the code and converts the .qmd to a .md</li>
+<li>Pandoc renders the .md to the output format you want</li>
+</ul>
+</section>
+<section id="lets-learn-about-yaml" class="slide level2">
+<h2>Let’s learn about YAML</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"R Notebook"</span></span>
+<span id="cb12-2"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Michael Lydeamore"</span></span>
+<span id="cb12-3"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb12-4"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb12-5"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb12-6"><a></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> solar</span></span>
+<span id="cb12-7"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb12-8"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb12-9"><a></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
+<span id="cb12-10"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>toc</code>: Table of contents. You can read more abotu that <a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents">here</a></p>
+</section>
+<section id="this-is-the-resulting-html" class="slide level2">
+<h2>This is the resulting HTML</h2>
+
+<img data-src="images/quarto-new-theme.jpg" class="r-stretch"></section>
+<section id="tables-and-captions" class="slide level2 scrollable">
+<h2>Tables and Captions</h2>
+<p>Code:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a></a><span class="in">library(dslabs)</span></span>
+<span id="cb13-3"><a></a><span class="in">data(murders)</span></span>
+<span id="cb13-4"><a></a><span class="in">table_data &lt;- head(murders, 5)</span></span>
+<span id="cb13-5"><a></a></span>
+<span id="cb13-6"><a></a><span class="in">knitr::kable(table_data, </span></span>
+<span id="cb13-7"><a></a><span class="in">             caption = "Gun murder data</span></span>
+<span id="cb13-8"><a></a><span class="in">             from FBI reports by state",</span></span>
+<span id="cb13-9"><a></a><span class="in">             digits = 2)</span></span>
+<span id="cb13-10"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Result:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table>
+<caption>Gun murder data from FBI reports by state</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">state</th>
+<th style="text-align: left;">abb</th>
+<th style="text-align: left;">region</th>
+<th style="text-align: right;">population</th>
+<th style="text-align: right;">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Alabama</td>
+<td style="text-align: left;">AL</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: right;">4779736</td>
+<td style="text-align: right;">135</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Alaska</td>
+<td style="text-align: left;">AK</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">710231</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Arizona</td>
+<td style="text-align: left;">AZ</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">6392017</td>
+<td style="text-align: right;">232</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Arkansas</td>
+<td style="text-align: left;">AR</td>
+<td style="text-align: left;">South</td>
+<td style="text-align: right;">2915918</td>
+<td style="text-align: right;">93</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">California</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: left;">West</td>
+<td style="text-align: right;">37253956</td>
+<td style="text-align: right;">1257</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="tables-and-captions-1" class="slide level2">
+<h2>Tables and Captions</h2>
+<p>Code:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a></a><span class="in">library(dslabs)</span></span>
+<span id="cb14-3"><a></a><span class="in">data(murders)</span></span>
+<span id="cb14-4"><a></a><span class="in">table_data &lt;- head(murders, 5)</span></span>
+<span id="cb14-5"><a></a></span>
+<span id="cb14-6"><a></a><span class="in">knitr::kable(table_data, </span></span>
+<span id="cb14-7"><a></a><span class="in">             caption = "Gun murder data</span></span>
+<span id="cb14-8"><a></a><span class="in">             from FBI reports by state",</span></span>
+<span id="cb14-9"><a></a><span class="in">             digits = 2)</span></span>
+<span id="cb14-10"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For more information, type <code>knitr::kable()</code> into your R console.</p>
+</section>
+<section id="figures-and-captions" class="slide level2">
+<h2>Figures and captions</h2>
+<p>Figures from R are created inside code chunks.</p>
+<p>Typically, we will generate figures using <code>ggplot2</code></p>
+<p>Inside the code chunk, we use the <code>fig-cap</code> chunk option to generate a caption.</p>
+<p>You will also want to include <code>fig-label</code> so it gets a number.</p>
+</section>
+<section id="figures-and-captions-1" class="slide level2">
+<h2>Figures and captions</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a></a><span class="in">#| fig-label: cars-plot</span></span>
+<span id="cb15-3"><a></a><span class="in">#| fig-cap: "Distance taken for a car to stop, against it's speed during the test."</span></span>
+<span id="cb15-4"><a></a></span>
+<span id="cb15-5"><a></a><span class="in">library(ggplot2)</span></span>
+<span id="cb15-6"><a></a><span class="in">ggplot(cars, </span></span>
+<span id="cb15-7"><a></a><span class="in">       aes(x = speed, </span></span>
+<span id="cb15-8"><a></a><span class="in">           y = dist)</span></span>
+<span id="cb15-9"><a></a><span class="in">       ) +</span></span>
+<span id="cb15-10"><a></a><span class="in">  geom_point()</span></span>
+<span id="cb15-11"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="images/index.rmarkdown/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"><p class="caption">Distance taken for a car to stop, against it’s speed during the test.</p></section>
+<section id="inserting-external-imagesphotosfigures" class="slide level2">
+<h2>Inserting external images/photos/figures</h2>
+<p>There are two different ways to include external pictures.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a></a><span class="in">#| out-width: "80%"</span></span>
+<span id="cb16-3"><a></a><span class="in">knitr::include_graphics("images/R.png")</span></span>
+<span id="cb16-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<pre><code>![](images/R.png){width="80%"}</code></pre>
+<p>I recommend the latter unless for some reason you need some specific R processing.</p>
+<div class="fragment">
+<p>Note these don’t have to be local links. URLs work just fine!</p>
+<div class="columns">
+<div class="column" style="width:75%;">
+<pre><code>![](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif)</code></pre>
+</div><div class="column" style="width:25%;">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" class="quarto-figure quarto-figure-right" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="now-we-know-how-to-create-a-qmd-file" class="slide level2">
+<h2>Now we know how to create a qmd file</h2>
+<h4 class="center" id="but-there-is-more-to-a-project-than-that">But there is more to a project than that</h4>
+<p>A project might have:</p>
+<ul>
+<li>Data,</li>
+<li>Other R or Quarto scripts</li>
+<li>Figures etc</li>
+</ul>
+<p>All the documents related to a project should be in one <em>folder</em>, often under an RStudio Project.</p>
+</section></section>
+<section id="lets-talk-about-computer-paths" class="title-slide slide level1 center">
+<h1>Let’s talk about computer paths</h1>
+<p>And then RStudio Projects</p>
+</section>
+
+<section>
+<section id="computer-paths" class="title-slide slide level1 center">
+<h1>Computer paths</h1>
+
+<img data-src="images/nathan-anderson-uq5JjGK_4SE-unsplash.jpg" class="quarto-figure quarto-figure-center r-stretch"><p>Where are files and folders stored on our computer?</p>
+</section>
+<section id="computer-paths-1" class="slide level2">
+<h2>Computer paths</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition: Path</strong></p>
+</div>
+<div class="callout-content">
+<p>A <em>path</em> is the complete location or name of where a computer file, directory, device, or web page is located</p>
+</div>
+</div>
+</div>
+<p>Some examples:</p>
+<ul>
+<li>Windows: <code>C:\Documents\ETC5513</code></li>
+<li>Mac/Linux: <code>/Users/Documents/ETC5513</code></li>
+<li>Internet: <code>http://rcp.numbat.space/</code></li>
+</ul>
+</section>
+<section id="absolute-and-relative-paths" class="slide level2">
+<h2>Absolute and Relative Paths</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition: Absolute Path</strong></p>
+</div>
+<div class="callout-content">
+<p>An <em>absolute</em> or <em>full</em> path begins from the lowest level, typically a drive letter or root (<code>/</code>)</p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Definition: Relative Path</strong></p>
+</div>
+<div class="callout-content">
+<p>A relative path refers to a location that is <em>relative</em> to the current directory. They typically start with a <code>.</code> (although this may be hidden from the user)</p>
+</div>
+</div>
+</div>
+<p>Examples:</p>
+<ul>
+<li>Absolute path: <code>C:\Documents\ETC5513-Assignment-Solutions</code></li>
+<li>Relative path: <code>./assignment-solutions</code></li>
+</ul>
+</section>
+<section id="absolute-and-relative-paths-1" class="slide level2">
+<h2>Absolute and Relative paths</h2>
+<p>Absolute paths are generally to be avoided - it is extremely unlikely another person will have the same absolute path as you.</p>
+<p>Relative paths can work on different systems.</p>
+<div class="fragment">
+<!-- -->
+<h4 class="center monash-blue" id="it-is-essential-you-understand-where-directories-and-files-are-within-your-computer">It is essential you understand where directories and files are within your computer</h4>
+<p>Having clarity about that and the projects file architecture gives you total control about their organisation.</p>
+</div>
+</section>
+<section id="order-versus-mess" class="slide level2">
+<h2>Order versus mess</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/omid-kashmari-s34f0Wxbens-unsplash.jpg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/sharon-mccutcheon-tn57JI3CewI-unsplash.jpg" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="work-projects" class="slide level2">
+<h2>Work projects</h2>
+<ul>
+<li>Give each project a unique working directory/folder</li>
+<li>Clean file system: all files related to a single project should be in the same folder
+<ul>
+<li>data (typically a folder)</li>
+<li>figures (typically a folder)</li>
+<li>code</li>
+<li>notes</li>
+</ul></li>
+<li>All paths should be relative to the project folder. <span class="monash-green2">Why?</span></li>
+<li>Remember, absolute paths are <strong>not</strong> reproducible</li>
+</ul>
+</section>
+<section id="rstudio-project-example" class="slide level2">
+<h2>RStudio Project Example</h2>
+<ul>
+<li>Data folder: Contains all the data for the project</li>
+<li>Images/Figures folder: Contains all pictures not produced by your code in the qmd file</li>
+<li>.Rproj file: <span class="monash-green2">This gets added when we create an RStudio project</span></li>
+<li>qmd file</li>
+<li>Other R scripts etc…</li>
+</ul>
+
+<img data-src="images/project-example.jpg" class="r-stretch"></section>
+<section id="rstudio-projects" class="slide level2">
+<h2>RStudio projects</h2>
+<p>RStudio projects automatically handle relative paths and working directories</p>
+<p>You can create an RStudio project</p>
+<ul>
+<li>In a brand new directory</li>
+<li>In an existing directory where you already have R Code and data</li>
+<li>From a version control repository</li>
+</ul>
+<p><a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects">Read more on Rstudio projects here</a></p>
+
+<aside><div>
+<p>They are specific to RStudio -&gt; If you use a different IDE you need a different solution</p>
+</div></aside></section>
+<section id="creating-a-new-project" class="slide level2">
+<h2>Creating a new project</h2>
+<p>File &gt; New project &gt; Fill out the Options</p>
+
+<img data-src="images/newproject.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="rstudio-project-advantages" class="slide level2">
+<h2>RStudio Project Advantages</h2>
+<p>When you make a new RStudio Project, it:</p>
+<ul>
+<li>Creates a project file (with the <code>.Rproj</code> extension) within the project directory
+<ul>
+<li>This file can be used a as a shortcut to open the project directly</li>
+</ul></li>
+<li>Creates a hidden directory (<code>.Rproj.user</code>) where project-specific temporary fiels are stored</li>
+<li>Loads the project into RStudio and displays it’s name in the Projects toolbar</li>
+</ul>
+</section></section>
+<section>
+<section id="good-coding-style" class="title-slide slide level1 center">
+<h1>Good Coding Style</h1>
+
+<img data-src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" class="r-stretch"></section>
+<section id="good-coding-style-1" class="slide level2">
+<h2>Good Coding Style</h2>
+<p>Coding style is an opinion-based phenomenon</p>
+<p>There are different styles and it is important to be careful about how you write your code.</p>
+<p><strong>Bad example</strong>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb19-2"><a></a><span class="in">library(ggplot2)</span></span>
+<span id="cb19-3"><a></a><span class="in">data = data(InsectSprays)</span></span>
+<span id="cb19-4"><a></a><span class="in">ggplot(data=InsectSprays, aes(spray, count, fill=spray))+geom_boxplot(alpha=0.6)+ggtitle("Insect sprays boxplots")</span></span>
+<span id="cb19-5"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>Long lines, no spaces, no structure: makes it <em>very</em> hard to read and debug</p>
+</div>
+</section>
+<section id="good-example" class="slide level2">
+<h2>Good example</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a></a><span class="in">library(ggplot2)</span></span>
+<span id="cb20-3"><a></a></span>
+<span id="cb20-4"><a></a><span class="in">ggplot(data = InsectSprays,</span></span>
+<span id="cb20-5"><a></a><span class="in">       aes(x = spray, </span></span>
+<span id="cb20-6"><a></a><span class="in">           y = count,</span></span>
+<span id="cb20-7"><a></a><span class="in">           fill = spray)</span></span>
+<span id="cb20-8"><a></a><span class="in">       ) +</span></span>
+<span id="cb20-9"><a></a><span class="in">  geom_boxplot(alpha = 0.6) +</span></span>
+<span id="cb20-10"><a></a><span class="in">  ggtitle("Insect sprays boxplots")</span></span>
+<span id="cb20-11"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We will (mostly) follow the Tidyverse style guide</p>
+<ul>
+<li><a href="https://style.tidyverse.org" class="uri">https://style.tidyverse.org</a></li>
+<li><a href="http://adv-r.had.co.nz/Style.html" class="uri">http://adv-r.had.co.nz/Style.html</a></li>
+</ul>
+</section>
+<section id="good-coding-principles" class="slide level2">
+<h2>Good coding principles</h2>
+<ul>
+<li>Source code should be readable by humans and self-explanatory</li>
+<li>Long sentences are not good (maximum 80-100 characters)</li>
+<li>Inside R code chunks, the <code>tidyverse</code> style guide is a good guide:
+<ul>
+<li>Use spaces around <code>&lt;-</code>, <code>+</code>, <code>=</code>, <code>-</code>, after <code>,</code> and before <code>{</code></li>
+<li>For comments inside yoru code, use <code>#</code></li>
+</ul></li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>The more organised you are writing your code, the eaiser it will be to read it and debug it</p>
+</div>
+</div>
+</div>
+</section>
+<section id="practices-for-reproducible-research" class="slide level2">
+<h2>Practices for reproducible research</h2>
+<ul>
+<li>Have a plan to <span class="monash-green2">organise</span>, <span class="monash-green2">store</span>, and make your files <span class="monash-green2">available</span></li>
+<li>Set up an <span class="monash-green2">RStudio Project</span> for each of your projects</li>
+<li>Make sure all the steps in your analysis are documented</li>
+<li>All files should be human readable</li>
+<li>All files related to a project should be explicitly tied together</li>
+</ul>
+</section>
+<section id="reproducible-workflow" class="slide level2">
+<h2>Reproducible workflow</h2>
+
+<img data-src="images/environmental-data-science-r4ds-general.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
+<section id="week-2-lesson" class="slide level2">
+<h2>Week 2 Lesson</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Summary</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Quarto documents</li>
+<li>R Code Chunk Options</li>
+<li>Including figures, tables, captions</li>
+<li>RStudio projects</li>
+<li>Good Coding Practices</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Resources</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><a href="https://quarto.org/" class="uri">https://quarto.org/</a></li>
+<li><a href="https://www.markdownguide.org/getting-started/" class="uri">https://www.markdownguide.org/getting-started/</a></li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects" class="uri">https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects</a></li>
+<li><a href="https://style.tidyverse.org" class="uri">https://style.tidyverse.org</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="quarto-auto-generated-content">
+<p><img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>ETC5513 Week 2</p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"boardmarkerWidth":5},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 750,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <link rel="stylesheet" href="assets/syntax-highlight.css">
+    <link rel="stylesheet" href="assets/monash-after-body.css">
+    <link rel="stylesheet" href="assets/fontawesome-free-6.1.1-web/css/all.css">
+    <script src="assets/fontawesome-free-6.1.1-web/js/all.js"></script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

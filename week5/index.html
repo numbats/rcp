@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.549">
+
+  <meta name="author" content="Michael Lydeamore">
+  <meta name="dcterms.date" content="2001-05-01">
+  <title>ETC5513: Reproducible and Collaborative Practices</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../assets/tachyons-addon.css">
+  <link rel="stylesheet" href="../assets/custom.css">
+  <link rel="stylesheet" href="../assets/lecture-01.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="etc5513-title" class="slide level2" data-background-image="images/bg-01.png">
+<h2><br><span class="monash-blue title">ETC5513: Reproducible and Collaborative Practices</span></h2>
+<h3 id="deeper-git-knowledge-stashing-and-tools">Deeper git knowledge, stashing and tools</h3>
+<p>Lecturer: <em>Michael Lydeamore</em></p>
+<p>Department of Econometrics and Business Statistics</p>
+<div class="tl">
+<p><br></p>
+<ul class="fa-ul">
+<li>
+<p><span class="fa-li"><i class="fas fa-envelope"></i></span>michael.lydeamore@monash.edu</p>
+</li>
+<li>
+<p><span class="fa-li"><i class="fas fa-calendar-alt"></i></span> Week 5</p>
+</li>
+<li>
+<p><span class="fa-li"><i class="fa-solid fa-globe"></i></span><a href="rcp.numbat.space">rcp.numbat.space</a></p>
+</li>
+</ul>
+<p><br></p>
+</div>
+</section>
+<section id="open-frame" class="slide level2">
+<h2>Open Frame</h2>
+
+<img data-src="images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="recap" class="slide level2">
+<h2>Recap</h2>
+<ul>
+<li>Learned more on creating reproducible reports:
+<ul>
+<li>Referencing</li>
+<li>Talk about css files</li>
+</ul></li>
+<li>More on Git:
+<ul>
+<li>Branches</li>
+</ul></li>
+<li>Solving Git merging conflicts</li>
+<li>Install VSCode as a GUI to work with Git/GitHub and as a text editor for commits.</li>
+</ul>
+</section>
+<section id="aim" class="slide level2">
+<h2>Today’s plan</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Aim</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>More Git/GitHub tools</li>
+<li>Pull requests: a tool to collaborate with others via GitHub</li>
+<li>VSCode</li>
+</ol>
+</div>
+</div>
+</div>
+<p>With this you have learned the <strong>basics</strong> to <span class="monash-green2">create</span> reproducible and collaborative reports.</p>
+</section>
+<section id="stashing" class="slide level2">
+<h2>Stashing</h2>
+<p>“Stashing takes the”dirty” state of your working directory - that is, your modified tracked files and staged changes - and saves it on a stack of unfinished changes that you can reapply at any time (even on a different branch).” <a href="https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning">Source</a></p>
+<p><code>git stash</code> comes in handy for staged files or `git stash -u for unstaged files.</p>
+<p><code>git stash</code> allow us to keep changes in our local repository and to commit then later on.</p>
+<p><code>git stash save "Message"</code> allow us to add a message to the stash</p>
+</section>
+<section id="git-stash" class="slide level2">
+<h2><code>git stash</code></h2>
+<p>Creating a stash allows you to revert but save changes that you might have done in the repository, without losing them.</p>
+<p>Then, when you are ready to include those changes and to commit them into the remote repo we can use:</p>
+<ul>
+<li><code>git stash apply</code> makes your changes in the stash on the branch <em>but keeps them in the stash</em>.</li>
+<li><code>git stash pop</code> makes your changes in the stash on the branch <em>and removes them from the stash</em>.</li>
+</ul>
+<p>Generally, <code>pop</code> is preferred unless you have to apply your changes more than once.</p>
+</section>
+<section id="git-stash-in-practice" class="slide level2">
+<h2><code>git stash</code> in practice</h2>
+<pre><code>$ git status
+On branch master
+Changes to be committed:
+new file: style.css
+Changes not staged for commit:
+modified: index.html</code></pre>
+<pre><code>$ git stash
+Saved working directory and index state WIP on master: 
+5002d47 our new homepage
+HEAD is now at 5002d47 our new homepage</code></pre>
+</section>
+<section id="git-status-changes-after-stashing" class="slide level2">
+<h2>git status changes after stashing</h2>
+<pre><code>$ git status
+On branch master
+nothing to commit, working tree clean</code></pre>
+</section>
+<section id="while-your-changes-are-stashed-you-can" class="slide level2">
+<h2>While your changes are stashed you can …</h2>
+<ul>
+<li>Make more changes into the repo, create new commits, switch branches and perform any other Git operations.</li>
+<li>You can come back to your stash later on and re-apply your stash when you’re ready.</li>
+<li>Stash is <span class="monash-green2">local</span> to your repository.</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><code>stash</code>es are not transferred to the server when you push.</p>
+</div>
+</div>
+</div>
+<p>You can create more than one stash: be careful with this.</p>
+</section>
+<section id="git-apply-and-git-pop-stage-changes" class="slide level2">
+<h2><code>git apply</code> and <code>git pop</code>: stage changes</h2>
+<p>The <code>git stash</code> command takes your uncommitted changes but staged and saves them away for later use, or <code>git stash -u</code> if we have not staged the changes, and then reverts them from your working copy. <code>git stash</code> save “Message to remember what you did”</p>
+<p>To bring stash in from the repo:</p>
+<ul>
+<li><code>git stash apply</code></li>
+<li><code>git stash pop</code></li>
+</ul>
+</section>
+<section id="git-stash-apply" class="slide level2">
+<h2><code>git stash apply</code></h2>
+<p><code>git stash apply</code> will take the changes saved in your stash and apply them into the working directory of your current branch. In addition, the changes are kept in the stash. This might be useful when you want to apply the same changes into different branches.</p>
+</section>
+<section id="git-stash-pop" class="slide level2">
+<h2><code>git stash pop</code></h2>
+<p><code>git stash pop</code> will do the same as apply but <em>will delete the stash after applying the changes</em>.</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>The stash is <em>not</em> a replacement for a commit. You can think of stashing as ‘keeping for later’, while a commit is for saving and keeping record.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="git-stash-pop-in-practice" class="slide level2">
+<h2><code>git stash pop</code> in practice</h2>
+<pre><code>$ git status
+On branch master
+nothing to commit, working tree clean</code></pre>
+<pre><code>$ git stash pop
+On branch master
+Changes to be committed:
+new file: style.css
+Changes not staged for commit:
+modified: index.html
+Dropped refs/stash@{0} (32b3aa1d185dfe6d57b3c3cc3)</code></pre>
+</section>
+<section id="git-stash-apply-in-practice" class="slide level2">
+<h2><code>git stash apply</code> in practice</h2>
+<pre><code>git stash apply
+On branch master
+Changes to be committed:
+new file: style.css
+Changes not staged for commit:
+modified: index.html</code></pre>
+<div class="fragment">
+<p>Do you see the difference between <code>pop</code> and <code>apply</code>?</p>
+</div>
+</section>
+<section id="more-than-one-stash" class="slide level2">
+<h2>More than one stash</h2>
+<p><code>git stash list</code> will list all of your stashes</p>
+<pre><code>$ git stash list
+stash@{0}: WIP on dev: 1f6f8bb Commit message A
+stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
+<ul>
+<li><code>git stash show stash@{1}</code> will show you the files changed in <code>stash@{1}</code></li>
+<li>Then you can call <code>git stash apply/pop</code> twice</li>
+<li>Or <code>git stash apply stash@{0}</code></li>
+<li>Or <code>git stash pop stash@{1}</code></li>
+</ul>
+</section>
+<section id="deleting-stash" class="slide level2">
+<h2>Deleting stash</h2>
+<ul>
+<li><code>git stash drop stash@{0}</code> will delete <code>stash@{0}</code></li>
+<li><code>git stash clear</code> will remove <strong>all</strong> the stashes in the stash area.</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Because stashes aren’t synchronised, once they’re gone they’re gone. So, clear with caution.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-a-branch-from-a-stash" class="slide level2">
+<h2>Creating a branch from a stash</h2>
+<p>If you stash some work, leave it there for a while, and continue on the branch from which you stashed the work, you may have a problem reapplying the work. If the apply tries to modify a file that you’ve since modified, you’ll get a merge conflict and will have to try to resolve it.</p>
+<p>If you want an easier way to test the stashed changes again, you can run <code>git stash branch branchname</code>, which creates a new branch for you with your selected branch name, checks out the commit you were on when you stashed your work, reapplies your work there, and then drops the stash if it applies successfully.</p>
+</section>
+<section id="tracked-untracked-and-ignored-files" class="slide level2">
+<h2>Tracked, untracked and ignored files</h2>
+<p>Git sees every file in your working copy as one of three things:</p>
+<ul>
+<li><span class="monash-green2">tracked</span>: a file which has been previously staged or committed</li>
+<li><span class="monash-green2">untracked</span>: a file which has not been staged or committed or</li>
+<li><span class="monash-green2">ignored</span>: a file which Git has been explicitly told to ignore.</li>
+</ul>
+<p>Typically in a project there might be files that we decided to not track and ignore.</p>
+<p>Examples include files that are built artifacts and machine generated files that can be derived from your repository source or should otherwise not be committed.</p>
+</section>
+<section id="in-rstudio" class="slide level2">
+<h2>In Rstudio</h2>
+<ul>
+<li><span style="color:blue"><strong>Blue-M</strong></span>: a file that is already under version control that has been modified.</li>
+<li><span style="color:orange"><strong>Orange-?</strong></span>: a file that is not under version control (yet…).</li>
+<li><span style="color:green"><strong>Green-A</strong></span>: a file that was not under version control, but which has been staged to be committed</li>
+<li><span style="color:red"><strong>Red-D</strong></span>: a file under version control has been deleted. To make it really disappear, you have to staged its disappearance and commit.</li>
+<li><span style="color:purple"><strong>Purple-R</strong></span>: a file that was renamed. (Note that git in Rstudio seems to be figuring this out on its own.)</li>
+</ul>
+</section>
+<section id="gitignore" class="slide level2">
+<h2>.gitignore</h2>
+<p><span class="monash-green2">Ignored files</span> are tracked in a special file named <code>.gitignore</code> that is checked in at the root of your repository.</p>
+<ul>
+<li>There is <strong>no</strong> explicit <code>git ignore</code> command: instead Git uses a <code>.gitignore</code> file which must be edited and committed by hand when you have new files that you wish to ignore.</li>
+<li><code>.gitignore</code> files contain special patterns which are comapred against filenames to determine whether or not they should be ignored.</li>
+</ul>
+</section>
+<section id="example-of-gitignore-patterns" class="slide level2">
+<h2>Example of <code>gitignore</code> patterns</h2>
+
+<img data-src="images/gitignore.png" class="quarto-figure quarto-figure-center r-stretch"><p><a href="https://www.atlassian.com/git/tutorials/saving-changes/gitignore">Source here</a></p>
+</section>
+<section id="gitignore-file" class="slide level2">
+<h2><code>.gitignore</code> file</h2>
+<ul>
+<li>You can use the characters as those in the table</li>
+<li>You can also add comments inside your file using <span class="monash-green2">#</span></li>
+</ul>
+<pre><code># ignore all logs
+*.log
+# History files
+.Rhistory
+.Rapp.history
+# Session Data files
+.RData
+# User-specific files
+.Ruserdata
+# Example code in package build process
+*-Ex.R</code></pre>
+</section>
+<section id="example-of-a-gitignore-file" class="slide level2">
+<h2>Example of a gitignore file</h2>
+
+<img data-src="images/example_gitignore.png" class="quarto-figure quarto-figure-center r-stretch"><p><a href="https://gist.github.com/octocat/9257657">Source here</a></p>
+</section>
+<section id="creating-a-gitignore-file" class="slide level2">
+<h2>Creating a gitignore file</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>From the command line you can create a <code>.gitignore</code> file for your repository.</p>
+<p><code>touch .gitignore</code></p>
+<p>You can edit the file using Rstudio or VSCode.</p>
+<p>You can also create a <code>.gitignore</code> file from GitHub.</p>
+<div class="fragment">
+<p>You can edit it later using RStudio or VSCode.</p>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/creatingrepo2.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-a-.gitignore-file" class="slide level2">
+<h2>Creating a <code>.gitignore</code> file</h2>
+<p>If you want to ignore a file that <strong>is already checked in</strong>, you have to untrack it before you add it to the <code>.gitignore</code>.</p>
+<p>Do to this, from your terminal/Git Bash Shell:</p>
+<p><code>$ git rm --cached FILENAME</code></p>
+<p>The <code>gitignore</code> file specifies intentionally untracked files to ignore.</p>
+<p>Each line in a gitignore file specifies a pattern.</p>
+</section>
+<section id="example-of-a-gitignore-file-1" class="slide level2">
+<h2>Example of a <code>gitignore</code> file</h2>
+
+<img data-src="images/example_gitignore.png" class="quarto-figure quarto-figure-center r-stretch"><p><a href="https://gist.github.com/octocat/9257657">Source here</a></p>
+</section>
+<section id="your-branch-is-ahead-of-originmaster-by-1-commits" class="slide level2 smaller">
+<h2>Your branch is ahead of ‘origin/master’ by 1 commits</h2>
+<ul>
+<li>This message means that your local repository has one commit that hasn’t been pushed yet.</li>
+<li>If you push without committing, nothing gets pushed.</li>
+<li>If you commit without adding, nothing gets committed.</li>
+<li>If you add without committing, nothing at all happens, git merely remembers that the changes you added should be considered for the following commit.</li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><code>git add</code> and <code>git commit</code> are <span class="monash-green2">local operations</span>.</p>
+<p><code>git push</code>, <code>git pull</code>, and <code>git fetch</code> are operations that interact with a remote repository.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="why-do-we-fork-a-repository" class="slide level2">
+<h2>Why do we fork a repository?</h2>
+<p>A <strong>fork</strong> is a copy of a repository.</p>
+<ul>
+<li>Forking a repository allows you to freely experiment with changes without affecting the original project.</li>
+<li>Most commonly, forks are used to either propose changes to someone else project or to use someone else project as a starting point for your own project.0</li>
+</ul>
+<p><a href="https://help.github.com/en/github/getting-started-with-github/fork-a-repo">More info here</a></p>
+</section>
+<section id="forking-a-repo-in-github" class="slide level2">
+<h2>Forking a repo in GitHub</h2>
+<p>Search/navigate repo from within our Github account.</p>
+
+<img data-src="images/fork.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="forked-repo" class="slide level2">
+<h2>Forked repo</h2>
+
+<img data-src="images/forked.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="our-repos-in-github" class="slide level2">
+<h2>Our repos in GitHub</h2>
+
+<img data-src="images/repos.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="differences-between-forking-and-cloning-a-repo" class="slide level2 smaller">
+<h2>Differences between forking and cloning a repo</h2>
+<ul>
+<li>A fork is a copy of someone else GitHub repository, saved to your own GitHub. It allows you to experiment with changes without affecting the original project.</li>
+<li>A fork acts as a bridge between the original repository and your personal one.</li>
+<li>It will also allow you to interact between your forked copy and the original repo.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>When you clone a GitHub repository, you are creating a local copy of that repo on your computer.</li>
+<li>That allows you to work on that repo locally and sync between both your local repo and your remote repo, but you cannot interact with the original repo if it’s owned by someone else.</li>
+</ul>
+</div>
+</section>
+<section id="what-is-a-pull-request" class="slide level2">
+<h2>What is a Pull request?</h2>
+<ul>
+<li>We use GitHub to share our code and projects with others.</li>
+<li>There are situations when another person makes changes into your code and wants you to consider those changes, for example fixing a bug or adding new examples</li>
+</ul>
+<p>To do this, the other person can make a <em>pull request</em>. This makes a request to the repositories owner to pull or merge these changes into the original repository.</p>
+</section>
+<section id="pull-request-visually" class="slide level2">
+<h2>Pull request visually</h2>
+
+<img data-src="images/pr0.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="forked-repo-1" class="slide level2">
+<h2>Forked repo</h2>
+
+<img data-src="images/pr1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="modified-forked-repo-for-pull-request" class="slide level2">
+<h2>Modified forked repo for pull request</h2>
+
+<img data-src="images/commit.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="create-a-pull-request-to-the-original-repo" class="slide level2">
+<h2>Create a pull request to the original repo</h2>
+
+<img data-src="images/pr2.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="what-happens-when-you-start-a-pull-request" class="slide level2">
+<h2>What happens when you start a pull request</h2>
+
+<img data-src="images/pr3.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="pull-request-from-etc5513demo-to-okayama1" class="slide level2">
+<h2>Pull request from ETC5513demo to okayama1</h2>
+
+<img data-src="images/pr4.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="pull-request-to-okayama1-owner-of-original-repo" class="slide level2">
+<h2>Pull request to okayama1 (owner of original repo)</h2>
+
+<img data-src="images/pr5.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="pull-request-email-to-okayama1" class="slide level2">
+<h2>Pull request email to okayama1</h2>
+
+<img data-src="images/pr6.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="pull-request-okayama1-github-inbox" class="slide level2">
+<h2>Pull request okayama1 GitHub Inbox</h2>
+
+<img data-src="images/pr7.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="pull-request-okayama1-github-request-received" class="title-slide slide level1 center">
+<h1>Pull request okayama1 GitHub request received</h1>
+
+<img data-src="images/pr8.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+
+<section>
+<section id="vscode" class="title-slide slide level1 center">
+<h1>VSCode</h1>
+
+<img data-src="images/vscode_icon.png" class="quarto-figure quarto-figure-center r-stretch"><ul>
+<li>VSCode is a powerful IDE that works across many different languages.</li>
+<li>It also has excellent Git integration so we can track and create repos, branches, stage, commit and push files.</li>
+<li>Make sure you log into VSCode using your GitHub account.</li>
+</ul>
+</section>
+<section id="opening-vscode" class="slide level2">
+<h2>Opening VSCode</h2>
+
+<img data-src="images/vscode_git_create.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="editing-the-readme.md-file" class="slide level2">
+<h2>Editing the README.md file</h2>
+
+<img data-src="images/vscode_readme_edit.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="staged-the-changes-readme.md-file" class="slide level2">
+<h2>Staged the changes README.md file</h2>
+
+<img data-src="images/vscode_git_stage.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="commit-the-changes-readme.md-file" class="slide level2">
+<h2>Commit the changes README.md file</h2>
+
+<img data-src="images/vscode_git_commit.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="visualizing-all-the-files" class="slide level2">
+<h2>Visualizing all the files</h2>
+
+<img data-src="images/vscode_git_tree.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="creating-new-branch" class="slide level2">
+<h2>Creating new branch</h2>
+
+<img data-src="images/vscode_git_create_branch.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="in-the-meantime-in-github" class="slide level2">
+<h2>In the meantime in GitHub</h2>
+
+<img data-src="images/vscode_git_branch_on_gh.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="resolving-conflicts" class="slide level2">
+<h2>Resolving conflicts</h2>
+
+<img data-src="images/vscode_merge_conflict_1.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="resolving-conflicts-1" class="slide level2">
+<h2>Resolving conflicts</h2>
+
+<img data-src="images/vscode_merge_conflict_2.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="resolving-conflicts-2" class="slide level2">
+<h2>Resolving conflicts</h2>
+
+<img data-src="images/vscode_merge_conflict_3.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="resolving-conflicts-3" class="slide level2">
+<h2>Resolving conflicts</h2>
+
+<img data-src="images/vscode_merge_conflict_4.jpg" class="quarto-figure quarto-figure-center r-stretch"></section></section>
+<section>
+<section id="before-the-tutorial" class="title-slide slide level1 center">
+<h1>Before the tutorial</h1>
+<ul>
+<li><p>Please make sure you have R and Rstudio locally installed</p></li>
+<li><p>Please make sure that your GitHub is connected to VSCode and VSCode is installed.</p></li>
+</ul>
+</section>
+<section id="what-you-should-know-by-now" class="slide level2">
+<h2>What you should know by now?</h2>
+<ul>
+<li>Crate reproducible simple html reports.</li>
+<li>Create figures and tables using R code chunks</li>
+<li>Reference figures, tables and sections</li>
+<li>Connect your reproducible reports to Git and GitHub (version control)</li>
+<li>Work on a reproducible project using Rstudio, Git and GitHub</li>
+<li>Create and merge branches</li>
+<li>Being able to solve merging conflicts</li>
+<li>Forking repos in GitHub</li>
+<li>Interact with others using pull requests on GitHub</li>
+<li>Basic operations with VSCode.</li>
+</ul>
+</section></section>
+<section>
+<section id="we-have-the-scaffolding-ready-for-collaborative-and-reproducible-reporting" class="title-slide slide level1 center">
+<h1>We have the scaffolding ready for collaborative and reproducible reporting</h1>
+<p>We are now set to start using this tools and create collaborative and reproducible reports! From now on we will learn more on creating beautiful and reproducible reports!</p>
+</section>
+<section id="tutorial-and-next-lecture" class="slide level2">
+<h2>Tutorial and Next Lecture</h2>
+<p>Next week we will discuss the importance of reproducible reporting and the usage of version control systems. We will do few hands on exercises so please make sure you bring your computer to the lecture.</p>
+<ul>
+<li>Tutorial this week you will start working in pairs.</li>
+<li>You will continue working in pairs in Week 6 too.</li>
+<li>In Week 6, we’ll keep of practicing all the things that we have learned so far.</li>
+<li>This week and next will provide great opportunities for you to practice all the tools that we have learned so far!</li>
+</ul>
+</section>
+<section id="week-5-lesson" class="slide level2">
+<h2>Week 5 Lesson</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Recap</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li>More Git/GitHub tools</li>
+<li>Pull requests: a tool to collaborate with others via GitHub</li>
+<li>VSCode</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div class="quarto-auto-generated-content">
+<p><img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>ETC5513 Week 5</p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"boardmarkerWidth":5},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 750,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <link rel="stylesheet" href="assets/syntax-highlight.css">
+    <link rel="stylesheet" href="assets/monash-after-body.css">
+    <link rel="stylesheet" href="assets/fontawesome-free-6.1.1-web/css/all.css">
+    <script src="assets/fontawesome-free-6.1.1-web/js/all.js"></script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
