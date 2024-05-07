@@ -4776,8 +4776,11 @@ display: unset;
 <ol type="1">
 <li><p>Create a repository in GitHub that has a license, a .gitignore file and a README.md file.</p></li>
 <li><p>Clone the repository to your local machine</p></li>
-<li><p>Take the CSV file from moodle</p></li>
-<li><p>Add this file <strong>using the <code>git lfs</code> workflow</strong>.</p></li>
+<li><p>Take the large zip file from moodle</p></li>
+<li><p>Stage, commit and try to push this file.</p></li>
+<li><p>What do you notice about the error?</p></li>
+<li><p>Reset your previous commit.</p></li>
+<li><p>Add this file <strong>using the <code>git lfs</code> workflow</strong>. Remember the quotes, and that your file extension is <code>.zip</code>.</p></li>
 </ol>
 <div class="callout callout-style-default callout-solution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -4793,7 +4796,7 @@ Solution
 <div class="callout-body-container callout-body">
 <div class="unilur-solution">
 <pre><code>git lfs install
-git lfs track &quot;*.csv&quot;
+git lfs track &quot;*.zip&quot;
 git add .gitattributes
 git add .
 git commit -m &quot;Adding large file&quot;
