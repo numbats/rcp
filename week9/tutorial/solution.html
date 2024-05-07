@@ -4769,35 +4769,42 @@ display: unset;
 <h2 class="anchored" data-anchor-id="objectives">🎯 Objectives</h2>
 <ul>
 <li>Learn how to use <code>git</code> and GitHub when we are dealing with files larger than 100MB</li>
-<li>Create licenses in our public repositories</li>
 </ul>
 </section>
-<section id="create-a-reproducible-and-collaborative-report" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-reproducible-and-collaborative-report">Create a reproducible and collaborative report</h2>
-<p>In this tutorial we are working with data from the <a href="https://www.crimestatistics.vic.gov.au/crime-statistics/latest-crime-data/download-data">Victorian crime statistics office</a>. In particular, we will be looking at the table of Criminal incidents and rate per 100,000 population in Victoria by principal offence - January 2010 to December 2019.</p>
-<p>You will be answering the research question: How has the rate of an offence changed over time? You can choose any offence from the dataset, and look at the incidence or the rate of the offence.</p>
-<p>Ensure that you have the following sections:</p>
-<ul>
-<li>One sentence introduction</li>
-<li>Methodology and results: 4 or 5 sentences, including at least a figure or a table that are cross-referenced in text</li>
-<li>A reference to a scientific paper incorporated through a .bib file</li>
-<li>One or two sentence conclusion</li>
-</ul>
-<p>Make sure you frequently stage, commit and push the changes <em>as you are working</em>. Don’t just leave it all until the end!</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="git-lfs" class="level2">
+<h2 class="anchored" data-anchor-id="git-lfs">Git LFS</h2>
+<ol type="1">
+<li><p>Create a repository in GitHub that has a license, a .gitignore file and a README.md file.</p></li>
+<li><p>Clone the repository to your local machine</p></li>
+<li><p>Take the CSV file from moodle</p></li>
+<li><p>Add this file <strong>using the <code>git lfs</code> workflow</strong>.</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Caution
+Solution
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Challenge: Add at least one <em>extended</em> commit message to your repo as you work.</p>
+<div class="unilur-solution">
+<pre><code>git lfs install
+git lfs track &quot;*.csv&quot;
+git add .gitattributes
+git add .
+git commit -m &quot;Adding large file&quot;
+git push origin main</code></pre>
 </div>
 </div>
-<p>When you have finished, add a <code>git tag</code> to your completed report called <code>report-milestone</code></p>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Push the changes onto GitHub using an extended commit message.</li>
+</ol>
 <div class="callout callout-style-default callout-solution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -4816,7 +4823,7 @@ Solution
 </div>
 </div>
 </div>
-<p>Once you have finished your <strong>short</strong> report, move onto the next section.</p>
+<p>Add a git annotated tag to the most recent commit called <code>v1.0</code>.</p>
 </section>
 <section id="collaborating-with-others" class="level2">
 <h2 class="anchored" data-anchor-id="collaborating-with-others">Collaborating with others</h2>
@@ -4824,11 +4831,10 @@ Solution
 <p>Clone their repository to your computer.</p>
 <p>Practice the following:</p>
 <ol type="1">
-<li>Open a pull request with some <em>constructive</em> feedback about the report. This could be improvements to a figure, or structure, or any part of the report you think could be improved.</li>
+<li>Open a pull request with an identified issue with the report. This doesn’t have to be a real issue, it’s just for practicing our issues and commit messages.</li>
 <li>Your partner should fix the issue, and close the issue using a commit message.</li>
 <li>Practice the <code>git fetch</code> workflow, to update your local database without moving <code>HEAD</code>. Then, move your repository <code>HEAD</code> to the latest commit.</li>
 </ol>
-<p><strong>Extension</strong>: Add the large file from the Moodle site to your own repository using <code>git lfs</code>. Make sure you have <code>lfs</code> installed as per the Week 9 lecture slides before you do this though!</p>
 
 
 </section>

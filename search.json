@@ -4,56 +4,56 @@
     "href": "week9/tutorial/index.html",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "",
-    "text": "Learn how to use git and GitHub when we are dealing with files larger than 100MB\nCreate licenses in our public repositories"
+    "text": "Learn how to use git and GitHub when we are dealing with files larger than 100MB"
   },
   {
     "objectID": "week9/tutorial/index.html#objectives",
     "href": "week9/tutorial/index.html#objectives",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "",
-    "text": "Learn how to use git and GitHub when we are dealing with files larger than 100MB\nCreate licenses in our public repositories"
+    "text": "Learn how to use git and GitHub when we are dealing with files larger than 100MB"
   },
   {
-    "objectID": "week9/tutorial/index.html#create-a-reproducible-and-collaborative-report",
-    "href": "week9/tutorial/index.html#create-a-reproducible-and-collaborative-report",
+    "objectID": "week9/tutorial/index.html#git-lfs",
+    "href": "week9/tutorial/index.html#git-lfs",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Create a reproducible and collaborative report",
-    "text": "Create a reproducible and collaborative report\nIn this tutorial we are working with data from the Victorian crime statistics office. In particular, we will be looking at the table of Criminal incidents and rate per 100,000 population in Victoria by principal offence - January 2010 to December 2019.\nYou will be answering the research question: How has the rate of an offence changed over time? You can choose any offence from the dataset, and look at the incidence or the rate of the offence.\nEnsure that you have the following sections:\n\nOne sentence introduction\nMethodology and results: 4 or 5 sentences, including at least a figure or a table that are cross-referenced in text\nA reference to a scientific paper incorporated through a .bib file\nOne or two sentence conclusion\n\nMake sure you frequently stage, commit and push the changes as you are working. Don’t just leave it all until the end!\n\n\n\n\n\n\nCaution\n\n\n\nChallenge: Add at least one extended commit message to your repo as you work.\n\n\nWhen you have finished, add a git tag to your completed report called report-milestone\nOnce you have finished your short report, move onto the next section."
+    "section": "Git LFS",
+    "text": "Git LFS\n\nCreate a repository in GitHub that has a license, a .gitignore file and a README.md file.\nClone the repository to your local machine\nTake the CSV file from moodle\nAdd this file using the git lfs workflow.\n\n\nPush the changes onto GitHub using an extended commit message.\n\nAdd a git annotated tag to the most recent commit called v1.0."
   },
   {
     "objectID": "week9/tutorial/index.html#collaborating-with-others",
     "href": "week9/tutorial/index.html#collaborating-with-others",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Collaborating with others",
-    "text": "Collaborating with others\nWith at least one other person, swap repository details. They do not need to add you as a collaborator at this stage.\nClone their repository to your computer.\nPractice the following:\n\nOpen a pull request with some constructive feedback about the report. This could be improvements to a figure, or structure, or any part of the report you think could be improved.\nYour partner should fix the issue, and close the issue using a commit message.\nPractice the git fetch workflow, to update your local database without moving HEAD. Then, move your repository HEAD to the latest commit.\n\nExtension: Add the large file from the Moodle site to your own repository using git lfs. Make sure you have lfs installed as per the Week 9 lecture slides before you do this though!"
+    "text": "Collaborating with others\nWith at least one other person, swap repository details. They do not need to add you as a collaborator at this stage.\nClone their repository to your computer.\nPractice the following:\n\nOpen a pull request with an identified issue with the report. This doesn’t have to be a real issue, it’s just for practicing our issues and commit messages.\nYour partner should fix the issue, and close the issue using a commit message.\nPractice the git fetch workflow, to update your local database without moving HEAD. Then, move your repository HEAD to the latest commit."
   },
   {
     "objectID": "week9/tutorial/solution.html",
     "href": "week9/tutorial/solution.html",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "",
-    "text": "Learn how to use git and GitHub when we are dealing with files larger than 100MB\nCreate licenses in our public repositories"
+    "text": "Learn how to use git and GitHub when we are dealing with files larger than 100MB"
   },
   {
     "objectID": "week9/tutorial/solution.html#objectives",
     "href": "week9/tutorial/solution.html#objectives",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "",
-    "text": "Learn how to use git and GitHub when we are dealing with files larger than 100MB\nCreate licenses in our public repositories"
+    "text": "Learn how to use git and GitHub when we are dealing with files larger than 100MB"
   },
   {
-    "objectID": "week9/tutorial/solution.html#create-a-reproducible-and-collaborative-report",
-    "href": "week9/tutorial/solution.html#create-a-reproducible-and-collaborative-report",
+    "objectID": "week9/tutorial/solution.html#git-lfs",
+    "href": "week9/tutorial/solution.html#git-lfs",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Create a reproducible and collaborative report",
-    "text": "Create a reproducible and collaborative report\nIn this tutorial we are working with data from the Victorian crime statistics office. In particular, we will be looking at the table of Criminal incidents and rate per 100,000 population in Victoria by principal offence - January 2010 to December 2019.\nYou will be answering the research question: How has the rate of an offence changed over time? You can choose any offence from the dataset, and look at the incidence or the rate of the offence.\nEnsure that you have the following sections:\n\nOne sentence introduction\nMethodology and results: 4 or 5 sentences, including at least a figure or a table that are cross-referenced in text\nA reference to a scientific paper incorporated through a .bib file\nOne or two sentence conclusion\n\nMake sure you frequently stage, commit and push the changes as you are working. Don’t just leave it all until the end!\n\n\n\n\n\n\nCaution\n\n\n\nChallenge: Add at least one extended commit message to your repo as you work.\n\n\nWhen you have finished, add a git tag to your completed report called report-milestone\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit commit (without the -m flag) will open a text editor for you to type your extended commit.\n\n\n\n\nOnce you have finished your short report, move onto the next section."
+    "section": "Git LFS",
+    "text": "Git LFS\n\nCreate a repository in GitHub that has a license, a .gitignore file and a README.md file.\nClone the repository to your local machine\nTake the CSV file from moodle\nAdd this file using the git lfs workflow.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit lfs install\ngit lfs track \"*.csv\"\ngit add .gitattributes\ngit add .\ngit commit -m \"Adding large file\"\ngit push origin main\n\n\n\n\n\nPush the changes onto GitHub using an extended commit message.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit commit (without the -m flag) will open a text editor for you to type your extended commit.\n\n\n\n\nAdd a git annotated tag to the most recent commit called v1.0."
   },
   {
     "objectID": "week9/tutorial/solution.html#collaborating-with-others",
     "href": "week9/tutorial/solution.html#collaborating-with-others",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Collaborating with others",
-    "text": "Collaborating with others\nWith at least one other person, swap repository details. They do not need to add you as a collaborator at this stage.\nClone their repository to your computer.\nPractice the following:\n\nOpen a pull request with some constructive feedback about the report. This could be improvements to a figure, or structure, or any part of the report you think could be improved.\nYour partner should fix the issue, and close the issue using a commit message.\nPractice the git fetch workflow, to update your local database without moving HEAD. Then, move your repository HEAD to the latest commit.\n\nExtension: Add the large file from the Moodle site to your own repository using git lfs. Make sure you have lfs installed as per the Week 9 lecture slides before you do this though!"
+    "text": "Collaborating with others\nWith at least one other person, swap repository details. They do not need to add you as a collaborator at this stage.\nClone their repository to your computer.\nPractice the following:\n\nOpen a pull request with an identified issue with the report. This doesn’t have to be a real issue, it’s just for practicing our issues and commit messages.\nYour partner should fix the issue, and close the issue using a commit message.\nPractice the git fetch workflow, to update your local database without moving HEAD. Then, move your repository HEAD to the latest commit."
   },
   {
     "objectID": "week8/tutorial/index.html",
@@ -3059,13 +3059,6 @@
     "text": "Learn to use git lfs to deal with large files\nCreate licenses in our repostiroies\nUse renv to create a local library"
   },
   {
-    "objectID": "week10/tutorial/solution.html#git-lfs",
-    "href": "week10/tutorial/solution.html#git-lfs",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Git LFS",
-    "text": "Git LFS\n\nCreate a repository in GitHub that has a license, a .gitignore file and a README.md file.\nClone the repository to your local machine\nTake the CSV file from moodle\nAdd this file using the git lfs workflow.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit lfs install\ngit lfs track \"*.csv\"\ngit add .gitattributes\ngit add .\ngit commit -m \"Adding large file\"\ngit push origin main\n\n\n\n\n\nPush the changes onto GitHub."
-  },
-  {
     "objectID": "week10/tutorial/solution.html#lightweight-dependency-management-using-renv",
     "href": "week10/tutorial/solution.html#lightweight-dependency-management-using-renv",
     "title": "ETC5513: Collaborative and Reproducible Practices",
@@ -3085,13 +3078,6 @@
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "",
     "text": "Learn to use git lfs to deal with large files\nCreate licenses in our repostiroies\nUse renv to create a local library"
-  },
-  {
-    "objectID": "week10/tutorial/index.html#git-lfs",
-    "href": "week10/tutorial/index.html#git-lfs",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Git LFS",
-    "text": "Git LFS\n\nCreate a repository in GitHub that has a license, a .gitignore file and a README.md file.\nClone the repository to your local machine\nTake the CSV file from moodle\nAdd this file using the git lfs workflow.\n\n\nPush the changes onto GitHub."
   },
   {
     "objectID": "week10/tutorial/index.html#lightweight-dependency-management-using-renv",
