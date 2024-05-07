@@ -334,7 +334,7 @@
 
 <section id="etc5513-title" class="slide level2" data-background-image="images/bg-01.png">
 <h2><br><span class="monash-blue title">ETC5513: Reproducible and Collaborative Practices</span></h2>
-<h3 id="workflows-for-reproducible-data-analysis">Workflows for reproducible data analysis</h3>
+<h3 id="keeping-environments-separate-and-reproducible">Keeping environments separate and reproducible</h3>
 <p>Lecturer: <em>Michael Lydeamore</em></p>
 <p>Department of Econometrics and Business Statistics</p>
 <div class="tl">
@@ -382,8 +382,6 @@
 <li>Licensing a repository</li>
 <li>Lightweight dependency management</li>
 <li>Advanced collaborative practices</li>
-<li>GitHub notes</li>
-<li>Other GitHub features</li>
 <li>Templates for slides</li>
 </ul>
 </div>
@@ -535,8 +533,129 @@
 
 <img data-src="images/renvlogo.png" class="quarto-figure quarto-figure-center r-stretch"><p>The idea is to create a <span class="monash-green2">project-specific</span> library to ensure a project has a record of which version of R packages are used.</p>
 </section>
-<section id="week-9-lesson" class="slide level2">
-<h2>Week 9 Lesson</h2>
+<section id="how-does-renv-work" class="slide level2">
+<h2>How does <code>renv</code> work?</h2>
+<ul>
+<li>Gives each R project it’s own local library</li>
+<li>Provides an easy way to get R sessions to <em>use</em> a local library</li>
+<li>Provides tools for managing the R packages installed in these local libraries</li>
+</ul>
+
+<img data-src="images/renvlogo.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="so-what-is-a-library-path-anyway" class="slide level2">
+<h2>So what is a library path anyway?</h2>
+<p>When we load a library, what exactly is going on?</p>
+<div class="fragment">
+<p>R searches in a collection of places for the <code>dplyr</code> package, and loads it.</p>
+<p>These places are called <em>library paths</em>.</p>
+</div>
+<div class="fragment">
+<p>You can change the library path, and you can view them using <code>.libPaths()</code></p>
+</div>
+</section>
+<section id="library-paths-example" class="slide level2">
+<h2>Library paths example</h2>
+<p>Your default library path is probably something like:</p>
+<pre><code>/Library/Frameworks/R.framework/Versions/4.0/Resources/library</code></pre>
+<p>If you want to find a package, you can use <code>find.package("dplyr")</code></p>
+<div class="fragment">
+<p><code>renv</code> sets up a project-specific library path to keep your packages from interacting with eaach other.</p>
+</div>
+</section>
+<section id="renv-workflow" class="slide level2">
+<h2><code>renv</code> workflow</h2>
+<p>Via the R console:</p>
+<ul>
+<li><code>renv::init()</code> to initialise the project</li>
+<li>Work as usual, installing packages, writing code</li>
+<li><code>renv::snapshot()</code> to save the state of the local library to a lockfile</li>
+<li><code>renv::restore()</code> to reverty our packages to the state encoded in the lockfile</li>
+</ul>
+<p>The <span class="monash-blue">lockfile</span> contains all the information about which package version is being used, and makes your environment <em>reproducible</em>.</p>
+</section>
+<section id="but-why" class="slide level2">
+<h2>But why?</h2>
+<p>In collaborative projects, <span class="monash-green2">you may want to ensure everyone is working with the same environment</span></p>
+<p>It helps protect against changes between different versions of packages.</p>
+<div class="fragment">
+<p>By sharing the lockfile, your collaborators will be using the same version of packages that you are using, without breaking their own installs.</p>
+</div>
+</section></section>
+<section>
+<section id="demo-2" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Observe the changes in <code>libPaths</code>, the new files, and the lockfile.</p>
+</section>
+<section id="managing-the-lockfile" class="slide level2">
+<h2>Managing the lockfile</h2>
+<p>“If you’re using a version control system with your project, then as you call <code>renv::snapshot()</code> and later commit new lockfiles to your repository, you may find it necessary later to recover older versions of your lockfiles. renv provides the functions <code>renv::history()</code> to list previous revisions of your lockfile, and <code>renv::revert()</code> to recover these older lockfiles.”</p>
+<p>Currently, only Git repositories are supported by <code>renv::history()</code> and <code>renv::revert()</code>.</p>
+<p><a href="https://rstudio.github.io/renv/articles/renv.html">Source here</a></p>
+</section>
+<section id="managing-the-lockfile-1" class="slide level2">
+<h2>Managing the lockfile</h2>
+<p>Each project contains only a single <code>renv.lock</code></p>
+<p>There are some helper functions:</p>
+<ul>
+<li><code>renv::history()</code>: find prior commtis in which the lockfile has changed</li>
+<li><code>renv::revert(commit = SHA1)</code>: Revert the lockfile to a state at a previous commit</li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Make sure to commit the lockfile often, and call <code>renv::snapshot()</code> when you’re updating packages! This is the only way the changes can be recorded and shared.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="workflow-for-collaboration" class="slide level2">
+<h2>Workflow for collaboration</h2>
+<ul>
+<li>Select a version control system (i.e.&nbsp;git and GitHub)</li>
+<li>Initialise the project: <code>renv::init()</code></li>
+<li>Periodically, and after adding new packages, use <code>renv::snapshot()</code></li>
+<li>Stage, commit and share <code>renv.lock</code> with others via version control.</li>
+</ul>
+</section>
+<section id="workflow-for-collaboration-1" class="slide level2">
+<h2>Workflow for collaboration</h2>
+<p>Once collaborators clone the repository, they also run <code>renv::init()</code>.</p>
+<p>This will automatically install the packages declared in the lockfile.</p>
+<p>By doing this, they can work in your project using exactly the same R packages that you used when the lockfile was generated.</p>
+</section></section>
+<section id="demo-3" class="title-slide slide level1 center">
+<h1>Demo</h1>
+
+</section>
+
+<section id="reproducible-presentations-demo" class="title-slide slide level1 center">
+<h1>Reproducible Presentations Demo</h1>
+
+</section>
+
+<section>
+<section id="collaborative-project-tips" class="title-slide slide level1 center">
+<h1>Collaborative project tips</h1>
+<ul>
+<li>Listen and learn.</li>
+<li>Care about the statistical/data science methods. Know what you are doing so that you can explain it!</li>
+<li>Establish protocols for your work to be reproducible and acknowledged.</li>
+<li>Remember the data has an owner and it needs to be acknowledge and referenced.</li>
+<li>Be careful with changes in data structure! Request that any updates to the data preserves the data structure.</li>
+<li>Don’t feel pressure to do an analysis that you feel is not right.</li>
+<li>Learn to disagree if you consider that the data treatment/statistical or computational methods are not adequate.</li>
+<li>Learn what the methods are - not just how to use software functions. That will take you far!!</li>
+</ul>
+<p><a href="https://ro.uow.edu.au/cgi/viewcontent.cgi?referer=https://www.google.com/&amp;httpsredir=1&amp;article=1022&amp;context=asearc">Interesting paper here</a></p>
+</section>
+<section id="week-10-lesson" class="slide level2">
+<h2>Week 10 Lesson</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">

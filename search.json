@@ -2275,277 +2275,200 @@
     "text": "Week 2 Lesson\n\n\n\n\n\n\nSummary\n\n\n\nQuarto documents\nR Code Chunk Options\nIncluding figures, tables, captions\nRStudio projects\nGood Coding Practices\n\n\n\n\n\n\n\n\n\n\nResources\n\n\n\nhttps://quarto.org/\nhttps://www.markdownguide.org/getting-started/\nhttps://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects\nhttps://style.tidyverse.org\n\n\n\n\n\n\n\n\nETC5513 Week 2"
   },
   {
-    "objectID": "week1/tutorial/index.html",
-    "href": "week1/tutorial/index.html",
+    "objectID": "week10/index.html#etc5513-title",
+    "href": "week10/index.html#etc5513-title",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Getting to know your colleagues\nGetting setup with R, RStudio and GitHub\nWhat is R and why do we need it?\nGetting some practice in R\nLearn about R and RStudio Resources"
+    "section": "ETC5513: Reproducible and Collaborative Practices",
+    "text": "ETC5513: Reproducible and Collaborative Practices\nKeeping environments separate and reproducible\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 10\n\n\nrcp.numbat.space"
   },
   {
-    "objectID": "week1/tutorial/index.html#objectives",
-    "href": "week1/tutorial/index.html#objectives",
+    "objectID": "week10/index.html#open-frame",
+    "href": "week10/index.html#open-frame",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Getting to know your colleagues\nGetting setup with R, RStudio and GitHub\nWhat is R and why do we need it?\nGetting some practice in R\nLearn about R and RStudio Resources"
+    "section": "Open Frame",
+    "text": "Open Frame"
   },
   {
-    "objectID": "week1/tutorial/index.html#install-r-on-your-computer",
-    "href": "week1/tutorial/index.html#install-r-on-your-computer",
+    "objectID": "week10/index.html#recap",
+    "href": "week10/index.html#recap",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Install R on your computer",
-    "text": "Install R on your computer\nR is maintained by an international team of developers and is available via The Comprehensive R Archive Network (CRAN) webpage. Please select the appropriate download option depending on your operating system: Windows, Mac, or Linux.\n\n\n\n\n\n\nR\n\n\n\nInstall R here\n\n\nYou can find some further infomartion about how to install R here."
+    "section": "Recap",
+    "text": "Recap\n\nLearn how to add references and bibliography\nDealing with large files\nTags\nGitHub issues"
   },
   {
-    "objectID": "week1/tutorial/index.html#install-rstudio-on-your-computer",
-    "href": "week1/tutorial/index.html#install-rstudio-on-your-computer",
+    "objectID": "week10/index.html#aim",
+    "href": "week10/index.html#aim",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Install RStudio on your computer",
-    "text": "Install RStudio on your computer\nRStudio is an integrated development environment for R, a programming language for statistical computing and graphics. It is available in two formats: RStudio Desktop is a regular desktop application while RStudio Server runs on a remote server and allows accessing RStudio using a web browser. (Source: Wikipedia)\n\n\n\n\n\n\nRStudio\n\n\n\nInstall RStudio here"
+    "section": "Today’s plan",
+    "text": "Today’s plan\n\n\n\n\n\n\nAim\n\n\n\nCreate a git project from an existing local folder\nLicensing a repository\nLightweight dependency management\nAdvanced collaborative practices\nTemplates for slides"
   },
   {
-    "objectID": "week1/tutorial/index.html#get-yourself-a-free-github-student-developer-pack",
-    "href": "week1/tutorial/index.html#get-yourself-a-free-github-student-developer-pack",
+    "objectID": "week10/index.html#adding-version-control-onto-an-existing-project",
+    "href": "week10/index.html#adding-version-control-onto-an-existing-project",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Get yourself a free GitHub Student Developer pack",
-    "text": "Get yourself a free GitHub Student Developer pack\nSign up for a free GitHub Student Developer Pack. You will have to use your Monash email account (which you can add to your existing GitHub account if you like) and make sure you remember your login details!\nTo sign up, click here."
+    "section": "Adding version control onto an existing project",
+    "text": "Adding version control onto an existing project\nSuppose you have a folder on your computer which is not version controlled, and you decide that you would like to start tracking it.\nYou go to GitHub and create a repo over there. You now have two options:\n\n\n\n\nApproach 1:\n\nCreate a GitHub repo\nClone the repo locally\nMove all the files and folders from your existing project into this folder\nStage, commit, push\n\n\n\n\n\nApproach 2:\n\nOpen a terminal in the directory for your folder\ngit init to create a git repostiroy\nStage, commit\ngit remote add origin git@github.com:...\ngit push -u origin main"
   },
   {
-    "objectID": "week1/tutorial/index.html#getting-to-know-more-abour-r",
-    "href": "week1/tutorial/index.html#getting-to-know-more-abour-r",
+    "objectID": "week10/index.html#adding-version-control-onto-an-existing-project-1",
+    "href": "week10/index.html#adding-version-control-onto-an-existing-project-1",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Getting to know more abour R",
-    "text": "Getting to know more abour R\nHave a read about R here."
+    "section": "Adding version control onto an existing project",
+    "text": "Adding version control onto an existing project\nOption 2 is preferred because it reduces duplication.\nGitHub even gives you instructions:\n\n\nThe -u flag says to link remote origin to branch main. it is a one time operation.\n\n\nRemember you can verify your remotes using git remote -v"
   },
   {
-    "objectID": "week1/tutorial/index.html#get-a-chatgpt-account",
-    "href": "week1/tutorial/index.html#get-a-chatgpt-account",
+    "objectID": "week10/index.html#repository-visibility",
+    "href": "week10/index.html#repository-visibility",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Get a ChatGPT account",
-    "text": "Get a ChatGPT account\nSign up for a free ChatGPT account here. You can use your Monash email address if you like.\nAsk ChatGPT to give you an example of R code, then copy the code into RStudio and execute it. Compare with your colleagues at your table. Is it the same? Is it different? Is it correct?"
+    "section": "Repository Visibility",
+    "text": "Repository Visibility\n\nMore info here"
   },
   {
-    "objectID": "week1/tutorial/index.html#r-in-practice",
-    "href": "week1/tutorial/index.html#r-in-practice",
+    "objectID": "week10/index.html#licensing",
+    "href": "week10/index.html#licensing",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "R in practice",
-    "text": "R in practice\nThere are plenty of resources to start getting to know how R works. Here are a couple:\n\nLearnR\nPosit (R) Primers\n\nFor today’s session, please complete Chapter 1, Section 3 of the LearnR website here."
+    "section": "Licensing",
+    "text": "Licensing\nPublic repos in GitHub make your work publicly available and therefore it is important to establish how your work should be acknowledged if someone else wants to use it.\n\nPublic repositories on GitHub are often used to share open source software. For your repository to be truly open source, you’ll need to license it sot that others are free to use, change and distribute the software.\n\nMore info here"
   },
   {
-    "objectID": "week1/tutorial/index.html#data-wrangling-with-tidyverse",
-    "href": "week1/tutorial/index.html#data-wrangling-with-tidyverse",
+    "objectID": "week10/index.html#available-licenses-in-github",
+    "href": "week10/index.html#available-licenses-in-github",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Data wrangling with tidyverse",
-    "text": "Data wrangling with tidyverse\nVideo on data wrangling"
+    "section": "Available licenses in GitHub",
+    "text": "Available licenses in GitHub\n\nMore info here"
   },
   {
-    "objectID": "week1/tutorial/index.html#familiarize-yourself-with-userful-resources-for-r-programming",
-    "href": "week1/tutorial/index.html#familiarize-yourself-with-userful-resources-for-r-programming",
+    "objectID": "week10/index.html#choosing-a-license",
+    "href": "week10/index.html#choosing-a-license",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Familiarize yourself with userful resources for R programming",
-    "text": "Familiarize yourself with userful resources for R programming\nThere are lots of wonderful R, Rstudio and Data science using R resources that will help you during the semester. Below there is a list to get you started:\n\nHands-On Programming with R\nR for Data Science\n\nA more comprehensive list of books that are freely available can be fond on the following webpage: Book list"
+    "section": "Choosing a license",
+    "text": "Choosing a license\n\nSource here"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "week10/index.html#license-examples",
+    "href": "week10/index.html#license-examples",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "This unit develops teamwork skills, through instruction on reproducibility and version control to conduct collaborative data analysis. These skills are practised in a team setting with a data analysis project."
+    "section": "License examples",
+    "text": "License examples"
   },
   {
-    "objectID": "index.html#learning-outcomes",
-    "href": "index.html#learning-outcomes",
+    "objectID": "week10/index.html#no-license",
+    "href": "week10/index.html#no-license",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nDevelop skills to create reproducible data analyses\nUnderstand the operation of version control systems\nUtilise version control to integrate data analysis efforts of team members\nEffectively work with a group to construct a collaborative data story"
+    "section": "No license",
+    "text": "No license\n\nSource here"
   },
   {
-    "objectID": "index.html#teachers",
-    "href": "index.html#teachers",
+    "objectID": "week10/index.html#creative-commons-license",
+    "href": "week10/index.html#creative-commons-license",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Teachers",
-    "text": "Teachers\n\nMichael Lydeamore. Chief Examiner. Email: michael.lydeamore@monash.edu\nDavid Wu. Email: david.wu1@monash.edu\nNaveen Kaushik. Email: naveen.kaushik@monash.edu"
+    "section": "Creative Commons License",
+    "text": "Creative Commons License"
   },
   {
-    "objectID": "index.html#weekly-schedule",
-    "href": "index.html#weekly-schedule",
+    "objectID": "week10/index.html#creative-commons-license-1",
+    "href": "week10/index.html#creative-commons-license-1",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Weekly schedule",
-    "text": "Weekly schedule\n\n2 hour workshop, Thursdays 10am-12pm each week\n1.5 hour tutorial, one of:\n\nTuesday 6pm-7.30pm\nWednesday 4pm-5.30pm\nWednesday 5.30pm-7pm"
+    "section": "Creative Commons License",
+    "text": "Creative Commons License\n\nMore info here"
   },
   {
-    "objectID": "index.html#consultation",
-    "href": "index.html#consultation",
+    "objectID": "week10/index.html#location-of-your-license",
+    "href": "week10/index.html#location-of-your-license",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Consultation",
-    "text": "Consultation\n\nMichael Lydeamore: Thursday 3pm-4pm hybrid\nDavid Wu: Tuesday 4-5pm in-person (See Moodle for details)\nNaveen Kaushik: Monday 5.30-7pm online\n\n\n\n\nDate\nShow_Tutorial\nTopic\nTutorial\nReference\nAssessments\n\n\n\n\n26 Feb\nTRUE\nIntroduction to collaborative and reproducible practices\n\n\n\n\n\n04 Mar\nTRUE\nReproducible reports using Quarto\n\n\n\n\n\n11 Mar\nTRUE\nIntroduction to version control systems: git and GitHub\n\n\nAssignment 1\n\n\n18 Mar\nTRUE\nReproducible reporting using Quarto, git and GitHub\n\n\n\n\n\n25 Mar\nTRUE\nDeeper git knowledge, stashing and tools\n\n\n\n\n\n01 Apr\nFALSE\nMid-semester break\n\n\n\n\n\n08 Apr\nTRUE\nReproducible reporting and version control systems\n\n\n\n\n\n15 Apr\nTRUE\nWorkflows for reproducible data analysis\n\n\n\n\n\n22 Apr\nTRUE\nNo class (University Holiday)\n\n\nAssignment 2\n\n\n29 Apr\nTRUE\nReproducible reporting for specialised and broad audiences\n\n\n\n\n\n06 May\nTRUE\nAdvanced collaborative practices\n\n\nAssignment 3\n\n\n13 May\nTRUE\nReproducible workflows in consultancy\n\n\n\n\n\n20 May\nTRUE\nCourse recap\n\n\nInterview"
+    "section": "Location of your license",
+    "text": "Location of your license\nYou can add a license from:\n\nGitHub when you first create a repo\nLater by placing your license text in a file named LICENSE.md\n\n\nLicenses go in the root of the directory. Some information about licenses is sometimes included in README.md as well, but this is not required.\nMore info here"
   },
   {
-    "objectID": "assignments/assignment-3.html",
-    "href": "assignments/assignment-3.html",
+    "objectID": "week10/index.html#think-about-the-following-issue",
+    "href": "week10/index.html#think-about-the-following-issue",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Work on a reproducible presentation\nProduce a HTML presentation\nPractice markdown syntax\nDemonstrate that you have a strong knowledge of git commands and usage\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
+    "section": "Think about the following issue",
+    "text": "Think about the following issue\n\nMy code ran 6 months ago (I’m sure it did) and now it is not working.\nMy figures in ggplot look funny now\n\n\nGenerally, this is because a version of a package has updated."
   },
   {
-    "objectID": "assignments/assignment-3.html#objectives",
-    "href": "assignments/assignment-3.html#objectives",
+    "objectID": "week10/index.html#package-environments",
+    "href": "week10/index.html#package-environments",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Work on a reproducible presentation\nProduce a HTML presentation\nPractice markdown syntax\nDemonstrate that you have a strong knowledge of git commands and usage\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
+    "section": "Package environments",
+    "text": "Package environments"
   },
   {
-    "objectID": "assignments/assignment-3.html#part-a---video-presentation",
-    "href": "assignments/assignment-3.html#part-a---video-presentation",
+    "objectID": "week10/index.html#lightweight-dependency-management",
+    "href": "week10/index.html#lightweight-dependency-management",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part A - Video Presentation",
-    "text": "Part A - Video Presentation\nCreate a video that is a maximum of 10 minutes using Zoom which demonstrates your knowledge on git, GitHub, and the command line interface.\nJoin the GitHub classroom for Part A here. Note your repositories will start empty so you are free to add whatever you feel is needed.\n\n\n\n\n\n\nTip\n\n\n\nYou will need to plan and rehearse the steps in this video to ensure all the steps are smooth, well explained and that all the different screens are captured in the recording.\n\n\nThe video should demonstrate your ability to use these tools efficiently for version control and collaboration. Make sure you explain what you are doing in each step and why.\nPlease make sure you include all of the steps described below. Your camera must be on and recorded together with the workings.\nYou only need to use commands we have learned in class.\n\nCreate a new RStudio Project. In this folder, create a simple qmd file called example.qmd that can be knitted into a HTML file. Show this by knitting the file.\nFrom the command line interface, initialise this folder as a git repository and push it to the GitHub classroom repository.\nCreate a new branch called testbranch. Modify the file example.qmd and add the changes to both the local and remote repositories. Add another commit in this branch where you create a folder called data, and add the data from Assignment 1 to that folder.\nAmend the previous commit to include the data folder. Push this amended commit to the remote.\nSwitch back to the main branch and modify example.qmd in a different way such that it will conflict with testbranch. Commit and push these changes.\nMerge the changes in testbranch onto main. Show the conflict and fixing the merge conflict. Push the changes to GitHub, showing the status and changes in GitHub.\nTag this commit v1.0 on main using an annotated tag.\nDelete branch testbranch locally and on the remote.\nShow the commit log in condensed form in the terminal.\nOn main, create a new section in example.qmd that includes an easy to make plot. Commit the changes, and demonstrate using the command line interface how to undo the commit without losing your local changes.\n\n\n\n\n\n\n\nTip\n\n\n\nTo reset your GitHub repository on GitHub classroom, use the following steps from inside the working directory:\nrm -rf .git\ngit init\ngit commit -m \"Initial commit\" --allow-empty\ngit remote add origin &lt;git-url&gt;\ngit push -u --force origin main\n\n\nNote that this will completely overwrite your remote git repository, and will delete whatever was previously in it"
+    "section": "Lightweight dependency management",
+    "text": "Lightweight dependency management\nThe primary solution for dependency management (which is far from perfect) is renv\n\nThe idea is to create a project-specific library to ensure a project has a record of which version of R packages are used."
   },
   {
-    "objectID": "assignments/assignment-3.html#marking-rubric",
-    "href": "assignments/assignment-3.html#marking-rubric",
+    "objectID": "week10/index.html#how-does-renv-work",
+    "href": "week10/index.html#how-does-renv-work",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Marking Rubric",
-    "text": "Marking Rubric\n\nPart A\n\nEach of the instructions will be assessed as to whether they are successfully completed or not (1 mark each, total 10 points)\nClear commit messages used in the video (1 point)\nPresentation has good flow and is clear (2 points)\nIssues with language and grammar: Maximum deduction of 3 points\n\n\n\nPart B\n\nMessages in commits are clear and informative (1 point)\nPresentation is reproducible (2 points)\nStyling is sensible and does not detract from the presentation (2 points)\nPresentation tells a clear story (2 points)\n\nMaximum grade: 20 points."
+    "section": "How does renv work?",
+    "text": "How does renv work?\n\nGives each R project it’s own local library\nProvides an easy way to get R sessions to use a local library\nProvides tools for managing the R packages installed in these local libraries"
   },
   {
-    "objectID": "assignments/assignment-3.html#the-usage-of-ai",
-    "href": "assignments/assignment-3.html#the-usage-of-ai",
+    "objectID": "week10/index.html#so-what-is-a-library-path-anyway",
+    "href": "week10/index.html#so-what-is-a-library-path-anyway",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The usage of AI",
-    "text": "The usage of AI\nYou may use Generative AI (such as ChatGPT) to correct your English or to help with your R code (for example to find bugs or ask for enhancements to your existing code). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called Appendix, and display screenshots of your ChatGPT queries and interactions related to this assignment.\nYou cannot use ChatGPT to generate content for this assignment from scratch, including code.\nMonash University supports the responsible and ethical use of generative AI. For more info please refer to Monash Policy and practise guidance around acceptable and responsible use of AI technologies.\n\n\n\n\n\n\nTip\n\n\n\nRemember you can be better than ChatGPT. If you just use ChatGPT to create content for you, where is your value and why are your skills special?"
+    "section": "So what is a library path anyway?",
+    "text": "So what is a library path anyway?\nWhen we load a library, what exactly is going on?\n\nR searches in a collection of places for the dplyr package, and loads it.\nThese places are called library paths.\n\n\nYou can change the library path, and you can view them using .libPaths()"
   },
   {
-    "objectID": "assignments/assignment-3.html#assignment-submission",
-    "href": "assignments/assignment-3.html#assignment-submission",
+    "objectID": "week10/index.html#library-paths-example",
+    "href": "week10/index.html#library-paths-example",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Assignment Submission",
-    "text": "Assignment Submission\nSubmit the recorded video via Moodle.\nMarking for Part B will take place directly on GitHub classroom."
+    "section": "Library paths example",
+    "text": "Library paths example\nYour default library path is probably something like:\n/Library/Frameworks/R.framework/Versions/4.0/Resources/library\nIf you want to find a package, you can use find.package(\"dplyr\")\n\nrenv sets up a project-specific library path to keep your packages from interacting with eaach other."
   },
   {
-    "objectID": "assignments/assignment-3.html#plagiarism",
-    "href": "assignments/assignment-3.html#plagiarism",
+    "objectID": "week10/index.html#renv-workflow",
+    "href": "week10/index.html#renv-workflow",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Plagiarism",
-    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
+    "section": "renv workflow",
+    "text": "renv workflow\nVia the R console:\n\nrenv::init() to initialise the project\nWork as usual, installing packages, writing code\nrenv::snapshot() to save the state of the local library to a lockfile\nrenv::restore() to reverty our packages to the state encoded in the lockfile\n\nThe lockfile contains all the information about which package version is being used, and makes your environment reproducible."
   },
   {
-    "objectID": "assignments/assignment-1.html",
-    "href": "assignments/assignment-1.html",
+    "objectID": "week10/index.html#but-why",
+    "href": "week10/index.html#but-why",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Working on a reproducible Rstudio project\nProduce a html report using an qmd file and explore YAML themes to define your prefer template\nPractice markdown syntax\nPractice R coding\nExplore R chunk options to customize your report template\nCreate html tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to clone a GitHub repository locally and synchronize the changes between your local and remote repositories.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment.\nThe final PDF report can not have more than 5 pages (not including the appendix).\nYou cannot use a dataset that has been used for another assignment."
+    "section": "But why?",
+    "text": "But why?\nIn collaborative projects, you may want to ensure everyone is working with the same environment\nIt helps protect against changes between different versions of packages.\n\nBy sharing the lockfile, your collaborators will be using the same version of packages that you are using, without breaking their own installs."
   },
   {
-    "objectID": "assignments/assignment-1.html#objectives",
-    "href": "assignments/assignment-1.html#objectives",
+    "objectID": "week10/index.html#managing-the-lockfile",
+    "href": "week10/index.html#managing-the-lockfile",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Working on a reproducible Rstudio project\nProduce a html report using an qmd file and explore YAML themes to define your prefer template\nPractice markdown syntax\nPractice R coding\nExplore R chunk options to customize your report template\nCreate html tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to clone a GitHub repository locally and synchronize the changes between your local and remote repositories.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment.\nThe final PDF report can not have more than 5 pages (not including the appendix).\nYou cannot use a dataset that has been used for another assignment."
+    "section": "Managing the lockfile",
+    "text": "Managing the lockfile\n“If you’re using a version control system with your project, then as you call renv::snapshot() and later commit new lockfiles to your repository, you may find it necessary later to recover older versions of your lockfiles. renv provides the functions renv::history() to list previous revisions of your lockfile, and renv::revert() to recover these older lockfiles.”\nCurrently, only Git repositories are supported by renv::history() and renv::revert().\nSource here"
   },
   {
-    "objectID": "assignments/assignment-1.html#part-a-setting-up-version-control",
-    "href": "assignments/assignment-1.html#part-a-setting-up-version-control",
+    "objectID": "week10/index.html#managing-the-lockfile-1",
+    "href": "week10/index.html#managing-the-lockfile-1",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part A: Setting up version control",
-    "text": "Part A: Setting up version control\nIn this assignment, you need to create an RStudio project that will be able to produce a reproducible HTML report. For the report, please select a data set that interest you from this webpage: Our World in Data.\nThe size of the data set is not relevant, however your data must contain at least 3 numerical variables and a character or factor variable and its size must not be more than 50MB. Your reproducible report should be created using a Quarto file in Rstudio and needs to be knitted into a HTML file. The report must knit into HTML without any errors and must have have all the code and code outputs displayed (unless otherwise specified in the instructions below).\nYou will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom here. Make sure to choose your Monash username from the list so we can find your assignment.\n\nRepository setup (6 points)\nClone the repository created by GitHub classroom onto your computer as we have done in lectures and tutorials (1 point).\nOnce you have cloned the repository to your computer, make sure to add all the files in the upcoming section, and use relevant, clear commit messages (5 points).\n\n\n\n\n\n\nCaution\n\n\n\nThe GitHub repo will appear in the GitHub classroom space. Do not work in or create a different repository for this assignment.\n\n\nYou can delete the example files out of Data/ and Images/."
+    "section": "Managing the lockfile",
+    "text": "Managing the lockfile\nEach project contains only a single renv.lock\nThere are some helper functions:\n\nrenv::history(): find prior commtis in which the lockfile has changed\nrenv::revert(commit = SHA1): Revert the lockfile to a state at a previous commit\n\n\n\n\n\n\n\nImportant\n\n\nMake sure to commit the lockfile often, and call renv::snapshot() when you’re updating packages! This is the only way the changes can be recorded and shared."
   },
   {
-    "objectID": "assignments/assignment-1.html#part-b-creating-a-reproducible-report",
-    "href": "assignments/assignment-1.html#part-b-creating-a-reproducible-report",
+    "objectID": "week10/index.html#workflow-for-collaboration",
+    "href": "week10/index.html#workflow-for-collaboration",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part B: Creating a reproducible report",
-    "text": "Part B: Creating a reproducible report\nThere is a pre-made RStudio project in the git repository. Open that with RStudio and we will work inside that project.\n\nQuarto setup (1 point)\nChange the YAML options for this Quarto file to render both a HTML and a PDF report.\n\n\nR code chunk for loading libraries (2 points)\nCreate a new Quarto file using RStudio. This file is where we will create the report for the rest of this assignment, so make sure to give it a sensible name (1 point).\nLoad all the libraries you will use in the report in an R chunk located at the beginning of your Quarto file. Make sure you set the options so that you do not display any R code, messages, or warnings in the rendered HTML document (for this chunk) (1 point).\n\n\nIntroduction section (5 points)\nUsing markdown, write a 4 sentence maximum motivation of what you are going to research and why. Make sure it is relevant to your dataset.\n\n\nResearch Question section (5 points)\nUsing markdown, discuss in 3 sentences maximum, the specific question that you are going to investigate or answer in this report using your selected data.\n\n\nDataset Introduction section (5 points)\nIn this section, briefly describe your data (i.e. what the data is measuring or recording) in five sentences maximum using markdown. You must provide a link to the location of the data inserted in the text using markdown.\nCreate a table using the kable() function from the knitr R package to report the variable names. Add a table caption that briefly describes the table in no more than 2 sentences. Include a cross-reference to the table in your text.\n\n\nDataset Description subsection (5 points)\nCreate a subsection that will report details about your data. You must include the size of the dataset such as the number of observations, variables and variable types. You must include the following:\n\nA sentence that includes inline R code describing the number of variables and observations in your dataset.\nA screenshot of your inline R code, saved as a png file. Upload this file inside the Image folder.\nInclude that picture in your subsection. You can either use an R code chunk (with knitr::include_graphics) or markdown image syntax (![]()).\nUsing the function head(), display the first two rows of data to show the types of variables that are in the dataset (i.e. numeric, character/factor etc)."
+    "section": "Workflow for collaboration",
+    "text": "Workflow for collaboration\n\nSelect a version control system (i.e. git and GitHub)\nInitialise the project: renv::init()\nPeriodically, and after adding new packages, use renv::snapshot()\nStage, commit and share renv.lock with others via version control."
   },
   {
-    "objectID": "assignments/assignment-1.html#results-section-5-points",
-    "href": "assignments/assignment-1.html#results-section-5-points",
+    "objectID": "week10/index.html#workflow-for-collaboration-1",
+    "href": "week10/index.html#workflow-for-collaboration-1",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Results section (5 points)",
-    "text": "Results section (5 points)\nUsing visualisations of the data, discuss the answer to your research questions. You must:\n\nCreate 2 figures maximum of your data that will help you answer your research question. Each figure must have a caption using the options inside the R code chunk. Create the figures using the ggplot2 package.\nUsing markdown, add a list with two bullet points describing what you see in each of the figures using italic font and how that can help you answer your research question. Make sure you cross-reference the figures in the text."
+    "section": "Workflow for collaboration",
+    "text": "Workflow for collaboration\nOnce collaborators clone the repository, they also run renv::init().\nThis will automatically install the packages declared in the lockfile.\nBy doing this, they can work in your project using exactly the same R packages that you used when the lockfile was generated."
   },
   {
-    "objectID": "assignments/assignment-1.html#marking-rubric",
-    "href": "assignments/assignment-1.html#marking-rubric",
+    "objectID": "week10/index.html#week-10-lesson",
+    "href": "week10/index.html#week-10-lesson",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Marking Rubric",
-    "text": "Marking Rubric\nIn addition to the points as described above, you will be graded on your:\n\nReport template (5 points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report is not beneficial.\nIssues with spelling and grammar (up to -5 points).\nR code style (5 points)\nReport quality: Sections in the report are connected and aligned with the research question in a coherent way (6 points).\n\nMaximum grade: 50 points."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#the-usage-of-ai",
-    "href": "assignments/assignment-1.html#the-usage-of-ai",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The usage of AI",
-    "text": "The usage of AI\nYou may use Generative AI (such as ChatGPT) to correct your English or to help with your R code (for example to find bugs or ask for enhancements to your existing code). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called Appendix, and display screenshots of your ChatGPT queries and interactions related to this assignment.\nYou cannot use ChatGPT to generate content for this assignment from scratch, including code.\nMonash University supports the responsible and ethical use of generative AI. For more info please refer to Monash Policy and practice guidance around acceptable and responsible use of AI technologies.\n\n\n\n\n\n\nTip\n\n\n\nRemember you can be better than chatGPT. If you just use chatGPT to create content for you, where is your value and why are your skills special?"
-  },
-  {
-    "objectID": "assignments/assignment-1.html#assignment-submission",
-    "href": "assignments/assignment-1.html#assignment-submission",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Assignment Submission",
-    "text": "Assignment Submission\nThe report must be rendered to HTML and PDF, and all the code and code outputs must be visible. The PDF cannot have a length of more than 5 pages (excluding the appendix).\nYou do not need to upload anything to Moodle. All marking will occur directly from your GitHub repositories."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#plagiarism",
-    "href": "assignments/assignment-1.html#plagiarism",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Plagiarism",
-    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
-  },
-  {
-    "objectID": "assignments/assignment-2.html",
-    "href": "assignments/assignment-2.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Working on a reproducible Rstudio project\nProduce a pdf report using the template discuss in Week 7 or Week 8.\nPractice markdown syntax\nPractice R coding\nUse R chunk options to customize your report template\nCreate tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.\nShow that you can create and merge branches as well as resolve conflicts.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual and group assignment.\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.\nYou cannot use a dataset that has been used for another assignment."
-  },
-  {
-    "objectID": "assignments/assignment-2.html#objectives",
-    "href": "assignments/assignment-2.html#objectives",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Working on a reproducible Rstudio project\nProduce a pdf report using the template discuss in Week 7 or Week 8.\nPractice markdown syntax\nPractice R coding\nUse R chunk options to customize your report template\nCreate tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.\nShow that you can create and merge branches as well as resolve conflicts.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual and group assignment.\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.\nYou cannot use a dataset that has been used for another assignment."
-  },
-  {
-    "objectID": "assignments/assignment-2.html#part-a",
-    "href": "assignments/assignment-2.html#part-a",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part A",
-    "text": "Part A\nAs a group, you need to agree on a topic with several subtopics for each individual in the team and select a dataset or several datasets for the assignment.\nEach team member should work on their own branch named after their student username and produce a report with the following for their assigned subtopic:\n\nTitle and authors (1 mark)\nTable of contents: Defining using adequate YAML syntax (1 mark)\nExecutive summary: Maximum of 4 sentences (3 marks)\nIntroduction: Maximum 10 sentences (5 marks)\nThe body of the report should contain the following sections:\n\nMethodology: Maximum 300 words (5 marks).\n\nShould include a figure and a table and those must be referenced in the text and have adequate captions (5 marks).\n\nResults: Maximum 200 words (3 marks). Should include either a figure or a table.\nDiscussion, conclusion and recommendations\nReference section: Include at least 1 reference. (1 mark)"
-  },
-  {
-    "objectID": "assignments/assignment-2.html#part-b",
-    "href": "assignments/assignment-2.html#part-b",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part B",
-    "text": "Part B\nAs a team, you need to:\n\nMerge the branches: Start by merging all the branches into the main branch. You will need to get organized and do this one by one so that you can resolve the conflicts that will appear.\nResolve conflicts: Since you will be working on the same sections, conflicts may arise when the same lines of code are modified in different branches. To resolve conflicts, edit the affected files and choose which version to keep. Once you have resolved the conflicts, commit the changes.\nMake sure that the report knits into a pdf without errors each time you do a merge. If errors arise please solve them.\nReview and Revise: Carefully review the final report to ensure that it meets all the requirements of a cohesive report and is free of errors. Make any necessary revisions and edits before submitting the report. For this, you will all probably need to work on the main branch. Please ensure that any changes made are in terms of the requirements and in a coordinated fashion to avoid any problems.\n\nThe final business hospital must look professional, coherent and connected.\nStudents who do not participate in Part B will receive a grade of 0 for the assignment.\nTeams will not be penalised if individual students do not contribute to to the work on their respective branches."
-  },
-  {
-    "objectID": "assignments/assignment-2.html#marking-rubric",
-    "href": "assignments/assignment-2.html#marking-rubric",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Marking Rubric",
-    "text": "Marking Rubric\nIn addition to the points for each section as described above, you will be graded on your:\n\nReport template (5 points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report is not beneficial.\nIssues with spelling and grammar (up to -5pts)\nR code style (5 points)\nReport quality: Sections in the report are connected and aligned with the research question in a coherent way (6 points).\nMessages in commits are clear and informative (5 points)\nWork on individual branches of the git repository (10 points)\nWork on the main branch of the git repository (10 points)\nGit tree structure (5 points)\n\nMaximum grade: 70 points."
-  },
-  {
-    "objectID": "assignments/assignment-2.html#the-usage-of-ai",
-    "href": "assignments/assignment-2.html#the-usage-of-ai",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The usage of AI",
-    "text": "The usage of AI\nYou may use Generative AI (such as ChatGPT) to correct your English or to help with your R code (for example to find bugs or ask for enhancements to your existing code). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called Appendix, and display screenshots of your ChatGPT queries and interactions related to this assignment.\nYou cannot use ChatGPT to generate content for this assignment from scratch, including code.\nMonash University supports the responsible and ethical use of generative AI. For more info please refer to Monash Policy and practise guidance around acceptable and responsible use of AI technologies.\n\n\n\n\n\n\nTip\n\n\n\nRemember you can be better than ChatGPT. If you just use ChatGPT to create content for you, where is your value and why are your skills special?"
-  },
-  {
-    "objectID": "assignments/assignment-2.html#assignment-submission",
-    "href": "assignments/assignment-2.html#assignment-submission",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Assignment Submission",
-    "text": "Assignment Submission\nThe report must be rendered to PDF. Code outputs do not need to be visible - you are creating a clean business report, so only include them in they are adding to your narrative.\n\n\n\n\n\n\nImportant\n\n\n\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages)\n\n\nYou do not need to upload anything to Moodle. All marking will occur directly from your GitHub repositories."
-  },
-  {
-    "objectID": "assignments/assignment-2.html#plagiarism",
-    "href": "assignments/assignment-2.html#plagiarism",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Plagiarism",
-    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
+    "section": "Week 10 Lesson",
+    "text": "Week 10 Lesson\n\n\n\n\n\n\nImportant\n\n\n\nLearn how to add references and bibliography\nDealing with large files\nTags\nGitHub issues\n\n\n\n\n\n\n\n\nETC5513 Week 10"
   },
   {
     "objectID": "week1/index.html#etc5513-title",
@@ -2849,137 +2772,333 @@
     "text": "Week 1 Lesson\n\n\n\n\n\n\nSummary\n\n\n\nWhat are reproducible practices?\nWhat tools are available to us for reproducibility?\nWhen should we consider reproducible practices?\n\n\n\n\n\n\n\n\n\n\nResources\n\n\n\nLearning R: https://learnr.numbat.space\ngit manual\n\n\n\n\n\n\n\n\nETC5513 Week 1"
   },
   {
-    "objectID": "week10/index.html#etc5513-title",
-    "href": "week10/index.html#etc5513-title",
+    "objectID": "assignments/assignment-2.html",
+    "href": "assignments/assignment-2.html",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "ETC5513: Reproducible and Collaborative Practices",
-    "text": "ETC5513: Reproducible and Collaborative Practices\nWorkflows for reproducible data analysis\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 10\n\n\nrcp.numbat.space"
+    "section": "",
+    "text": "Working on a reproducible Rstudio project\nProduce a pdf report using the template discuss in Week 7 or Week 8.\nPractice markdown syntax\nPractice R coding\nUse R chunk options to customize your report template\nCreate tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.\nShow that you can create and merge branches as well as resolve conflicts.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual and group assignment.\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.\nYou cannot use a dataset that has been used for another assignment."
   },
   {
-    "objectID": "week10/index.html#open-frame",
-    "href": "week10/index.html#open-frame",
+    "objectID": "assignments/assignment-2.html#objectives",
+    "href": "assignments/assignment-2.html#objectives",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Open Frame",
-    "text": "Open Frame"
+    "section": "",
+    "text": "Working on a reproducible Rstudio project\nProduce a pdf report using the template discuss in Week 7 or Week 8.\nPractice markdown syntax\nPractice R coding\nUse R chunk options to customize your report template\nCreate tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.\nShow that you can create and merge branches as well as resolve conflicts.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual and group assignment.\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.\nYou cannot use a dataset that has been used for another assignment."
   },
   {
-    "objectID": "week10/index.html#recap",
-    "href": "week10/index.html#recap",
+    "objectID": "assignments/assignment-2.html#part-a",
+    "href": "assignments/assignment-2.html#part-a",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Recap",
-    "text": "Recap\n\nLearn how to add references and bibliography\nDealing with large files\nTags\nGitHub issues"
+    "section": "Part A",
+    "text": "Part A\nAs a group, you need to agree on a topic with several subtopics for each individual in the team and select a dataset or several datasets for the assignment.\nEach team member should work on their own branch named after their student username and produce a report with the following for their assigned subtopic:\n\nTitle and authors (1 mark)\nTable of contents: Defining using adequate YAML syntax (1 mark)\nExecutive summary: Maximum of 4 sentences (3 marks)\nIntroduction: Maximum 10 sentences (5 marks)\nThe body of the report should contain the following sections:\n\nMethodology: Maximum 300 words (5 marks).\n\nShould include a figure and a table and those must be referenced in the text and have adequate captions (5 marks).\n\nResults: Maximum 200 words (3 marks). Should include either a figure or a table.\nDiscussion, conclusion and recommendations\nReference section: Include at least 1 reference. (1 mark)"
   },
   {
-    "objectID": "week10/index.html#aim",
-    "href": "week10/index.html#aim",
+    "objectID": "assignments/assignment-2.html#part-b",
+    "href": "assignments/assignment-2.html#part-b",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Today’s plan",
-    "text": "Today’s plan\n\n\n\n\n\n\nAim\n\n\n\nCreate a git project from an existing local folder\nLicensing a repository\nLightweight dependency management\nAdvanced collaborative practices\nGitHub notes\nOther GitHub features\nTemplates for slides"
+    "section": "Part B",
+    "text": "Part B\nAs a team, you need to:\n\nMerge the branches: Start by merging all the branches into the main branch. You will need to get organized and do this one by one so that you can resolve the conflicts that will appear.\nResolve conflicts: Since you will be working on the same sections, conflicts may arise when the same lines of code are modified in different branches. To resolve conflicts, edit the affected files and choose which version to keep. Once you have resolved the conflicts, commit the changes.\nMake sure that the report knits into a pdf without errors each time you do a merge. If errors arise please solve them.\nReview and Revise: Carefully review the final report to ensure that it meets all the requirements of a cohesive report and is free of errors. Make any necessary revisions and edits before submitting the report. For this, you will all probably need to work on the main branch. Please ensure that any changes made are in terms of the requirements and in a coordinated fashion to avoid any problems.\n\nThe final business hospital must look professional, coherent and connected.\nStudents who do not participate in Part B will receive a grade of 0 for the assignment.\nTeams will not be penalised if individual students do not contribute to to the work on their respective branches."
   },
   {
-    "objectID": "week10/index.html#adding-version-control-onto-an-existing-project",
-    "href": "week10/index.html#adding-version-control-onto-an-existing-project",
+    "objectID": "assignments/assignment-2.html#marking-rubric",
+    "href": "assignments/assignment-2.html#marking-rubric",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Adding version control onto an existing project",
-    "text": "Adding version control onto an existing project\nSuppose you have a folder on your computer which is not version controlled, and you decide that you would like to start tracking it.\nYou go to GitHub and create a repo over there. You now have two options:\n\n\n\n\nApproach 1:\n\nCreate a GitHub repo\nClone the repo locally\nMove all the files and folders from your existing project into this folder\nStage, commit, push\n\n\n\n\n\nApproach 2:\n\nOpen a terminal in the directory for your folder\ngit init to create a git repostiroy\nStage, commit\ngit remote add origin git@github.com:...\ngit push -u origin main"
+    "section": "Marking Rubric",
+    "text": "Marking Rubric\nIn addition to the points for each section as described above, you will be graded on your:\n\nReport template (5 points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report is not beneficial.\nIssues with spelling and grammar (up to -5pts)\nR code style (5 points)\nReport quality: Sections in the report are connected and aligned with the research question in a coherent way (6 points).\nMessages in commits are clear and informative (5 points)\nWork on individual branches of the git repository (10 points)\nWork on the main branch of the git repository (10 points)\nGit tree structure (5 points)\n\nMaximum grade: 70 points."
   },
   {
-    "objectID": "week10/index.html#adding-version-control-onto-an-existing-project-1",
-    "href": "week10/index.html#adding-version-control-onto-an-existing-project-1",
+    "objectID": "assignments/assignment-2.html#the-usage-of-ai",
+    "href": "assignments/assignment-2.html#the-usage-of-ai",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Adding version control onto an existing project",
-    "text": "Adding version control onto an existing project\nOption 2 is preferred because it reduces duplication.\nGitHub even gives you instructions:\n\n\nThe -u flag says to link remote origin to branch main. it is a one time operation.\n\n\nRemember you can verify your remotes using git remote -v"
+    "section": "The usage of AI",
+    "text": "The usage of AI\nYou may use Generative AI (such as ChatGPT) to correct your English or to help with your R code (for example to find bugs or ask for enhancements to your existing code). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called Appendix, and display screenshots of your ChatGPT queries and interactions related to this assignment.\nYou cannot use ChatGPT to generate content for this assignment from scratch, including code.\nMonash University supports the responsible and ethical use of generative AI. For more info please refer to Monash Policy and practise guidance around acceptable and responsible use of AI technologies.\n\n\n\n\n\n\nTip\n\n\n\nRemember you can be better than ChatGPT. If you just use ChatGPT to create content for you, where is your value and why are your skills special?"
   },
   {
-    "objectID": "week10/index.html#repository-visibility",
-    "href": "week10/index.html#repository-visibility",
+    "objectID": "assignments/assignment-2.html#assignment-submission",
+    "href": "assignments/assignment-2.html#assignment-submission",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Repository Visibility",
-    "text": "Repository Visibility\n\nMore info here"
+    "section": "Assignment Submission",
+    "text": "Assignment Submission\nThe report must be rendered to PDF. Code outputs do not need to be visible - you are creating a clean business report, so only include them in they are adding to your narrative.\n\n\n\n\n\n\nImportant\n\n\n\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages)\n\n\nYou do not need to upload anything to Moodle. All marking will occur directly from your GitHub repositories."
   },
   {
-    "objectID": "week10/index.html#licensing",
-    "href": "week10/index.html#licensing",
+    "objectID": "assignments/assignment-2.html#plagiarism",
+    "href": "assignments/assignment-2.html#plagiarism",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Licensing",
-    "text": "Licensing\nPublic repos in GitHub make your work publicly available and therefore it is important to establish how your work should be acknowledged if someone else wants to use it.\n\nPublic repositories on GitHub are often used to share open source software. For your repository to be truly open source, you’ll need to license it sot that others are free to use, change and distribute the software.\n\nMore info here"
+    "section": "Plagiarism",
+    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
   },
   {
-    "objectID": "week10/index.html#available-licenses-in-github",
-    "href": "week10/index.html#available-licenses-in-github",
+    "objectID": "assignments/assignment-1.html",
+    "href": "assignments/assignment-1.html",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Available licenses in GitHub",
-    "text": "Available licenses in GitHub\n\nMore info here"
+    "section": "",
+    "text": "Working on a reproducible Rstudio project\nProduce a html report using an qmd file and explore YAML themes to define your prefer template\nPractice markdown syntax\nPractice R coding\nExplore R chunk options to customize your report template\nCreate html tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to clone a GitHub repository locally and synchronize the changes between your local and remote repositories.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment.\nThe final PDF report can not have more than 5 pages (not including the appendix).\nYou cannot use a dataset that has been used for another assignment."
   },
   {
-    "objectID": "week10/index.html#choosing-a-license",
-    "href": "week10/index.html#choosing-a-license",
+    "objectID": "assignments/assignment-1.html#objectives",
+    "href": "assignments/assignment-1.html#objectives",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Choosing a license",
-    "text": "Choosing a license\n\nSource here"
+    "section": "",
+    "text": "Working on a reproducible Rstudio project\nProduce a html report using an qmd file and explore YAML themes to define your prefer template\nPractice markdown syntax\nPractice R coding\nExplore R chunk options to customize your report template\nCreate html tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to clone a GitHub repository locally and synchronize the changes between your local and remote repositories.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment.\nThe final PDF report can not have more than 5 pages (not including the appendix).\nYou cannot use a dataset that has been used for another assignment."
   },
   {
-    "objectID": "week10/index.html#license-examples",
-    "href": "week10/index.html#license-examples",
+    "objectID": "assignments/assignment-1.html#part-a-setting-up-version-control",
+    "href": "assignments/assignment-1.html#part-a-setting-up-version-control",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "License examples",
-    "text": "License examples"
+    "section": "Part A: Setting up version control",
+    "text": "Part A: Setting up version control\nIn this assignment, you need to create an RStudio project that will be able to produce a reproducible HTML report. For the report, please select a data set that interest you from this webpage: Our World in Data.\nThe size of the data set is not relevant, however your data must contain at least 3 numerical variables and a character or factor variable and its size must not be more than 50MB. Your reproducible report should be created using a Quarto file in Rstudio and needs to be knitted into a HTML file. The report must knit into HTML without any errors and must have have all the code and code outputs displayed (unless otherwise specified in the instructions below).\nYou will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom here. Make sure to choose your Monash username from the list so we can find your assignment.\n\nRepository setup (6 points)\nClone the repository created by GitHub classroom onto your computer as we have done in lectures and tutorials (1 point).\nOnce you have cloned the repository to your computer, make sure to add all the files in the upcoming section, and use relevant, clear commit messages (5 points).\n\n\n\n\n\n\nCaution\n\n\n\nThe GitHub repo will appear in the GitHub classroom space. Do not work in or create a different repository for this assignment.\n\n\nYou can delete the example files out of Data/ and Images/."
   },
   {
-    "objectID": "week10/index.html#no-license",
-    "href": "week10/index.html#no-license",
+    "objectID": "assignments/assignment-1.html#part-b-creating-a-reproducible-report",
+    "href": "assignments/assignment-1.html#part-b-creating-a-reproducible-report",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "No license",
-    "text": "No license\n\nSource here"
+    "section": "Part B: Creating a reproducible report",
+    "text": "Part B: Creating a reproducible report\nThere is a pre-made RStudio project in the git repository. Open that with RStudio and we will work inside that project.\n\nQuarto setup (1 point)\nChange the YAML options for this Quarto file to render both a HTML and a PDF report.\n\n\nR code chunk for loading libraries (2 points)\nCreate a new Quarto file using RStudio. This file is where we will create the report for the rest of this assignment, so make sure to give it a sensible name (1 point).\nLoad all the libraries you will use in the report in an R chunk located at the beginning of your Quarto file. Make sure you set the options so that you do not display any R code, messages, or warnings in the rendered HTML document (for this chunk) (1 point).\n\n\nIntroduction section (5 points)\nUsing markdown, write a 4 sentence maximum motivation of what you are going to research and why. Make sure it is relevant to your dataset.\n\n\nResearch Question section (5 points)\nUsing markdown, discuss in 3 sentences maximum, the specific question that you are going to investigate or answer in this report using your selected data.\n\n\nDataset Introduction section (5 points)\nIn this section, briefly describe your data (i.e. what the data is measuring or recording) in five sentences maximum using markdown. You must provide a link to the location of the data inserted in the text using markdown.\nCreate a table using the kable() function from the knitr R package to report the variable names. Add a table caption that briefly describes the table in no more than 2 sentences. Include a cross-reference to the table in your text.\n\n\nDataset Description subsection (5 points)\nCreate a subsection that will report details about your data. You must include the size of the dataset such as the number of observations, variables and variable types. You must include the following:\n\nA sentence that includes inline R code describing the number of variables and observations in your dataset.\nA screenshot of your inline R code, saved as a png file. Upload this file inside the Image folder.\nInclude that picture in your subsection. You can either use an R code chunk (with knitr::include_graphics) or markdown image syntax (![]()).\nUsing the function head(), display the first two rows of data to show the types of variables that are in the dataset (i.e. numeric, character/factor etc)."
   },
   {
-    "objectID": "week10/index.html#creative-commons-license",
-    "href": "week10/index.html#creative-commons-license",
+    "objectID": "assignments/assignment-1.html#results-section-5-points",
+    "href": "assignments/assignment-1.html#results-section-5-points",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Creative Commons License",
-    "text": "Creative Commons License"
+    "section": "Results section (5 points)",
+    "text": "Results section (5 points)\nUsing visualisations of the data, discuss the answer to your research questions. You must:\n\nCreate 2 figures maximum of your data that will help you answer your research question. Each figure must have a caption using the options inside the R code chunk. Create the figures using the ggplot2 package.\nUsing markdown, add a list with two bullet points describing what you see in each of the figures using italic font and how that can help you answer your research question. Make sure you cross-reference the figures in the text."
   },
   {
-    "objectID": "week10/index.html#creative-commons-license-1",
-    "href": "week10/index.html#creative-commons-license-1",
+    "objectID": "assignments/assignment-1.html#marking-rubric",
+    "href": "assignments/assignment-1.html#marking-rubric",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Creative Commons License",
-    "text": "Creative Commons License\n\nMore info here"
+    "section": "Marking Rubric",
+    "text": "Marking Rubric\nIn addition to the points as described above, you will be graded on your:\n\nReport template (5 points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report is not beneficial.\nIssues with spelling and grammar (up to -5 points).\nR code style (5 points)\nReport quality: Sections in the report are connected and aligned with the research question in a coherent way (6 points).\n\nMaximum grade: 50 points."
   },
   {
-    "objectID": "week10/index.html#location-of-your-license",
-    "href": "week10/index.html#location-of-your-license",
+    "objectID": "assignments/assignment-1.html#the-usage-of-ai",
+    "href": "assignments/assignment-1.html#the-usage-of-ai",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Location of your license",
-    "text": "Location of your license\nYou can add a license from:\n\nGitHub when you first create a repo\nLater by placing your license text in a file named LICENSE.md\n\n\nLicenses go in the root of the directory. Some information about licenses is sometimes included in README.md as well, but this is not required.\nMore info here"
+    "section": "The usage of AI",
+    "text": "The usage of AI\nYou may use Generative AI (such as ChatGPT) to correct your English or to help with your R code (for example to find bugs or ask for enhancements to your existing code). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called Appendix, and display screenshots of your ChatGPT queries and interactions related to this assignment.\nYou cannot use ChatGPT to generate content for this assignment from scratch, including code.\nMonash University supports the responsible and ethical use of generative AI. For more info please refer to Monash Policy and practice guidance around acceptable and responsible use of AI technologies.\n\n\n\n\n\n\nTip\n\n\n\nRemember you can be better than chatGPT. If you just use chatGPT to create content for you, where is your value and why are your skills special?"
   },
   {
-    "objectID": "week10/index.html#think-about-the-following-issue",
-    "href": "week10/index.html#think-about-the-following-issue",
+    "objectID": "assignments/assignment-1.html#assignment-submission",
+    "href": "assignments/assignment-1.html#assignment-submission",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Think about the following issue",
-    "text": "Think about the following issue\n\nMy code ran 6 months ago (I’m sure it did) and now it is not working.\nMy figures in ggplot look funny now\n\n\nGenerally, this is because a version of a package has updated."
+    "section": "Assignment Submission",
+    "text": "Assignment Submission\nThe report must be rendered to HTML and PDF, and all the code and code outputs must be visible. The PDF cannot have a length of more than 5 pages (excluding the appendix).\nYou do not need to upload anything to Moodle. All marking will occur directly from your GitHub repositories."
   },
   {
-    "objectID": "week10/index.html#package-environments",
-    "href": "week10/index.html#package-environments",
+    "objectID": "assignments/assignment-1.html#plagiarism",
+    "href": "assignments/assignment-1.html#plagiarism",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Package environments",
-    "text": "Package environments"
+    "section": "Plagiarism",
+    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
   },
   {
-    "objectID": "week10/index.html#lightweight-dependency-management",
-    "href": "week10/index.html#lightweight-dependency-management",
+    "objectID": "assignments/assignment-3.html",
+    "href": "assignments/assignment-3.html",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Lightweight dependency management",
-    "text": "Lightweight dependency management\nThe primary solution for dependency management (which is far from perfect) is renv\n\nThe idea is to create a project-specific library to ensure a project has a record of which version of R packages are used."
+    "section": "",
+    "text": "Work on a reproducible presentation\nProduce a HTML presentation\nPractice markdown syntax\nDemonstrate that you have a strong knowledge of git commands and usage\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
   },
   {
-    "objectID": "week10/index.html#week-9-lesson",
-    "href": "week10/index.html#week-9-lesson",
+    "objectID": "assignments/assignment-3.html#objectives",
+    "href": "assignments/assignment-3.html#objectives",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Week 9 Lesson",
-    "text": "Week 9 Lesson\n\n\n\n\n\n\nImportant\n\n\n\nLearn how to add references and bibliography\nDealing with large files\nTags\nGitHub issues\n\n\n\n\n\n\n\n\nETC5513 Week 10"
+    "section": "",
+    "text": "Work on a reproducible presentation\nProduce a HTML presentation\nPractice markdown syntax\nDemonstrate that you have a strong knowledge of git commands and usage\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#part-a---video-presentation",
+    "href": "assignments/assignment-3.html#part-a---video-presentation",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part A - Video Presentation",
+    "text": "Part A - Video Presentation\nCreate a video that is a maximum of 10 minutes using Zoom which demonstrates your knowledge on git, GitHub, and the command line interface.\nJoin the GitHub classroom for Part A here. Note your repositories will start empty so you are free to add whatever you feel is needed.\n\n\n\n\n\n\nTip\n\n\n\nYou will need to plan and rehearse the steps in this video to ensure all the steps are smooth, well explained and that all the different screens are captured in the recording.\n\n\nThe video should demonstrate your ability to use these tools efficiently for version control and collaboration. Make sure you explain what you are doing in each step and why.\nPlease make sure you include all of the steps described below. Your camera must be on and recorded together with the workings.\nYou only need to use commands we have learned in class.\n\nCreate a new RStudio Project. In this folder, create a simple qmd file called example.qmd that can be knitted into a HTML file. Show this by knitting the file.\nFrom the command line interface, initialise this folder as a git repository and push it to the GitHub classroom repository.\nCreate a new branch called testbranch. Modify the file example.qmd and add the changes to both the local and remote repositories. Add another commit in this branch where you create a folder called data, and add the data from Assignment 1 to that folder.\nAmend the previous commit to include the data folder. Push this amended commit to the remote.\nSwitch back to the main branch and modify example.qmd in a different way such that it will conflict with testbranch. Commit and push these changes.\nMerge the changes in testbranch onto main. Show the conflict and fixing the merge conflict. Push the changes to GitHub, showing the status and changes in GitHub.\nTag this commit v1.0 on main using an annotated tag.\nDelete branch testbranch locally and on the remote.\nShow the commit log in condensed form in the terminal.\nOn main, create a new section in example.qmd that includes an easy to make plot. Commit the changes, and demonstrate using the command line interface how to undo the commit without losing your local changes.\n\n\n\n\n\n\n\nTip\n\n\n\nTo reset your GitHub repository on GitHub classroom, use the following steps from inside the working directory:\nrm -rf .git\ngit init\ngit commit -m \"Initial commit\" --allow-empty\ngit remote add origin &lt;git-url&gt;\ngit push -u --force origin main\n\n\nNote that this will completely overwrite your remote git repository, and will delete whatever was previously in it"
+  },
+  {
+    "objectID": "assignments/assignment-3.html#marking-rubric",
+    "href": "assignments/assignment-3.html#marking-rubric",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Marking Rubric",
+    "text": "Marking Rubric\n\nPart A\n\nEach of the instructions will be assessed as to whether they are successfully completed or not (1 mark each, total 10 points)\nClear commit messages used in the video (1 point)\nPresentation has good flow and is clear (2 points)\nIssues with language and grammar: Maximum deduction of 3 points\n\n\n\nPart B\n\nMessages in commits are clear and informative (1 point)\nPresentation is reproducible (2 points)\nStyling is sensible and does not detract from the presentation (2 points)\nPresentation tells a clear story (2 points)\n\nMaximum grade: 20 points."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#the-usage-of-ai",
+    "href": "assignments/assignment-3.html#the-usage-of-ai",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The usage of AI",
+    "text": "The usage of AI\nYou may use Generative AI (such as ChatGPT) to correct your English or to help with your R code (for example to find bugs or ask for enhancements to your existing code). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called Appendix, and display screenshots of your ChatGPT queries and interactions related to this assignment.\nYou cannot use ChatGPT to generate content for this assignment from scratch, including code.\nMonash University supports the responsible and ethical use of generative AI. For more info please refer to Monash Policy and practise guidance around acceptable and responsible use of AI technologies.\n\n\n\n\n\n\nTip\n\n\n\nRemember you can be better than ChatGPT. If you just use ChatGPT to create content for you, where is your value and why are your skills special?"
+  },
+  {
+    "objectID": "assignments/assignment-3.html#assignment-submission",
+    "href": "assignments/assignment-3.html#assignment-submission",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Assignment Submission",
+    "text": "Assignment Submission\nSubmit the recorded video via Moodle.\nMarking for Part B will take place directly on GitHub classroom."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#plagiarism",
+    "href": "assignments/assignment-3.html#plagiarism",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Plagiarism",
+    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "This unit develops teamwork skills, through instruction on reproducibility and version control to conduct collaborative data analysis. These skills are practised in a team setting with a data analysis project."
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nDevelop skills to create reproducible data analyses\nUnderstand the operation of version control systems\nUtilise version control to integrate data analysis efforts of team members\nEffectively work with a group to construct a collaborative data story"
+  },
+  {
+    "objectID": "index.html#teachers",
+    "href": "index.html#teachers",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Teachers",
+    "text": "Teachers\n\nMichael Lydeamore. Chief Examiner. Email: michael.lydeamore@monash.edu\nDavid Wu. Email: david.wu1@monash.edu\nNaveen Kaushik. Email: naveen.kaushik@monash.edu"
+  },
+  {
+    "objectID": "index.html#weekly-schedule",
+    "href": "index.html#weekly-schedule",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Weekly schedule",
+    "text": "Weekly schedule\n\n2 hour workshop, Thursdays 10am-12pm each week\n1.5 hour tutorial, one of:\n\nTuesday 6pm-7.30pm\nWednesday 4pm-5.30pm\nWednesday 5.30pm-7pm"
+  },
+  {
+    "objectID": "index.html#consultation",
+    "href": "index.html#consultation",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Consultation",
+    "text": "Consultation\n\nMichael Lydeamore: Thursday 3pm-4pm hybrid\nDavid Wu: Tuesday 4-5pm in-person (See Moodle for details)\nNaveen Kaushik: Monday 5.30-7pm online\n\n\n\n\nDate\nShow_Tutorial\nTopic\nTutorial\nReference\nAssessments\n\n\n\n\n26 Feb\nTRUE\nIntroduction to collaborative and reproducible practices\n\n\n\n\n\n04 Mar\nTRUE\nReproducible reports using Quarto\n\n\n\n\n\n11 Mar\nTRUE\nIntroduction to version control systems: git and GitHub\n\n\nAssignment 1\n\n\n18 Mar\nTRUE\nReproducible reporting using Quarto, git and GitHub\n\n\n\n\n\n25 Mar\nTRUE\nDeeper git knowledge, stashing and tools\n\n\n\n\n\n01 Apr\nFALSE\nMid-semester break\n\n\n\n\n\n08 Apr\nTRUE\nReproducible reporting and version control systems\n\n\n\n\n\n15 Apr\nTRUE\nWorkflows for reproducible data analysis\n\n\n\n\n\n22 Apr\nTRUE\nNo class (University Holiday)\n\n\nAssignment 2\n\n\n29 Apr\nTRUE\nReproducible reporting for specialised and broad audiences\n\n\n\n\n\n06 May\nTRUE\nAdvanced collaborative practices\n\n\nAssignment 3\n\n\n13 May\nTRUE\nReproducible workflows in consultancy\n\n\n\n\n\n20 May\nTRUE\nCourse recap\n\n\nInterview"
+  },
+  {
+    "objectID": "week1/tutorial/index.html",
+    "href": "week1/tutorial/index.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Getting to know your colleagues\nGetting setup with R, RStudio and GitHub\nWhat is R and why do we need it?\nGetting some practice in R\nLearn about R and RStudio Resources"
+  },
+  {
+    "objectID": "week1/tutorial/index.html#objectives",
+    "href": "week1/tutorial/index.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Getting to know your colleagues\nGetting setup with R, RStudio and GitHub\nWhat is R and why do we need it?\nGetting some practice in R\nLearn about R and RStudio Resources"
+  },
+  {
+    "objectID": "week1/tutorial/index.html#install-r-on-your-computer",
+    "href": "week1/tutorial/index.html#install-r-on-your-computer",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Install R on your computer",
+    "text": "Install R on your computer\nR is maintained by an international team of developers and is available via The Comprehensive R Archive Network (CRAN) webpage. Please select the appropriate download option depending on your operating system: Windows, Mac, or Linux.\n\n\n\n\n\n\nR\n\n\n\nInstall R here\n\n\nYou can find some further infomartion about how to install R here."
+  },
+  {
+    "objectID": "week1/tutorial/index.html#install-rstudio-on-your-computer",
+    "href": "week1/tutorial/index.html#install-rstudio-on-your-computer",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Install RStudio on your computer",
+    "text": "Install RStudio on your computer\nRStudio is an integrated development environment for R, a programming language for statistical computing and graphics. It is available in two formats: RStudio Desktop is a regular desktop application while RStudio Server runs on a remote server and allows accessing RStudio using a web browser. (Source: Wikipedia)\n\n\n\n\n\n\nRStudio\n\n\n\nInstall RStudio here"
+  },
+  {
+    "objectID": "week1/tutorial/index.html#get-yourself-a-free-github-student-developer-pack",
+    "href": "week1/tutorial/index.html#get-yourself-a-free-github-student-developer-pack",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Get yourself a free GitHub Student Developer pack",
+    "text": "Get yourself a free GitHub Student Developer pack\nSign up for a free GitHub Student Developer Pack. You will have to use your Monash email account (which you can add to your existing GitHub account if you like) and make sure you remember your login details!\nTo sign up, click here."
+  },
+  {
+    "objectID": "week1/tutorial/index.html#getting-to-know-more-abour-r",
+    "href": "week1/tutorial/index.html#getting-to-know-more-abour-r",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Getting to know more abour R",
+    "text": "Getting to know more abour R\nHave a read about R here."
+  },
+  {
+    "objectID": "week1/tutorial/index.html#get-a-chatgpt-account",
+    "href": "week1/tutorial/index.html#get-a-chatgpt-account",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Get a ChatGPT account",
+    "text": "Get a ChatGPT account\nSign up for a free ChatGPT account here. You can use your Monash email address if you like.\nAsk ChatGPT to give you an example of R code, then copy the code into RStudio and execute it. Compare with your colleagues at your table. Is it the same? Is it different? Is it correct?"
+  },
+  {
+    "objectID": "week1/tutorial/index.html#r-in-practice",
+    "href": "week1/tutorial/index.html#r-in-practice",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "R in practice",
+    "text": "R in practice\nThere are plenty of resources to start getting to know how R works. Here are a couple:\n\nLearnR\nPosit (R) Primers\n\nFor today’s session, please complete Chapter 1, Section 3 of the LearnR website here."
+  },
+  {
+    "objectID": "week1/tutorial/index.html#data-wrangling-with-tidyverse",
+    "href": "week1/tutorial/index.html#data-wrangling-with-tidyverse",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Data wrangling with tidyverse",
+    "text": "Data wrangling with tidyverse\nVideo on data wrangling"
+  },
+  {
+    "objectID": "week1/tutorial/index.html#familiarize-yourself-with-userful-resources-for-r-programming",
+    "href": "week1/tutorial/index.html#familiarize-yourself-with-userful-resources-for-r-programming",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Familiarize yourself with userful resources for R programming",
+    "text": "Familiarize yourself with userful resources for R programming\nThere are lots of wonderful R, Rstudio and Data science using R resources that will help you during the semester. Below there is a list to get you started:\n\nHands-On Programming with R\nR for Data Science\n\nA more comprehensive list of books that are freely available can be fond on the following webpage: Book list"
+  },
+  {
+    "objectID": "week10/tutorial/solution.html",
+    "href": "week10/tutorial/solution.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Learn to use git lfs to deal with large files\nCreate licenses in our repostiroies\nUse renv to create a local library"
+  },
+  {
+    "objectID": "week10/tutorial/solution.html#objectives",
+    "href": "week10/tutorial/solution.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Learn to use git lfs to deal with large files\nCreate licenses in our repostiroies\nUse renv to create a local library"
+  },
+  {
+    "objectID": "week10/tutorial/solution.html#git-lfs",
+    "href": "week10/tutorial/solution.html#git-lfs",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git LFS",
+    "text": "Git LFS\n\nCreate a repository in GitHub that has a license, a .gitignore file and a README.md file.\nClone the repository to your local machine\nTake the CSV file from moodle\nAdd this file using the git lfs workflow.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit lfs install\ngit lfs track \"*.csv\"\ngit add .gitattributes\ngit add .\ngit commit -m \"Adding large file\"\ngit push origin main\n\n\n\n\n\nPush the changes onto GitHub."
+  },
+  {
+    "objectID": "week10/tutorial/solution.html#lightweight-dependency-management-using-renv",
+    "href": "week10/tutorial/solution.html#lightweight-dependency-management-using-renv",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Lightweight dependency management using renv",
+    "text": "Lightweight dependency management using renv\nInside your repo from the previous section:\n\nCreate a qmd file that has a libraries code chunk, and load the dplyr and ggplot2 libraries.\nStage the changes, commit and push.\nWhat are the library paths for this project?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n.libPaths()\n\"/Library/Frameworks/R.framework/Versions/4.0/Resources/library\"\n\n\n\n\n\nInstall the renv package\nInitialise renv in your R seession\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nrenv::init()\n\n\n\n\n\nWhat new files or folders have been made in your repo with this command?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nThere is a new folder called renv, a new file called .Rprofile and a new filed called renv.lock.\n\n\n\n\n\nUsing the terminal, use cd and ls to find the new files.\nIn the terminal, check the status of your repo.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreate a snapshot of your repostiory using renv::snapshot()\nCheck the status of your repo, stage, commit and push the changes into the remote repository.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit status\ngit add .\ngit commit -m \"Adding renv files for dependency management\"\ngit push origin main\n\n\n\n\nExtension: Try adding a development package from GitHub, such as the naniar package. Follow the renv workflow. Does the package get recorded? Can you see it in the lockfile? How is it recorded differently from packages on CRAN?"
+  },
+  {
+    "objectID": "week10/tutorial/index.html",
+    "href": "week10/tutorial/index.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Learn to use git lfs to deal with large files\nCreate licenses in our repostiroies\nUse renv to create a local library"
+  },
+  {
+    "objectID": "week10/tutorial/index.html#objectives",
+    "href": "week10/tutorial/index.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Learn to use git lfs to deal with large files\nCreate licenses in our repostiroies\nUse renv to create a local library"
+  },
+  {
+    "objectID": "week10/tutorial/index.html#git-lfs",
+    "href": "week10/tutorial/index.html#git-lfs",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git LFS",
+    "text": "Git LFS\n\nCreate a repository in GitHub that has a license, a .gitignore file and a README.md file.\nClone the repository to your local machine\nTake the CSV file from moodle\nAdd this file using the git lfs workflow.\n\n\nPush the changes onto GitHub."
+  },
+  {
+    "objectID": "week10/tutorial/index.html#lightweight-dependency-management-using-renv",
+    "href": "week10/tutorial/index.html#lightweight-dependency-management-using-renv",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Lightweight dependency management using renv",
+    "text": "Lightweight dependency management using renv\nInside your repo from the previous section:\n\nCreate a qmd file that has a libraries code chunk, and load the dplyr and ggplot2 libraries.\nStage the changes, commit and push.\nWhat are the library paths for this project?\n\n\nInstall the renv package\nInitialise renv in your R seession\n\n\nWhat new files or folders have been made in your repo with this command?\n\n\nUsing the terminal, use cd and ls to find the new files.\nIn the terminal, check the status of your repo.\n\n\nCreate a snapshot of your repostiory using renv::snapshot()\nCheck the status of your repo, stage, commit and push the changes into the remote repository.\n\nExtension: Try adding a development package from GitHub, such as the naniar package. Follow the renv workflow. Does the package get recorded? Can you see it in the lockfile? How is it recorded differently from packages on CRAN?"
   },
   {
     "objectID": "week2/tutorial/solution.html",
@@ -3308,7 +3427,7 @@
     "href": "week9/index.html#etc5513-title",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "ETC5513: Reproducible and Collaborative Practices",
-    "text": "ETC5513: Reproducible and Collaborative Practices\nWorkflows for reproducible data analysis\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 9\n\n\nrcp.numbat.space"
+    "text": "ETC5513: Reproducible and Collaborative Practices\nReferencing, large files, and GitHub Issues\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 9\n\n\nrcp.numbat.space"
   },
   {
     "objectID": "week9/index.html#open-frame",
