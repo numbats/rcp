@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Lydeamore">
-<meta name="dcterms.date" content="2024-05-09">
+<meta name="dcterms.date" content="2024-05-14">
 
 <title>ETC5513: Collaborative and Reproducible Practices</title>
 <style>
@@ -4687,7 +4687,10 @@ vertical-align: -.125em;
     <a class="dropdown-item" href="../../week10/index.html">
  <span class="dropdown-text">Keeping environments separate and reproducible</span></a>
   </li>  
-        <li class="dropdown-header">week11/index.qmd</li>
+        <li>
+    <a class="dropdown-item" href="../../week11/index.html">
+ <span class="dropdown-text"><br><span class="monash-blue title"><code>r rmarkdown::metadata$pagetitle</code></span></span></a>
+  </li>  
         <li class="dropdown-header">week12/index.qmd</li>
     </ul>
   </li>
@@ -4743,7 +4746,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">9 May 2024</p>
+      <p class="date">14 May 2024</p>
     </div>
   </div>
   
@@ -4762,6 +4765,30 @@ vertical-align: -.125em;
 <li>Create licenses in our repostiroies</li>
 <li>Use <code>renv</code> to create a local library</li>
 </ul>
+</section>
+<section id="setting-up-licensed-repositories" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-licensed-repositories">Setting up licensed repositories</h2>
+<p>For this week’s tutorial, you’ll need a brand new repository to work in. It can be public or private.</p>
+<ol type="1">
+<li><p>Create a new repository with your choice of name. Ensure that it has a <strong>license</strong>, a <strong><code>.gitignore</code></strong> file and a <strong><code>README</code></strong> file.<br>
+You should select these from the repo creation menu, not by committing them yourself later.</p></li>
+<li><p>Clone the repository to your local machine</p></li>
+<li><p>Change the license file to a different one. Remember you can find licenses on <a href="https://www.choosealicense.com">choosealicense.com</a>. Stage, commit and push your changes.</p></li>
+<li><p><em>Revert</em> the commit you just made.</p></li>
+</ol>
+<ol start="5" type="1">
+<li><em>Reset</em> the last two commits. You should end up with your original license file back on the repo.</li>
+</ol>
+<ol start="6" type="1">
+<li>Commit, stage and push your changes (if there are any). What do you notice?</li>
+</ol>
+<ol start="7" type="1">
+<li><p>Edit the <code>README.md</code> file to include your name. Stage and commit (but don’t push).</p></li>
+<li><p><em>Amend</em> the most recent commit to also include the course code and the tutorial number. Include an <em>expanded</em> commit message for the amended commit.</p></li>
+</ol>
+<ol start="9" type="1">
+<li>Push your changes. Can you see the expanded commit message on GitHub?</li>
+</ol>
 </section>
 <section id="lightweight-dependency-management-using-renv" class="level2">
 <h2 class="anchored" data-anchor-id="lightweight-dependency-management-using-renv">Lightweight dependency management using <code>renv</code></h2>

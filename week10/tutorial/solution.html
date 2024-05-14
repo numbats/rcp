@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Lydeamore">
-<meta name="dcterms.date" content="2024-05-09">
+<meta name="dcterms.date" content="2024-05-14">
 
 <title>ETC5513: Collaborative and Reproducible Practices</title>
 <style>
@@ -4697,7 +4697,10 @@ display: unset;
     <a class="dropdown-item" href="../../week10/index.html">
  <span class="dropdown-text">Keeping environments separate and reproducible</span></a>
   </li>  
-        <li class="dropdown-header">week11/index.qmd</li>
+        <li>
+    <a class="dropdown-item" href="../../week11/index.html">
+ <span class="dropdown-text"><br><span class="monash-blue title"><code>r rmarkdown::metadata$pagetitle</code></span></span></a>
+  </li>  
         <li class="dropdown-header">week12/index.qmd</li>
     </ul>
   </li>
@@ -4753,7 +4756,7 @@ display: unset;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">9 May 2024</p>
+      <p class="date">14 May 2024</p>
     </div>
   </div>
   
@@ -4773,13 +4776,15 @@ display: unset;
 <li>Use <code>renv</code> to create a local library</li>
 </ul>
 </section>
-<section id="lightweight-dependency-management-using-renv" class="level2">
-<h2 class="anchored" data-anchor-id="lightweight-dependency-management-using-renv">Lightweight dependency management using <code>renv</code></h2>
-<p>Inside your repo from the previous section:</p>
+<section id="setting-up-licensed-repositories" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-licensed-repositories">Setting up licensed repositories</h2>
+<p>For this week’s tutorial, you’ll need a brand new repository to work in. It can be public or private.</p>
 <ol type="1">
-<li><p>Create a qmd file that has a libraries code chunk, and load the <code>dplyr</code> and <code>ggplot2</code> libraries.</p></li>
-<li><p>Stage the changes, commit and push.</p></li>
-<li><p>What are the library paths for this project?</p></li>
+<li><p>Create a new repository with your choice of name. Ensure that it has a <strong>license</strong>, a <strong><code>.gitignore</code></strong> file and a <strong><code>README</code></strong> file.<br>
+You should select these from the repo creation menu, not by committing them yourself later.</p></li>
+<li><p>Clone the repository to your local machine</p></li>
+<li><p>Change the license file to a different one. Remember you can find licenses on <a href="https://www.choosealicense.com">choosealicense.com</a>. Stage, commit and push your changes.</p></li>
+<li><p><em>Revert</em> the commit you just made.</p></li>
 </ol>
 <div class="callout callout-style-default callout-solution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -4794,15 +4799,14 @@ Solution
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="unilur-solution">
-<pre><code>.libPaths()
-&quot;/Library/Frameworks/R.framework/Versions/4.0/Resources/library&quot;</code></pre>
+<p><code>git revert HEAD~0</code></p>
+<p>You don’t need the <code>HEAD~0</code> to revert the most recent commit.</p>
 </div>
 </div>
 </div>
 </div>
-<ol start="4" type="1">
-<li><p>Install the <code>renv</code> package</p></li>
-<li><p>Initialise <code>renv</code> in your R seession</p></li>
+<ol start="5" type="1">
+<li><em>Reset</em> the last two commits. You should end up with your original license file back on the repo.</li>
 </ol>
 <div class="callout callout-style-default callout-solution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -4817,13 +4821,13 @@ Solution
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="unilur-solution">
-<p><code>renv::init()</code></p>
+<p><code>git reset HEAD~2</code></p>
 </div>
 </div>
 </div>
 </div>
 <ol start="6" type="1">
-<li>What new files or folders have been made in your repo with this command?</li>
+<li>Commit, stage and push your changes (if there are any). What do you notice?</li>
 </ol>
 <div class="callout callout-style-default callout-solution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -4838,14 +4842,14 @@ Solution
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="unilur-solution">
-<p>There is a new folder called <code>renv</code>, a new file called <code>.Rprofile</code> and a new filed called <code>renv.lock</code>.</p>
+<p>Any evidence of the license change has been removed from the repository. This is known as a <em>destructive</em> operation.</p>
 </div>
 </div>
 </div>
 </div>
 <ol start="7" type="1">
-<li><p>Using the terminal, use <code>cd</code> and <code>ls</code> to find the new files.</p></li>
-<li><p>In the terminal, check the status of your repo.</p></li>
+<li><p>Edit the <code>README.md</code> file to include your name. Stage and commit (but don’t push).</p></li>
+<li><p><em>Amend</em> the most recent commit to also include the course code and the tutorial number. Include an <em>expanded</em> commit message for the amended commit.</p></li>
 </ol>
 <div class="callout callout-style-default callout-solution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -4858,6 +4862,103 @@ Solution
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="unilur-solution">
+<p><code>git commit --amend</code> should open your text editor.</p>
+<p>To include an expanded commit message, leave a blank line between the summary and expanded text.</p>
+</div>
+</div>
+</div>
+</div>
+<ol start="9" type="1">
+<li>Push your changes. Can you see the expanded commit message on GitHub?</li>
+</ol>
+</section>
+<section id="lightweight-dependency-management-using-renv" class="level2">
+<h2 class="anchored" data-anchor-id="lightweight-dependency-management-using-renv">Lightweight dependency management using <code>renv</code></h2>
+<p>Inside your repo from the previous section:</p>
+<ol type="1">
+<li><p>Create a qmd file that has a libraries code chunk, and load the <code>dplyr</code> and <code>ggplot2</code> libraries.</p></li>
+<li><p>Stage the changes, commit and push.</p></li>
+<li><p>What are the library paths for this project?</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="unilur-solution">
+<pre><code>.libPaths()
+&quot;/Library/Frameworks/R.framework/Versions/4.0/Resources/library&quot;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p>Install the <code>renv</code> package</p></li>
+<li><p>Initialise <code>renv</code> in your R seession</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="unilur-solution">
+<p><code>renv::init()</code></p>
+</div>
+</div>
+</div>
+</div>
+<ol start="6" type="1">
+<li>What new files or folders have been made in your repo with this command?</li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="unilur-solution">
+<p>There is a new folder called <code>renv</code>, a new file called <code>.Rprofile</code> and a new filed called <code>renv.lock</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<ol start="7" type="1">
+<li><p>Using the terminal, use <code>cd</code> and <code>ls</code> to find the new files.</p></li>
+<li><p>In the terminal, check the status of your repo.</p></li>
+</ol>
+<div class="callout callout-style-default callout-solution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="unilur-solution">
 <div class="quarto-figure quarto-figure-center">
@@ -4874,7 +4975,7 @@ Solution
 <li><p>Check the status of your repo, stage, commit and push the changes into the remote repository.</p></li>
 </ol>
 <div class="callout callout-style-default callout-solution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -4883,7 +4984,7 @@ Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="unilur-solution">
 <pre><code>git status

@@ -2275,6 +2275,790 @@
     "text": "Week 2 Lesson\n\n\n\n\n\n\nSummary\n\n\n\nQuarto documents\nR Code Chunk Options\nIncluding figures, tables, captions\nRStudio projects\nGood Coding Practices\n\n\n\n\n\n\n\n\n\n\nResources\n\n\n\nhttps://quarto.org/\nhttps://www.markdownguide.org/getting-started/\nhttps://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects\nhttps://style.tidyverse.org\n\n\n\n\n\n\n\n\nETC5513 Week 2"
   },
   {
+    "objectID": "week11/index.html#etc5513-title",
+    "href": "week11/index.html#etc5513-title",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "ETC5513: Reproducible and Collaborative Practices",
+    "text": "ETC5513: Reproducible and Collaborative Practices\nKeeping environments separate and reproducible\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 11\n\n\nrcp.numbat.space"
+  },
+  {
+    "objectID": "week11/index.html#open-frame",
+    "href": "week11/index.html#open-frame",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Open Frame",
+    "text": "Open Frame"
+  },
+  {
+    "objectID": "week11/index.html#recap",
+    "href": "week11/index.html#recap",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Recap",
+    "text": "Recap\n\nLearn how to add references and bibliography\nDealing with large files\nTags\nGitHub issues"
+  },
+  {
+    "objectID": "week11/index.html#aim",
+    "href": "week11/index.html#aim",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Today’s plan",
+    "text": "Today’s plan\n\n\n\n\n\n\nAim\n\n\n\nCreate a git project from an existing local folder\nLicensing a repository\nLightweight dependency management\nAdvanced collaborative practices\nTemplates for slides"
+  },
+  {
+    "objectID": "week11/index.html#reproducibility-using-docker-1",
+    "href": "week11/index.html#reproducibility-using-docker-1",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Reproducibility using Docker",
+    "text": "Reproducibility using Docker\nDocker is a program that allows to manipulate (launch and stop) multiple operating systems (called containers) on your machine (your machine will be called the host).\nSource here.\nDocker is designed to enclose environments inside an image / a container"
+  },
+  {
+    "objectID": "week11/index.html#reproducibility-using-docker-2",
+    "href": "week11/index.html#reproducibility-using-docker-2",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Reproducibility using Docker",
+    "text": "Reproducibility using Docker"
+  },
+  {
+    "objectID": "week11/index.html#reproducibility-using-docker-3",
+    "href": "week11/index.html#reproducibility-using-docker-3",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Reproducibility using Docker",
+    "text": "Reproducibility using Docker"
+  },
+  {
+    "objectID": "week11/index.html#etc5513-unit-objectives",
+    "href": "week11/index.html#etc5513-unit-objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "ETC5513 Unit Objectives",
+    "text": "ETC5513 Unit Objectives\n\nDevelop skills to create reproducible documents.\nUnderstand the operation of version control systems.\nAdvance use of version control.\nUtilize version control to integrate data analysis efforts of team members.\nEffectively work with a group to construct a collaborative data science project."
+  },
+  {
+    "objectID": "week11/index.html#reproducibility-and-replicability",
+    "href": "week11/index.html#reproducibility-and-replicability",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Reproducibility and Replicability",
+    "text": "Reproducibility and Replicability\nDefinitions by the USA National Academies of Science, Engineering and Medicine:\n\n\n\n\n\n\nTip\n\n\nReproducibility (“computational reproducibility”) means obtaining consistent computational results using the same input data, computational steps, methods, code, and conditions of analysis.\n\n\n\nReplicability means obtaining consistent results across studies aimed at answering the same scientific question, each of which has obtained its own data"
+  },
+  {
+    "objectID": "week11/index.html#reproducible-research",
+    "href": "week11/index.html#reproducible-research",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Reproducible research",
+    "text": "Reproducible research\n\nWorking to make your research reproducible does require extra upfront effort.\nMaking a project reproducible from the start encourages you to use better work habits.\nIt should push you to bring your data and source code up to a higher level of quality than you might if you “thought ‘no one was looking’” [Donoho, 2010, 386].\nReproducible research needs to be stored so that other researchers can actually access the data and source code.\nChanges are easier to implement \\(\\rightarrow\\) specially when using dynamic reproducible documents.\nReproducible research has higher impact."
+  },
+  {
+    "objectID": "week11/index.html#tools-for-reproducible-research",
+    "href": "week11/index.html#tools-for-reproducible-research",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Tools for reproducible research",
+    "text": "Tools for reproducible research\n\nR programming language\n\nR enables researchers to read data, create data visualizations and run statistical analyses.\nR has thousands of libraries\nR has a very active development community that is constantly expanding.\n\nR libraries/packages facilitate reproducibility:\n\nKnitr and Rmarkdown:\n\nAllow us to connect R-based analyses to presentation, papers and reports documents created with markup languages such as LaTeX and Markdown"
+  },
+  {
+    "objectID": "week11/index.html#rstudio",
+    "href": "week11/index.html#rstudio",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Rstudio",
+    "text": "Rstudio\n\nRStudio is an integrated developer environment (IDE):\n\nR by itself has the capabilities necessary to gather and analyze data, and with a little help from knitr/Rmarkdown and markup languages, present results in a way that is highly reproducible.\n\n\nRStudio allows you to do all of these things more easily. - It also is a happy medium between R’s text-based interface and a pure GUI. - It is not the only IDE! - It is closely integrated with the version control programs Git and SVN."
+  },
+  {
+    "objectID": "week11/index.html#version-control",
+    "href": "week11/index.html#version-control",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Version control",
+    "text": "Version control\n\n\n\n\n\n\nTip\n\n\nVersion Control is a system that records changes to a file or set of files over time so that you can recall specific versions later."
+  },
+  {
+    "objectID": "week11/index.html#git",
+    "href": "week11/index.html#git",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git",
+    "text": "Git\n“Git is a distributed version-control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows”\nhttps://en.wikipedia.org/wiki/Git"
+  },
+  {
+    "objectID": "week11/index.html#git-and-github",
+    "href": "week11/index.html#git-and-github",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git and GitHub",
+    "text": "Git and GitHub\n\nSource here"
+  },
+  {
+    "objectID": "week11/index.html#tools",
+    "href": "week11/index.html#tools",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Tools",
+    "text": "Tools\n\nR\nRstudio\nGit\nGitHub\nVS code"
+  },
+  {
+    "objectID": "week11/index.html#workflow-for-reproducible-research",
+    "href": "week11/index.html#workflow-for-reproducible-research",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Workflow for reproducible research",
+    "text": "Workflow for reproducible research\n\nReproducible Research with R and Rstudio by Christopher Gandrud"
+  },
+  {
+    "objectID": "week11/index.html#what-is-markdown",
+    "href": "week11/index.html#what-is-markdown",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What is Markdown?",
+    "text": "What is Markdown?\n\n\n\n\n\n\nTip\n\n\nMarkdown is a lightweight markup language that you can use to add formatting elements to plain text text documents.\n\n\n\nIt was created by John Gruber in 2004. Read more here\n\nMarkdown is a “text” formatting syntax\nCan be easily render to more complex formats such as: pdf, html, pdf, docx"
+  },
+  {
+    "objectID": "week11/index.html#markdown-example",
+    "href": "week11/index.html#markdown-example",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Markdown example",
+    "text": "Markdown example\n# Header 1\n## Header 2\n\n- Unordered list 1 \n1. Ordered list 1\n\n _This is italic._\n \n *This too.*\n \n **This is bold**"
+  },
+  {
+    "objectID": "week11/index.html#quarto-and-knitr",
+    "href": "week11/index.html#quarto-and-knitr",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Quarto and knitr",
+    "text": "Quarto and knitr\n\nQuarto is a package within R that allows us to create documents using Markdown\nKnitr is an R package that allows us to render Rmarkdown code into html, pdf, docx"
+  },
+  {
+    "objectID": "week11/index.html#quarto-file-structure",
+    "href": "week11/index.html#quarto-file-structure",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Quarto file structure",
+    "text": "Quarto file structure\nThree main components:\n\nYAML\nText\nR Code Chunks\n\nMore info about Quarto"
+  },
+  {
+    "objectID": "week11/index.html#quarto-anatomy",
+    "href": "week11/index.html#quarto-anatomy",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Quarto anatomy",
+    "text": "Quarto anatomy\n\nMetadata: It is written in markdown at the top of the file between ‘—’ in YAML\n\n---\ntitle: \"ETC5513\"\nauthor: \"Michael Lydeamore\"\nformat: html\n---"
+  },
+  {
+    "objectID": "week11/index.html#quarto-anatomy-1",
+    "href": "week11/index.html#quarto-anatomy-1",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Quarto anatomy",
+    "text": "Quarto anatomy\n\nText is written in markdown\n\n# This is a section header\n## This is a subsection header\nIn this section it is **important**"
+  },
+  {
+    "objectID": "week11/index.html#r-code-chunks",
+    "href": "week11/index.html#r-code-chunks",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "R code chunks",
+    "text": "R code chunks\nYou can quickly insert R chunks into your file with\n\nthe keyboard shortcut Ctrl + Alt + I (OS X: Cmd + Option + I)\nthe Add Chunk command in the editor toolbar\nor by typing the chunk delimiters"
+  },
+  {
+    "objectID": "week11/index.html#chunk-options",
+    "href": "week11/index.html#chunk-options",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Chunk options",
+    "text": "Chunk options\nChunk output can be customized with options, marked by the “hashpipe”: #|\n\ninclude: false prevents code and results from appearing in the finished file. Quarto still runs the code in the chunk, and the results can be used by other chunks.\necho: false prevents code, but not the results from appearing in the finished file. This is a useful way to embed figures."
+  },
+  {
+    "objectID": "week11/index.html#more-r-code-chunk-options",
+    "href": "week11/index.html#more-r-code-chunk-options",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "More R code chunk options",
+    "text": "More R code chunk options\n\neval: false prevents evaluating the code and include its results\nmessage: false prevents messages that are generated by code from appearing in the finished file.\nwarning: false prevents warnings that are generated by code from appearing in the finished.\nfig-cap: ... adds a caption to graphical results."
+  },
+  {
+    "objectID": "week11/index.html#r-code-chunks-1",
+    "href": "week11/index.html#r-code-chunks-1",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "R code chunks",
+    "text": "R code chunks"
+  },
+  {
+    "objectID": "week11/index.html#global-options",
+    "href": "week11/index.html#global-options",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Global options",
+    "text": "Global options\nTo set global options that apply to every chunk in your file, call\nknitr::opts_chunk$set()\nin an R code chunk.\nKnitr will treat each option that you pass to knitr::opts_chunk$set() as a global default that can be overwritten in individual R code chunk headers.\nMore info here"
+  },
+  {
+    "objectID": "week11/index.html#caching",
+    "href": "week11/index.html#caching",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Caching",
+    "text": "Caching\n\nIf document rendering becomes time consuming due to long computations you can use knitr caching to improve performance.\nKnitr chunk and package options (here) describes how caching works\nThe cache examples (here) provide additional details.\n\ncache: true is an option within the chunks or you can set it as a global option.\n\n\n\n\n\n\nCaution\n\n\nCaching might prevent you from updating some results. Because of that, it is essential that you use it only when you are sure your R code chunks are working fine. Setting cache = TRUE as a global option might be dangerous so be very careful."
+  },
+  {
+    "objectID": "week11/index.html#quarto-workflow",
+    "href": "week11/index.html#quarto-workflow",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Quarto workflow",
+    "text": "Quarto workflow"
+  },
+  {
+    "objectID": "week11/index.html#thanks-to-knitr-and-pandoc",
+    "href": "week11/index.html#thanks-to-knitr-and-pandoc",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Thanks to knitr and pandoc",
+    "text": "Thanks to knitr and pandoc\n\n\n\n\n\n\n\n\nknitr executes the code and coverts the .qmd to .md\npandoc renders the .md file to the output format you want"
+  },
+  {
+    "objectID": "week11/index.html#learning-more-about-creating-quarto-documents",
+    "href": "week11/index.html#learning-more-about-creating-quarto-documents",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Learning more about creating Quarto documents",
+    "text": "Learning more about creating Quarto documents\nWhen we have figures or plots in our reports it is a great idea to set up some global options at the beginning of our document:\nKeeping our R figures inside a folder\n---\ntitle: \"My Report\"\nauthor: \"Michael Lydeamore\"\nformat:\n  html:\n    keep_md: true\n---"
+  },
+  {
+    "objectID": "week11/index.html#inserting-figures",
+    "href": "week11/index.html#inserting-figures",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Inserting figures",
+    "text": "Inserting figures\nUsing markdown syntax:\n\n![Caption](path-to-image-here)\n\nUsing Knitr syntax\n\nknitr::include_graphics(\"images/fig2.png\")"
+  },
+  {
+    "objectID": "week11/index.html#displaying-figures",
+    "href": "week11/index.html#displaying-figures",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Displaying figures",
+    "text": "Displaying figures\nOptions inside your R code chunks\n\nfig-align: alignment of the figures in the report with options default, center, left, or right\nfig-cap: captions\nfig-height & fig-width: size of the figure in inches\nout-height & out-width: size of your plot in the final file. Useful to resize your figures by say 50%"
+  },
+  {
+    "objectID": "week11/index.html#computer-paths-absolute-and-relative-paths",
+    "href": "week11/index.html#computer-paths-absolute-and-relative-paths",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Computer paths: Absolute and Relative Paths",
+    "text": "Computer paths: Absolute and Relative Paths\nAn absolute or full path begins with a drive letter followed by a colon, such as D: or /users.\n\nWindows: C:\\documents\\charlie\nMac/linux: /Users/documents/courses/ETC5513\n\n\nA relative path refers to a location that is relative to a current directory:\n\nETC5513/exercise.Rmd\n\n(no matter where the folder sits things can actually run)\nIt is essential to understand where your directories and files are within your computer. Having clarity about that and the projects file architecture gives you total control about its organization"
+  },
+  {
+    "objectID": "week11/index.html#r-rstudio-projects",
+    "href": "week11/index.html#r-rstudio-projects",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "R/ Rstudio projects",
+    "text": "R/ Rstudio projects\n\nEach project has a unique working directory\nClean file system: all files related to a single project should be in the same folder\n\ndata: typically is a folder\ncode\nfigures: typically is a folder\nnotes\n\nFile path discipline: all paths should be relative to the project’s folder\nRefer to the computer location where files and folders are.\nRemember, absolute paths are not reproducible"
+  },
+  {
+    "objectID": "week11/index.html#rstudio-projects",
+    "href": "week11/index.html#rstudio-projects",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Rstudio projects",
+    "text": "Rstudio projects\nRStudio Projects are associated with R working directories.\nYou can create an RStudio project:\n\nIn a brand new directory\nIn an existing directory where you already have R code and data\nFrom a version control repository\n\nRead more on Rstudio projects here\nInside Rstudio how do we create a new project?\nFile &gt; New project &gt; (Few options)"
+  },
+  {
+    "objectID": "week11/index.html#rstudio-projects-advantages",
+    "href": "week11/index.html#rstudio-projects-advantages",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "RStudio projects advantages",
+    "text": "RStudio projects advantages\nWhen a new project is created RStudio:\n\nCreates a project file (with an .Rproj extension) within the project directory.\nThis file can also be used as a shortcut for opening the project directly from the filesystem.\nCreates a hidden directory (named .Rproj.user) where project-specific temporary files (e.g. auto-saved source documents, window-state, etc.) are stored.\nLoads the project into RStudio and display its name in the Projects toolbar"
+  },
+  {
+    "objectID": "week11/index.html#different-version-control-systems",
+    "href": "week11/index.html#different-version-control-systems",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Different Version control Systems",
+    "text": "Different Version control Systems\n\n\n\n\n\n\n\n\n\nThese systems fully mirror the repository, including its full history in various servers/locations\nIf any server malfunction, and these systems were collaborating via that server, any of the client repositories can be copied back up to the server to restore it.\nEvery clone is really a full backup of all the data."
+  },
+  {
+    "objectID": "week11/index.html#distributed-version-control-git",
+    "href": "week11/index.html#distributed-version-control-git",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Distributed Version Control: Git",
+    "text": "Distributed Version Control: Git\nWe use a distributed version control called Git"
+  },
+  {
+    "objectID": "week11/index.html#git-overview-in-a-nutshell",
+    "href": "week11/index.html#git-overview-in-a-nutshell",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git overview in a nutshell",
+    "text": "Git overview in a nutshell\nLet’s think of the connections between the different versions of an R project as a tree (Git tree).\n\n\n\nBeginning of the project is at the bottom of the tree\nWhite circles represent each version of the project\nWe have what we call main (default branch)\nWe have branches that appeared and then merged with main with the main"
+  },
+  {
+    "objectID": "week11/index.html#git-tree-and-snapshots-database",
+    "href": "week11/index.html#git-tree-and-snapshots-database",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git tree and Snapshots (Database)",
+    "text": "Git tree and Snapshots (Database)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIllustration source: Begining Git and GitHub"
+  },
+  {
+    "objectID": "week11/index.html#our-friend-the-command-line-interface",
+    "href": "week11/index.html#our-friend-the-command-line-interface",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Our friend: The Command Line Interface",
+    "text": "Our friend: The Command Line Interface\nAlso known as the Shell, command line interface (cli) or terminal is an interface for typing commands to interact directly with a computer’s operating system."
+  },
+  {
+    "objectID": "week11/index.html#git-and-command-line",
+    "href": "week11/index.html#git-and-command-line",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git and Command Line",
+    "text": "Git and Command Line\nLearn how to use the shell/command line interface!\nWhy??\n\nWe will use the command line interface to interact with Git and with GitHub\nThe shell or command line interface is an interface where the user types commands.\nThis interface allows us to control our computer using commands entered via our keyboard.\nThat means that instead of using a graphical user interface (GUI) + our mouse to open and close programs, create folders and moving files we are going to type commands."
+  },
+  {
+    "objectID": "week11/index.html#components-of-a-git-repository-visually",
+    "href": "week11/index.html#components-of-a-git-repository-visually",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Components of a Git repository: Visually",
+    "text": "Components of a Git repository: Visually"
+  },
+  {
+    "objectID": "week11/index.html#three-git-states",
+    "href": "week11/index.html#three-git-states",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Three Git States",
+    "text": "Three Git States\nGit has three main states that your files can reside in: modified, staged, and committed:\n\nModified: you have changed the file but have not committed it to your database yet.\nStaged: you have marked a modified file in its current version to go into your next commit snapshot.\nCommitted: the data is safely stored in your local database.\n\nThis leads us to the three main sections of a Git project: the working tree, the staging area, and the Git directory."
+  },
+  {
+    "objectID": "week11/index.html#git-recap",
+    "href": "week11/index.html#git-recap",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git recap",
+    "text": "Git recap\n\nTracking all the changes to a project\nAllows you to go back and forth between versions\nCheck files history\nTag specific versions for quick referencing\nReview changes made by collaborators in the project\nCreate project branches that allow you to work on the project withoutinterfering with the main project\nMerging branches to main project\n\nTo interact between our projects and Git, we are going to use the shell/command line interface"
+  },
+  {
+    "objectID": "week11/index.html#github-is-our-remote-repository",
+    "href": "week11/index.html#github-is-our-remote-repository",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "GitHub is our remote repository",
+    "text": "GitHub is our remote repository\n\n\nGitHub is an interface and cloud hosting service built on top of the Git version control system.\nGit does the version control and GitHub stores the data remotely.\nGitHub makes your projects accessible on a fully feature project website\n\nMore info about GitHub here"
+  },
+  {
+    "objectID": "week11/index.html#git-repo-and-remote-repository",
+    "href": "week11/index.html#git-repo-and-remote-repository",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git repo and remote repository",
+    "text": "Git repo and remote repository"
+  },
+  {
+    "objectID": "week11/index.html#github-workflow-visual-example",
+    "href": "week11/index.html#github-workflow-visual-example",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "GitHub Workflow: Visual example",
+    "text": "GitHub Workflow: Visual example"
+  },
+  {
+    "objectID": "week11/index.html#from-clone-to-push-into-the-remote-main-branch",
+    "href": "week11/index.html#from-clone-to-push-into-the-remote-main-branch",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "From clone to push into the remote main branch",
+    "text": "From clone to push into the remote main branch\n\ngit clone: is a Git command line utility which is used to target an existing repository and create a clone, or copy of the target repository.\ngit add: command adds a change in the working directory to the staging area.\ngit commit -m: The git commit command captures a snapshot of the project’s currently staged changes. (m = message for commit. The git commit is used to create a snapshot of the staged changes along a timeline of a Git projects history.)\ngit push origin main: The git push command is used to upload local repository content to a remote repository, in this case to the main branch."
+  },
+  {
+    "objectID": "week11/index.html#git-recap-1",
+    "href": "week11/index.html#git-recap-1",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git recap",
+    "text": "Git recap\n\nTracking all the changes to a project\nAllows you to go back and forth between versions\nCheck files history\nTag specific versions for quick referencing\nReview changes made by collaborators in the project\nCreate project branches that allow you to work on the project without interfering with the main project\nMerging branches to main project\n\nTo interact between our projects and Git, we are going to use the shell/command line interface"
+  },
+  {
+    "objectID": "week11/index.html#github-is-our-remote-repository-1",
+    "href": "week11/index.html#github-is-our-remote-repository-1",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "GitHub is our remote repository",
+    "text": "GitHub is our remote repository"
+  },
+  {
+    "objectID": "week11/index.html#creating-a-repo-on-github",
+    "href": "week11/index.html#creating-a-repo-on-github",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Creating a repo on GitHub",
+    "text": "Creating a repo on GitHub\n\n\n\nLogin into GitHub\nClick the ‘+’ icon on the top right on the menu bar and select ‘New Repository’."
+  },
+  {
+    "objectID": "week11/index.html#tracked-and-untracked-files",
+    "href": "week11/index.html#tracked-and-untracked-files",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Tracked and untracked files",
+    "text": "Tracked and untracked files\n\nIn a git repository tracked files are those which are part of the git repository\nHowever, we can also have untracked files for which their history is not tracked\nTracked files are files that were in the last snapshot; they can be unmodified, modified, or staged. In short, tracked files are files that Git knows about.\nUntracked files are everything else — any files in your working directory that were not in your last snapshot and are not in your staging area.\n\nMore info here"
+  },
+  {
+    "objectID": "week11/index.html#general-workflow-via-terminal",
+    "href": "week11/index.html#general-workflow-via-terminal",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "General Workflow (via Terminal)",
+    "text": "General Workflow (via Terminal)\nOnce you have cloned the repo, each time you work on the project (via the terminal/command line):\n\ngit pull: used to fetch and download content from a remote repository and immediately update the local repository to match that content.\ngit status: displays the state of the working directory and the staging area\ngit add file_name: adds changes in the working directory to the staging area)\ngit commit -m \"Message\": used to create a snapshot of the staged changes along a timeline of a Git project history\ngit push origin branch name: used to upload the local repository content to a remote repository in GitHub"
+  },
+  {
+    "objectID": "week11/index.html#cheat-sheet-on-how-to-use-the-terminal-for-git",
+    "href": "week11/index.html#cheat-sheet-on-how-to-use-the-terminal-for-git",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Cheat sheet on how to use the terminal for Git",
+    "text": "Cheat sheet on how to use the terminal for Git\nExcellent summary about the commands that will be using can be found here"
+  },
+  {
+    "objectID": "week11/index.html#rstudio-and-github",
+    "href": "week11/index.html#rstudio-and-github",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Rstudio and GitHub",
+    "text": "Rstudio and GitHub\nThe status/staging panel in Rstudio:"
+  },
+  {
+    "objectID": "week11/index.html#rstudio-and-github-1",
+    "href": "week11/index.html#rstudio-and-github-1",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Rstudio and GitHub",
+    "text": "Rstudio and GitHub\nRStudio keeps git constantly scanning the project directory to find any files that have changed or which are new.\nBy clicking a file’s little “check-box” you can stage it."
+  },
+  {
+    "objectID": "week11/index.html#rstudio-and-github-2",
+    "href": "week11/index.html#rstudio-and-github-2",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Rstudio and GitHub",
+    "text": "Rstudio and GitHub\nUnderstanding the symbols in the Rstudio Git pane:\n\nBlue-M: a file that is already under version control that has been modified.\nOrange-?: a file that is not under version control (yet…)\nGreen-A: a file that was not under version control, but which has been staged to be committed.\nRed-D: a file under version control has been deleted. To make it really disappear, you have to stage its disappearance and commit.\nPurple-R: a file that was renamed. (Note that git in Rstudio seems to be figuring this out on its own.)"
+  },
+  {
+    "objectID": "week11/index.html#branches",
+    "href": "week11/index.html#branches",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Branches",
+    "text": "Branches"
+  },
+  {
+    "objectID": "week11/index.html#create-branches-using-the-terminalshellcli",
+    "href": "week11/index.html#create-branches-using-the-terminalshellcli",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Create branches using the Terminal/Shell/CLI",
+    "text": "Create branches using the Terminal/Shell/CLI\nUsing git branch and git checkout:\n\ngit branch show us the branches we have in our repo and marked our current branch with *\ngit branch newbranch_name creates a new branch but does not move the HEAD of the repo there.\ngit checkout newbranch_name moves the HEAD to newbranch_name"
+  },
+  {
+    "objectID": "week11/index.html#creating-branches",
+    "href": "week11/index.html#creating-branches",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Creating branches",
+    "text": "Creating branches\nUsing the checkout command:\n\ngit checkout -b newbranch_namne: creates a new branch and moves the repo HEAD to this branch\nYou can confirm it by using git branch to see in which branch you are currently in\nChecking out a branch updates the files in the working directory to match the version stored in that branch\nIt tells Git to record all new commits on that branch."
+  },
+  {
+    "objectID": "week11/index.html#merging-branches-successfully",
+    "href": "week11/index.html#merging-branches-successfully",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Merging branches successfully",
+    "text": "Merging branches successfully\nSuppose we have two branches: main and new_development\n\nFor merging: go to main branch git checkout main\ngit merge new_development -m \"Merging new_development into main\"\n\nRemember that if you have VSCode installed and you do git merge new_development then the VSCode editor will open so that you can type your message.\nIf those steps are successful your new_development branch will be fully integrated within the main branch."
+  },
+  {
+    "objectID": "week11/index.html#change-branch-name",
+    "href": "week11/index.html#change-branch-name",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Change branch name",
+    "text": "Change branch name\nBefore you push the new branch to the remote repo:\ngit branch -m original_name new_name\nIf you want to renamed a branch that has already been pushed to the remote repo:\n\nRename the branch locally git branch -m old_name_branch new_name\ngit push origin -u newname\nDelete the old_name_branch: git push origin --delete old_name_branch"
+  },
+  {
+    "objectID": "week11/index.html#stash-changes-apply-and-pop",
+    "href": "week11/index.html#stash-changes-apply-and-pop",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Stash changes: Apply and pop",
+    "text": "Stash changes: Apply and pop\nThe git stash command takes your uncommitted changes and saves them in the git repo away for later use.\nBringing stash into the repo\n\ngit stash\ngit stash apply\ngit stash pop\ngit stash list to see the list of the stashes"
+  },
+  {
+    "objectID": "week11/index.html#apply",
+    "href": "week11/index.html#apply",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Apply",
+    "text": "Apply\ngit stash apply will take the changes saved in your stash and apply them into the working directory of your current branch. In addition, the changes are kept in the stash.\nThis might be useful when you want to apply the same changes into different branches."
+  },
+  {
+    "objectID": "week11/index.html#pop",
+    "href": "week11/index.html#pop",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Pop",
+    "text": "Pop\ngit stash pop will do the same as apply but will delete the stash after applying the changes. git stash pop will apply the changes into your working copy.\n\n\n\n\n\n\nTip\n\n\nStash is not a substitute for committing changes"
+  },
+  {
+    "objectID": "week11/index.html#gitignore",
+    "href": "week11/index.html#gitignore",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "gitignore",
+    "text": "gitignore\n\nIgnored files are tracked in a special file named .gitignore that is checked in at the root of your repository.\nThere is no explicit git ignore command: instead Git uses a .gitignore file which must be edited and committed by hand when you have new files that you wish to ignore.\n.gitignore files contain patterns that are matched against file names in your repository to determine whether or not they shouldbe ignored."
+  },
+  {
+    "objectID": "week11/index.html#example-of-gitignore-patterns",
+    "href": "week11/index.html#example-of-gitignore-patterns",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Example of gitignore patterns",
+    "text": "Example of gitignore patterns\n\nSource here"
+  },
+  {
+    "objectID": "week11/index.html#example-of-a-gitignore-file",
+    "href": "week11/index.html#example-of-a-gitignore-file",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Example of a gitignore file",
+    "text": "Example of a gitignore file\n\nSource here"
+  },
+  {
+    "objectID": "week11/index.html#rebase-in-practice",
+    "href": "week11/index.html#rebase-in-practice",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Rebase in practice",
+    "text": "Rebase in practice\nAssume the following history exists and the current branch is “Feature”\n          A---B---C Feature\n         /\n    D---E---F---G main\nFrom this point, the result of either of the following commands:\ngit checkout Feature\ngit rebase main\ngit rebase main Feature\n                  A'--B'--C' Feature\n                  /\n    D---E---F---G main"
+  },
+  {
+    "objectID": "week11/index.html#git-rebase-and-merge",
+    "href": "week11/index.html#git-rebase-and-merge",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git rebase and merge",
+    "text": "Git rebase and merge\nMerging is a non-destructive operation. The existing branches are not changed in any way. This avoids all of the potential problems of rebasing.\nRebasing moves the entire Feature branch to begin on the tip of the main branch, incorporating all of the new commits into main.\nRebasing re-writes the project history by creating brand new commits for each commit in the original branch. Produces cleaner project history.\nHowever, it creates problems with safety and traceability\nGolden rule for rebase: Never use it on public branches (main in collaborative projects)."
+  },
+  {
+    "objectID": "week11/index.html#why-do-we-fork-a-repository",
+    "href": "week11/index.html#why-do-we-fork-a-repository",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Why do we fork a repository?",
+    "text": "Why do we fork a repository?\nA fork is a copy of a repository\nForking a repository allows you to freely experiment with changes without affecting the original project.\nMost commonly, forks are used to either propose changes to someone else project or to use someone else project as a starting point for your own project.\nMore info here"
+  },
+  {
+    "objectID": "week11/index.html#differences-between-forking-and-cloning-a-repo",
+    "href": "week11/index.html#differences-between-forking-and-cloning-a-repo",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Differences between forking and cloning a repo",
+    "text": "Differences between forking and cloning a repo\n\nA fork is a copy of someone elses GitHub repository saved to your own GitHub account. It allows you to experiment with changes without affecting the original project.\nA fork acts as a between the original repository and your personal one.\nIt will also allow you to interact between your forked copy and the original repo\nWhen you clone a GitHub repository, you are creating a local copy of that repo on your computer\nThat allows you to work on that repo locally and sync between both your local repo and your remote repo"
+  },
+  {
+    "objectID": "week11/index.html#what-is-a-pull-request",
+    "href": "week11/index.html#what-is-a-pull-request",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What is a Pull request?",
+    "text": "What is a Pull request?\n\nWe use GitHub to share our code and projects with others.\nThere are situations when another person make changes into your code and wants you to consider those changes.\nExamples: Fixing a problem/bug or add new functionality into the repo.\nWe achieve this by sending a request to the repo’s owner to pull/merge these changes into the owner’s original GitHub repo\n\nThat request is called a pull request"
+  },
+  {
+    "objectID": "week11/index.html#pull-request-visually",
+    "href": "week11/index.html#pull-request-visually",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Pull request visually",
+    "text": "Pull request visually"
+  },
+  {
+    "objectID": "week11/index.html#forked-repo",
+    "href": "week11/index.html#forked-repo",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Forked repo",
+    "text": "Forked repo"
+  },
+  {
+    "objectID": "week11/index.html#latex",
+    "href": "week11/index.html#latex",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Latex",
+    "text": "Latex\n\nLatex more info"
+  },
+  {
+    "objectID": "week11/index.html#latex-template",
+    "href": "week11/index.html#latex-template",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Latex template",
+    "text": "Latex template"
+  },
+  {
+    "objectID": "week11/index.html#integrate-a-latex-template-into-a-quarto-file",
+    "href": "week11/index.html#integrate-a-latex-template-into-a-quarto-file",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Integrate a latex template into a Quarto file",
+    "text": "Integrate a latex template into a Quarto file\nThere are different ways:\n\nIf the file features are not too complicated. We can simply add some of the necessary packages into our YAML preamble."
+  },
+  {
+    "objectID": "week11/index.html#integrate-a-latex-template-into-an-rmd-file",
+    "href": "week11/index.html#integrate-a-latex-template-into-an-rmd-file",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Integrate a latex template into an Rmd file",
+    "text": "Integrate a latex template into an Rmd file\n\nWe can use preamble.tex:"
+  },
+  {
+    "objectID": "week11/index.html#reference",
+    "href": "week11/index.html#reference",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Reference",
+    "text": "Reference\nLaTeX in 24 Hours A Practical Guide for Scientific Writing"
+  },
+  {
+    "objectID": "week11/index.html#commits-hash-values-and-sha-numbers",
+    "href": "week11/index.html#commits-hash-values-and-sha-numbers",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Commits, hash values and SHA numbers",
+    "text": "Commits, hash values and SHA numbers\n\ngit log: allow us go back into our project history to see who contributed what, find out past issues or problems and revert problematic changes.\n\ncommit 8cfaee1e447d8e83d745b51ffcd310465afb76b1\nAuthor: Patricia Menendez &lt;patricia.menendez@monash.edu&gt;\nDate:   Sat Apr 4 15:49:54 2020 +1000\n   \n    Uploading Week4 slides"
+  },
+  {
+    "objectID": "week11/index.html#commits-and-sha-numbers",
+    "href": "week11/index.html#commits-and-sha-numbers",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Commits and SHA numbers",
+    "text": "Commits and SHA numbers\ngit log --oneline: condenses each commit to a single line\n3a5bc86 W3 cli updates\n4d1b022 W3 shell update\nWe can also use git log --pretty=oneline"
+  },
+  {
+    "objectID": "week11/index.html#detached-head",
+    "href": "week11/index.html#detached-head",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Detached HEAD",
+    "text": "Detached HEAD\nDetached HEAD state gives you the power to check out any commit and explore the older state of a repository without having to create a local branch.\nAny commits made in a detached HEAD state will be lost when you check out any branch.\nSolution: Create a branch to keep commits"
+  },
+  {
+    "objectID": "week11/index.html#pull-commit-from-the-log-into-our-environment",
+    "href": "week11/index.html#pull-commit-from-the-log-into-our-environment",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Pull commit from the log into our environment",
+    "text": "Pull commit from the log into our environment\ngit checkout 8cfaee1e447d8e8\nYou are in 'detached HEAD' state. You can look around, make experimental\n   changes and commit them, and you can discard any commits you make in this\n   state without impacting any branches by performing another checkout.\ngit checkout -b new_branch_name"
+  },
+  {
+    "objectID": "week11/index.html#stage-and-unstage-files",
+    "href": "week11/index.html#stage-and-unstage-files",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Stage and unstage files",
+    "text": "Stage and unstage files\ngit reset filename git reset"
+  },
+  {
+    "objectID": "week11/index.html#editamend-previous-commit",
+    "href": "week11/index.html#editamend-previous-commit",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Edit/Amend previous commit",
+    "text": "Edit/Amend previous commit\nIf you have not pushed the commit: - git commit --amend: will open your VS code editor so you can amend the commit - git push origin main"
+  },
+  {
+    "objectID": "week11/index.html#git-reset---soft",
+    "href": "week11/index.html#git-reset---soft",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "git reset --soft",
+    "text": "git reset --soft\nImagine that you have added two files in your latest commit and you want to make a modification in one of the files.\n\nIn this case we can use git reset --soft HEAD~1 to undo our last commit and include additional modifications into the file.\nIn this case, when we undo the commit the file is still in the repo with changes to be committed but the commit has been removed.\nWe have undone the last commit by preserving the changes done to the files in the index (staging area).\nThen we can fix the file and commit the changes again."
+  },
+  {
+    "objectID": "week11/index.html#git-reset---hard",
+    "href": "week11/index.html#git-reset---hard",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "git reset --hard",
+    "text": "git reset --hard\n\nIf we want to undo the last commit and discard all changes in the working directory and index (staging area), we can execute the git reset command with the –-hard option.\nAs before we specify the commit before HEAD (HEAD~1).\n\n\n\n\n\n\n\nCaution\n\n\nWhen we use git reset --hard all the changes will be removed from the working directory and from the index (staging area)."
+  },
+  {
+    "objectID": "week11/index.html#git-reset---mixed",
+    "href": "week11/index.html#git-reset---mixed",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "git reset --mixed",
+    "text": "git reset --mixed\n\nIf we want to undo the last Git commit, keep changes in the working directory but NOT in the index (staging area), we can use the git reset --mixed option.\nFor the last commit we will need to write git reset --mixed HEAD~1\nThe git reset --mixed option is combination of soft and hard reset."
+  },
+  {
+    "objectID": "week11/index.html#undoing",
+    "href": "week11/index.html#undoing",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Undoing",
+    "text": "Undoing\nThe git revert command can be considered an ‘undo’ type command, however, it is not a traditional undo operation. Instead of removing the commit from the project history, it figures out how to invert the changes introduced by the commit and appends a new commit with the resulting inverse content. This prevents Git from losing history, which is important for the integrity of your revision history and for reliable collaboration.\nYou can think of it as a “rollback”: it points your local environment back to a previous commit. Your “local environment,” refers to your local repository, staging area, and working directory"
+  },
+  {
+    "objectID": "week11/index.html#removing-files",
+    "href": "week11/index.html#removing-files",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Removing files",
+    "text": "Removing files\n\nIf the files are untracked you can just remove them: via the terminal or using your OS\nIf the files are tracked:\n\nRemoving files and directories/folders:\ngit rm file.txt\ngit rm -r Data\ngit commit -m \"Delete file.txt\"\ngit status"
+  },
+  {
+    "objectID": "week11/index.html#more-on-commits",
+    "href": "week11/index.html#more-on-commits",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "More on commits",
+    "text": "More on commits\n\nOne line commit (we need to main that a little bit more!)\nWe can add more text into any commit and many times we should be doing that\nWe can do that using VSCode\n\nCommit structure:\nFirst line Blank Line Rest of the text"
+  },
+  {
+    "objectID": "week11/index.html#commits-structure-example",
+    "href": "week11/index.html#commits-structure-example",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Commits structure example",
+    "text": "Commits structure example"
+  },
+  {
+    "objectID": "week11/index.html#large-files-in-git-and-github",
+    "href": "week11/index.html#large-files-in-git-and-github",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Large files in Git and GitHub",
+    "text": "Large files in Git and GitHub\n\nFiles larger than 100 MB need to be dealt with care in GitHub\nSolution: Git LFS\n\nGit Large File Storage lets you store them on a remote server such as GitHub.\nMore info here\n\n\n\n\n\n\nTip\n\n\nGit Large File Storage (LFS) replaces large files such as audio samples, videos, data sets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise."
+  },
+  {
+    "objectID": "week11/index.html#git-lfs-in-practice-summary",
+    "href": "week11/index.html#git-lfs-in-practice-summary",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git LFS in practice summary",
+    "text": "Git LFS in practice summary\n\ngit lfs install: You only need to run this once per repo.\ngit lfs track \"*.csv\": In each Git repository where you want to use Git LFS, select the file types you would like Git LFS to manage\ngit add .gitattributes: make sure “.gitattributes” is tracked\n\nThen, continue as usual:\n\ngit add file.csv\ngit commit -m \"Add data file\"\ngit push origin main"
+  },
+  {
+    "objectID": "week11/index.html#git-lfs-in-practice-summary-1",
+    "href": "week11/index.html#git-lfs-in-practice-summary-1",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git LFS in practice summary",
+    "text": "Git LFS in practice summary\nIf for some reason you have staged/committed a large file before you run the work flow above you can use:\n\ngit reset --soft HEAD~1"
+  },
+  {
+    "objectID": "week11/index.html#git-tags",
+    "href": "week11/index.html#git-tags",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git tags",
+    "text": "Git tags\nTags are references that point to specific points in Git history\nExample: Specific report release, package release\n\nA tag is like a branch that doesn’t change.\nUnlike branches, tags (after being created) have no further history of commits\n\nGreat tutorial on tags here"
+  },
+  {
+    "objectID": "week11/index.html#git-tags-example",
+    "href": "week11/index.html#git-tags-example",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Git tags example",
+    "text": "Git tags example"
+  },
+  {
+    "objectID": "week11/index.html#revisiting-git-fetch",
+    "href": "week11/index.html#revisiting-git-fetch",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Revisiting git fetch",
+    "text": "Revisiting git fetch\n\ngit pull is a combination of both commands git fetch and git merge\nIf you are working on your own, git pull would be ok in most cases.\nHowever, if you are collaborating with other people who might be simultaneously working in the repo, using git pull might not be a good idea!\n\nIn that case, it is much better to use git fetch first to see what is happening in the remote repository and to synchronize your repo by merging the changes."
+  },
+  {
+    "objectID": "week11/index.html#how-does-fetch-work",
+    "href": "week11/index.html#how-does-fetch-work",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "How does fetch work?",
+    "text": "How does fetch work?\n\ngit fetch downloaded the new B commit however our local working directory is not updated and the head of our main branch is still pointing to commit A!"
+  },
+  {
+    "objectID": "week11/index.html#how-do-we-merge-those-branches",
+    "href": "week11/index.html#how-do-we-merge-those-branches",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "How do we merge those branches?",
+    "text": "How do we merge those branches?\nWe need to combined main branch with the remote tracking origin/main branch. How?\n\nBy merging!\n\nFirst we need to move into the main branch and then merge origin/main.\ngit checkout main\ngit merge origin/main\n\nIf the branches have not diverged, we can merge without conflict via a fast merge.\nIf the branches have diverged, we will need to resolve conflicts."
+  },
+  {
+    "objectID": "week11/index.html#very-useful-commands-for-fetching",
+    "href": "week11/index.html#very-useful-commands-for-fetching",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Very useful commands for fetching",
+    "text": "Very useful commands for fetching\n\ngit remote: lets you create, view, and delete connections to remote repositories)\ngit branch -vv allows you to check the status of your local and remote branches in relation to each other.\ngit fetch origin fetch the changes from remote origin\ngit branch -a: all the branches available in the local repository + all the branches fetched from the remote.\n\nThe branches fetched from the remote origin would be preceded by remotes/origin/"
+  },
+  {
+    "objectID": "week11/index.html#licensing-a-repository",
+    "href": "week11/index.html#licensing-a-repository",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Licensing a repository",
+    "text": "Licensing a repository\nPublic repos in GitHub make your work publicly available and therefore it is important to establish how your work should be acknowledged if someone else wants to use it.\n“Public repositories on GitHub are often used to share open source software. For your repository to truly be open source, you’ll need to license it so that others are free to use, change, and distribute the software.””\nMore info here"
+  },
+  {
+    "objectID": "week11/index.html#choose-an-open-source-license",
+    "href": "week11/index.html#choose-an-open-source-license",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Choose an open source license",
+    "text": "Choose an open source license\n\nSource here"
+  },
+  {
+    "objectID": "week11/index.html#no-license",
+    "href": "week11/index.html#no-license",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "No license",
+    "text": "No license\n\nSource here"
+  },
+  {
+    "objectID": "week11/index.html#light-weight-dependency-management",
+    "href": "week11/index.html#light-weight-dependency-management",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Light weight dependency management",
+    "text": "Light weight dependency management\n\nThe idea is to create project-local library to ensure that projects gets its own unique library of R packages!"
+  },
+  {
+    "objectID": "week11/index.html#how-does-the-renv-r-package-work",
+    "href": "week11/index.html#how-does-the-renv-r-package-work",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "How does the renv R package work?",
+    "text": "How does the renv R package work?\n\nGives each R projects its own project-local library.\nProvides and easy way to connect R sessions to use a specific project-local library\nProvides tools for managing the R packages installed in these project-local libraries"
+  },
+  {
+    "objectID": "week11/index.html#workflow-summary-for-light-weight-dependency-management-using-renv-package",
+    "href": "week11/index.html#workflow-summary-for-light-weight-dependency-management-using-renv-package",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Workflow summary for light weight dependency management using renv package",
+    "text": "Workflow summary for light weight dependency management using renv package\nIn the R console:\n\nrenv::init() to initialize a project with a project-local library\nrenv::snapshot() to save the project-local library’s sate\nrenv::restore() to restore the project-local library’s state"
+  },
+  {
+    "objectID": "week11/index.html#tools-for-r-and-beyond",
+    "href": "week11/index.html#tools-for-r-and-beyond",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Tools for R and beyond",
+    "text": "Tools for R and beyond\nYou have learned version control: This works for any programming language!"
+  },
+  {
     "objectID": "week10/index.html#etc5513-title",
     "href": "week10/index.html#etc5513-title",
     "title": "ETC5513: Collaborative and Reproducible Practices",
@@ -3059,6 +3843,13 @@
     "text": "Learn to use git lfs to deal with large files\nCreate licenses in our repostiroies\nUse renv to create a local library"
   },
   {
+    "objectID": "week10/tutorial/solution.html#setting-up-licensed-repositories",
+    "href": "week10/tutorial/solution.html#setting-up-licensed-repositories",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Setting up licensed repositories",
+    "text": "Setting up licensed repositories\nFor this week’s tutorial, you’ll need a brand new repository to work in. It can be public or private.\n\nCreate a new repository with your choice of name. Ensure that it has a license, a .gitignore file and a README file.\nYou should select these from the repo creation menu, not by committing them yourself later.\nClone the repository to your local machine\nChange the license file to a different one. Remember you can find licenses on choosealicense.com. Stage, commit and push your changes.\nRevert the commit you just made.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit revert HEAD~0\nYou don’t need the HEAD~0 to revert the most recent commit.\n\n\n\n\n\nReset the last two commits. You should end up with your original license file back on the repo.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit reset HEAD~2\n\n\n\n\n\nCommit, stage and push your changes (if there are any). What do you notice?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nAny evidence of the license change has been removed from the repository. This is known as a destructive operation.\n\n\n\n\n\nEdit the README.md file to include your name. Stage and commit (but don’t push).\nAmend the most recent commit to also include the course code and the tutorial number. Include an expanded commit message for the amended commit.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit commit --amend should open your text editor.\nTo include an expanded commit message, leave a blank line between the summary and expanded text.\n\n\n\n\n\nPush your changes. Can you see the expanded commit message on GitHub?"
+  },
+  {
     "objectID": "week10/tutorial/solution.html#lightweight-dependency-management-using-renv",
     "href": "week10/tutorial/solution.html#lightweight-dependency-management-using-renv",
     "title": "ETC5513: Collaborative and Reproducible Practices",
@@ -3080,11 +3871,60 @@
     "text": "Learn to use git lfs to deal with large files\nCreate licenses in our repostiroies\nUse renv to create a local library"
   },
   {
+    "objectID": "week10/tutorial/index.html#setting-up-licensed-repositories",
+    "href": "week10/tutorial/index.html#setting-up-licensed-repositories",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Setting up licensed repositories",
+    "text": "Setting up licensed repositories\nFor this week’s tutorial, you’ll need a brand new repository to work in. It can be public or private.\n\nCreate a new repository with your choice of name. Ensure that it has a license, a .gitignore file and a README file.\nYou should select these from the repo creation menu, not by committing them yourself later.\nClone the repository to your local machine\nChange the license file to a different one. Remember you can find licenses on choosealicense.com. Stage, commit and push your changes.\nRevert the commit you just made.\n\n\nReset the last two commits. You should end up with your original license file back on the repo.\n\n\nCommit, stage and push your changes (if there are any). What do you notice?\n\n\nEdit the README.md file to include your name. Stage and commit (but don’t push).\nAmend the most recent commit to also include the course code and the tutorial number. Include an expanded commit message for the amended commit.\n\n\nPush your changes. Can you see the expanded commit message on GitHub?"
+  },
+  {
     "objectID": "week10/tutorial/index.html#lightweight-dependency-management-using-renv",
     "href": "week10/tutorial/index.html#lightweight-dependency-management-using-renv",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Lightweight dependency management using renv",
     "text": "Lightweight dependency management using renv\nInside your repo from the previous section:\n\nCreate a qmd file that has a libraries code chunk, and load the dplyr and ggplot2 libraries.\nStage the changes, commit and push.\nWhat are the library paths for this project?\n\n\nInstall the renv package\nInitialise renv in your R seession\n\n\nWhat new files or folders have been made in your repo with this command?\n\n\nUsing the terminal, use cd and ls to find the new files.\nIn the terminal, check the status of your repo.\n\n\nCreate a snapshot of your repostiory using renv::snapshot()\nCheck the status of your repo, stage, commit and push the changes into the remote repository.\n\nExtension: Try adding a development package from GitHub, such as the naniar package. Follow the renv workflow. Does the package get recorded? Can you see it in the lockfile? How is it recorded differently from packages on CRAN?"
+  },
+  {
+    "objectID": "week11/tutorial/solution.html",
+    "href": "week11/tutorial/solution.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Recap moving through git repositories\nPractice undoing and resetting commits"
+  },
+  {
+    "objectID": "week11/tutorial/solution.html#objectives",
+    "href": "week11/tutorial/solution.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Recap moving through git repositories\nPractice undoing and resetting commits"
+  },
+  {
+    "objectID": "week11/tutorial/solution.html#moving-back-in-time-finding-our-way-in-a-git-repo",
+    "href": "week11/tutorial/solution.html#moving-back-in-time-finding-our-way-in-a-git-repo",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Moving back in time: finding our way in a Git repo",
+    "text": "Moving back in time: finding our way in a Git repo\n\nHow can we explore old commits?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit log --oneline\n\n\n\n\n\nHow are the commits identified?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nThey are identified with a unique SHA or SHA1 number.\n\n\n\n\n\nFork the following repo: https://github.com/github/explore. Clone the repo locally.\nUsing your terminal look at the commits. How can you go up and down over the commits? How can you get out of the list?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nYou can move up and down by pressing u or d. To exit, press q.\n\n\n\n\n\nList the commits that have been done in the repo since 1 May 2020 only.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit log --since=01-05-2020\n\n\n\n\n\nOpen the local project in VSCode and have a look at the tree history and the commit messages. Specially have a look at longer commits that contain not only one line but also some more text.\nWhere is the repo HEAD?\nUsing the command line interface or terminal move the HEAD of the repository to the commit a82635e\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit checkout a82635e\n\n\n\n\n\nWhat is the commit first line of commit a82635e?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nFix CI/rubocop / build\n\n\n\n\n\nWhich files have been modified in that commit?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhat is the difference between commit a82635e and the previous commit?\n\n::: {.unilur-solution} First, git log a82635e to find the SHA of the previous commits. Then, git diff 108a0c92a9caa7 HEAD\n\n\n\n\n\n\nMove the HEAD of the repository back to where was originally located (last commit of the main (or master) branch)\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit checkout main\n\n\n\n\n\nFind the commit with message “add in lite” what was change in the modified file?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit log --grep=\"add in lite\"\n\n\n\n\n\nMove back to the latest commit in the main (or master) branch of the repo so that you can keep making commits without being in a detached HEAD.\nUsing your terminal add a new file “myexample.txt” in the repo, stage, commit and push the file to your remote repo\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLet’s add another file same as above now called “myexample2.txt”. Stage the file and then unstage the file.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit status\ngit add .\nTo unstage, git reset.\n\n\n\n\n\nStage “myexample2.txt”, commit and push it to the remote repository.\nYou realized that you made a mistake and you want to undo 17. You don’t want to remove the commit from the history. How can you do that?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit revert SHA\n\n\n\n\n\nRun a git log –oneline and have a look at the commit that you did before the last commit.\nPick the commit that you did before the last commit and do git reset SHA. What happens?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngit status\ngit log\ngit reset SHA\nYou will see that the last commit has disappeared from the repo history."
+  },
+  {
+    "objectID": "week11/tutorial/index.html",
+    "href": "week11/tutorial/index.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Recap moving through git repositories\nPractice undoing and resetting commits"
+  },
+  {
+    "objectID": "week11/tutorial/index.html#objectives",
+    "href": "week11/tutorial/index.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Recap moving through git repositories\nPractice undoing and resetting commits"
+  },
+  {
+    "objectID": "week11/tutorial/index.html#moving-back-in-time-finding-our-way-in-a-git-repo",
+    "href": "week11/tutorial/index.html#moving-back-in-time-finding-our-way-in-a-git-repo",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Moving back in time: finding our way in a Git repo",
+    "text": "Moving back in time: finding our way in a Git repo\n\nHow can we explore old commits?\n\n\nHow are the commits identified?\n\n\nFork the following repo: https://github.com/github/explore. Clone the repo locally.\nUsing your terminal look at the commits. How can you go up and down over the commits? How can you get out of the list?\n\n\nList the commits that have been done in the repo since 1 May 2020 only.\n\n\nOpen the local project in VSCode and have a look at the tree history and the commit messages. Specially have a look at longer commits that contain not only one line but also some more text.\nWhere is the repo HEAD?\nUsing the command line interface or terminal move the HEAD of the repository to the commit a82635e\n\n\nWhat is the commit first line of commit a82635e?\n\n\nWhich files have been modified in that commit?\n\n\nWhat is the difference between commit a82635e and the previous commit?\n\n::: {.unilur-solution} First, git log a82635e to find the SHA of the previous commits. Then, git diff 108a0c92a9caa7 HEAD\n\n\n\n\n\n\nMove the HEAD of the repository back to where was originally located (last commit of the main (or master) branch)\n\n\nFind the commit with message “add in lite” what was change in the modified file?\n\n\nMove back to the latest commit in the main (or master) branch of the repo so that you can keep making commits without being in a detached HEAD.\nUsing your terminal add a new file “myexample.txt” in the repo, stage, commit and push the file to your remote repo\n\n\nLet’s add another file same as above now called “myexample2.txt”. Stage the file and then unstage the file.\n\n\nStage “myexample2.txt”, commit and push it to the remote repository.\nYou realized that you made a mistake and you want to undo 17. You don’t want to remove the commit from the history. How can you do that?\n\n\nRun a git log –oneline and have a look at the commit that you did before the last commit.\nPick the commit that you did before the last commit and do git reset SHA. What happens?"
   },
   {
     "objectID": "week2/tutorial/solution.html",
