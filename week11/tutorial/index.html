@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Lydeamore">
-<meta name="dcterms.date" content="2024-05-14">
+<meta name="dcterms.date" content="2024-05-21">
 
 <title>ETC5513: Collaborative and Reproducible Practices</title>
 <style>
@@ -4746,7 +4746,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">14 May 2024</p>
+      <p class="date">21 May 2024</p>
     </div>
   </div>
   
@@ -4778,28 +4778,22 @@ vertical-align: -.125em;
 <li><p>Using your terminal look at the commits. How can you go up and down over the commits? How can you get out of the list?</p></li>
 </ol>
 <ol start="5" type="1">
-<li>List the commits that have been done in the repo since 1 May 2020 only.</li>
+<li>List the commits that have been done in the repo since 14 May 2024 only.</li>
 </ol>
 <ol start="6" type="1">
-<li><p>Open the local project in VSCode and have a look at the tree history and the commit messages. Specially have a look at longer commits that contain not only one line but also some more text.</p></li>
+<li><p>Open the local project in RStudio and have a look at the tree history and the commit messages. Specially have a look at longer commits that contain not only one line but also some more text.</p></li>
 <li><p>Where is the repo HEAD?</p></li>
-<li><p>Using the command line interface or terminal move the HEAD of the repository to the commit a82635e</p></li>
+<li><p>Using the command line interface or terminal move the HEAD of the repository to two commits back from the most recent</p></li>
 </ol>
 <ol start="9" type="1">
-<li>What is the commit first line of commit a82635e?</li>
+<li>What is the first line of the commit message of this commit?</li>
 </ol>
 <ol start="10" type="1">
 <li>Which files have been modified in that commit?</li>
 </ol>
 <ol start="11" type="1">
-<li>What is the difference between commit a82635e and the previous commit?</li>
+<li>What is the difference between this commit and the previous commit?</li>
 </ol>
-<p>::: {.unilur-solution} First, <code>git log a82635e</code> to find the SHA of the previous commits. Then, <code>git diff 108a0c92a9caa7 HEAD</code></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../images/diff2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
 <ol start="12" type="1">
 <li>Move the HEAD of the repository back to where was originally located (last commit of the main (or master) branch)</li>
 </ol>
@@ -4819,7 +4813,7 @@ vertical-align: -.125em;
 </ol>
 <ol start="19" type="1">
 <li><p>Run a git log –oneline and have a look at the commit that you did before the last commit.</p></li>
-<li><p>Pick the commit that you did before the last commit and do git reset SHA. What happens?</p></li>
+<li><p>Pick the commit that you did before the last commit and do git reset SHA. What happens? Why is this not best practice?</p></li>
 </ol>
 
 
