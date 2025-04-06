@@ -193,7 +193,7 @@ which results in:
 * Merging is a non-destructive operation. The existing branches are not changed in any way, and this avoids all the potential problems of rebasing.
 
 * Rebasing moves the entire `feature` branch to begin on the tip of the main branch, incorporating all of the new commits into main.
-* Rebasing rewrites the projecth istory by creating brand nwe commits for each commit in the original branch, giving a cleaner history
+* Rebasing rewrites the project history by creating brand new commits for each commit in the original branch, giving a cleaner history
 * _However_, this creates problems with safety and traceability
 
 ::: {.callout-caution}
@@ -328,6 +328,146 @@ Generally, `reset` is for when the commit isn't public, and `revert` is when you
 This is because `reset` changes the commit history, and `revert` does not.
 :::
 
+
+## 🛑 Two Very Different Tools
+
+| Command      | What it does                          | Safe on shared branches? |
+|--------------|---------------------------------------|---------------------------|
+| `git revert` | Adds a new commit that undoes changes | ✅ Yes                    |
+| `git reset`  | Moves branch pointer (can erase commits) | ❌ Use with caution       |
+
+---
+
+## 🔁 `git revert`
+
+- Safely **undoes a specific commit**
+- Leaves history intact
+- Perfect for undoing mistakes on **main** or shared branches
+
+```bash
+git revert <commit-hash>
+```
+
+---
+
+## ✍️ `git revert` Example
+
+You added a bad commit:
+
+```bash
+git log --oneline
+```
+
+Find the commit to undo, then:
+
+```bash
+git revert abc1234
+```
+
+✅ Creates a **new commit** that reverses the changes
+
+---
+
+## 🧹 `git reset`
+
+- Rewrites history ⚠️  
+- Used to **go back in time**  
+- 3 types: `--soft`, `--mixed`, `--hard`
+
+```bash
+git reset --hard HEAD~1
+```
+
+---
+
+## 🧪 Reset Variants
+
+### `--soft`
+- Undo commit, keep staged changes
+
+```bash
+git reset --soft HEAD~1
+```
+
+### `--mixed` (default)
+- Undo commit, keep **unstaged** changes
+
+```bash
+git reset HEAD~1
+```
+
+### `--hard`
+- ⚠️ DANGEROUS: Lose commits *and* file changes
+
+```bash
+git reset --hard HEAD~1
+```
+
+---
+
+
+## 🔍 Visualizing [Revert]{style="color: green"} vs Reset
+
+Original history:
+
+```
+A --- B --- C --- D   (main)
+```
+
+::: {.fragment}
+You realize C introduced a bug...
+
+```
+git revert C:
+
+A --- B --- C --- D --- E   ← E undoes the changes from C
+```
+:::
+
+::: {.fragment}
+History stays intact ✔️
+:::
+
+## 🔍 Visualizing Revert vs [Reset]{style="color: green"}
+
+Original history:
+
+```
+A --- B --- C --- D   (main)
+```
+
+::: {.fragment}
+You realize C introduced a bug...
+
+```
+git reset --hard B:
+
+A --- B   (main rewound — commits C and D are gone!) ⚠️
+```
+
+:::
+
+::: {.fragment}
+History is rewritten 🚨
+:::
+
+## 🧠 When to Use Which?
+
+| Situation                              | Use `revert` | Use `reset` |
+|----------------------------------------|--------------|-------------|
+| You're on `main` or working with others | ✅ Yes       | ❌ No        |
+| You need to undo a public commit        | ✅ Yes       | ❌ No        |
+| You're cleaning up your own history     | ❌ No        | ✅ Yes       |
+| You want to fix a commit but keep edits | ❌ No        | ✅ (soft/mixed) |
+
+---
+
+## 💡 Pro Tips
+
+- Always check `git log` before undoing!
+- Use `reset` only on branches you haven't shared
+- Use `revert` when you need a safe undo that keeps history
+
 ## Week 6 Lesson
 
 ::: {.callout-important}
@@ -341,50 +481,5 @@ This is because `reset` changes the commit history, and `revert` does not.
 
 
 
-# Trivia
-
-- 9 questions 5min
-
-- 1 team challenges 10min
-
-- 5 questions  + 2 Drawing challenges 10min
-
-# A speed quiz!
-
-## Challenge: 10 minutes
-
-As a team get organize to do the following:
-
-1. Create a public repository that contains a README file.
-
-2. Create a pull request where one of the team members suggest a modification of the README file.
-
-3. Successfully incorporate the pull request.
-
-
-
-## Questions and drawing challenge: 5 minutes
-
-1. What is the Git command to merge the current branch with the branch called "Mybranch"?
-
-2. What is the Git command to delete the branch "Mybranch"?
-
-3. What is the Git command to get all the change history in the remote repository "origin"?
-
-4. Git pull is a combination of?
-
-5. Draw a situation where a conflict between different branches will arise?
-
-6. Draw a situation where a conflict between your local and your remote repository will arise?
-
-
-## Challenge: 10 minutes
-
-As a team get organised to do the following:
-
-1. One of the members creates a public repository using the standard Rstudio Quarto template. After committing those changes to the remote repository, please invite the other members.
-2. Each team member creates an individual branch in which they will need to add a file name as *studentname.R*.
-3. Merge all the branches into the main branch.
-4. The main branch should contain the README file and all the files that each of the team member has created.
 
 
