@@ -308,7 +308,7 @@ When we checkout `b`, our git tree changes to:
 ```
 (a) --- (b) --- (c) --- (d) <- main
           \ 
-          main
+          head
 ```
 :::
 
