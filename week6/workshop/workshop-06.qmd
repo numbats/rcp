@@ -1,0 +1,270 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Workshop 6"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html: 
+        embed-resources: true
+        output-file: "index.html"
+        toc: true
+---
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+
+# 🔄 Git Undo Workshop: `git revert` and `git reset`
+
+Mistakes happen — that’s why Git gives us powerful tools to undo changes. In this workshop, you’ll learn two of the most useful commands for fixing things:
+
+- `git revert`: Undo a **commit** by creating a new commit that cancels it out
+- `git reset`: Move your branch pointer to a previous commit (⚠️ this can rewrite history!)
+
+---
+
+## 🛠️ What You’ll Learn
+
+- The difference between `revert` and `reset`
+- How to safely undo changes
+- When to use which command
+
+---
+
+## 🧑‍💻 1. Create a New Repository on GitHub
+
+1. Go to [https://github.com](https://github.com) and log in  
+2. Click **+ → New repository**  
+3. Name it something like `git-undo-demo`  
+4. ✅ Check **Add a README file**  
+5. Click **Create repository**  
+6. Click the green **Code** button → Select **SSH** → Copy the URL
+
+---
+
+### 💻 2. Clone the Repository Locally
+
+Open your terminal and run:
+
+```bash
+git clone git@github.com:your-username/git-undo-demo.git
+cd git-undo-demo
+```
+
+---
+
+### ✍️ 3. Add Content to the README
+
+We’ll simulate a few commits by editing the `README.md` file.
+
+1. Open `README.md` in RStudio or your preferred text editor  
+2. Add a line at the bottom like:
+
+```markdown
+Line 1: Initial test message
+```
+
+3. Save the file, then run:
+
+```bash
+git add README.md
+git commit -m "Add line 1"
+```
+
+4. Repeat the process three more times, adding different lines like:
+
+```markdown
+Line 2: More changes
+Line 3: Experimental note
+Line 4: Oops! Maybe not needed
+```
+
+Each time, save the file, then:
+
+```bash
+git add README.md
+git commit -m "Add line X"
+```
+
+✅ You should now have 4 commits, each adding a line to `README.md`.
+
+Check your commit history:
+
+```bash
+git log --oneline
+```
+
+---
+
+## 🧪 Part 1: `git revert` (Safe Undo)
+
+Let’s say you want to undo the "Add line 3" commit — but **without changing the history**.
+
+1. Find the commit hash:
+
+```bash
+git log --oneline
+```
+
+Copy the hash for "Add line 3", then:
+
+```bash
+git revert <hash>
+```
+
+Git will create a **new commit** that undoes the changes from that commit.
+
+✅ This is a **safe** way to undo changes — especially useful on shared branches like `main`.
+
+---
+
+## 🧪 Part 2: `git reset` (Rewriting History)
+
+Now let’s try using `reset` to go back in time.
+
+---
+
+### ⚠️ Warning
+
+`reset` actually moves your branch pointer and can **remove commits** — so it’s best used on branches that only you are working on (like `feature` branches).
+
+---
+
+### 🧹 1. Soft Reset
+
+This keeps your changes, but undoes the last commit:
+
+```bash
+git reset --soft HEAD~1
+```
+
+You can now edit or recommit with a new message.
+
+---
+
+### 🧼 2. Mixed Reset (default)
+
+This keeps the file changes but **unstages** them:
+
+```bash
+git reset HEAD~1
+```
+
+Run `git status` to see your changes — they’re back in the working directory.
+
+---
+
+### 🔥 3. Hard Reset (Be Careful!)
+
+This **discards** the last commit *and* any changes:
+
+```bash
+git reset --hard HEAD~1
+```
+
+✅ Your repo is now rolled back one commit — as if it never happened.
+
+---
+
+## 💡 Summary: When to Use What
+
+| Command         | Does What?                                | Safe for Shared Branches? |
+|----------------|--------------------------------------------|----------------------------|
+| `git revert`    | Creates a new commit to undo a change      | ✅ Yes                     |
+| `git reset --soft`  | Moves HEAD, keeps changes staged        | ⚠️ Not recommended         |
+| `git reset`     | Moves HEAD, keeps changes unstaged         | ⚠️ Not recommended         |
+| `git reset --hard` | DANGEROUS: Deletes changes + commits    | ❌ Never on shared branches |
+
+---
+
+# 📦 Using `git stash`
+
+Sometimes you make changes in your working directory, but you're not ready to commit them — and you need to switch branches or pull updates. `git stash` lets you save your changes temporarily without committing.
+
+---
+
+## 🛠️ Goal
+
+Learn how to:
+- Save changes using `git stash`
+- Switch branches safely
+- Reapply your stashed work
+
+---
+
+## 🧪 Step-by-Step Instructions
+
+1. Make sure you're inside a Git-tracked project (any project will do).
+
+2. Open a file and make **some changes** — but **don’t commit** yet.
+
+3. Check your Git status:
+
+```bash
+git status
+```
+
+You should see the file listed as modified.
+
+---
+
+### 📦 1. Stash Your Changes
+
+Run:
+
+```bash
+git stash
+```
+
+✅ This saves your changes and returns your working directory to a clean state.
+
+---
+
+### 🔄 2. Switch Branches (or Pull)
+
+Now try switching to another branch:
+
+```bash
+git checkout main
+```
+
+Or do a pull:
+
+```bash
+git pull
+```
+
+✅ Your working directory stays clean — no conflicts!
+
+---
+
+### ♻️ 3. Reapply the Stash
+
+When you're ready to bring back your changes:
+
+```bash
+git stash apply
+```
+
+✅ Your edits will be restored to the files you changed.
+
+---
+
+### 🗑️ 4. (Optional) Clear the Stash
+
+After applying, you can remove the stash:
+
+```bash
+git stash drop
+```
+
+Or, to both apply *and* drop in one step:
+
+```bash
+git stash pop
+```
+
+---
+
+🎉 You’ve learned how to pause your work safely and come back to it later!
