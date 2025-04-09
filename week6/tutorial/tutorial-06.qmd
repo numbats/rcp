@@ -138,7 +138,7 @@ git push origin main
 
 ---
 
-## 🔄 Step 5: Student B – Rebase Onto Latest `main`
+## 🔄 Step 5: Student B – Merge In Latest `main`
 
 1. Add Student A’s repo as a remote:
 
@@ -150,7 +150,7 @@ git fetch upstream
 2. Rebase your branch:
 
 ```bash
-git rebase upstream/main
+git merge upstream/main
 ```
 
 3. If there are any conflicts, Git will pause and show them in `collab.qmd`. Edit the file and resolve them manually. It might look like this:
@@ -169,18 +169,14 @@ This section was added after Student B began work.
 
 ```bash
 git add collab.qmd
-git rebase --continue
+git commit -m "Merge conflict in upstream"
 ```
 
-5. Once rebasing is complete, push your changes to your fork:
+5. Once merging is complete, push your changes to your fork:
 
 ```bash
-git push origin my-section --force
+git push origin main
 ```
-
-::: {.callout-caution}
-Any command with `--force` is **dangerous** as it can rewrite the history of the repo. In this case, this is exactly what we want, but run the command _carefully_.
-:::
 
 ---
 
@@ -188,10 +184,10 @@ Any command with `--force` is **dangerous** as it can rewrite the history of the
 
 1. Go to your fork on GitHub  
 2. Click **“Compare & pull request”**  
-3. Make sure your PR is from `my-section` → `main` (on Student A’s repo)  
+3. Make sure your PR is from `main` → `main` (on Student A’s repo)  
 4. Click **Create pull request**
 
-✅ Your rebased contribution is now ready for review!
+✅ Your caught-up contribution is now ready for review!
 
 ---
 
@@ -211,7 +207,7 @@ You now know how to:
 
 - Fork and clone a GitHub repository
 - Work on a feature branch
-- Rebase changes onto the latest `main`
+- Merge changes onto the latest `main`
 - Submit a clean pull request
 
 ✨ You’ve just used a professional Git workflow!
