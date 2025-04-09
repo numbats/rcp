@@ -54,6 +54,8 @@ Create a **10 minute maximum** video that answers the following questions:
 2. **How does `git` help you recover from mistakes?**  
    Explain how you would undo a bad commit, and how that might differ depending on the situation.
 
+Throughout the video, you should share/record your screen and have you camera visible. You are welcome to use the screen for demonstrating the concepts you are explaining.
+
 ---
 
 Your goal is not just to show what to do, but to explain **why** you’re doing it. For example:
@@ -72,7 +74,7 @@ Please upload the completed video file directly to Moodle.
 
 ### Tips
 
-You may pre-prepare materials (e.g., set up Git repositories or branches in advance).
+- You may pre-prepare materials (e.g., set up Git repositories or branches in advance).
 - Speak as if you're explaining these concepts to a colleague who’s **familiar with Git** but **not very experienced**.  
   Aim for clarity and detail, not just correctness.
 - Visuals and terminal demos are recommended, but are not required — clarity of explanation matters most.

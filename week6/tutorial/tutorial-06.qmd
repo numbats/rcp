@@ -140,20 +140,35 @@ git push origin main
 
 ## 🔄 Step 5: Student B – Merge In Latest `main`
 
-1. Add Student A’s repo as a remote:
+1. Check your remotes:
+
+```bash
+git remote -v
+```
+
+You should only see one remote called `origin`
+
+2. Add Student A’s repo as a remote:
 
 ```bash
 git remote add upstream git@github.com:student-a-username/quarto-rebase-demo.git
 git fetch upstream
 ```
 
-2. Rebase your branch:
+3. Check your remotes and branches again:
+
+```bash
+git remote -v
+git branch -v
+```
+
+4. Rebase your branch:
 
 ```bash
 git merge upstream/main
 ```
 
-3. If there are any conflicts, Git will pause and show them in `collab.qmd`. Edit the file and resolve them manually. It might look like this:
+5. If there are any conflicts, Git will pause and show them in `collab.qmd`. Edit the file and resolve them manually. It might look like this:
 
 ```markdown
 <<<<<<< HEAD
@@ -165,14 +180,14 @@ This section was added after Student B began work.
 >>>>>>> upstream/main
 ```
 
-4. After fixing the file, run:
+6. After fixing the file, run:
 
 ```bash
 git add collab.qmd
 git commit -m "Merge conflict in upstream"
 ```
 
-5. Once merging is complete, push your changes to your fork:
+7. Once merging is complete, push your changes to your fork:
 
 ```bash
 git push origin main
