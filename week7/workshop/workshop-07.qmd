@@ -82,7 +82,7 @@ The most recent commit should be the one that added Line 3.
 Now run:
 
 ```bash
-git revert HEAD~1
+git revert HEAD
 ```
 
 ✅ Git will create a new commit that undoes the last one (removing Line 3).
