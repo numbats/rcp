@@ -1,0 +1,259 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Workshop 7"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html: 
+        embed-resources: true
+        output-file: "index.html"
+        toc: true
+---
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+# 🔧 Workshop Goals
+
+By the end of this workshop, you’ll be able to:
+
+- Undo commits safely (`revert`, `reset`)
+- Work with old commits using detached HEAD
+- Recover lost commits using `reflog`
+- Modify your last commit with `--amend`
+- Clean up tracked and untracked files (`git rm`, `git clean`)
+
+---
+
+# 🚧 Setup
+
+1. Go to [https://github.com](https://github.com) and create a new repository.  
+   Name it something like `git-fix-workshop`.  
+   ✅ Check **Add a README file**
+
+2. Click the green **Code** button and copy the **SSH** URL.
+
+3. In RStudio, open a new **RStudio Project**:
+   - Go to **File → New Project → Version Control → Git**
+   - Paste in the SSH URL
+   - Choose a location and click **Create Project**
+
+4. Open the **Terminal** tab in RStudio (or use the Git pane).  
+   You now have a GitHub-connected repo ready to go.
+
+
+3. Create a new file called `model.R`. Add a few lines of R code that load a library, and draw a plot.
+
+---
+
+# 1️⃣ Revert vs Reset
+
+## Step 1: Make Three Commits
+
+Add one line at a time and commit after each:
+
+```
+Line 1
+Line 2
+Line 3
+```
+
+You should now have 3 commits. Check with:
+
+```bash
+git log --oneline
+```
+
+---
+
+## Step 2: Revert the Most Recent Commit
+
+Let’s safely undo the last thing you committed — no risk of conflicts here.
+
+Run:
+
+```bash
+git log --oneline
+```
+
+The most recent commit should be the one that added Line 3.
+
+Now run:
+
+```bash
+git revert HEAD
+```
+
+✅ Git will create a new commit that undoes the last one (removing Line 3).
+
+Check your file and run:
+
+```bash
+git log --oneline
+```
+
+You should see a new commit at the top with a message like:  
+`Revert "Add line 3"`
+
+That’s how you safely undo a recent commit using `revert`.
+
+---
+
+## Step 3: Reset the Last Commit
+
+Run:
+
+```bash
+git reset --soft HEAD~1
+```
+
+Now run:
+
+```bash
+git status
+```
+
+What do you see? Try committing again if you want.
+
+---
+
+# 2️⃣ Detached HEAD and Rescue
+
+## Step 1: Checkout an Old Commit
+
+From your log, copy the hash for the first commit.
+
+```bash
+git checkout <commit-hash>
+```
+
+You're now in a **detached HEAD** state.
+
+Try editing `notes.txt` and committing:
+
+```bash
+git add notes.txt
+git commit -m "Edit in detached HEAD"
+```
+
+---
+
+## Step 2: Create a Branch to Save Your Work
+
+```bash
+git switch -c experiment
+```
+
+You're now safe! Run `git log` and note the history.
+
+---
+
+# 3️⃣ Amend the Last Commit
+
+1. Make a new commit.
+2. Realize you forgot to add a second file.
+3. Create and add another file (e.g., `forgotten.txt`)
+4. Run:
+
+```bash
+git add forgotten.txt
+git commit --amend
+```
+
+Did the commit message or hash change?
+
+---
+
+# 4️⃣ Reflog to the Rescue
+
+## Step 1: Make and Reset a Commit
+
+1. Make a quick commit (e.g., change `notes.txt`)
+2. Run:
+
+```bash
+git reset --hard HEAD~1
+```
+
+The commit is now gone... or is it?
+
+---
+
+## Step 2: Use `reflog`
+
+```bash
+git reflog
+```
+
+Find the lost commit hash and restore it:
+
+```bash
+git checkout <hash>
+git switch -c recovered-work
+```
+
+✅ Your work is back!
+
+---
+
+# 5️⃣ Cleaning and Removing
+
+## Step 1: Track and Remove a File
+
+1. Create a file (e.g., `temp.txt`)
+2. Add and commit it
+3. Now remove it using:
+
+```bash
+git rm temp.txt
+git commit -m "Remove temp file"
+```
+
+Check `git log` — what happened?
+
+---
+
+## Step 2: Remove a File but Keep It Locally
+
+1. Create and commit another file (e.g., `data.csv`)
+2. Run:
+
+```bash
+git rm --cached data.csv
+git commit -m "Stop tracking data"
+```
+
+3. The file still exists in your project, but is no longer tracked.
+
+---
+
+## Step 3: Clean Untracked Files
+
+1. Create a few files but **don’t add them to Git**.
+2. Preview what would be deleted:
+
+```bash
+git clean -n
+```
+
+3. If you’re sure:
+
+```bash
+git clean -f
+```
+
+✅ These files are now gone — permanently.
+
+---
+
+# ✅ Summary Questions
+
+- When would you use `revert` instead of `reset`?
+- What does `reflog` help you recover?
+- What’s the difference between `git rm` and `git clean`?
+- How would you safely stop tracking a file that’s already in the repo?
+
+---
+
+🎉 Great work! You’ve now practiced some of Git’s most powerful (and dangerous!) commands — safely.
