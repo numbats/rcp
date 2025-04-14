@@ -87,6 +87,26 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
 
+## Fixing your commit messages
+
+Last week most of us got stuck in `Vi` mode
+
+To fix this, run the following:
+
+#### Windows
+```bash
+git config --global core.editor notepad
+```
+
+#### MacOS
+```bash
+git config --global core.editor "open -e -W -n"
+```
+
+This will set either notepad or TextEdit to be your commit editor (much nicer).
+
+On Mac, note you must **quit** (not just close the window) for the commit message to be complete.
+
 ## 🧠 Today’s Goals
 
 -   Learn how to safely undo and explore commits
@@ -378,6 +398,80 @@ git clean -f
 -   Have you ever thought you lost work but actually didn’t?
 
 ------------------------------------------------------------------------
+
+````markdown
+## 🍥 What Is Squashing?
+
+**Squashing** means combining multiple commits into a single one.
+
+It’s useful for:
+- Cleaning up messy history
+- Preparing code before pushing or merging
+- Grouping small fixes into one meaningful commit
+
+> Squashing doesn't change your code — just your history!
+
+---
+
+## 🧠 How Squash Works
+
+Before squashing:
+
+```text
+A -- B -- C -- D  (main)
+         ↑
+       Fix typo
+```
+
+If B, C, and D are all part of one logical change, we can squash:
+
+```text
+A -- [B+C+D]  (main)
+```
+
+✅ One clean commit — easier to read, review, and share.
+
+---
+
+## 🛠️ How to Squash Commits
+
+Use **interactive rebase** to squash:
+
+```bash
+git rebase -i HEAD~3
+```
+
+You'll see:
+
+```text
+pick abc123 Add feature
+pick def456 Fix typo
+pick ghi789 Update docs
+```
+
+Change to:
+
+```text
+pick abc123 Add feature
+squash def456
+squash ghi789
+```
+
+Then save + edit the commit message.
+
+---
+
+## ⚠️ When (and When Not) to Squash
+
+✅ Good times to squash:
+- Before pushing a feature branch
+- To combine tiny commits ("fix typo", "rename var", "oops")
+
+❌ Avoid squashing:
+- After you’ve pushed to a shared branch (rewrites history!)
+
+---
+
 
 # LaTeX
 
