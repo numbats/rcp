@@ -399,7 +399,7 @@ git clean -f
 
 ------------------------------------------------------------------------
 
-````markdown
+
 ## 🍥 What Is Squashing?
 
 **Squashing** means combining multiple commits into a single one.
