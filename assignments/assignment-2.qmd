@@ -53,7 +53,7 @@ Please make sure you include _all_ of the steps described below.
 
 __You only need to use commands we have learned in class.__
 
-1. Create a new RStudio Project. In this folder, create a simple qmd file called `example.qmd` that can be knitted into a HTML file. Show this by knitting the file.
+1. Create a new RStudio Project. In this folder, create a simple qmd file called `example.qmd` that can be knitted into a HTML file. Show the result of the knitted file.
 
 2. From the command line interface, initialise this folder as a git repository and push it to the GitHub classroom repository.
 
@@ -91,5 +91,5 @@ git push -u --force origin main
 
 * Each of the instructions will be assessed as to whether they are successfully completed or not (1 mark each, total `r add_marks(10)` points)
 * Clear commit messages used in the video (`r add_marks(1)` point)
-* Presentation has good flow and is clear (`r add_marks(2)` points)
+* Guide has good flow and is clear (`r add_marks(2)` points)
 * Issues with language and grammar: Maximum deduction of 3 points
