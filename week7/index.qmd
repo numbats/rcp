@@ -1,6 +1,6 @@
 ---
 pagetitle: "ETC5513: Reproducible and Collaborative Practices"
-subtitle: "Workflows for reproducible data analysis"
+subtitle: "Undoing, exporing and cleaning with git"
 author: "Michael Lydeamore"
 email: "michael.lydeamore@monash.edu"
 date: "Week 7"
@@ -27,526 +27,294 @@ execute:
   echo: true
 ---
 
+## 🧠 Today’s Goals
 
-```{r, include = FALSE}
-current_file <- knitr::current_input()
-basename <- gsub(".[Rq]md$", "", current_file)
+-   Learn how to safely undo and explore commits
+-   Understand how to recover lost work
+-   Get more comfortable with the Git timeline and history
+-   Clean up messy projects
 
-knitr::opts_chunk$set(
-  fig.path = sprintf("images/%s/", basename),
-  fig.width = 6,
-  fig.height = 4,
-  fig.align = "center",
-  out.width = "100%",
-  fig.retina = 3,
-  echo = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  cache = TRUE,
-  cache.path = "cache/"
-)
+------------------------------------------------------------------------
+
+## 🧠 Git Mental Model
+
+Git works across three layers:
+
+-   **Working Directory**: your actual files
+-   **Index (Staging Area)**: what will be in your next commit
+-   **HEAD (Repository)**: your last committed snapshot
+
+Some examples: - `git add` moves changes → index - `git commit` moves index → HEAD - `git reset` moves HEAD pointer (soft/mixed/hard)
+
+------------------------------------------------------------------------
+
+## 🔁 Reverting and Resetting – Recap
+
+### `git revert`
+
+-   Creates a **new commit** that undoes a previous one
+-   Safe on shared branches (e.g. `main`)
+
+``` bash
+git revert <commit-hash>
 ```
 
-## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+------------------------------------------------------------------------
 
-### `r rmarkdown::metadata$subtitle`
+### `git reset`
 
-Lecturer: *`r rmarkdown::metadata$author`*
+-   **Moves your branch pointer backward**
+-   Can **rewrite history** (dangerous on shared branches!)
+-   Options:
+    -   `--soft`: Keep changes staged
+    -   `--mixed`: Keep changes unstaged
+    -   `--hard`: **Deletes changes**
 
-`r rmarkdown::metadata$department`
-
-::: tl
-<br>
-
-<ul class="fa-ul">
-
-<li>
-
-[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
-
-</li>
-
-<li>
-
-[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
-
-</li>
-
-<li>
-
-[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
-
-</li>
-
-</ul>
-
-<br>
-:::
-
-## Open Frame
-
-![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
-
-## Recap
-
-* Learn about `git rebase`
-* Learn about `git fetch` and `git merge`
-* Learn about staging and unstaging files
-* Learn how to undo some changes
-
-## Today's plan {#aim}
-
-::: {.callout-important}
-
-## Aim
-
-- Start learning about LaTeX
-- LaTeX integration in qmd files
-- Deeper understand about commits and SHA1 numbers
-- Visualize commits
-- Compare commits
-- Moving back to different commits and create branches starting from past commits.
-- Stage and unstage files
-- Revert to a previous commits
-- Removing files using git
-- Changing branch names
-- Clone all the branches from a repository
-
-:::
-
-# LaTeX
-
-![](images/LaTeX.png){fig-align="center"}
-
-[LaTeX more info](https://www.LaTeX-project.org/)
-
-# LaTeX template
-
-![](images/LaTeX_template.png){fig-align="center"}
-
-## LaTeX template
-
-```latex
-
-\begin{document}
-% Packages to be used
-\usepackage{amsmath} % <1>
-
-% Creating title % <2>
-\title{This is an example}
-\author{ETC5513, Monash University}
-```
-1. List all the packages
-2. % = comments
-
-## LaTeX template
-
-```latex
-
-\begin{document} % <1>
-\maketitle
-
-\section{Introduction} % <2>
-
-% Introduction content
-
-\end{document} % <3>
-
-```
-1. Open the document
-2. Sections each get a 'section' header
-3. Close the document at the end.
-
-
-## We are going to use LaTeX via Quarto files
-
-In order to be able to use LaTeX within our Quarto documents, we need to install `tinytex`:
-
-```bash
-quarto install tinytex
+``` bash
+git reset --soft HEAD~1
 ```
 
-or
+------------------------------------------------------------------------
 
-```bash
-quarto install tinytex --update-path
+## 🧵 Detached HEAD
+
+-   Happens when you check out a **specific commit**, not a branch
+-   Useful for exploring history
+-   If you make changes in this state, they can be lost unless you make a branch
+
+------------------------------------------------------------------------
+
+## 🧪 Demo: Detached HEAD + Branch
+
+1.  In the terminal or Git pane:
+
+``` bash
+git log --oneline
 ```
 
-You don't need the full LaTex installation for this unit, just this package.
+2.  Copy a commit hash from earlier and run:
 
-::: {.aside}
-[More info about tinytex here](https://yihui.org/tinytex/)
-:::
-
-## Integrate a LaTeX template into a quarto file
-
-There are different ways:
-- If the file features are not too complicated. We can simply add some of the necessary LaTeX packages into our YAML preamble. You will be working with this example in the tutorial:
-
-```
-title: "Reproducible and Collaborative Practices"
-subtitle: "Tutorial 7"
-author: "Your Name"
-institute: "Department of Econometrics and Business Statistics"
-output: 
- pdf:
-   toc: true
-   toc_depth: 2
-   number_sections: true
-   highlight: tango
-header-includes: 
-  - \usepackage{titling}
-  - \pretitle{\begin{center} \includegraphics[width=5in,height=13in]{figs/front.jpg}\LARGE\\}
-  - \posttitle{\end{center}}
-  - \usepackage{fontawesome}
-  - \usepackage[most]{tcolorbox}
-  - \usepackage{xcolor}
-  - \usepackage{sectsty}
-  - \sectionfont{\color{olive}}
-  - \usepackage{verbatim}
+``` bash
+git checkout <commit-hash>
 ```
 
+You’re now in **detached HEAD**!
 
-## Integrate a LaTeX template into a quarto file
+------------------------------------------------------------------------
 
-There are different ways:
-- Another possibility is to use a [`preamble.tex`]{.monash-green2}
-- And incorporate that into our Quarto file (we will look into this in Week 8):
+### 🛟 Rescue Your Work
 
-![](images/preamble.png){fig-align="center"}
+If you want to keep changes made in detached HEAD:
 
-
-## Reference
-
-[LaTeX in 24 Hours A Practical Guide for Scientific Writing](
-https://monash.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=catau51422921060001751&context=L&vid=MONUI&lang=en_US&search_scope=au_everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,LaTeX%20in%2024%20Hours%20%20A%20Practical%20Guide%20for%20Scientific%20Writing&mode=basic)
-
-![](images/book.png){fig-align="center"}
-
-## Closer look at our repos
-
-![](images/mael-balland-V5hAryReZzo-unsplash.jpg){fig-align="center"}
-
-## Commits, hash values and SHA numbers
-
-`git log` allows us to go back into our project history and see all the commits done in a repo. We can also see the commits of other contributors, we can browse the history to find out past issues or problems.
-
-```
-commit 8cfaee1e447d8e83d745b51ffcd310465afb76b1
-Author: Patricia Menendez <patricia.menendez@monash.edu>
-Date:   Sat Apr 4 15:49:54 2023 +1000
-   
-    Uploading Week4 slides
+``` bash
+git switch -c recovered-work
 ```
 
+✅ This creates a new branch from that point!
 
-## Commits, hash values and SHA numbers
+------------------------------------------------------------------------
 
-The [Hash]{.monash-green2} or [SHA-1]{.monash-green2} value (often called `refs`) is created when we generate a commit. They are a 40 character string stored in hexadecimal. They are _effectively_ unique identifiers for a commit.
+## ✍️ `git commit --amend`
 
-There are so many different hashes that you can get away with just using the first few to identify your SHA.
+Use this when you:
 
-## Inspect the SHA numbers
+-   Made a typo in the last commit message
+-   Forgot to include a file
+-   Want to slightly edit the last commit
 
-Using your terminal you can inspect your commits and SHA numbers by typing `git log` in your command line interface:
+------------------------------------------------------------------------
 
-::: {.callout-tip}
-* To exit the screen **press q**
-* To go up in the history, **press u**
-* To go down in the history, **press d** or space.
-:::
+## 🧪 Demo: Amending a Commit
 
+1.  Make a small commit\
+2.  Realize you forgot something\
+3.  Stage the missing file, then run:
 
-## Inspect the SHA numbers
-
-You can also inspect them from GitHub
-
-![](images/sha.png){fig-align="center"}
-
-## `git log`
-
-
-- `git log` is the Git command that allow us to explore the commits history in a Git repository.
-- `git log` lists the commits made in that repository in reverse chronological order. That is, the most recent commits show up first. 
-- `git log` has a great variety of options that allow us to explore commits depending on our preference.
-
-## git log
-
-`git log --oneline` condenses each commit to a single line
-
-```
-3a5bc86 W3 cli updates
-4d1b022 W3 shell update
+``` bash
+git commit --amend
 ```
 
-* `git log -n 3`: show last 3 commits
-* `git log --since=01-01-2020`: Show commits since...
-* `git log --until=01-01-2020`: Show commits until...
-* `git log --author="Michael Lydeamore"`: Show commits by a single author.
+🎯 You can edit the message or leave it the same
 
-## git log and git show
+⚠️ Avoid `--amend` if you’ve already pushed the commit
 
-* `git log -p`: shows the difference in each commit. You can chain flags, so `git log -p -n 2` will limit to the most recent 2 commits
-* `git log index.qmd` will show you all commits on a particular file
-* `git log --oneline -p index.qmd`: Shows you all the changes done in the different commits to this file, and their changes
-* `git show` will show various information about the repo.
+------------------------------------------------------------------------
 
-## More options associated with git log
+## 🔍 `git reflog`
 
-* `git log --stat` to see some (abbreivated) stats, like which files were modified, how many files, and how many lines were added or removed
-* `git log --pretty=oneline` prints each commit on one line
-* `git log --pretty=format: "%h -%an : %s"`: Display each commit in one line and display how long ago it was
-* `git log --pretty=format:"%h %s" --graph`: Will also show the tree
+-   Shows **every move of HEAD** (including things Git log forgets)
+-   Useful to **recover commits** after a reset or checkout
 
-For more info on `git log`, please look [here](https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History).
-
-**Remember that if you want to visualize the tree of the repository:  VSCode is a great tool for that.**
-
-## `git log` and `git diff`
-
-`git log` displays revisions, and `git diff` displays the difference between two revisions in the repo.
-
-It also shows snippets of the text around the part of the file that  has changed so you know in which part of the file the changes are happening.
-
-`git diff --color-words` will display words that have changed in a different color.
-
-## Changes within the files in the staging area
-
-`git diff --staged`
-
-![](images/diff_staged.png){fig-align="center"}
-
-## git diff options
-
-* `git diff commit1 commit2`: Compare changes between _any_ two commits
-* `git diff branch1 branch2`: Compare across branches (!)
-
-::: {.fragment}
-* `git diff master newbranch ./index.qmd`: Compare the file `index.qmd`, between the master and newbranch.
-:::
-
-::: {.fragment}
-* `git diff HEAD~2 HEAD --name-only`: Shows the files that have changed between the latest commit and the two before that.
-:::
-
-## Visiting past commits
-
-![](images/git_tree1.jpg){fig-align="center"}
-
-## Let's explore a given commit
-
-In order to look at the status of the files in a given commit, we can use `git checkout SHA` for example:
-
-```
-git checkout 47ef21k
+``` bash
+git reflog
 ```
 
-Once you run this command you will get the
+------------------------------------------------------------------------
 
-["You are in a detached HEAD state"]{.monash-green2}
+### 🧪 Activity: Oops, I reset too far!
 
-**Note:** You get to the detached HEAD state by checking a commit directly. Remember the HEAD is a pointer that keeps track of your location within the Git repo.
+1.  Make a commit\
+2.  Reset to a previous state:
 
-If we want to see all the commits here we need to use `git log --oneline --all`.
-
-## Detached HEAD repo view
-
-![](images/detachedhead.jpg){fig-align="center"}
-
-## Detached HEAD
-Detached HEAD state gives you the power to check out any commit and explore the older state of a repository without having to create a local branch. In addition, it also allows you to change the repository.
-
-::: {.callout-warning}
-Any commits made in a detached HEAD state will be lost when you check out any branch.
-:::
-
-::: {.callout-tip .fragment}
-## Solution
-
-Create a branch to keep your commits
-:::
-
-::: {.fragment}
-If you want to leave the detached HEAD and return to another branch you can simply use `git checkout branchname`
-:::
-
-## Go back into the repository {.smaller}
-
-- `git checkout 8cfaee1e447d8e8`
-
-You are in 'detached HEAD' state ([the changes made in this state do not belong to any branch!]{.monash-green2}). That allows you to explore the files that are at that particular location of the repo history.
-
-::: {.callout-tip}
-No-one wants to be a detached HEAD state. Even `git` repos.
-:::
-
-
-* If you want to bring some files from the past history to your current head, it is best to do this on a new branch
-  * `git branch new_branch`
-  * `git checkout new_branch`
-  * or `git checkout -b new_branch`
-* Continue working on this branch, then merge
-
-## Detached HEAD repo view
-
-![](images/detachedhead.jpg){fig-align="center"}
-
-## Git environment tree 
-
-![](images/tree3.png){fig-align="center"}
-
-## Stage and unstage files 
-
-**Before you push changes into the remote repo:**
-
-* `git reset filename`: Unstage a single file
-* `git reset`: Unstage all staged files
-
-::: {.fragment}
-
-For example: 
-
-- `git add filename`
-- `git status`: filename is added to the staging area
-- `git reset filename`: filename will be removed from the staging area.
-
-Intuition: You can think of `git reset` as the opposite of `git add`.
-
-:::
-
-# Commits
-
-## Commits
-
-- Commits need to be clear and concise.
-- Commits need to be meaningful so that someone else can understand what you changed in a commit.
-- Commit early, commit often, but commit meaningfully
-
-::: {.fragment}
-`Updating file 1`: ❌ Not meaningful!
-
-`Adding gmax for computing maximum value`: ✅
-:::
-
-
-**Please watch this video minute 3:16 and consider this when creating your commits!  [video](https://www.youtube.com/watch?v=Hlp-9cdImSM)**
-
-## Edit/Amend most recent commit (using cli)
-
-**This only works for your most recent commit if it has not been pushed to the remote repo!**
-
-- Maybe you forgot to add a file or you commit the wrong file. Then you can amend your last commit. That also includes the commit message (if you need to change it).
-
-- You can amend the commit directly using the command line interface/console
-
-- If you need to add a new file then you can use `git add file` and then use:
-
-```
-git commit --amend -m "your updated commit message"
+``` bash
+git reset --hard HEAD~1
 ```
 
-# Edit/Amend previous commit (using VS code)
+3.  Run `git reflog` to find the lost commit\
+4.  Use:
 
-**This only works for your most recent commit if it has not been pushed!**
-
-`git commit --amend` will open the VSCode editor. This is a convenient way to modify the _most recent_ commit.
-
-Workflow:
-
-* Modify whatever files you need to change
-* `git commit --amend`
-* Close editor, and all should be fixed.
-
-![](images/editcommit.png){fig-align="center"}
-
-## Amending commits
-
-[**Amending a commit that you've already pushed to a  remote repo is BAD practice and should be avoided**]{.red}
-
-- Amending commits which are already pushed to a remote are more difficult to apply and would require a force push for the rewrite.
-- Also it will require rebase.
-
-![](images/gitsnapshots.png){fig-align="center"}
-
-
-## Reverting commits that have been pushed to a remote repo
-
-`git revert`: The git revert command can be considered an 'undo' type command, however, 
-it is not a traditional undo operation. 
-
-Instead of removing the commit from the project history, it figures out how to invert the changes introduced by the commit and appends a new commit with the resulting inverse content. This prevents Git from losing history, which is important for the integrity of your revision history and for reliable collaboration.
-
-You can think of it as a "rollback": it points your local environment back to a previous commit. 
-Your "local environment," refers to your local repository, staging area, and working directory.
-
-## `git revert`: When commits have been pushed
-
-- This can be useful, if you need to fix a bug  in your code that was introduced by a single commit.
-
-- It will record a new commit with the changes introduced by reverting the last commit. If you don't want to include the commits reverted then you could use `git revert --no-commit`.
-
-- To revert the previous commit `git revert HEAD`
-
-
-## `git revert`: When commits have been pushed
-
-- Note that here we are **not using** `HEAD~1` as with reset.The reason is that when using the `git reset` command we are setting a new HEAD position while with `git revert` we are actually reverting the commit specified.
-
-- Then you will have to commit the changes again for the files to be reverted and for the commit to be undone.
-
-- When using the `git revert` command, Git will automatically open your text editor (VS code) in order to commit the changes.
-
-## Removing files
-
-
-- If the files are untracked you can just remove them
-- If the files are tracked. You can use git to remove the files
-  - `git rm` file.txt
-  - `git status` (file already added into the staging area)
-  - `git commit -m` "Delete file.txt"
-  - `git push origin` master
-
-## Mirroring a repository
-
-Mirroring is to replicate the state of a remote or upstream repository in our local machine. By state, we mean all the branches and all the tags as well.
-
-```
---mirror: 
-  Set up a mirror of the source repository. This implies --bare. Compared to --bare,
-    --mirror not only maps local branches of the source to local branches of the target,
-    it maps all refs (including remote-tracking branches, notes etc.) and sets up a
-    refspec configuration such that all these refs are overwritten by a git remote
-    update in the target repository.
+``` bash
+git checkout <hash>
 ```
 
-## Example of git mirror
+Then:
 
-- `mkdir Example`   (Don't forget to create a folder)
-- `cd Example` (And navigate into that folder before the next steps!)
-- `git clone --mirror https://github.com/ETC5513/GitKraken-example.git .git`
-- `git config --unset core.bare`
-- `git reset --hard`      
+``` bash
+git switch -c recovered-branch
+```
 
-# Commits
+🎉 You’ve recovered “lost” work!
 
-- So far we are only writing the commit subject line.
-- Concise and informative 
-- Be descriptive and specific about what changed.
-- Next week we will learn to add more info into the commits (commit body).
-- Active tense and make sure they are informative so that if you need to find something in your history you can do that!
+------------------------------------------------------------------------
 
-## Week 7 Lesson
+## 🗑️ `git rm`: Remove Files from the Repository
 
-::: {.callout-important}
-- Start learning about Latex
-- Latex integration in Rmd files
-- Deeper understand about commits and SHA1 numbers
-- Visualize commits
-- Compare commits
-- Moving back to different commits and create branches starting from past commits.
-- Stage and unstage files
-- Revert to a previous commits
-- Removing files using git
-- Clone all the branches from a repository
-:::
+-   Use `git rm` to delete a **tracked** file from both your working directory and Git’s index.
+-   Git will stage the deletion automatically.
 
+``` bash
+git rm filename.txt
+git commit -m "Remove filename.txt"
+```
+
+✅ After this commit, the file will no longer exist in your working directory *or* the repository.
+
+------------------------------------------------------------------------
+
+## ❗ Why Not Just Delete the File?
+
+-   If you delete a file in RStudio or your file browser:
+    -   Git will show it as **"deleted: filename.txt"**
+    -   But you still need to `git add` the deletion
+
+``` bash
+# After deleting manually:
+git status         # Shows deletion
+git add filename.txt
+git commit -m "Remove file"
+```
+
+✅ `git rm` does both steps at once — it’s safer and cleaner
+
+------------------------------------------------------------------------
+
+## 💡 Recovering a Deleted File
+
+If you **haven’t committed** the deletion yet:
+
+``` bash
+git restore filename.txt
+```
+
+If you **already committed** the deletion:
+
+``` bash
+git checkout HEAD~1 -- filename.txt
+```
+
+✅ Or use `git reflog` to find the commit where the file still existed
+
+------------------------------------------------------------------------
+
+## 🧾 `git rm --cached`: Keep the File, Remove It from Git
+
+-   Use this when you've **added a file to Git by mistake**, but you don’t want to delete it from your computer
+-   Git stops tracking it — but the file stays in your working directory
+
+``` bash
+git rm --cached data.csv
+git commit -m "Stop tracking data.csv"
+```
+
+✅ The file will still be on disk, but not in the next commit
+
+------------------------------------------------------------------------
+
+## 🧠 Common Use Case
+
+> You committed a large data file by accident
+
+1.  Add the filename to `.gitignore`
+2.  Run:
+
+``` bash
+git rm --cached data.csv
+git commit -m "Remove data.csv from tracking"
+```
+
+3.  Push your changes\
+4.  The file is now ignored and won’t be re-added
+
+✅ Useful for cleaning up mistakes without losing the file
+
+------------------------------------------------------------------------
+
+## 🧹 `git clean`
+
+-   Deletes **untracked files** (not in Git yet)
+-   Helpful when switching branches or cleaning clutter
+
+``` bash
+git clean -n   # dry run
+git clean -f   # permanently delete
+```
+
+------------------------------------------------------------------------
+
+## ⚠️ Warning
+
+-   `git clean` is **permanent**
+-   You can’t undo it with `reflog` or reset
+-   Always use `-n` first to preview
+
+------------------------------------------------------------------------
+
+## 🧪 Activity: Cleaning Up
+
+1.  In RStudio, create a few new files **but don’t add them to Git**
+2.  Run:
+
+``` bash
+git status
+git clean -n
+```
+
+3.  If it looks right:
+
+``` bash
+git clean -f
+```
+
+✅ Now those untracked files are gone!
+
+------------------------------------------------------------------------
+
+## 🧠 When to Use What
+
+| Situation                       | Use This             |
+|---------------------------------|----------------------|
+| Undo safely on shared branches  | `git revert`         |
+| Clean up your last commit       | `git commit --amend` |
+| Rewind local commit history     | `git reset`          |
+| Accidentally reset or lost work | `git reflog`         |
+| Delete untracked junk           | `git clean`          |
+
+------------------------------------------------------------------------
+
+## Questions?
+
+-   When would you **not** use `reset`?
+-   What does `reflog` help you find that `log` doesn’t?
+-   Have you ever thought you lost work but actually didn’t?
+
+------------------------------------------------------------------------
