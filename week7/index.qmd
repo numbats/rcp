@@ -25,7 +25,67 @@ format:
       buttons: true
 execute:
   echo: true
+  eval: true
 ---
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## Open Frame
+
+![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
 
 ## 🧠 Today’s Goals
 
@@ -318,3 +378,153 @@ git clean -f
 -   Have you ever thought you lost work but actually didn’t?
 
 ------------------------------------------------------------------------
+
+# LaTeX
+
+![](images/LaTeX.png){fig-align="center"}
+
+[LaTeX more info](https://www.LaTeX-project.org/)
+
+# LaTeX template
+
+![](images/LaTeX_template.png){fig-align="center"}
+
+## LaTeX template
+
+```latex
+
+\begin{document}
+% Packages to be used
+\usepackage{amsmath} % <1>
+
+% Creating title % <2>
+\title{This is an example}
+\author{ETC5513, Monash University}
+```
+1. List all the packages
+2. % = comments
+
+## LaTeX template
+
+```latex
+
+\begin{document} % <1>
+\maketitle
+
+\section{Introduction} % <2>
+
+% Introduction content
+
+\end{document} % <3>
+
+```
+1. Open the document
+2. Sections each get a 'section' header
+3. Close the document at the end.
+
+
+## We are going to use LaTeX via Quarto files
+
+In order to be able to use LaTeX within our Quarto documents, we need to install `tinytex`:
+
+```bash
+quarto install tinytex
+```
+
+or
+
+```bash
+quarto install tinytex --update-path
+```
+
+You don't need the full LaTex installation for this unit, just this package.
+
+::: {.aside}
+[More info about tinytex here](https://yihui.org/tinytex/)
+:::
+
+## Integrate a LaTeX template into a quarto file
+
+There are different ways:
+
+- If the file features are not too complicated. We can simply add some of the necessary LaTeX packages into our YAML preamble. You will be working with this example in the tutorial:
+
+```
+title: "Reproducible and Collaborative Practices"
+subtitle: "Tutorial 7"
+author: "Your Name"
+institute: "Department of Econometrics and Business Statistics"
+output: 
+ pdf:
+   toc: true
+   toc_depth: 2
+   number_sections: true
+   highlight: tango
+header-includes: 
+  - \usepackage{titling}
+  - \pretitle{\begin{center} \includegraphics[width=5in,height=13in]{figs/front.jpg}\LARGE\\}
+  - \posttitle{\end{center}}
+  - \usepackage{fontawesome}
+  - \usepackage[most]{tcolorbox}
+  - \usepackage{xcolor}
+  - \usepackage{sectsty}
+  - \sectionfont{\color{olive}}
+  - \usepackage{verbatim}
+```
+
+
+## Integrate a LaTeX template into a quarto file
+
+There are different ways:
+
+- Another possibility is to use a [`preamble.tex`]{.monash-green2}
+- And incorporate that into our Quarto file (we will look into this in Week 8):
+
+![](images/preamble.png){fig-align="center"}
+
+
+## Reference
+
+[LaTeX in 24 Hours A Practical Guide for Scientific Writing](
+https://monash.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=catau51422921060001751&context=L&vid=MONUI&lang=en_US&search_scope=au_everything&adaptor=Local%20Search%20Engine&tab=default_tab&query=any,contains,LaTeX%20in%2024%20Hours%20%20A%20Practical%20Guide%20for%20Scientific%20Writing&mode=basic)
+
+![](images/book.png){fig-align="center"}
+
+## Quarto PDF themes
+
+Another way to include styling is to use a Quarto PDF extension. For example:
+
+* [Quarto Monash](https://github.com/quarto-monash)
+* [Quarto Letter](https://github.com/produnis/quarto-letter)
+* [Fancy Header](https://github.com/DamonCharlesRoberts/fancy-doc)
+
+...and more [here](https://quarto.org/docs/extensions/listing-formats.html)
+
+## Quarto PDF themes
+
+These themes have the advantage of having done a lot of the LateX formatting for you. Looking inside the Quarto Monash memo, we have:
+
+```
+\pretitle{%
+$if(branding)$%
+\begin{textblock}{4}(1.9,0.85)\includegraphics[height=1.5cm]{monash2}\end{textblock}%
+\begin{textblock}{4}(17.25,0.8)\includegraphics[height=1.5cm]{MBSPortrait}\end{textblock}%
+\begin{textblock}{6}(13,28)\includegraphics[height=0.7cm]{AACSB}~~~
+        \includegraphics[height=0.7cm]{EQUIS}~~~
+        \includegraphics[height=0.7cm]{AMBA}
+\end{textblock}
+```
+
+Which is doing a lot of positioning of pictures for the template.
+
+## Week 6 Lesson
+
+::: {.callout-important}
+
+## Recap
+
+* Undoing mistakes with `amend`, `revert`, and `rm`
+* Cleaning repos
+* An introduction to latex
+
+:::
