@@ -405,6 +405,7 @@ git clean -f
 **Squashing** means combining multiple commits into a single one.
 
 It’s useful for:
+
 - Cleaning up messy history
 - Preparing code before pushing or merging
 - Grouping small fixes into one meaningful commit
@@ -464,10 +465,12 @@ Then save + edit the commit message.
 ## ⚠️ When (and When Not) to Squash
 
 ✅ Good times to squash:
+
 - Before pushing a feature branch
 - To combine tiny commits ("fix typo", "rename var", "oops")
 
 ❌ Avoid squashing:
+
 - After you’ve pushed to a shared branch (rewrites history!)
 
 ---
