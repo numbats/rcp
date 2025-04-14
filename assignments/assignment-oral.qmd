@@ -1,0 +1,90 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Assignment - Oral Presentation"
+author: "Michael Lydeamore"
+date: today
+format:
+    html:
+        embed-resources: true
+---
+
+
+```{r setup}
+#| include: false
+#| eval: true
+source("setup.R")
+```
+
+```{r}
+#| echo: false
+
+total_marks <- 0
+
+add_marks <- function(amount) {
+    total_marks <<- total_marks + amount
+
+    amount
+}
+
+```
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+
+## Objectives
+
+* Demonstrate an understanding of `git` workflows
+* Communicate technical ideas clearly and effectively
+
+::: {.callout-important}
+This is an **individual**  assignment.
+:::
+
+## Instructions
+
+Create a **10 minute maximum** video that answers the following questions:
+
+---
+
+1. **What happens when two people edit the same file?**  
+   How does `git` handle that, and what do you need to do?
+
+2. **How does `git` help you recover from mistakes?**  
+   Explain how you would undo a bad commit, and how that might differ depending on the situation.
+
+Throughout the video, you should share/record your screen and have you camera visible. You are welcome to use the screen for demonstrating the concepts you are explaining.
+
+---
+
+Your goal is not just to show what to do, but to explain **why** you’re doing it. For example:
+
+>  "We revert this commit instead of resetting because the commit has already been pushed and we don’t want to rewrite public history."
+
+---
+
+::: {.callout-important}
+You **cannot speed up** your recording — it must be delivered in real time to ensure you're within the time limit.
+:::
+
+## Submission
+
+Please upload the completed video file directly to Moodle.
+
+### Tips
+
+- You may pre-prepare materials (e.g., set up Git repositories or branches in advance).
+- Speak as if you're explaining these concepts to a colleague who’s **familiar with Git** but **not very experienced**.  
+  Aim for clarity and detail, not just correctness.
+- Visuals and terminal demos are recommended, but are not required — clarity of explanation matters most.
+
+## Marking rubric
+
+* Technical content of each question: 5 points each (total 10 points)
+* Explaining "why": 3 points
+* Overal clarity and communication: 2 points
+
+1 mark is deducted for every 30 seconds over the 10 minute time limit (maximum 3 mark deduction). A 10 minute 12 second video thus has a maximum of 14 marks.
+
+**Total: 15 marks**

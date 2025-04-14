@@ -71,6 +71,6 @@ schedule |>
 * [Assignment 1](assignments/assignment-1.html)
 * [Assignment 2](assignments/assignment-2.html)
 * [Assignment 3](assignments/assignment-3.html)
-* Oral Assessment
+* [Oral Assessment](assignments/assignment-oral.html)
 
 Refer to Moodle for due dates and submission information.

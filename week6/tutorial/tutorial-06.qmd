@@ -16,247 +16,214 @@ htmltools::includeCSS("tutorial.css")
 ```
 
 
-## `r emo::ji("target")` Objectives
+# 🤝 Workshop: Forking, Branching, and Rebasing with Quarto
 
-* Create repos in GitHub and clone them into your local computer
-* Practice staging, commit and push workflow
-* Work in a GitHub project as a collaborator
-* Create branches in local and remote repositories
-* Merging branches and deal with conflicts
-* Practice pull requests.
+In this workshop, you'll practice collaborative editing using **branches**, **rebasing**, and **pull requests** in a Quarto project.
 
+You’ll simulate a real-world collaboration scenario:
+- One student makes changes to the main branch
+- Another student works on a feature branch
+- Before contributing, the second student rebases to keep history clean
 
-# Exercise 1: Working on reproducible reports as a collaborator
+---
 
-1. Create a new *private* GitHub repository called *Tutorial6-XX* and replace *XX* with your initials. Include a *README.md* file.
+## 🧑‍🤝‍🧑 Step 1: Pair Up
 
-::: {.unilur-solution}
-![](../images/create_repo.png){fig-align="center"}
-:::
+Assign roles:
 
-2. Invite one of your classmates to collaborate in your project. You can do that from GitHub
+- **Student A** = Repository owner  
+- **Student B** = Contributor
 
-::: {.unilur-solution}
-![](../images/collaborators.png){fig-align="center"}
-:::
+You’ll swap roles after completing the exercise.
 
-3. Accept the invitation and clone your classmate's repo in your local machine.
+---
 
-::: {.unilur-solution}
-`git clone https://github.com/ETC5513demo/Tutorial6-XX.git`
-:::
-   
-4. Continue working in your classmate repo and create a new branch called *newbranchXX* (replace *XX* with your initials).
+## 🛠️ Step 2: Student A – Set Up the Repository
 
-::: {.unilur-solution}
-* `git branch newbranchXXX` OR `git checkout -b newbranchXX` if you want to check it out.
-:::
-  
-5. In the new branch add a file called *Tutorial6XX.qmd* (replace *XX* with your initials). This file should render into *html* and should have title "Tutorial 6. Collaborating with others" and your name as author.
+1. Create a new GitHub repo named something like `quarto-rebase-demo`  
+2. ✅ Add a README file  
+3. Clone it locally:
 
-::: {.unilur-solution}
-```
-git checkout newbranchXX
-touch Tutorial6XX.qmd
+```bash
+git clone git@github.com:your-username/quarto-rebase-demo.git
+cd quarto-rebase-demo
 ```
 
-or create the file from RStudio directly.
-:::
-   
-6. Add global options for figures sizes and location.  
-**Hint**: `knitr::opts_chunk`
+4. Create a Quarto file called `collab.qmd`:
 
-::: {.unilur-solution}
-```
-knitr::opts_chunk$set(echo = TRUE,  fig.width = 8, fig.height = 8, fig.align = "center")
-```
-:::
+```markdown
+---
+title: "Rebase Demo"
+format: html
+---
 
-7. Stage, commit and push changes into your classmate repo
+# Introduction
 
-::: {.unilur-solution}
-* `git add .` or `git add Tutorial6.qmd`
-* `git commit -m "Adding Tutorial6XX.qmd"`
-* `git push origin newbranchXX`
+This is a collaborative Quarto project.
 
-or using RStudio:
+# Contributions
 
-![](../images/Rstudio_commit.png){fig-align="center"}
-:::
-   
-8. Create a new section called "Libraries" and add an R code chunk to load the `tidyverse` and `gridExtra` libraries.
-
-::: {.unilur-solution}
-Add a section with `# Libraries` and add the R code chunk:
-
-```r
-library(tidyverse)
-library(gridExtra)
-```
-:::
-   
-9. Stage, commit and push data into your classmate repo
-   
-::: {.unilur-solution}
-* `git add .` or `git add Tutorial6XX.qmd`
-* `git commit -m "Adding libraries and first section to tutorial"`
-* `git push origin newbranchXX`
-
-or use RStudio as above.
-:::
-
-
-10. Create another section with title "Generating data from a normal distribution with mean 0 and variance 1" and add the following code:
-
-
-```r
-# Simulating data according to a normal distribution
-
-x <- seq(1:100)
-y <- rnorm(100)  # Generating data form a normal distribution with mean 0 and variance  1
-
-data <- data.frame(x = x, y = y )    # Creating a data frame
-
-p1 <- ggplot(data, aes(x = x, y = y)) +
-   geom_line()
-
-p2 <- ggplot(data, aes(x = x, y = y)) +
-   geom_point()
-
-grid.arrange(p1, p2)
+<!-- Student sections will go here -->
 ```
 
-::: {.unilur-solution}
-``` # Generating data from a normal distribution with mean 0 and variance 1```
-:::
+5. Commit and push:
 
-11. Stage, commit and push data into your classmate repo
-
-::: {.unilur-solution}
-* `git add .` or `git add Tutorial6XX.qmd`
-* `git commit -m "Adding simulation with normal distribution"`
-* `git push origin newbranchXX`
-
-or use RStudio as above.
-:::
-
-12. Merge your branch into the main.
-
-::: {.unilur-solution}
-* `git checkout main`
-* `git merge newbranchXX -m "Merging branches"`
-* `git push origin main`
-:::
-  
-13. Stage, commit and push data into your classmate repo
- 
-::: {.unilur-solution}
-* `git add .`
-* `git commit -m "Merging branch XX with main branch"`
-* `git push origin main`
-
-or use RStudio as above.
-:::
-   
-14. In your GitHub you should have both your repo and your classmate repo. Go to GitHub and have a look at the repos you have and the commits. You should have both your repo and your partner's repo. In the last commit in both repos you should have the same content by the end of the exercise.
-
-# Collaborating with others using pull request (work in pairs for this exercise)
-
-1. Create a new *public* GitHub repository called *Tutorial6fork-XX* and replace *XX* with your initials. Include a *README.md* file.
-
-2. Clone this repo into your local machine.
-
-3.  Create an *R project* from an existing directory using the directory/folder that you just cloned from GitHub. After you have created the project check that you have a new file in the folder with extension *.Rproj*. You can also use that file to open a new instance of Rstudio.
-
-![](../images/project.png){fig-align="center"}
-
-4.  Add *Tutorial6XX.Rmd* from the exercise above into this project. You can simply copy it from the other folder/directory into the new folder/directory that you have created for this new project. 
-
-::: {.unilur-solution}
-You can either move the file from your other project into this one or use the command `cp Tutorial6/Exercise1/Tutorial6XX.qmd Tutorial6/Exercise2/Tutorial6XX.qmd`
-:::
-
-5.  Stage changes, commit and push changes to the remote repository. 
-
-::: {.unilur-solution}
-* `git add .` or `git add Tutorial6XX.qmd`
-* `git commit -m "Initialising repo with Tutorial6XX.qmd"`
-* `git push origin main`
-
-or use RStudio as above.
-:::
-  
-6.  Exchange your GitHub repo details with your classmate and fork each others project.
-
-::: {.unilur-solution}
-![](../images/fork.png){fig-align="center"}
-
-:::
-
-7. Fork each others repository in your GitHub and clone a local copy.
-
-::: {.unilur-solution}
-Navigate to your folder in your computer using `cd `nad `ls` and then
-
+```bash
+git add collab.qmd
+git commit -m "Add initial Quarto file"
+git push origin main
 ```
-git clone https://github.com/PartnerGitHUB_ID/Tutorial6fork-XX.git
+
+6. Share the GitHub link with Student B.
+
+✅ Student B can now fork the project.
+
+---
+
+## 🍴 Step 3: Student B – Fork, Branch, and Contribute
+
+1. Fork Student A’s repository on GitHub  
+2. Clone your fork:
+
+```bash
+git clone git@github.com:your-username/quarto-rebase-demo.git
+cd quarto-rebase-demo
 ```
-:::
 
-8. Create a new branch and work on this branch.
+3. Create a **new branch** for your work:
 
-::: {.unilur-solution}
-* `git branch newbranchXX` OR
-* `git checkout -b newbranchXX` which will checkout your newly created branch
-:::
+```bash
+git branch my-section
+git switch my-section
+```
 
-9. Add a new section and a figure into the report.
+4. Open `collab.qmd` and add your section under “# Contributions”:
 
-::: {.unilur-solution}
-You can add new sections using `#` and a new figure using either `![]()` or `knitr::include_graphics`
-:::
- 
-10. Stage, commit and push the changes into your remote repo in GitHub.
+```markdown
+# Jamie’s Section
 
-::: {.unilur-solution}
-* `git add .` or `git add Tutorial6XX.qmd`
-* `git commit -m "Merging my branch XX with main branch"`
-* `git push origin main`
+This is my contribution to the Quarto project.
+```
 
-or use RStudio as above.
-:::
-   
-11. Once you have finished with all the changes merge your new branch into main.
+5. Save the file, then stage and commit:
 
-::: {.unilur-solution}
-* `git checkout main`
-* `git merge newbranchXX -m "Merging branches"`
-* `git commit -m "Merging my branch XX with main branch"`
-* `git push origin main`
-:::
+```bash
+git add collab.qmd
+git commit -m "Add Jamie’s section"
+```
 
-12. Create a pull request explaining the changes.
+✅ Don’t push yet — Student A will now make another change.
 
-::: {.unilur-solution}
-![](../images/pr2.png){fig-align="center"}
+---
 
-![](../images/pr4.png){fig-align="center"}
+## 🧱 Step 4: Student A – Make Another Commit on `main`
 
-:::
+While Student B is working, Student A adds a new section to `collab.qmd`:
 
-13. Revise the pull request and accept the proposed changes.
+```markdown
+# Instructor's Section
 
-::: {.unilur-solution}
-![](../images/pr3.png){fig-align="center"}
+This section was added after Student B began work.
+```
 
-:::
+1. Save the file, then commit and push:
 
-14. Solve any possible conflict and merge the changes into your original repo that you created in exercise 1.
+```bash
+git add collab.qmd
+git commit -m "Add instructor’s section"
+git push origin main
+```
 
-::: {.unilur-solution}
-![](../images/pr5.png){fig-align="center"}
+✅ Now Student B’s branch is behind `main`.
 
-:::
+---
 
-15. If you have time repeat steps 8-14 adding more changes in your pull request.
+## 🔄 Step 5: Student B – Merge In Latest `main`
+
+1. Check your remotes:
+
+```bash
+git remote -v
+```
+
+You should only see one remote called `origin`
+
+2. Add Student A’s repo as a remote:
+
+```bash
+git remote add upstream git@github.com:student-a-username/quarto-rebase-demo.git
+git fetch upstream
+```
+
+3. Check your remotes and branches again:
+
+```bash
+git remote -v
+git branch -v
+```
+
+4. Rebase your branch:
+
+```bash
+git merge upstream/main
+```
+
+5. If there are any conflicts, Git will pause and show them in `collab.qmd`. Edit the file and resolve them manually. It might look like this:
+
+```markdown
+<<<<<<< HEAD
+# Jamie’s Section
+This is my contribution to the Quarto project.
+=======
+# Instructor's Section
+This section was added after Student B began work.
+>>>>>>> upstream/main
+```
+
+6. After fixing the file, run:
+
+```bash
+git add collab.qmd
+git commit -m "Merge conflict in upstream"
+```
+
+7. Once merging is complete, push your changes to your fork:
+
+```bash
+git push origin main
+```
+
+---
+
+## ✅ Step 6: Create a Pull Request
+
+1. Go to your fork on GitHub  
+2. Click **“Compare & pull request”**  
+3. Make sure your PR is from `main` → `main` (on Student A’s repo)  
+4. Click **Create pull request**
+
+✅ Your caught-up contribution is now ready for review!
+
+---
+
+## 📬 Step 7: Student A – Review and Merge
+
+1. Open the pull request  
+2. Check the changes  
+3. Click **Merge pull request** → **Confirm merge**
+
+🎉 Now the `main` branch has clean history and includes both contributions!
+
+---
+
+## ✅ Summary
+
+You now know how to:
+
+- Fork and clone a GitHub repository
+- Work on a feature branch
+- Merge changes onto the latest `main`
+- Submit a clean pull request
+
+✨ You’ve just used a professional Git workflow!
 
