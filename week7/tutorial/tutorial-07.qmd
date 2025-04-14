@@ -1,144 +1,358 @@
-# 🛠️ Tutorial: "Oh no, I lost my work!"  
-### Using `git reflog` and `reset` to recover deleted commits
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Tutorial 7"
+author: "Michael Lydeamore"
+date: today
+format:
+    unilur-html:
+        output-file: index.html
+        embed-resources: true
+    unilur-html+solution:
+        output-file: solution.html
+        embed-resources: true
+---
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+# Cleaning Up Your Commit History  
+### With `git commit --amend` and Squashing via Rebase
 
 ## 🧭 Goal
 
-You’ll simulate a common Git mistake — deleting recent commits — and learn how to recover your work using `git reflog`.
+Learn how to rewrite your commit history in Git using:
+
+- `git commit --amend` to fix the **last** commit
+- `git rebase -i` to **squash** multiple commits into one
 
 ---
 
-## 1️⃣ Create a New Repository on GitHub
+## 1️⃣ Create and Clone a Repo
 
-1. Go to [https://github.com](https://github.com)
-2. Click **+ → New repository**
-3. Name it:  
+### On GitHub
+
+1. Create a new repository:  
    ```
-   git-recovery-tutorial
+   git-history-cleanup
    ```
-4. ✅ Check **"Add a README file"**
-5. Click **Create repository**
+2. ✅ Check "Add a README file"
 
 ---
 
-## 2️⃣ Clone the Repo into RStudio
+### In RStudio
 
-1. In RStudio:  
-   **File → New Project → Version Control → Git**
+1. Go to **File → New Project → Version Control → Git**
+2. Paste the repo URL (SSH or HTTPS)
+3. Choose a location and click **Create Project**
 
-2. Paste the **SSH** or **HTTPS** URL of your GitHub repo
-
-3. Choose a location on your computer
-
-4. Click **Create Project**
-
-✅ You now have a Git-connected RStudio project
+✅ You're now working in a Git-tracked project.
 
 ---
 
-## 3️⃣ Create and Commit Some Work
+## 2️⃣ `--amend`: Edit Your Last Commit
 
-### Step 1: Add a file
+### Step 1: Add a New File
 
-1. Go to **File → New File → Text File**
-2. Type:
+1. Go to **File → New File → Quarto Document**
+2. Give it a name like: `report.qmd`
+3. In the file, add some content, for example:
+   ```markdown
+   # My Report
 
+   This is the first version.
    ```
-   Line A
-   ```
 
-3. Save the file as: `recovery.txt`
-
-4. In the **Git pane**, stage and commit:
-   - ✅ Message: `"Add Line A"`
+4. Save the file  
+5. In the **Git pane**, stage and commit with the message:  
+   `"Initial commit"`
 
 ---
 
-### Step 2: Add more commits
+### Step 2: Realise You Forgot Something
 
-1. Add a second line to `recovery.txt`:  
-   ```
-   Line B
-   ```
-   Save → stage → commit → `"Add Line B"`
+1. Add another line, such as:
+   `This line was accidentally left out.`
 
-2. Add a third line to the same file:  
-   ```
-   Line C
-   ```
-   Save → stage → commit → `"Add Line C"`
+2. Save the file  
+3. Stage the change  
+4. In the terminal, run:
+
+```bash
+git commit --amend
+```
+
+💬 You can edit the commit message if you like — or keep it the same.
+
+✅ The most recent commit now includes both changes.
 
 ---
 
-### Confirm your work
+## 3️⃣ Squash Commits with Interactive Rebase
 
-In the **Terminal tab**, run:
+Let’s now try squashing a few commits into one clean one.
+
+---
+
+### Step 1: Make a Messy Commit History
+
+1. Edit your `.qmd` file and make **3 separate commits**:
+
+   - Add a new section or chunk → commit: `"Add section"`
+   - Fix a typo → commit: `"Fix typo"`
+   - Add a final comment → commit: `"Add footnote"`
+
+✅ Commit after each change using the Git pane or terminal.
+
+---
+
+### Step 2: Check Your Commit History
+
+Run in the Terminal:
 
 ```bash
 git log --oneline
 ```
 
-✅ You should see 3 commits, most recent at the top
-
----
-
-## 4️⃣ The Mistake: Reset Too Far 😱
-
-Let’s simulate a classic Git accident — going back too far:
-
-```bash
-git reset --hard HEAD~2
-```
-
-- This removes your last two commits
-- Open `recovery.txt` — only Line A should remain
-
----
-
-## 5️⃣ Use `git reflog` to Investigate
-
-Now run:
-
-```bash
-git reflog
-```
-
-You’ll see a list of recent Git actions, including the reset and your lost commits.
-
-Look for the commit hash that says something like:
+You should see something like:
 
 ```
-commit: Add Line C
+c3d4e5f Add footnote
+b2c3d4e Fix typo
+a1b2c3d Add section
+...
 ```
 
 ---
 
-## 6️⃣ Recover Your Work
-
-To bring it all back:
+### Step 3: Start an Interactive Rebase
 
 ```bash
-git reset --hard <hash-of-last-good-commit>
+git rebase -i HEAD~3
 ```
 
-✅ Your full file should be restored — including Line B and Line C
+You’ll see:
+
+```
+pick a1b2c3d Add section
+pick b2c3d4e Fix typo
+pick c3d4e5f Add footnote
+```
+
+---
+
+### Step 4: Squash the Commits
+
+Change it to:
+
+```
+pick a1b2c3d Add section
+squash b2c3d4e
+squash c3d4e5f
+```
+
+Save and write a new combined commit message like:
+
+```
+Add section with typo fix and footnote
+```
+
+Save again to finish the rebase.
+
+---
+
+### Step 5: Confirm It Worked
+
+Run:
+
+```bash
+git log --oneline
+```
+
+✅ You should now see **one clean commit** where there were three.
 
 ---
 
 ## 🧠 Reflect
 
-- What’s the difference between `git log` and `git reflog`?
-- How does Git “remember” things even after a reset?
-- Why should you always check `reflog` before panicking?
+- Why is `--amend` useful when working on a single file?
+- When is it good practice to squash commits?
+- What would happen if you did this after pushing?
 
 ---
 
 ## ✅ Summary
 
-| You want to...                      | Use this             |
-|------------------------------------|----------------------|
-| Undo a local commit completely     | `git reset --hard`   |
-| Recover something you deleted      | `git reflog`         |
-| Return to a previous state         | `git reset <hash>`   |
+| Action                     | Command                            |
+|----------------------------|-------------------------------------|
+| Fix your last commit       | `git commit --amend`               |
+| Combine multiple commits   | `git rebase -i HEAD~N`             |
+| Keep your history clean    | Use these **before pushing**       |
 
-🎉 You’ve just recovered from a Git disaster like a pro!
+🎉 You’ve just learned to write cleaner, more professional commit histories!
 
+---
+
+# 🔁 Extension Activity: Merge vs Rebase
+
+## 🧭 Goal
+
+Understand the difference between `git merge` and `git rebase` by applying both to the same branches and comparing the result.
+
+---
+
+## 1️⃣ Setup: Create a Feature Branch
+
+In your GitHub-connected RStudio project:
+
+1. Create a file: `experiment.R`
+2. Add one line:
+   ```
+   Main branch version
+   ```
+3. Save, stage, and commit:
+   ```
+   "Add base file on main"
+   ```
+
+4. Create a new branch called `feature`:
+
+```bash
+git switch -c feature
+```
+
+---
+
+## 2️⃣ Add Work on the Feature Branch
+
+1. Edit `experiment.R` again:
+   ```
+   Feature branch addition
+   ```
+
+2. Save and commit:
+   ```
+   "Add feature content"
+   ```
+
+✅ You now have two commits on separate branches.
+
+---
+
+## 3️⃣ Add a Change to `main`
+
+1. Switch back to `main`:
+
+```bash
+git switch main
+```
+
+2. Add to the file again:
+   ```
+   Main branch additional note
+   ```
+
+3. Save and commit:
+   ```
+   "Add note on main branch"
+   ```
+
+---
+
+## 📊 At This Point...
+
+Your Git history looks like this:
+
+```text
+          A---B  (feature)
+         /
+    ---O---C  (main)
+```
+
+- `O` = Original commit
+- `A` = Feature commit
+- `C` = Main branch commit
+- `B` = We'll merge or rebase next
+
+---
+
+## 4️⃣ Option A: Merge the Feature Branch
+
+```bash
+git merge feature
+```
+
+You’ll get a **merge commit**, like this:
+
+```text
+          A---B  (feature)
+         /     \
+    ---O---C-----M  (main)
+```
+
+✅ History shows a clear branching path and merge point.
+
+---
+
+## 5️⃣ Option B: Try It Again with Rebase
+
+> This will recreate the same setup and use `rebase` instead of `merge`.
+
+1. Reset the last merge:
+
+```bash
+git reset --hard HEAD~1
+```
+
+2. Switch to the `feature` branch:
+
+```bash
+git switch feature
+```
+
+3. Rebase it onto `main`:
+
+```bash
+git rebase main
+```
+
+4. Now go back to `main` and fast-forward:
+
+```bash
+git switch main
+git merge feature
+```
+
+---
+
+## 📊 After Rebase
+
+Your Git history now looks like:
+
+```text
+    ---O---C---A'  (main, feature)
+```
+
+- `A'` is a new version of A, replayed on top of C
+- No merge commit needed — linear history
+
+---
+
+## 🧠 Reflect
+
+* What’s the key difference between `merge` and `rebase`?  
+* Which history is easier to read?  
+* When is a merge preferred?  
+* Why must you be careful rebasing pushed commits?  
+
+---
+
+## ✅ Summary
+
+| Action                     | Result                            |
+|----------------------------|------------------------------------|
+| `git merge feature`        | Preserves both branches + merge commit |
+| `git rebase main` (on feature) | Rewrites feature history as linear |
+| Use `merge` after pushing  | ✅ Safe for shared work |
+| Use `rebase` before pushing | ✅ Keeps history clean |
+
+🎉 You've now seen both strategies in action — use the right one for the right job!
