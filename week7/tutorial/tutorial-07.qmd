@@ -1,288 +1,144 @@
+# 🛠️ Tutorial: "Oh no, I lost my work!"  
+### Using `git reflog` and `reset` to recover deleted commits
+
+## 🧭 Goal
+
+You’ll simulate a common Git mistake — deleting recent commits — and learn how to recover your work using `git reflog`.
+
 ---
-title: 'ETC5513: Collaborative and Reproducible Practices'
-subtitle: "Tutorial 7"
-author: "Michael Lydeamore"
-date: today
-format:
-    unilur-html:
-        output-file: index.html
-        embed-resources: true
-    unilur-html+solution:
-        output-file: solution.html
-        embed-resources: true
-resources:
-  - ../images/front.jpg
+
+## 1️⃣ Create a New Repository on GitHub
+
+1. Go to [https://github.com](https://github.com)
+2. Click **+ → New repository**
+3. Name it:  
+   ```
+   git-recovery-tutorial
+   ```
+4. ✅ Check **"Add a README file"**
+5. Click **Create repository**
+
 ---
-```{r, echo = FALSE, eval = file.exists("tutorial.css")}
-htmltools::includeCSS("tutorial.css")
-```
 
+## 2️⃣ Clone the Repo into RStudio
 
-## `r emo::ji("target")` Objectives
+1. In RStudio:  
+   **File → New Project → Version Control → Git**
 
-* Practice version control workflow.
-* Ammend commits.
-* Visit past commits and create branches from those.
-* Merging branches and deal with conflicts.
-* Practice pull requests.
-* Use git reset and git revert.
+2. Paste the **SSH** or **HTTPS** URL of your GitHub repo
 
-##  Forks, pull request, commits and inspecting differences between commits (work in pairs)
+3. Choose a location on your computer
 
-1. Create a new *public* GitHub repository called *Tutorial7-XX* and replace *XX* with your initials. Include a *README.md* file.
+4. Click **Create Project**
 
-::: {.unilur-solution}
-![](../images/t1.png){fig-align="center"}
-:::
+✅ You now have a Git-connected RStudio project
 
-2. Create a new branch called `newbranchXX` and move the HEAD of your repo to the tip of `newbranchXX`.
+---
 
-::: {.unilur-solution}
-* `git branch newbranchML`
-* `git checkout newbranchML`
-:::
-  
-3. In your new branch add a new file called `exerciseXX.qmd` and replace XX with your initials.
+## 3️⃣ Create and Commit Some Work
 
-::: {.unilur-solution}
-```
-touch exerciseML.qmd
-```
-:::
-  
-4. Stage, commit and push the changes into the remote repo
-  
-::: {.unilur-solution}
-```
-git status
-git add exerciseML.qmd
-git commit -m "Adding exerciseML.qmd"
-git push origin newbranchML
+### Step 1: Add a file
 
-You should see something like this:
+1. Go to **File → New File → Text File**
+2. Type:
 
-![](../images/ex.png){fig-align="center"}
+   ```
+   Line A
+   ```
 
-```
-:::
-  
-5. Create a new folder in `newbranchXX` called `figs` and add `front.jpg` (you can find the figure [here](../images/front.jpg))
-  
-::: {.unilur-solution}
-```
-mkdir newbranchXX
-```
-Move the figure into the folder.
+3. Save the file as: `recovery.txt`
 
-Alternatively you could create a folder using your oprtating system.
-:::
+4. In the **Git pane**, stage and commit:
+   - ✅ Message: `"Add Line A"`
 
-6. Stage, commit and push the changes into the remote repo.
+---
 
-::: {.unilur-solution}
-```
-git status
-git add .
-git status
-git commit -m "Adding figures folder and Figure 1"
-git push origin newbranchML
-```
-:::
+### Step 2: Add more commits
 
-7. Using `git log`  and `git log --oneline` inspect the commits that you have made.
+1. Add a second line to `recovery.txt`:  
+   ```
+   Line B
+   ```
+   Save → stage → commit → `"Add Line B"`
 
-::: {.unilur-solution}
-![](../images/view.png){fig-align="center"}
-:::
+2. Add a third line to the same file:  
+   ```
+   Line C
+   ```
+   Save → stage → commit → `"Add Line C"`
 
-8. Install the `tinytex` R package in your Rstudio session and add the following to the `exerciseXX.qmd` 
+---
 
-```yaml
-title: "Reproducible and Collaborative Practices"
-subtitle: "Tutorial 7"
-author: "Your Name"
-institute: "Department of Econometrics and Business Statistics"
-output: 
- pdf:
-   toc: true
-   toc_depth: 2
-   number_sections: true
-   highlight: tango
-header-includes: 
-  - \usepackage{titling}
-  - \pretitle{\begin{center} \includegraphics[width=5in,height=13in]{figs/front.jpg}\LARGE\\}
-  - \posttitle{\end{center}}
-  - \usepackage{fontawesome}
-  - \usepackage[most]{tcolorbox}
-  - \usepackage{xcolor}
-  - \usepackage{sectsty}
-  - \sectionfont{\color{olive}}
-  - \usepackage{verbatim}
-```
+### Confirm your work
 
+In the **Terminal tab**, run:
 
-9. Use `git status` and `git log --oneline` to inspect your repo.
-  
-10. Stage  `exerciseXX.qmd`.
-
-::: {.unilur-solution}
-`git add exerciseXX.qmd`
-:::
-  
-11. Unstage `exerciseXX.qmd`.
-
-::: {.unilur-solution}
-`git reset exerciseXX.qmd`
-:::
-  
-12. Stage and commit changes into the remote repo. Do not push yet.
-
-::: {.unilur-solution}
-```
-git status
-git add exerciseXX.qmd
-git commit -m "Adding YAML to exerciseXX.qmd"
-```
-:::
-
-13. Amend this last commit. \textbf{Hint:}
-
-   \begin{verbatim} git commit --amend  \end{verbatim}
-    
-   - after that in your terminal you can use :q to get out of the text editor
-   
-   \begin{verbatim} git push --force \end{verbatim}
-   
-    
-   - You can also right click on your last commit in the VSCode tree and select *edit commit message*.  
-     
-14. Add one new section into the `exerciseXX.qmd`.
-
-::: {.unilur-solution}
-We can add a section using markdown language with `# New section`
-:::
-
-15. Stage, commit and push the changes into the remote repo.
-
-::: {.unilur-solution}
-```
-git status
-git add exerciseXX.qmd
-git commit -m "Adding a section to exerciseXX.qmd"
-git push origin main
-```
-:::
-  
-16. Inspect the differences between your last two commits. \textbf{Hint:} `git diff oldestcommit_SHA .. HEAD --color-words`
-
-::: {.unilur-solution}
-```
-git diff e5835bb 1f9ccfa 
-git diff e5835bb..HEAD
-```
-:::
-   
-   
-17. Go back to a previous commit of your choice and create a new branch from there. \textbf{Hint:} `git checkout SHA/SHA1`.
-
-::: {.unilur-solution}
-```
-git log --online
-git checkout aa835e8
-```
-
-![](../images/log_checkout.png){fig-align="center"}
-
-```
-git checkout -b mynew_branch
-```
-
-![](../images/ex3.png){fig-align="center"}
-
-
-:::
-
-   
-18. Checkout into the new branch and add a new section into `exerciseXX.qmd`. Then merge this new branch into your partner's branch.
-
-::: {.unilur-solution}
-```
-git checkout `mynew_branch`
-In Rstudio you can add a new section into `exerciseXX.Rmd` file by using # and then save the file.
-git add exerciseXX.Rmd
-git commit -m "Add new section"
-git checkout main
-git merge `mynew_branch` -m "Merging branches"
-git push
-```
-:::
-
-
-   
-19. Create a pull request from your branch to main, accept the change and deal with any possible merge conflicts.
-
-::: {.unilur-solution}
-![](../images/pull.png){fig-align="center"}
-
-:::
-
-
-## Closer look to commits, revert to previous commits and reset your repository.
-
-1. Use RStudio to inspect your previous exercise repo.
-
-2. Inspect the tree and commits.
-3. Create a new section in *exerciseXX.qmd*.
-
-4. Stage, commit and push the changes.
- 
-5. Add a new *latex list* inside the last section that you have created. \textbf{Hint:} \begin{verbatim} \begin{itemize} \item ... \end{itemize} \end{verbatim}
-
-::: {.unilur-solution}
-\begin{verbatim}
-\begin{itemize}
-\item This is the first
-\item This is the second
-\end{itemize}
-\end{verbatim}
-
-The list below is equivalent to use - in markdown:
-
-\begin{verbatim}
-\begin{enumerate}
-\item This is the first
-\item This is the second
-\end{enumerate}
-\end{verbatim}
-:::
-
-
-6. Stage, commit and push the changes.
- 
-7. Go back and find the SHA number of the second last commit and use `git reset --mixed SHA` or `git reset --mixed HEAD~1`. Type `git status` and observe what has changed. How many commits do you have now in your repo now? 
-
-::: {.unilur-solution}
-```
+```bash
 git log --oneline
-git reset e5835bb
 ```
 
-![](../images/gitreset.png){fig-align="center"}
+✅ You should see 3 commits, most recent at the top
 
-Now the HEAD of our repo is at e5835bb. 
-`git log --oneline` (you will see that now you have one commit less, see figure above)
+---
 
-:::
+## 4️⃣ The Mistake: Reset Too Far 😱
 
- 
-8. In the terminal use `git revert` to go back to one of your previous commits.
+Let’s simulate a classic Git accident — going back too far:
 
-::: {.unilur-solution}
-```
-git revert 20654d6
+```bash
+git reset --hard HEAD~2
 ```
 
-This might lead to conflicts that will need to be dealt with before being able to complete the revert.
-We will look revert in more detail in Week 8.
-:::
+- This removes your last two commits
+- Open `recovery.txt` — only Line A should remain
+
+---
+
+## 5️⃣ Use `git reflog` to Investigate
+
+Now run:
+
+```bash
+git reflog
+```
+
+You’ll see a list of recent Git actions, including the reset and your lost commits.
+
+Look for the commit hash that says something like:
+
+```
+commit: Add Line C
+```
+
+---
+
+## 6️⃣ Recover Your Work
+
+To bring it all back:
+
+```bash
+git reset --hard <hash-of-last-good-commit>
+```
+
+✅ Your full file should be restored — including Line B and Line C
+
+---
+
+## 🧠 Reflect
+
+- What’s the difference between `git log` and `git reflog`?
+- How does Git “remember” things even after a reset?
+- Why should you always check `reflog` before panicking?
+
+---
+
+## ✅ Summary
+
+| You want to...                      | Use this             |
+|------------------------------------|----------------------|
+| Undo a local commit completely     | `git reset --hard`   |
+| Recover something you deleted      | `git reflog`         |
+| Return to a previous state         | `git reset <hash>`   |
+
+🎉 You’ve just recovered from a Git disaster like a pro!
 
