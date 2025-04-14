@@ -130,10 +130,10 @@ git checkout <commit-hash>
 
 You're now in a **detached HEAD** state.
 
-Try editing `notes.txt` and committing:
+Try editing `model.R` and committing:
 
 ```bash
-git add notes.txt
+git add model.R
 git commit -m "Edit in detached HEAD"
 ```
 
