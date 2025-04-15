@@ -1,0 +1,15 @@
+{
+  "hash": "5a40a36f8e1d1da64f59b4f70df2d89b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: 'ETC5513: Collaborative and Reproducible Practices'\nsubtitle: \"Workshop 4\"\nauthor: \"Michael Lydeamore\"\ndate: today\nformat:\n    unilur-html: \n        embed-resources: true\n        output-file: \"index.html\"\n---\n\n::: {.cell}\n\n:::\n\n\n\n## Exercise 1: Adding a new file in a repo\n\nUsing the repo from last week, open the `.Rproj` file to start the RStudio Project.\n\n::: {.callout-tip}\nIf you don't have an RStudio project from last week's workshop, create one now.\n:::\n\n1. Create a file called `week4.qmd`. Add the following to the YAML:\n    * Title: Learning to reference figures, tables and sections\n    * Author: Write your name\n    * Todays date\n    * Format: HTML\n\n2. Using the command line interface, stage, commit and push the changes to the remote repo.\n\n3. Go to GitHub and inspect your commits in the remote repo.\n\n## Exercise 2: Creating a branch\n\nFor this exercise, continue working in the same project as in Exercise 1\n\n1. Use the terminal to create a new branch using `git branch globaloptions`\n\n2. Switch to this branch using `git switch globaloptions`\n\n3. Refresh your Rstudio to see which branch you are currently working in\n\n4. Switch back to main using `git switch main`, and check you can see it in RStudio.\n\n5. Switch again back to `globaloptions`\n\n5. Delete the branch using `git branch -d globaloptions`. What error do you get?\n\n6. Switch to main and again try to delete `globaloptions`\n\n7. Re-create global options as in Step 2. Inside the `week4.qmd`, modify the YAML to include the following options:  \n```\nexecute:\n    echo: false\n    warning: false\n    message: false\n```\n\n8. Stage, commit and push the changes to the remote repo in GitHub.\n\n9. Check you can see the new branch on GitHub.\n\n#### Extension\n\nMerge the branch `globaloptions` into the main branch.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

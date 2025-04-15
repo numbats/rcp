@@ -1,0 +1,21 @@
+{
+  "hash": "e728697c48cdb6ff3ad5feb435a27271",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Week2Workshop\"\nformat: \n  html: \n    theme: cerulean\n  pdf: default\nauthor: \"Michael Lydeamore\"\n---\n\n::: {.cell}\n\n:::\n\n\n\n\n\n\n# Introduction\n\nIn this tutorial we are looking at the Avian Influenza cases detected globally since 1997.\n\n\n[US CDC](https://www.cdc.gov/bird-flu/php/avian-flu-summary/chart-epi-curve-ah5n1.html)\n\n\n\n\n",
+    "supporting": [
+      "Week2_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "\\usepackage{booktabs}\n\\usepackage{longtable}\n\\usepackage{array}\n\\usepackage{multirow}\n\\usepackage{wrapfig}\n\\usepackage{float}\n\\usepackage{colortbl}\n\\usepackage{pdflscape}\n\\usepackage{tabu}\n\\usepackage{threeparttable}\n\\usepackage{threeparttablex}\n\\usepackage[normalem]{ulem}\n\\usepackage{makecell}\n\\usepackage{xcolor}\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

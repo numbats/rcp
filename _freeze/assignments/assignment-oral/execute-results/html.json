@@ -1,0 +1,15 @@
+{
+  "hash": "7503e2fa96453fe1761abf1c8311df7b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: 'ETC5513: Collaborative and Reproducible Practices'\nsubtitle: \"Assignment - Oral Presentation\"\nauthor: \"Michael Lydeamore\"\ndate: today\nformat:\n    html:\n        embed-resources: true\n---\n\n\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n\n\n\n## Objectives\n\n* Demonstrate an understanding of `git` workflows\n* Communicate technical ideas clearly and effectively\n\n::: {.callout-important}\nThis is an **individual**  assignment.\n:::\n\n## Instructions\n\nCreate a **10 minute maximum** video that answers the following questions:\n\n---\n\n1. **What happens when two people edit the same file?**  \n   How does `git` handle that, and what do you need to do?\n\n2. **How does `git` help you recover from mistakes?**  \n   Explain how you would undo a bad commit, and how that might differ depending on the situation.\n\nThroughout the video, you should share/record your screen and have you camera visible. You are welcome to use the screen for demonstrating the concepts you are explaining.\n\n---\n\nYour goal is not just to show what to do, but to explain **why** you’re doing it. For example:\n\n>  \"We revert this commit instead of resetting because the commit has already been pushed and we don’t want to rewrite public history.\"\n\n---\n\n::: {.callout-important}\nYou **cannot speed up** your recording — it must be delivered in real time to ensure you're within the time limit.\n:::\n\n## Submission\n\nPlease upload the completed video file directly to Moodle.\n\n### Tips\n\n- You may pre-prepare materials (e.g., set up Git repositories or branches in advance).\n- Speak as if you're explaining these concepts to a colleague who’s **familiar with Git** but **not very experienced**.  \n  Aim for clarity and detail, not just correctness.\n- Visuals and terminal demos are recommended, but are not required — clarity of explanation matters most.\n\n## Marking rubric\n\n* Technical content of each question: 5 points each (total 10 points)\n* Explaining \"why\": 3 points\n* Overal clarity and communication: 2 points\n\n1 mark is deducted for every 30 seconds over the 10 minute time limit (maximum 3 mark deduction). A 10 minute 12 second video thus has a maximum of 14 marks.\n\n**Total: 15 marks**",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

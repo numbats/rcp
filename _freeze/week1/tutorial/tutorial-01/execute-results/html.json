@@ -1,0 +1,15 @@
+{
+  "hash": "e44b726642e024cf252254394b0d4fd4",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: 'ETC5513: Collaborative and Reproducible Practices'\nsubtitle: \"Tutorial 1\"\nauthor: \"Michael Lydeamore\"\ndate: today\nformat:\n    unilur-html: \n        embed-resources: true\n        output-file: \"index.html\"\n---\n\n::: {.cell}\n\n:::\n\n\n\n## 🎯 Objectives\n\n-   Getting to know your colleagues\n-   Getting setup with R, RStudio and GitHub\n-   What is R and why do we need it?\n-   Getting some practice in R\n-   Learn about R and RStudio Resources\n\n## R in practice\n\nThere are plenty of resources to start getting to know how R works. Here are a couple:\n\n1.  [StartR](https://startr.numbat.space/)\n2.  [Posit (R) Primers](https://posit.cloud/learn/recipes)\n\nFor this tutorial, please work through Modules 3 and 4, and also Quarto Basics. Don't worry if you don't make it all the way through them in class\n\n# R and Rstudio Cheat Sheets\n\nThere are lots of Cheat Sheets and you don't need to learn all about them in this tutorial. The goal here is that you get familiar with those resources so that you can use them when you need to during the semester. Browse over the site and get an idea about what is available.\n\nYou can find the cheat sheets [here](https://rstudio.com/resources/cheatsheets/)\n\n## Familiarize yourself with useful resources for R programming\n\nThere are lots of wonderful R, Rstudio and Data science using R resources that will help you during the semester. Below there is a list to get you started:\n\n-   [Hands-On Programming with R](https://rstudio-education.github.io/hopr/index.html)\n-   [R for Data Science](https://r4ds.had.co.nz/index.html)\n\nA more comprehensive list of books that are freely available can be fond on the following webpage: [Book list](https://rstudio.com/resources/books/)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "hash": "49baaa55f9ee0f1ba4a790b049a22455",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: 'ETC5513: Collaborative and Reproducible Practices'\nsubtitle: \"Workshop 1\"\nauthor: \"Michael Lydeamore\"\ndate: today\nformat:\n    unilur-html: \n        embed-resources: true\n        output-file: \"index.html\"\n---\n\n::: {.cell}\n\n:::\n\n\n\n## 🎯 Objectives\n\n-   Getting to know your colleagues\n-   Getting setup with R, RStudio and GitHub\n\n## Install R on your computer\n\nR is maintained by an international team of developers and is available via The Comprehensive R Archive Network (CRAN) webpage. Please select the appropriate download option depending on your operating system: Windows, Mac, or Linux.\n\n::: callout-tip\n## R\n\n[Install R here](https://cran.r-project.org/)\n:::\n\nYou can find some further information about how to install R [here](https://learnr.numbat.space/chapter1).\n\n## Install RStudio on your computer\n\nRStudio is an integrated development environment for R, a programming language for statistical computing and graphics. It is available in two formats: RStudio Desktop is a regular desktop application while RStudio Server runs on a remote server and allows accessing RStudio using a web browser. (Source: Wikipedia)\n\n::: callout-tip\n## RStudio\n\n[Install RStudio here](https://posit.co/download/rstudio-desktop/)\n:::\n\n## Get yourself a free GitHub Student Developer pack\n\nSign up for a free GitHub Student Developer Pack. You will have to use your Monash email account (which you can add to your existing GitHub account if you like) and make sure you remember your login details!\n\nTo sign up, click [here](https://education.github.com/pack).\n\n## Getting to know more about R\n\nHave a read about R [here](https://www.r-project.org/about.html).\n\n## Get a ChatGPT account\n\nSign up for a free ChatGPT account [here](https://chat.openai.com/auth/login). You can use your Monash email address if you like.\n\nAsk ChatGPT to give you an example of R code, then copy the code into RStudio and execute it. Compare with your colleagues at your table. Is it the same? Is it different? Is it correct?\n\n## R in practice\n\nThere are plenty of resources to start getting to know how R works. Here are a couple:\n\n1.  [StartR](https://startr.numbat.space/)\n2.  [Posit (R) Primers](https://posit.cloud/learn/recipes)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
