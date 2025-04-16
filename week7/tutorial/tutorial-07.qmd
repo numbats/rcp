@@ -16,14 +16,11 @@ htmltools::includeCSS("tutorial.css")
 ```
 
 # Cleaning Up Your Commit History  
-### With `git commit --amend` and Squashing via Rebase
+### With `git rm` and `.gitignore`
 
 ## 🧭 Goal
 
-Learn how to rewrite your commit history in Git using:
-
-- `git commit --amend` to fix the **last** commit
-- `git rebase -i` to **squash** multiple commits into one
+Learn how to remove files from Git tracking with `git rm`, and prevent them from being re-added with a `.gitignore` file.
 
 ---
 
@@ -33,7 +30,7 @@ Learn how to rewrite your commit history in Git using:
 
 1. Create a new repository:  
    ```
-   git-history-cleanup
+   git-ignore-cleanup
    ```
 2. ✅ Check "Add a README file"
 
@@ -49,41 +46,81 @@ Learn how to rewrite your commit history in Git using:
 
 ---
 
-## 2️⃣ `--amend`: Edit Your Last Commit
+## 2️⃣ Add and Commit a File
 
-### Step 1: Add a New File
+1. Create a new `qmd` in RStudio:
+   - Go to **File → New File → Quarto Document**
 
-1. Go to **File → New File → Quarto Document**
-2. Give it a name like: `report.qmd`
-3. In the file, add some content, for example:
-   ```markdown
-   # My Report
+2. Save the file as `notes.qmd`
 
-   This is the first version.
+3. Add some content like:
+
+   ```r
+   summary(mtcars)
    ```
 
-4. Save the file  
-5. In the **Git pane**, stage and commit with the message:  
-   `"Initial commit"`
+4. Stage and commit the file:
+   ```
+   "Add analysis script"
+   ```
 
 ---
 
-### Step 2: Realise You Forgot Something
+## 3️⃣ Accidentally Add a Data File
 
-1. Add another line, such as:
-   `This line was accidentally left out.`
+1. Download the data from Week 2 on Moodle, and save it into your project as `data.csv`
 
-2. Save the file  
-3. Stage the change  
-4. In the terminal, run:
+2. Stage and commit:  
+   ```bash
+   git add data.csv
+   git commit -m "Add raw data"
+   ```
+
+---
+
+## 4️⃣ Remove the File from Git, But Keep It Locally
+
+Realise you **don’t want this in version control**, but you still need it for local use.
+
+In the terminal:
 
 ```bash
-git commit --amend
+git rm --cached data.csv
+git commit -m "Stop tracking data.csv"
 ```
 
-💬 You can edit the commit message if you like — or keep it the same.
+✅ `data.csv` is still on your computer, but Git will no longer track it.
 
-✅ The most recent commit now includes both changes.
+---
+
+## 5️⃣ Add It to `.gitignore`
+
+To prevent it from being accidentally added again:
+
+1. Open (or create) a `.gitignore` file in your repo root
+2. Add:
+
+   ```
+   data.csv
+   ```
+
+3. Save and stage the `.gitignore` file
+4. Commit:
+   ```
+   "Ignore data.csv"
+   ```
+
+---
+
+## 🔍 Check It Worked
+
+1. Run:
+
+```bash
+git status
+```
+
+✅ You should **not see `data.csv`** listed anywhere — Git is now ignoring it.
 
 ---
 
