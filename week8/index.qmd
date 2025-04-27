@@ -6,7 +6,7 @@ email: "michael.lydeamore@monash.edu"
 date: "Week 9"
 department: "Department of Econometrics and Business Statistics"
 unit-url: "rcp.numbat.space"
-footer: "ETC5513 Week 9"
+footer: "ETC5513 Week 8"
 format: 
   revealjs:
     logo: images/monash-stacked-blue-rgb-transparent.png
