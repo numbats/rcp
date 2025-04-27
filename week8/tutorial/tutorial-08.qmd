@@ -1,6 +1,6 @@
 ---
 title: 'ETC5513: Collaborative and Reproducible Practices'
-subtitle: "Tutorial 8"
+subtitle: "Tutorial 9"
 author: "Michael Lydeamore"
 date: today
 format:
@@ -18,66 +18,52 @@ htmltools::includeCSS("tutorial.css")
 
 ## `r emo::ji("target")` Objectives
 
-* Create a reproducible PDF report using a template
-* Work in groups to create a joint report using version control
-* Practice all markdown tools that we have learnt
+* Learn how to use `git` and GitHub when we are dealing with files larger than 100MB
 
-##  Create a reproducible and collaborative report
+## Git LFS
 
-Form a group of 3 or 4 people, with whom you will create a reproducible and collaborative report.
+1. Create a repository in GitHub that has a license, a .gitignore file and a README.md file.
 
-In this group:
+2. Clone the repository to your local machine
 
-* Nominate a person who will create a GitHub repo with a `README.md` file. The repo can be public or private.
+3. Take the large zip file from moodle
 
-* Clone the repository locally, and set up a template, either one from the [Monash templates](https://robjhyndman.com/hyndsight/quarto_templates.html) or the [Quarto Journals system](https://quarto.org/docs/journals/)
+4. Stage, commit and try to push this file.
 
-::: {.unilur-solution}
-Since the repository has already been created, we have to use the command to add it to a pre-existing repository:
+5. What do you notice about the error?
 
-`quarto add numbats/monash-quarto-letter`
+6. Reset your previous commit.
 
-or
-
-`quarto install extension numbats/monash-quarto-letter`
-
-Note if you don't have quarto on your path, this command may not work. If so, install the Quarto binary.
-:::
-
-* Create a new Quarto document, and change the output format to match the template you have picked.
-
-::: {.unilur-solution}
-For us, that is:
-
-```
-format: memo-pdf
-```
-:::
-
-* Add a chunk that loads in the data you can find under this week's Moodle.
+4. Add this file **using the `git lfs` workflow**. Remember the quotes, and that your file extension is `.zip`.
 
 ::: {.unilur-solution}
 ```
-covid_data <- read_csv(file = "Data/worldwidecases.csv")
+git lfs install
+git lfs track "*.zip"
+git add .gitattributes
+git add .
+git commit -m "Adding large file"
+git push origin main
 ```
 :::
 
-* Stage, commit and push these changes to the remote (GitHub).
+5. Push the changes onto GitHub using an extended commit message.
 
-* Invite your teammates to collaborate as you have done in the previous tutorials.
+::: {.unilur-solution}
+`git commit` (without the `-m` flag) will open a text editor for you to type your extended commit.
+:::
 
-## Working together
+Add a git annotated tag to the most recent commit called `v1.0`.
 
-**Each team member**:
+## Collaborating with others
 
-* Make their own branch
-* Work in their _own_ section - give everyone a number, and they only work in that section
-* In each section, create a figure and describe what you observe from the figure.
+With at least one other person, swap repository details. They do not need to add you as a collaborator at this stage.
 
-Make sure the figure has a caption, and a label, and that the figure is cross-referenced in the text.
+Clone their repository to your computer.
 
-* Stage, commit and push changes as you progress - don't leave it all until the end.
+Practice the following:
 
-## Creating a single report
+1. Open a pull request with an identified issue with the report. This doesn't have to be a real issue, it's just for practicing our issues and commit messages.
+2. Your partner should fix the issue, and close the issue using a commit message.
+3. Practice the `git fetch` workflow, to update your local database without moving `HEAD`. Then, move your repository `HEAD` to the latest commit.
 
-Once each team member has finished working on their section, please merge the changes into the main branch. The final document should be in the main branch and include each section from each team member. All cross-references should be shown and function as expected.
