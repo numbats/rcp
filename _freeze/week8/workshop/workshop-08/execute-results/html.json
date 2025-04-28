@@ -1,0 +1,15 @@
+{
+  "hash": "7e7e9ad8da289b8e2f77c4ae26c075b5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: 'ETC5513: Collaborative and Reproducible Practices'\nsubtitle: \"Workshop 7\"\nauthor: \"Michael Lydeamore\"\ndate: today\nformat:\n    unilur-html: \n        embed-resources: true\n        output-file: \"index.html\"\n        toc: true\n---\n\n::: {.cell}\n\n:::\n\n\n\n# Workshop: Git LFS, Big Files, and Recovery\n\n## 🧭 Goal\n\nUnderstand:\n- Why Git can't handle big files normally\n- How to recover if you accidentally try to commit something too big\n- The basics of Git LFS\n\n---\n\n## Setup\n\n1. Create a new GitHub repository:\n   ```\n   git-lfs-practice\n   ```\n\n2. Clone it to your computer using RStudio:\n   - **File → New Project → Version Control → Git**\n   - Paste the repo URL\n\n---\n\n## Simulate a Mistake: Add a Huge File\n\n1. In RStudio, create a new **dummy file**:\n\n   - New File → Text File\n   - Save it as `bigfile.txt`\n\n2. Add a lot of content:\n\n   - You can copy-paste a lot of text\n   - OR use this in the Terminal to make a large file:\n\n     ```bash\n     base64 /dev/urandom | head -c 60MB > bigfile.txt\n     ```\n\n   (If that's tricky, just manually paste lots of content.)\n\n---\n\n## Try to Commit the Huge File\n\n1. Stage `bigfile.txt`\n2. Try to commit it.\n\n🔵 **Expected Result**:  \nGitHub will likely **reject** the push (file too large >100MB), or your Git client will warn you.\n\n✅ You’ve hit a *real* size limit!\n\n---\n\n## Try to Fix It With `git revert`\n\n1. Try to revert the bad commit:\n\n   ```bash\n   git revert HEAD\n   ```\n\n🔵 **Expected Result**:  \nGit **won't let you** — because the giant file is still in the commit history.\n\n⚠️ **Key point**: `git revert` adds *new* commits; it doesn't erase old ones.\n\n---\n\n## Actually Fix It With `git reset`\n\n1. Do a soft reset to move back before the bad commit:\n\n   ```bash\n   git reset --soft HEAD~1\n   ```\n\n2. Now **unstage** the big file manually in RStudio (or):\n\n   ```bash\n   git restore --staged bigfile.txt\n   ```\n\n3. Delete `bigfile.txt` from your project folder.\n\n4. Commit the new clean state:\n   ```\n   \"Remove large file after reset\"\n   ```\n\n---\n\n## Install Git LFS\n\n- Install Git LFS:  \n  Follow instructions here → https://git-lfs.github.com/\n  \n- Track large files safely:\n\n  ```bash\n  git lfs install\n  git lfs track \"*.csv\"\n  ```\n\n- Then commit/push files as usual — Git LFS manages the storage.\n\n---\n\n## Summary\n\n| Problem                          | Solution          |\n|-----------------------------------|-------------------|\n| Committed a huge file             | `git reset` + delete manually |\n| Need to work with big files safely | Use Git LFS         |\n\n🎉 You survived a Git crisis — just like real developers do!\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
