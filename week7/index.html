@@ -6,13 +6,12 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.549">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Michael Lydeamore">
   <meta name="dcterms.date" content="2001-07-01">
-  <title>ETC5513: Reproducible and Collaborative Practices</title>
+  <title>ETC5513: Collaborative and Reproducible Practices – ETC5513: Reproducible and Collaborative Practices</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -43,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -71,7 +70,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -85,7 +84,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -96,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-eeb5ccf5e2485fa37df59773d927e4b2.css">
   <link rel="stylesheet" href="../assets/tachyons-addon.css">
   <link rel="stylesheet" href="../assets/custom.css">
   <link rel="stylesheet" href="../assets/lecture-01.css">
@@ -106,204 +105,6 @@
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
-  }
-
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
-
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-titled.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-titled) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-titled .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-titled .callout-title  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-titled.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-titled.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-title {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-title {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-title {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
-  }
-
-  .callout.callout-titled .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-titled) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-title {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-title {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-title {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-title {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-title {
-    background-color: #ffe5d0
-  }
-
-  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -399,7 +200,7 @@
 
 <section id="etc5513-title" class="slide level2" data-background-image="images/bg-01.png">
 <h2><br><span class="monash-blue title">ETC5513: Reproducible and Collaborative Practices</span></h2>
-<h3 id="workflows-for-reproducible-data-analysis">Workflows for reproducible data analysis</h3>
+<h3 id="undoing-exporing-and-cleaning-with-git">Undoing, exporing and cleaning with git</h3>
 <p>Lecturer: <em>Michael Lydeamore</em></p>
 <p>Department of Econometrics and Business Statistics</p>
 <div class="tl">
@@ -422,42 +223,320 @@
 <h2>Open Frame</h2>
 
 <img data-src="images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="recap" class="slide level2">
-<h2>Recap</h2>
+<section id="fixing-your-commit-messages" class="slide level2">
+<h2>Fixing your commit messages</h2>
+<p>Last week most of us got stuck in <code>Vi</code> mode</p>
+<p>To fix this, run the following:</p>
+<h4 id="windows">Windows</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="fu">git</span> config <span class="at">--global</span> core.editor notepad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 id="macos">MacOS</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="fu">git</span> config <span class="at">--global</span> core.editor <span class="st">"open -e -W -n"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will set either notepad or TextEdit to be your commit editor (much nicer).</p>
+<p>On Mac, note you must <strong>quit</strong> (not just close the window) for the commit message to be complete.</p>
+</section>
+<section id="todays-goals" class="slide level2">
+<h2>🧠 Today’s Goals</h2>
 <ul>
-<li>Learn about <code>git rebase</code></li>
-<li>Learn about <code>git fetch</code> and <code>git merge</code></li>
-<li>Learn about staging and unstaging files</li>
-<li>Learn how to undo some changes</li>
+<li>Learn how to safely undo and explore commits</li>
+<li>Understand how to recover lost work</li>
+<li>Get more comfortable with the Git timeline and history</li>
+<li>Clean up messy projects</li>
 </ul>
 </section>
-<section id="aim" class="slide level2">
-<h2>Today’s plan</h2>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Aim</strong></p>
-</div>
-<div class="callout-content">
+<section id="git-mental-model" class="slide level2">
+<h2>🧠 Git Mental Model</h2>
+<p>Git works across three layers:</p>
 <ul>
-<li>Start learning about LaTeX</li>
-<li>LaTeX integration in qmd files</li>
-<li>Deeper understand about commits and SHA1 numbers</li>
-<li>Visualize commits</li>
-<li>Compare commits</li>
-<li>Moving back to different commits and create branches starting from past commits.</li>
-<li>Stage and unstage files</li>
-<li>Revert to a previous commits</li>
-<li>Removing files using git</li>
-<li>Changing branch names</li>
-<li>Clone all the branches from a repository</li>
+<li><strong>Working Directory</strong>: your actual files</li>
+<li><strong>Index (Staging Area)</strong>: what will be in your next commit</li>
+<li><strong>HEAD (Repository)</strong>: your last committed snapshot</li>
 </ul>
-</div>
-</div>
-</div>
+<p>Some examples: - <code>git add</code> moves changes → index - <code>git commit</code> moves index → HEAD - <code>git reset</code> moves HEAD pointer (soft/mixed/hard)</p>
+</section>
+<section id="reverting-and-resetting-recap" class="slide level2">
+<h2>🔁 Reverting and Resetting – Recap</h2>
+<h3 id="git-revert"><code>git revert</code></h3>
+<ul>
+<li>Creates a <strong>new commit</strong> that undoes a previous one</li>
+<li>Safe on shared branches (e.g.&nbsp;<code>main</code>)</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="fu">git</span> revert <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section class="slide level2">
+
+<h3 id="git-reset"><code>git reset</code></h3>
+<ul>
+<li><strong>Moves your branch pointer backward</strong></li>
+<li>Can <strong>rewrite history</strong> (dangerous on shared branches!)</li>
+<li>Options:
+<ul>
+<li><code>--soft</code>: Keep changes staged</li>
+<li><code>--mixed</code>: Keep changes unstaged</li>
+<li><code>--hard</code>: <strong>Deletes changes</strong></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="detached-head" class="slide level2">
+<h2>🧵 Detached HEAD</h2>
+<ul>
+<li>Happens when you check out a <strong>specific commit</strong>, not a branch</li>
+<li>Useful for exploring history</li>
+<li>If you make changes in this state, they can be lost unless you make a branch</li>
+</ul>
+</section>
+<section id="demo-detached-head-branch" class="slide level2">
+<h2>🧪 Demo: Detached HEAD + Branch</h2>
+<ol type="1">
+<li>In the terminal or Git pane:</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="fu">git</span> log <span class="at">--oneline</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Copy a commit hash from earlier and run:</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="fu">git</span> checkout <span class="op">&lt;</span>commit-hash<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’re now in <strong>detached HEAD</strong>!</p>
+</section>
+<section class="slide level2">
+
+<h3 id="rescue-your-work">🛟 Rescue Your Work</h3>
+<p>If you want to keep changes made in detached HEAD:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="fu">git</span> switch <span class="at">-c</span> recovered-work</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ This creates a new branch from that point!</p>
+</section>
+<section id="git-commit---amend" class="slide level2">
+<h2>✍️ <code>git commit --amend</code></h2>
+<p>Use this when you:</p>
+<ul>
+<li>Made a typo in the last commit message</li>
+<li>Forgot to include a file</li>
+<li>Want to slightly edit the last commit</li>
+</ul>
+</section>
+<section id="demo-amending-a-commit" class="slide level2">
+<h2>🧪 Demo: Amending a Commit</h2>
+<ol type="1">
+<li>Make a small commit<br>
+</li>
+<li>Realize you forgot something<br>
+</li>
+<li>Stage the missing file, then run:</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="fu">git</span> commit <span class="at">--amend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>🎯 You can edit the message or leave it the same</p>
+<p>⚠️ Avoid <code>--amend</code> if you’ve already pushed the commit</p>
+</section>
+<section id="git-reflog" class="slide level2">
+<h2>🔍 <code>git reflog</code></h2>
+<ul>
+<li>Shows <strong>every move of HEAD</strong> (including things Git log forgets)</li>
+<li>Useful to <strong>recover commits</strong> after a reset or checkout</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="fu">git</span> reflog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section class="slide level2">
+
+<h3 id="activity-oops-i-reset-too-far">🧪 Activity: Oops, I reset too far!</h3>
+<ol type="1">
+<li>Make a commit<br>
+</li>
+<li>Reset to a previous state:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a></a><span class="fu">git</span> reset <span class="at">--hard</span> HEAD~1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Run <code>git reflog</code> to find the lost commit<br>
+</li>
+<li>Use:</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a></a><span class="fu">git</span> checkout <span class="op">&lt;</span>hash<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a></a><span class="fu">git</span> switch <span class="at">-c</span> recovered-branch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>🎉 You’ve recovered “lost” work!</p>
+</section>
+<section id="git-rm-remove-files-from-the-repository" class="slide level2">
+<h2>🗑️ <code>git rm</code>: Remove Files from the Repository</h2>
+<ul>
+<li>Use <code>git rm</code> to delete a <strong>tracked</strong> file from both your working directory and Git’s index.</li>
+<li>Git will stage the deletion automatically.</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a></a><span class="fu">git</span> rm filename.txt</span>
+<span id="cb13-2"><a></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Remove filename.txt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ After this commit, the file will no longer exist in your working directory <em>or</em> the repository.</p>
+</section>
+<section id="why-not-just-delete-the-file" class="slide level2">
+<h2>❗ Why Not Just Delete the File?</h2>
+<ul>
+<li>If you delete a file in RStudio or your file browser:
+<ul>
+<li>Git will show it as <strong>“deleted: filename.txt”</strong></li>
+<li>But you still need to <code>git add</code> the deletion</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a></a><span class="co"># After deleting manually:</span></span>
+<span id="cb14-2"><a></a><span class="fu">git</span> status         <span class="co"># Shows deletion</span></span>
+<span id="cb14-3"><a></a><span class="fu">git</span> add filename.txt</span>
+<span id="cb14-4"><a></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Remove file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ <code>git rm</code> does both steps at once — it’s safer and cleaner</p>
+</section>
+<section id="recovering-a-deleted-file" class="slide level2">
+<h2>💡 Recovering a Deleted File</h2>
+<p>If you <strong>haven’t committed</strong> the deletion yet:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a></a><span class="fu">git</span> restore filename.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you <strong>already committed</strong> the deletion:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a></a><span class="fu">git</span> checkout HEAD~1 <span class="at">--</span> filename.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ Or use <code>git reflog</code> to find the commit where the file still existed</p>
+</section>
+<section id="git-rm---cached-keep-the-file-remove-it-from-git" class="slide level2">
+<h2>🧾 <code>git rm --cached</code>: Keep the File, Remove It from Git</h2>
+<ul>
+<li>Use this when you’ve <strong>added a file to Git by mistake</strong>, but you don’t want to delete it from your computer</li>
+<li>Git stops tracking it — but the file stays in your working directory</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a></a><span class="fu">git</span> rm <span class="at">--cached</span> data.csv</span>
+<span id="cb17-2"><a></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Stop tracking data.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ The file will still be on disk, but not in the next commit</p>
+</section>
+<section id="common-use-case" class="slide level2">
+<h2>🧠 Common Use Case</h2>
+<blockquote>
+<p>You committed a large data file by accident</p>
+</blockquote>
+<ol type="1">
+<li>Add the filename to <code>.gitignore</code></li>
+<li>Run:</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a></a><span class="fu">git</span> rm <span class="at">--cached</span> data.csv</span>
+<span id="cb18-2"><a></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Remove data.csv from tracking"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Push your changes<br>
+</li>
+<li>The file is now ignored and won’t be re-added</li>
+</ol>
+<p>✅ Useful for cleaning up mistakes without losing the file</p>
+</section>
+<section id="git-clean" class="slide level2">
+<h2>🧹 <code>git clean</code></h2>
+<ul>
+<li>Deletes <strong>untracked files</strong> (not in Git yet)</li>
+<li>Helpful when switching branches or cleaning clutter</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a></a><span class="fu">git</span> clean <span class="at">-n</span>   <span class="co"># dry run</span></span>
+<span id="cb19-2"><a></a><span class="fu">git</span> clean <span class="at">-f</span>   <span class="co"># permanently delete</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="warning" class="slide level2">
+<h2>⚠️ Warning</h2>
+<ul>
+<li><code>git clean</code> is <strong>permanent</strong></li>
+<li>You can’t undo it with <code>reflog</code> or reset</li>
+<li>Always use <code>-n</code> first to preview</li>
+</ul>
+</section>
+<section id="activity-cleaning-up" class="slide level2">
+<h2>🧪 Activity: Cleaning Up</h2>
+<ol type="1">
+<li>In RStudio, create a few new files <strong>but don’t add them to Git</strong></li>
+<li>Run:</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a></a><span class="fu">git</span> status</span>
+<span id="cb20-2"><a></a><span class="fu">git</span> clean <span class="at">-n</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>If it looks right:</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a></a><span class="fu">git</span> clean <span class="at">-f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ Now those untracked files are gone!</p>
+</section>
+<section id="when-to-use-what" class="slide level2">
+<h2>🧠 When to Use What</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Use This</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Undo safely on shared branches</td>
+<td><code>git revert</code></td>
+</tr>
+<tr class="even">
+<td>Clean up your last commit</td>
+<td><code>git commit --amend</code></td>
+</tr>
+<tr class="odd">
+<td>Rewind local commit history</td>
+<td><code>git reset</code></td>
+</tr>
+<tr class="even">
+<td>Accidentally reset or lost work</td>
+<td><code>git reflog</code></td>
+</tr>
+<tr class="odd">
+<td>Delete untracked junk</td>
+<td><code>git clean</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions?</h2>
+<ul>
+<li>When would you <strong>not</strong> use <code>reset</code>?</li>
+<li>What does <code>reflog</code> help you find that <code>log</code> doesn’t?</li>
+<li>Have you ever thought you lost work but actually didn’t?</li>
+</ul>
+</section>
+<section id="what-is-squashing" class="slide level2">
+<h2>🍥 What Is Squashing?</h2>
+<p><strong>Squashing</strong> means combining multiple commits into a single one.</p>
+<p>It’s useful for:</p>
+<ul>
+<li>Cleaning up messy history</li>
+<li>Preparing code before pushing or merging</li>
+<li>Grouping small fixes into one meaningful commit</li>
+</ul>
+<blockquote>
+<p>Squashing doesn’t change your code — just your history!</p>
+</blockquote>
+</section>
+<section id="how-squash-works" class="slide level2">
+<h2>🧠 How Squash Works</h2>
+<p>Before squashing:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb22-1"><a></a>A -- B -- C -- D  (main)</span>
+<span id="cb22-2"><a></a>         ↑</span>
+<span id="cb22-3"><a></a>       Fix typo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If B, C, and D are all part of one logical change, we can squash:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb23-1"><a></a>A -- [B+C+D]  (main)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ One clean commit — easier to read, review, and share.</p>
+</section>
+<section id="how-to-squash-commits" class="slide level2">
+<h2>🛠️ How to Squash Commits</h2>
+<p>Use <strong>interactive rebase</strong> to squash:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a></a><span class="fu">git</span> rebase <span class="at">-i</span> HEAD~3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ll see:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb25-1"><a></a>pick abc123 Add feature</span>
+<span id="cb25-2"><a></a>pick def456 Fix typo</span>
+<span id="cb25-3"><a></a>pick ghi789 Update docs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Change to:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a></a>pick abc123 Add feature</span>
+<span id="cb26-2"><a></a>squash def456</span>
+<span id="cb26-3"><a></a>squash ghi789</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then save + edit the commit message.</p>
+</section>
+<section id="when-and-when-not-to-squash" class="slide level2">
+<h2>⚠️ When (and When Not) to Squash</h2>
+<p>✅ Good times to squash:</p>
+<ul>
+<li>Before pushing a feature branch</li>
+<li>To combine tiny commits (“fix typo”, “rename var”, “oops”)</li>
+</ul>
+<p>❌ Avoid squashing:</p>
+<ul>
+<li>After you’ve pushed to a shared branch (rewrites history!)</li>
+</ul>
+</section>
+<section class="slide level2">
+
 </section>
 <section id="latex" class="title-slide slide level1 center">
 <h1>LaTeX</h1>
@@ -472,57 +551,57 @@
 <img data-src="images/LaTeX_template.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="latex-template-1" class="slide level2">
 <h2>LaTeX template</h2>
-<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource latex code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode latex"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a></span>
-<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
-<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a><span class="co">% Packages to be used</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
-<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6"></a><span class="co">% Creating title</span></span>
-<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a><span class="fu">\title</span>{This is an example}</span>
-<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a><span class="fu">\author</span>{ETC5513, Monash University}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-27"><pre class="sourceCode numberSource latex code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode latex"><span id="annotated-cell-27-1"><a href="#annotated-cell-27-1"></a></span>
+<span id="annotated-cell-27-2"><a href="#annotated-cell-27-2"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="annotated-cell-27-3"><a href="#annotated-cell-27-3"></a><span class="co">% Packages to be used</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-27-4" class="code-annotation-target"><a href="#annotated-cell-27-4"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}</span>
+<span id="annotated-cell-27-5"><a href="#annotated-cell-27-5"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-27-6" class="code-annotation-target"><a href="#annotated-cell-27-6"></a><span class="co">% Creating title</span></span>
+<span id="annotated-cell-27-7"><a href="#annotated-cell-27-7"></a><span class="fu">\title</span>{This is an example}</span>
+<span id="annotated-cell-27-8"><a href="#annotated-cell-27-8"></a><span class="fu">\author</span>{ETC5513, Monash University}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-27" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="1">List all the packages</span>
+<span data-code-cell="annotated-cell-27" data-code-lines="4" data-code-annotation="1">List all the packages</span>
 </dd>
-<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-27" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="2">% = comments</span>
+<span data-code-cell="annotated-cell-27" data-code-lines="6" data-code-annotation="2">% = comments</span>
 </dd>
 </dl>
 </section>
 <section id="latex-template-2" class="slide level2">
 <h2>LaTeX template</h2>
-<div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode numberSource latex code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode latex"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
-<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a><span class="fu">\maketitle</span></span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5"></a><span class="kw">\section</span>{Introduction}</span>
-<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6"></a></span>
-<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7"></a><span class="co">% Introduction content</span></span>
-<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8"></a></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-9" class="code-annotation-target"><a href="#annotated-cell-2-9"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-28"><pre class="sourceCode numberSource latex code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode latex"><span id="annotated-cell-28-1"><a href="#annotated-cell-28-1"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-28-2" class="code-annotation-target"><a href="#annotated-cell-28-2"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="annotated-cell-28-3"><a href="#annotated-cell-28-3"></a><span class="fu">\maketitle</span></span>
+<span id="annotated-cell-28-4"><a href="#annotated-cell-28-4"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-28-5" class="code-annotation-target"><a href="#annotated-cell-28-5"></a><span class="kw">\section</span>{Introduction}</span>
+<span id="annotated-cell-28-6"><a href="#annotated-cell-28-6"></a></span>
+<span id="annotated-cell-28-7"><a href="#annotated-cell-28-7"></a><span class="co">% Introduction content</span></span>
+<span id="annotated-cell-28-8"><a href="#annotated-cell-28-8"></a></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-28-9" class="code-annotation-target"><a href="#annotated-cell-28-9"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-28" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="1">Open the document</span>
+<span data-code-cell="annotated-cell-28" data-code-lines="2" data-code-annotation="1">Open the document</span>
 </dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-28" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="2">Sections each get a ‘section’ header</span>
+<span data-code-cell="annotated-cell-28" data-code-lines="5" data-code-annotation="2">Sections each get a ‘section’ header</span>
 </dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-28" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="9" data-code-annotation="3">Close the document at the end.</span>
+<span data-code-cell="annotated-cell-28" data-code-lines="9" data-code-annotation="3">Close the document at the end.</span>
 </dd>
 </dl>
 </section>
 <section id="we-are-going-to-use-latex-via-quarto-files" class="slide level2">
 <h2>We are going to use LaTeX via Quarto files</h2>
 <p>In order to be able to use LaTeX within our Quarto documents, we need to install <code>tinytex</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">quarto</span> install tinytex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a></a><span class="ex">quarto</span> install tinytex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">quarto</span> install tinytex <span class="at">--update-path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a></a><span class="ex">quarto</span> install tinytex <span class="at">--update-path</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You don’t need the full LaTex installation for this unit, just this package.</p>
 
 <aside><div>
@@ -530,7 +609,10 @@
 </div></aside></section>
 <section id="integrate-a-latex-template-into-a-quarto-file" class="slide level2">
 <h2>Integrate a LaTeX template into a quarto file</h2>
-<p>There are different ways: - If the file features are not too complicated. We can simply add some of the necessary LaTeX packages into our YAML preamble. You will be working with this example in the tutorial:</p>
+<p>There are different ways:</p>
+<ul>
+<li>If the file features are not too complicated. We can simply add some of the necessary LaTeX packages into our YAML preamble. You will be working with this example in the tutorial:</li>
+</ul>
 <pre><code>title: "Reproducible and Collaborative Practices"
 subtitle: "Tutorial 7"
 author: "Your Name"
@@ -554,7 +636,11 @@ header-includes:
 </section>
 <section id="integrate-a-latex-template-into-a-quarto-file-1" class="slide level2">
 <h2>Integrate a LaTeX template into a quarto file</h2>
-<p>There are different ways: - Another possibility is to use a <span class="monash-green2"><code>preamble.tex</code></span> - And incorporate that into our Quarto file (we will look into this in Week 8):</p>
+<p>There are different ways:</p>
+<ul>
+<li>Another possibility is to use a <span class="monash-green2"><code>preamble.tex</code></span></li>
+<li>And incorporate that into our Quarto file (we will look into this in Week 8):</li>
+</ul>
 
 <img data-src="images/preamble.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="reference" class="slide level2">
@@ -562,376 +648,58 @@ header-includes:
 <p><a href="https://monash.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=catau51422921060001751&amp;context=L&amp;vid=MONUI&amp;lang=en_US&amp;search_scope=au_everything&amp;adaptor=Local%20Search%20Engine&amp;tab=default_tab&amp;query=any,contains,LaTeX%20in%2024%20Hours%20%20A%20Practical%20Guide%20for%20Scientific%20Writing&amp;mode=basic">LaTeX in 24 Hours A Practical Guide for Scientific Writing</a></p>
 
 <img data-src="images/book.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="closer-look-at-our-repos" class="slide level2">
-<h2>Closer look at our repos</h2>
-
-<img data-src="images/mael-balland-V5hAryReZzo-unsplash.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="commits-hash-values-and-sha-numbers" class="slide level2">
-<h2>Commits, hash values and SHA numbers</h2>
-<p><code>git log</code> allows us to go back into our project history and see all the commits done in a repo. We can also see the commits of other contributors, we can browse the history to find out past issues or problems.</p>
-<pre><code>commit 8cfaee1e447d8e83d745b51ffcd310465afb76b1
-Author: Patricia Menendez &lt;patricia.menendez@monash.edu&gt;
-Date:   Sat Apr 4 15:49:54 2023 +1000
-   
-    Uploading Week4 slides</code></pre>
+<section id="quarto-pdf-themes" class="slide level2">
+<h2>Quarto PDF themes</h2>
+<p>Another way to include styling is to use a Quarto PDF extension. For example:</p>
+<ul>
+<li><a href="https://github.com/quarto-monash">Quarto Monash</a></li>
+<li><a href="https://github.com/produnis/quarto-letter">Quarto Letter</a></li>
+<li><a href="https://github.com/DamonCharlesRoberts/fancy-doc">Fancy Header</a></li>
+</ul>
+<p>…and more <a href="https://quarto.org/docs/extensions/listing-formats.html">here</a></p>
 </section>
-<section id="commits-hash-values-and-sha-numbers-1" class="slide level2">
-<h2>Commits, hash values and SHA numbers</h2>
-<p>The <span class="monash-green2">Hash</span> or <span class="monash-green2">SHA-1</span> value (often called <code>refs</code>) is created when we generate a commit. They are a 40 character string stored in hexadecimal. They are <em>effectively</em> unique identifiers for a commit.</p>
-<p>There are so many different hashes that you can get away with just using the first few to identify your SHA.</p>
+<section id="quarto-pdf-themes-1" class="slide level2">
+<h2>Quarto PDF themes</h2>
+<p>These themes have the advantage of having done a lot of the LateX formatting for you. Looking inside the Quarto Monash memo, we have:</p>
+<pre><code>\pretitle{%
+$if(branding)$%
+\begin{textblock}{4}(1.9,0.85)\includegraphics[height=1.5cm]{monash2}\end{textblock}%
+\begin{textblock}{4}(17.25,0.8)\includegraphics[height=1.5cm]{MBSPortrait}\end{textblock}%
+\begin{textblock}{6}(13,28)\includegraphics[height=0.7cm]{AACSB}~~~
+        \includegraphics[height=0.7cm]{EQUIS}~~~
+        \includegraphics[height=0.7cm]{AMBA}
+\end{textblock}</code></pre>
+<p>Which is doing a lot of positioning of pictures for the template.</p>
 </section>
-<section id="inspect-the-sha-numbers" class="slide level2">
-<h2>Inspect the SHA numbers</h2>
-<p>Using your terminal you can inspect your commits and SHA numbers by typing <code>git log</code> in your command line interface:</p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>To exit the screen <strong>press q</strong></li>
-<li>To go up in the history, <strong>press u</strong></li>
-<li>To go down in the history, <strong>press d</strong> or space.</li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section id="inspect-the-sha-numbers-1" class="slide level2">
-<h2>Inspect the SHA numbers</h2>
-<p>You can also inspect them from GitHub</p>
-
-<img data-src="images/sha.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="git-log" class="slide level2">
-<h2><code>git log</code></h2>
-<ul>
-<li><code>git log</code> is the Git command that allow us to explore the commits history in a Git repository.</li>
-<li><code>git log</code> lists the commits made in that repository in reverse chronological order. That is, the most recent commits show up first.</li>
-<li><code>git log</code> has a great variety of options that allow us to explore commits depending on our preference.</li>
-</ul>
-</section>
-<section id="git-log-1" class="slide level2">
-<h2>git log</h2>
-<p><code>git log --oneline</code> condenses each commit to a single line</p>
-<pre><code>3a5bc86 W3 cli updates
-4d1b022 W3 shell update</code></pre>
-<ul>
-<li><code>git log -n 3</code>: show last 3 commits</li>
-<li><code>git log --since=01-01-2020</code>: Show commits since…</li>
-<li><code>git log --until=01-01-2020</code>: Show commits until…</li>
-<li><code>git log --author="Michael Lydeamore"</code>: Show commits by a single author.</li>
-</ul>
-</section>
-<section id="git-log-and-git-show" class="slide level2">
-<h2>git log and git show</h2>
-<ul>
-<li><code>git log -p</code>: shows the difference in each commit. You can chain flags, so <code>git log -p -n 2</code> will limit to the most recent 2 commits</li>
-<li><code>git log index.qmd</code> will show you all commits on a particular file</li>
-<li><code>git log --oneline -p index.qmd</code>: Shows you all the changes done in the different commits to this file, and their changes</li>
-<li><code>git show</code> will show various information about the repo.</li>
-</ul>
-</section>
-<section id="more-options-associated-with-git-log" class="slide level2">
-<h2>More options associated with git log</h2>
-<ul>
-<li><code>git log --stat</code> to see some (abbreivated) stats, like which files were modified, how many files, and how many lines were added or removed</li>
-<li><code>git log --pretty=oneline</code> prints each commit on one line</li>
-<li><code>git log --pretty=format: "%h -%an : %s"</code>: Display each commit in one line and display how long ago it was</li>
-<li><code>git log --pretty=format:"%h %s" --graph</code>: Will also show the tree</li>
-</ul>
-<p>For more info on <code>git log</code>, please look <a href="https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History">here</a>.</p>
-<p><strong>Remember that if you want to visualize the tree of the repository: VSCode is a great tool for that.</strong></p>
-</section>
-<section id="git-log-and-git-diff" class="slide level2">
-<h2><code>git log</code> and <code>git diff</code></h2>
-<p><code>git log</code> displays revisions, and <code>git diff</code> displays the difference between two revisions in the repo.</p>
-<p>It also shows snippets of the text around the part of the file that has changed so you know in which part of the file the changes are happening.</p>
-<p><code>git diff --color-words</code> will display words that have changed in a different color.</p>
-</section>
-<section id="changes-within-the-files-in-the-staging-area" class="slide level2">
-<h2>Changes within the files in the staging area</h2>
-<p><code>git diff --staged</code></p>
-
-<img data-src="images/diff_staged.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="git-diff-options" class="slide level2">
-<h2>git diff options</h2>
-<ul>
-<li><code>git diff commit1 commit2</code>: Compare changes between <em>any</em> two commits</li>
-<li><code>git diff branch1 branch2</code>: Compare across branches (!)</li>
-</ul>
-<div class="fragment">
-<ul>
-<li><code>git diff master newbranch ./index.qmd</code>: Compare the file <code>index.qmd</code>, between the master and newbranch.</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li><code>git diff HEAD~2 HEAD --name-only</code>: Shows the files that have changed between the latest commit and the two before that.</li>
-</ul>
-</div>
-</section>
-<section id="visiting-past-commits" class="slide level2">
-<h2>Visiting past commits</h2>
-
-<img data-src="images/git_tree1.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="lets-explore-a-given-commit" class="slide level2">
-<h2>Let’s explore a given commit</h2>
-<p>In order to look at the status of the files in a given commit, we can use <code>git checkout SHA</code> for example:</p>
-<pre><code>git checkout 47ef21k</code></pre>
-<p>Once you run this command you will get the</p>
-<p><span class="monash-green2">“You are in a detached HEAD state”</span></p>
-<p><strong>Note:</strong> You get to the detached HEAD state by checking a commit directly. Remember the HEAD is a pointer that keeps track of your location within the Git repo.</p>
-<p>If we want to see all the commits here we need to use <code>git log --oneline --all</code>.</p>
-</section>
-<section id="detached-head-repo-view" class="slide level2">
-<h2>Detached HEAD repo view</h2>
-
-<img data-src="images/detachedhead.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="detached-head" class="slide level2">
-<h2>Detached HEAD</h2>
-<p>Detached HEAD state gives you the power to check out any commit and explore the older state of a repository without having to create a local branch. In addition, it also allows you to change the repository.</p>
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Warning</strong></p>
-</div>
-<div class="callout-content">
-<p>Any commits made in a detached HEAD state will be lost when you check out any branch.</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Solution</strong></p>
-</div>
-<div class="callout-content">
-<p>Create a branch to keep your commits</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>If you want to leave the detached HEAD and return to another branch you can simply use <code>git checkout branchname</code></p>
-</div>
-</section>
-<section id="go-back-into-the-repository" class="slide level2 smaller">
-<h2>Go back into the repository</h2>
-<ul>
-<li><code>git checkout 8cfaee1e447d8e8</code></li>
-</ul>
-<p>You are in ‘detached HEAD’ state (<span class="monash-green2">the changes made in this state do not belong to any branch!</span>). That allows you to explore the files that are at that particular location of the repo history.</p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>No-one wants to be a detached HEAD state. Even <code>git</code> repos.</p>
-</div>
-</div>
-</div>
-<ul>
-<li>If you want to bring some files from the past history to your current head, it is best to do this on a new branch
-<ul>
-<li><code>git branch new_branch</code></li>
-<li><code>git checkout new_branch</code></li>
-<li>or <code>git checkout -b new_branch</code></li>
-</ul></li>
-<li>Continue working on this branch, then merge</li>
-</ul>
-</section>
-<section id="detached-head-repo-view-1" class="slide level2">
-<h2>Detached HEAD repo view</h2>
-
-<img data-src="images/detachedhead.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="git-environment-tree" class="slide level2">
-<h2>Git environment tree</h2>
-
-<img data-src="images/tree3.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="stage-and-unstage-files" class="slide level2">
-<h2>Stage and unstage files</h2>
-<p><strong>Before you push changes into the remote repo:</strong></p>
-<ul>
-<li><code>git reset filename</code>: Unstage a single file</li>
-<li><code>git reset</code>: Unstage all staged files</li>
-</ul>
-<div class="fragment">
-<p>For example:</p>
-<ul>
-<li><code>git add filename</code></li>
-<li><code>git status</code>: filename is added to the staging area</li>
-<li><code>git reset filename</code>: filename will be removed from the staging area.</li>
-</ul>
-<p>Intuition: You can think of <code>git reset</code> as the opposite of <code>git add</code>.</p>
-</div>
-</section></section>
-<section>
-<section id="commits" class="title-slide slide level1 center">
-<h1>Commits</h1>
-
-</section>
-<section id="commits-1" class="slide level2">
-<h2>Commits</h2>
-<ul>
-<li>Commits need to be clear and concise.</li>
-<li>Commits need to be meaningful so that someone else can understand what you changed in a commit.</li>
-<li>Commit early, commit often, but commit meaningfully</li>
-</ul>
-<div class="fragment">
-<p><code>Updating file 1</code>: ❌ Not meaningful!</p>
-<p><code>Adding gmax for computing maximum value</code>: ✅</p>
-</div>
-<p><strong>Please watch this video minute 3:16 and consider this when creating your commits! <a href="https://www.youtube.com/watch?v=Hlp-9cdImSM">video</a></strong></p>
-</section>
-<section id="editamend-most-recent-commit-using-cli" class="slide level2">
-<h2>Edit/Amend most recent commit (using cli)</h2>
-<p><strong>This only works for your most recent commit if it has not been pushed to the remote repo!</strong></p>
-<ul>
-<li><p>Maybe you forgot to add a file or you commit the wrong file. Then you can amend your last commit. That also includes the commit message (if you need to change it).</p></li>
-<li><p>You can amend the commit directly using the command line interface/console</p></li>
-<li><p>If you need to add a new file then you can use <code>git add file</code> and then use:</p></li>
-</ul>
-<pre><code>git commit --amend -m "your updated commit message"</code></pre>
-</section></section>
-<section>
-<section id="editamend-previous-commit-using-vs-code" class="title-slide slide level1 center">
-<h1>Edit/Amend previous commit (using VS code)</h1>
-<p><strong>This only works for your most recent commit if it has not been pushed!</strong></p>
-<p><code>git commit --amend</code> will open the VSCode editor. This is a convenient way to modify the <em>most recent</em> commit.</p>
-<p>Workflow:</p>
-<ul>
-<li>Modify whatever files you need to change</li>
-<li><code>git commit --amend</code></li>
-<li>Close editor, and all should be fixed.</li>
-</ul>
-
-<img data-src="images/editcommit.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="amending-commits" class="slide level2">
-<h2>Amending commits</h2>
-<p><span class="red"><strong>Amending a commit that you’ve already pushed to a remote repo is BAD practice and should be avoided</strong></span></p>
-<ul>
-<li>Amending commits which are already pushed to a remote are more difficult to apply and would require a force push for the rewrite.</li>
-<li>Also it will require rebase.</li>
-</ul>
-
-<img data-src="images/gitsnapshots.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="reverting-commits-that-have-been-pushed-to-a-remote-repo" class="slide level2">
-<h2>Reverting commits that have been pushed to a remote repo</h2>
-<p><code>git revert</code>: The git revert command can be considered an ‘undo’ type command, however, it is not a traditional undo operation.</p>
-<p>Instead of removing the commit from the project history, it figures out how to invert the changes introduced by the commit and appends a new commit with the resulting inverse content. This prevents Git from losing history, which is important for the integrity of your revision history and for reliable collaboration.</p>
-<p>You can think of it as a “rollback”: it points your local environment back to a previous commit. Your “local environment,” refers to your local repository, staging area, and working directory.</p>
-</section>
-<section id="git-revert-when-commits-have-been-pushed" class="slide level2">
-<h2><code>git revert</code>: When commits have been pushed</h2>
-<ul>
-<li><p>This can be useful, if you need to fix a bug in your code that was introduced by a single commit.</p></li>
-<li><p>It will record a new commit with the changes introduced by reverting the last commit. If you don’t want to include the commits reverted then you could use <code>git revert --no-commit</code>.</p></li>
-<li><p>To revert the previous commit <code>git revert HEAD</code></p></li>
-</ul>
-</section>
-<section id="git-revert-when-commits-have-been-pushed-1" class="slide level2">
-<h2><code>git revert</code>: When commits have been pushed</h2>
-<ul>
-<li><p>Note that here we are <strong>not using</strong> <code>HEAD~1</code> as with reset.The reason is that when using the <code>git reset</code> command we are setting a new HEAD position while with <code>git revert</code> we are actually reverting the commit specified.</p></li>
-<li><p>Then you will have to commit the changes again for the files to be reverted and for the commit to be undone.</p></li>
-<li><p>When using the <code>git revert</code> command, Git will automatically open your text editor (VS code) in order to commit the changes.</p></li>
-</ul>
-</section>
-<section id="removing-files" class="slide level2">
-<h2>Removing files</h2>
-<ul>
-<li>If the files are untracked you can just remove them</li>
-<li>If the files are tracked. You can use git to remove the files
-<ul>
-<li><code>git rm</code> file.txt</li>
-<li><code>git status</code> (file already added into the staging area)</li>
-<li><code>git commit -m</code> “Delete file.txt”</li>
-<li><code>git push origin</code> master</li>
-</ul></li>
-</ul>
-</section>
-<section id="mirroring-a-repository" class="slide level2">
-<h2>Mirroring a repository</h2>
-<p>Mirroring is to replicate the state of a remote or upstream repository in our local machine. By state, we mean all the branches and all the tags as well.</p>
-<pre><code>--mirror: 
-  Set up a mirror of the source repository. This implies --bare. Compared to --bare,
-    --mirror not only maps local branches of the source to local branches of the target,
-    it maps all refs (including remote-tracking branches, notes etc.) and sets up a
-    refspec configuration such that all these refs are overwritten by a git remote
-    update in the target repository.</code></pre>
-</section>
-<section id="example-of-git-mirror" class="slide level2">
-<h2>Example of git mirror</h2>
-<ul>
-<li><code>mkdir Example</code> (Don’t forget to create a folder)</li>
-<li><code>cd Example</code> (And navigate into that folder before the next steps!)</li>
-<li><code>git clone --mirror https://github.com/ETC5513/GitKraken-example.git .git</code></li>
-<li><code>git config --unset core.bare</code></li>
-<li><code>git reset --hard</code></li>
-</ul>
-</section></section>
-<section>
-<section id="commits-2" class="title-slide slide level1 center">
-<h1>Commits</h1>
-<ul>
-<li>So far we are only writing the commit subject line.</li>
-<li>Concise and informative</li>
-<li>Be descriptive and specific about what changed.</li>
-<li>Next week we will learn to add more info into the commits (commit body).</li>
-<li>Active tense and make sure they are informative so that if you need to find something in your history you can do that!</li>
-</ul>
-</section>
-<section id="week-7-lesson" class="slide level2">
-<h2>Week 7 Lesson</h2>
+<section id="week-6-lesson" class="slide level2">
+<h2>Week 6 Lesson</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Important</strong></p>
+<p><strong>Recap</strong></p>
 </div>
 <div class="callout-content">
 <ul>
-<li>Start learning about Latex</li>
-<li>Latex integration in Rmd files</li>
-<li>Deeper understand about commits and SHA1 numbers</li>
-<li>Visualize commits</li>
-<li>Compare commits</li>
-<li>Moving back to different commits and create branches starting from past commits.</li>
-<li>Stage and unstage files</li>
-<li>Revert to a previous commits</li>
-<li>Removing files using git</li>
-<li>Clone all the branches from a repository</li>
+<li>Undoing mistakes with <code>amend</code>, <code>revert</code>, and <code>rm</code></li>
+<li>Cleaning repos</li>
+<li>An introduction to latex</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div class="quarto-auto-generated-content">
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="images/monash-stacked-blue-rgb-transparent.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p>ETC5513 Week 7</p>
 </div>
-</div>
-</section></section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../site_libs/revealjs/dist/reveal.js"></script>
@@ -961,7 +729,8 @@ Date:   Sat Apr 4 15:49:54 2023 +1000
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"boardmarkerWidth":5},
 'smaller': false,
  
@@ -1116,7 +885,7 @@ Date:   Sat Apr 4 15:49:54 2023 +1000
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1216,18 +985,7 @@ Date:   Sat Apr 4 15:49:54 2023 +1000
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1259,7 +1017,45 @@ Date:   Sat Apr 4 15:49:54 2023 +1000
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/rcp\.numbat\.space");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
@@ -1296,7 +1092,11 @@ Date:   Sat Apr 4 15:49:54 2023 +1000
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {
