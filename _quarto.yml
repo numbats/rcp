@@ -35,9 +35,10 @@ website:
             text: "Week 6: Reproducible reporting and version control systems"
           - file: week7/index.qmd
             text: "Week 7:	Workflows for reproducible data analysis"
+          - file: week8/index.qmd
+            text: "Referencing, large files, and GitHub Issues"
           - text: "Week 8: No class (University Holiday)"
-          - file: week9/index.qmd
-            text: Referencing, large files, and GitHub Issues
+          - text: Referencing, large files, and GitHub Issues
           - file: week10/index.qmd
             text: Keeping environments separate and reproducible
           - week11/index.qmd
