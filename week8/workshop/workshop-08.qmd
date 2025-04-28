@@ -40,21 +40,7 @@ Understand:
 
 ## Simulate a Mistake: Add a Huge File
 
-1. In RStudio, create a new **dummy file**:
-
-   - New File → Text File
-   - Save it as `bigfile.txt`
-
-2. Add a lot of content:
-
-   - You can copy-paste a lot of text
-   - OR use this in the Terminal to make a large file:
-
-     ```bash
-     base64 /dev/urandom | head -c 60MB > bigfile.txt
-     ```
-
-   (If that's tricky, just manually paste lots of content.)
+1. Download the zip file from the Week 8 Moodle website
 
 ---
 
