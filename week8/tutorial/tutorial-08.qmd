@@ -4,11 +4,8 @@ subtitle: "Tutorial 9"
 author: "Michael Lydeamore"
 date: today
 format:
-    unilur-html:
+    html:
         output-file: index.html
-        embed-resources: true
-    unilur-html+solution:
-        output-file: solution.html
         embed-resources: true
 ---
 ```{r, echo = FALSE, eval = file.exists("tutorial.css")}
@@ -36,7 +33,6 @@ htmltools::includeCSS("tutorial.css")
 
 4. Add this file **using the `git lfs` workflow**. Remember the quotes, and that your file extension is `.zip`.
 
-::: {.unilur-solution}
 ```
 git lfs install
 git lfs track "*.zip"
@@ -45,13 +41,12 @@ git add .
 git commit -m "Adding large file"
 git push origin main
 ```
-:::
 
 5. Push the changes onto GitHub using an extended commit message.
 
-::: {.unilur-solution}
+
 `git commit` (without the `-m` flag) will open a text editor for you to type your extended commit.
-:::
+
 
 Add a git annotated tag to the most recent commit called `v1.0`.
 
