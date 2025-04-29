@@ -73,20 +73,6 @@ __You only need to use commands we have learned in class.__
 
 10. On main, create a new section in `example.qmd` that includes an easy to make plot. Commit the changes, and demonstrate using the command line interface how to undo the commit _without_ losing your local changes.
 
-::: {.callout-tip}
-To reset your GitHub repository on GitHub classroom, use the following steps from inside the working directory:
-
-```
-rm -rf .git
-git init
-git commit -m "Initial commit" --allow-empty
-git remote add origin <git-url>
-git push -u --force origin main
-```
-:::
-
-[**Note that this will completely overwrite your remote git repository, and will delete whatever was previously in it**]{.red}
-
 ## Marking Rubric
 
 * Each of the instructions will be assessed as to whether they are successfully completed or not (1 mark each, total `r add_marks(10)` points)

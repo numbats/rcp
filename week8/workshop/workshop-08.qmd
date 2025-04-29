@@ -40,7 +40,7 @@ Understand:
 
 ## Simulate a Mistake: Add a Huge File
 
-1. Download the zip file from the Week 8 Moodle website
+1l. Download the zip file from the Week 8 Moodle website
 
 ---
 
