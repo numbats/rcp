@@ -19,7 +19,7 @@ htmltools::includeCSS("tutorial.css")
 
 ## Git LFS
 
-1. Create a repository in GitHub that has a license, a .gitignore file and a README.md file.
+1. Create a repository in GitHub called `etc5513-tutorial8-xx` where `xx` is your initials. In that repository, make sure that it has a license, a .gitignore file and a README.md file.
 
 2. Clone the repository to your local machine
 
