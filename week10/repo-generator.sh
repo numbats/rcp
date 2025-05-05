@@ -24,7 +24,7 @@ git commit -m "Initial commit with square and cube functions"
 authors=("Michael <michael.lydeamore@monash.edu>" "Di <dicook@monash.edu>" "Rob <rob.hyndman@monash.edu>")
 
 # 10 harmless commits before the bug, modifying only cube()
-for i in {1..10}; do
+for i in {1..23}; do
   varname="result${i}"
 
   cat <<EOF > script.R
@@ -56,10 +56,10 @@ cube <- function(x) {
 EOF
 
 git add script.R
-GIT_AUTHOR_NAME="Alice" GIT_AUTHOR_EMAIL="alice@example.com" git commit -m "Refactor functions"
+GIT_AUTHOR_NAME="Michael" GIT_AUTHOR_EMAIL="michael.lydeamore@monash.edu" git commit -m "Refactor functions"
 
 # 10 more harmless commits modifying only cube()
-for i in {12..21}; do
+for i in {12..82}; do
   varname="res${i}"
 
   cat <<EOF > script.R

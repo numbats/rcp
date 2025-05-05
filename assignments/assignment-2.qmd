@@ -57,9 +57,9 @@ __You only need to use commands we have learned in class.__
 
 2. From the command line interface, initialise this folder as a git repository and push it to the GitHub classroom repository.
 
-3. Create a new branch called `testbranch`. Modify the file `example.qmd` and add the changes to both the local and remote repositories. Add another commit in this branch where you create a folder called data, and add the data from Assignment 1 to that folder. 
+3. Create a new branch called `testbranch`. Modify the file `example.qmd` and add the changes to both the local and remote repositories. 
 
-4. *Amend the previous commit to include the data folder*. Push this amended commit to the remote.
+4. Create a folder called data, and add the data from Assignment 1 to that folder. Amend the previous commit to include the data folder. Push this amended commit to the remote.
 
 5. Switch back to the main branch and modify `example.qmd` in a different way such that it will conflict with `testbranch`. Commit and push these changes.
 
