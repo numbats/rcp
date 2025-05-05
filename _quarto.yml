@@ -38,7 +38,8 @@ website:
           - file: week8/index.qmd
             text: "Referencing, large files, and GitHub Issues"
           - text: "Week 8: No class (University Holiday)"
-          - text: Referencing, large files, and GitHub Issues
+          - file: week9/index.qmd
+            text: Finding bugs and building presentations
           - file: week10/index.qmd
             text: Keeping environments separate and reproducible
           - week11/index.qmd
