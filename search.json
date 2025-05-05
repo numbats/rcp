@@ -56,67 +56,74 @@
     "text": "Hi, this is a practice for Tutorial Week 5."
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#objective",
-    "href": "week9/workshop/workshop-09.html#objective",
-    "title": "Git Bisect Workshop",
-    "section": "Objective:",
-    "text": "Objective:\nIn this workshop, you will practice using git bisect to identify the commit that introduced a bug into a repository. You will also make a pull request to fix the bug once you’ve found it."
+    "objectID": "week9/workshop/index.html",
+    "href": "week9/workshop/index.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "In this workshop, you will practice using git bisect to identify the commit that introduced a bug into a repository. You will also make a pull request to fix the bug once you’ve found it.\n\n\n\nBefore beginning, make sure you have: - Forked the repository git-bisect-demo into your own GitHub account. - Cloned the repository from your fork to your local machine.\n\n\n\n\n\nGo to the git-bisect-demo repository.\nIn the top-right corner, click the Fork button to create your own copy of the repository on GitHub.\nAfter forking, clone your fork to your local machine using the following command:\ngit clone https://github.com/&lt;your-username&gt;/git-bisect-demo.git\nNavigate to the cloned repository:\ncd git-bisect-demo\n\n\n\n\n\n\nThe git-bisect-demo repository contains a bug in the square() function. Your task is to identify the commit that introduced the bug using git bisect.\nBegin by starting the git bisect process:\ngit bisect start\nMark the current (bad) commit:\nSince the latest commit has the bug in it (the square() function is broken), we will mark it as bad:\ngit bisect bad\nIdentify a good commit:\nThe square() function was working correctly before the bug was introduced. To identify a “good” commit, we need to mark a commit before the bug was introduced. You can look at the GitHub history or use git log to find a commit before the bug was introduced (for example, commit 10).\ngit bisect good &lt;commit-hash&gt;\n\nReplace &lt;commit-hash&gt; with the hash of a known good commit (such as the initial commit or the last commit before the bug was introduced).\n\n\n\n\n\n\n\nNow, Git will automatically check out a commit halfway between the good and bad commits. Your job is to test whether the bug is present in this commit.\n\nOpen the script.R file and inspect the code. If the bug is present, mark the commit as bad:\ngit bisect bad\nIf the bug is not present, mark the commit as good:\ngit bisect good\n\nGit will continue to narrow down the commits by checking out commits halfway between the last good and bad marks. Repeat the process of inspecting the code and marking each commit as either good or bad until Git identifies the commit that introduced the bug.\n\n\n\n\n\n\nOnce the commit has been identified, you should make a branch from that point to fix the bug.\ngit switch -C fix-square-bug\nOpen the script.R file and modify the square() function to correct the bug:\nsquare &lt;- function(x) {\n  return(x * x)  # Fix the bug (it was previously x + x)\n}\nCommit the fix:\ngit add script.R\ngit commit -m \"Fix bug in square function\"\nPush the changes to GitHub:\n\ngit push origin fix-square-bug\n\n\n\n\n\nEnd the git bisect session:\ngit bisect reset\nPush your changes to your GitHub fork:\ngit push origin master\nGo to your GitHub repository and create a Pull Request from your fork’s master branch to the original repository (mikelydeamore/git-bisect-demo).\n\nMake sure to provide a detailed description in the pull request, explaining:\n\nThe bug that was fixed.\nThe process you used to find the bug using git bisect.\nThe fix you made.\n\n\n\n\n\n\n\n\nIf you’re not sure which commit is good or bad, use git log to help you identify the commit hashes.\nIf you make a mistake or want to change your good/bad marks, use git bisect reset to start the process over.\nDon’t forget to push your changes to your fork after fixing the bug!\n\n\n\n\n\nIn this workshop, you learned how to use git bisect to find the commit that introduced a bug in a Git repository. You also learned how to fix the bug and create a pull request with your fix. This process is very useful for debugging and narrowing down the source of issues in large codebases.\n\n\n\nIn this exercise, you’ll write a test script that automatically checks for the bug in the square function, which you can use during the git bisect process. This script will be used to help you determine the exact commit that introduced the bug.\n\n\n\nUnderstand the Bug\n\nThe bug is that the square function produces incorrect results for certain inputs, and you’ll need to test it during the git bisect process.\n\nCreate a Test Script for Bisect\n\nCreate a new file called test-bisect.R in the repository. This file will contain an R script for testing the bug. It will return 0 (success) if the bug is not present and 1 (failure) if the bug is present. git bisect uses this exit code to determine whether to continue searching in the good or bad commit range.\n\nWrite the Bisect Test Script\n\nThe script should check the functionality of the square function. For the purposes of this exercise, assume the bug is present when the result of square(2) is not equal to 4.\n\n\nsource(\"script.R\")\nresult &lt;- square(2)\n\nif (result != 4) {\n    quit(status = 1)\n} else {\n    quit(status = 0)\n}\n\n\n\n\nThis script runs an R command using Rscript, sources the script.R file, calls the square function with an input of 2, and checks if the result is 4.\nIf the result is not 4, the script exits with a status code of 1, which signals git bisect that the bug is present in the current commit (bad commit).\nIf the result is 4, the script exits with a status code of 0, signaling that the commit is “good”.\n\n\nRun git bisect\n\nNow, you can start git bisect using the following commands:\n\n\n# Start the bisect process by specifying a good commit and a bad commit\ngit bisect start\ngit bisect bad # This marks the current commit as bad (contains the bug)\ngit bisect good &lt;commit-hash&gt; # This marks an older commit as good (before the bug)\n\n# Use the bisect_test.sh script to automatically test each commit\ngit bisect run Rscript test-bisect.R\n\nInterpreting the Results\n\ngit bisect will automatically check each commit in the range between the good and bad commits by using the bisect_test.sh script. When the process finishes, git bisect will tell you the first bad commit where the bug was introduced.\nOnce the bisect process completes, run the following command to reset the repository to its original state:\n\n\ngit bisect reset\n\nCheck whether the automatic bisect has worked\n\nCheck the contents of script.R and see if you have found the bug. If not, you may need to modify test-bisect.R to better capture the case where the bug is present!"
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#pre-requisite",
-    "href": "week9/workshop/workshop-09.html#pre-requisite",
-    "title": "Git Bisect Workshop",
-    "section": "Pre-requisite:",
-    "text": "Pre-requisite:\nBefore beginning, make sure you have: - Forked the repository git-bisect-demo into your own GitHub account. - Cloned the repository from your fork to your local machine."
+    "objectID": "week9/workshop/index.html#objective",
+    "href": "week9/workshop/index.html#objective",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "In this workshop, you will practice using git bisect to identify the commit that introduced a bug into a repository. You will also make a pull request to fix the bug once you’ve found it."
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#step-1-fork-the-repository",
-    "href": "week9/workshop/workshop-09.html#step-1-fork-the-repository",
-    "title": "Git Bisect Workshop",
-    "section": "Step 1: Fork the Repository",
-    "text": "Step 1: Fork the Repository\n\nGo to the git-bisect-demo repository.\nIn the top-right corner, click the Fork button to create your own copy of the repository on GitHub.\nAfter forking, clone your fork to your local machine using the following command:\ngit clone https://github.com/&lt;your-username&gt;/git-bisect-demo.git\nNavigate to the cloned repository:\ncd git-bisect-demo"
+    "objectID": "week9/workshop/index.html#pre-requisite",
+    "href": "week9/workshop/index.html#pre-requisite",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Before beginning, make sure you have: - Forked the repository git-bisect-demo into your own GitHub account. - Cloned the repository from your fork to your local machine."
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#step-2-start-the-git-bisect-workflow",
-    "href": "week9/workshop/workshop-09.html#step-2-start-the-git-bisect-workflow",
-    "title": "Git Bisect Workshop",
-    "section": "Step 2: Start the git bisect Workflow",
-    "text": "Step 2: Start the git bisect Workflow\n\nThe git-bisect-demo repository contains a bug in the square() function. Your task is to identify the commit that introduced the bug using git bisect.\nBegin by starting the git bisect process:\ngit bisect start\nMark the current (bad) commit:\nSince the latest commit has the bug in it (the square() function is broken), we will mark it as bad:\ngit bisect bad\nIdentify a good commit:\nThe square() function was working correctly before the bug was introduced. To identify a “good” commit, we need to mark a commit before the bug was introduced. You can look at the GitHub history or use git log to find a commit before the bug was introduced (for example, commit 10).\ngit bisect good &lt;commit-hash&gt;\n\nReplace &lt;commit-hash&gt; with the hash of a known good commit (such as the initial commit or the last commit before the bug was introduced)."
+    "objectID": "week9/workshop/index.html#step-1-fork-the-repository",
+    "href": "week9/workshop/index.html#step-1-fork-the-repository",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Go to the git-bisect-demo repository.\nIn the top-right corner, click the Fork button to create your own copy of the repository on GitHub.\nAfter forking, clone your fork to your local machine using the following command:\ngit clone https://github.com/&lt;your-username&gt;/git-bisect-demo.git\nNavigate to the cloned repository:\ncd git-bisect-demo"
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#step-3-bisecting-the-commits",
-    "href": "week9/workshop/workshop-09.html#step-3-bisecting-the-commits",
-    "title": "Git Bisect Workshop",
-    "section": "Step 3: Bisecting the Commits",
-    "text": "Step 3: Bisecting the Commits\n\nNow, Git will automatically check out a commit halfway between the good and bad commits. Your job is to test whether the bug is present in this commit.\n\nOpen the script.R file and inspect the code. If the bug is present, mark the commit as bad:\ngit bisect bad\nIf the bug is not present, mark the commit as good:\ngit bisect good\n\nGit will continue to narrow down the commits by checking out commits halfway between the last good and bad marks. Repeat the process of inspecting the code and marking each commit as either good or bad until Git identifies the commit that introduced the bug."
+    "objectID": "week9/workshop/index.html#step-2-start-the-git-bisect-workflow",
+    "href": "week9/workshop/index.html#step-2-start-the-git-bisect-workflow",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "The git-bisect-demo repository contains a bug in the square() function. Your task is to identify the commit that introduced the bug using git bisect.\nBegin by starting the git bisect process:\ngit bisect start\nMark the current (bad) commit:\nSince the latest commit has the bug in it (the square() function is broken), we will mark it as bad:\ngit bisect bad\nIdentify a good commit:\nThe square() function was working correctly before the bug was introduced. To identify a “good” commit, we need to mark a commit before the bug was introduced. You can look at the GitHub history or use git log to find a commit before the bug was introduced (for example, commit 10).\ngit bisect good &lt;commit-hash&gt;\n\nReplace &lt;commit-hash&gt; with the hash of a known good commit (such as the initial commit or the last commit before the bug was introduced)."
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#step-4-fix-the-bug",
-    "href": "week9/workshop/workshop-09.html#step-4-fix-the-bug",
-    "title": "Git Bisect Workshop",
-    "section": "Step 4: Fix the Bug",
-    "text": "Step 4: Fix the Bug\n\nOnce the commit has been identified, you should make a branch from that point to fix the bug.\ngit switch -C fix-square-bug\nOpen the script.R file and modify the square() function to correct the bug:\nsquare &lt;- function(x) {\n  return(x * x)  # Fix the bug (it was previously x + x)\n}\nCommit the fix:\ngit add script.R\ngit commit -m \"Fix bug in square function\"\nPush the changes to GitHub:\n\ngit push origin fix-square-bug"
+    "objectID": "week9/workshop/index.html#step-3-bisecting-the-commits",
+    "href": "week9/workshop/index.html#step-3-bisecting-the-commits",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Now, Git will automatically check out a commit halfway between the good and bad commits. Your job is to test whether the bug is present in this commit.\n\nOpen the script.R file and inspect the code. If the bug is present, mark the commit as bad:\ngit bisect bad\nIf the bug is not present, mark the commit as good:\ngit bisect good\n\nGit will continue to narrow down the commits by checking out commits halfway between the last good and bad marks. Repeat the process of inspecting the code and marking each commit as either good or bad until Git identifies the commit that introduced the bug."
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#step-5-complete-the-bisect-and-create-a-pull-request",
-    "href": "week9/workshop/workshop-09.html#step-5-complete-the-bisect-and-create-a-pull-request",
-    "title": "Git Bisect Workshop",
-    "section": "Step 5: Complete the Bisect and Create a Pull Request",
-    "text": "Step 5: Complete the Bisect and Create a Pull Request\n\nEnd the git bisect session:\ngit bisect reset\nPush your changes to your GitHub fork:\ngit push origin master\nGo to your GitHub repository and create a Pull Request from your fork’s master branch to the original repository (mikelydeamore/git-bisect-demo).\n\nMake sure to provide a detailed description in the pull request, explaining:\n\nThe bug that was fixed.\nThe process you used to find the bug using git bisect.\nThe fix you made."
+    "objectID": "week9/workshop/index.html#step-4-fix-the-bug",
+    "href": "week9/workshop/index.html#step-4-fix-the-bug",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Once the commit has been identified, you should make a branch from that point to fix the bug.\ngit switch -C fix-square-bug\nOpen the script.R file and modify the square() function to correct the bug:\nsquare &lt;- function(x) {\n  return(x * x)  # Fix the bug (it was previously x + x)\n}\nCommit the fix:\ngit add script.R\ngit commit -m \"Fix bug in square function\"\nPush the changes to GitHub:\n\ngit push origin fix-square-bug"
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#tips",
-    "href": "week9/workshop/workshop-09.html#tips",
-    "title": "Git Bisect Workshop",
-    "section": "Tips:",
-    "text": "Tips:\n\nIf you’re not sure which commit is good or bad, use git log to help you identify the commit hashes.\nIf you make a mistake or want to change your good/bad marks, use git bisect reset to start the process over.\nDon’t forget to push your changes to your fork after fixing the bug!"
+    "objectID": "week9/workshop/index.html#step-5-complete-the-bisect-and-create-a-pull-request",
+    "href": "week9/workshop/index.html#step-5-complete-the-bisect-and-create-a-pull-request",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "End the git bisect session:\ngit bisect reset\nPush your changes to your GitHub fork:\ngit push origin master\nGo to your GitHub repository and create a Pull Request from your fork’s master branch to the original repository (mikelydeamore/git-bisect-demo).\n\nMake sure to provide a detailed description in the pull request, explaining:\n\nThe bug that was fixed.\nThe process you used to find the bug using git bisect.\nThe fix you made."
   },
   {
-    "objectID": "week9/workshop/workshop-09.html#conclusion",
-    "href": "week9/workshop/workshop-09.html#conclusion",
-    "title": "Git Bisect Workshop",
-    "section": "Conclusion",
-    "text": "Conclusion\nIn this workshop, you learned how to use git bisect to find the commit that introduced a bug in a Git repository. You also learned how to fix the bug and create a pull request with your fix. This process is very useful for debugging and narrowing down the source of issues in large codebases."
+    "objectID": "week9/workshop/index.html#tips",
+    "href": "week9/workshop/index.html#tips",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "If you’re not sure which commit is good or bad, use git log to help you identify the commit hashes.\nIf you make a mistake or want to change your good/bad marks, use git bisect reset to start the process over.\nDon’t forget to push your changes to your fork after fixing the bug!"
+  },
+  {
+    "objectID": "week9/workshop/index.html#conclusion",
+    "href": "week9/workshop/index.html#conclusion",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "In this workshop, you learned how to use git bisect to find the commit that introduced a bug in a Git repository. You also learned how to fix the bug and create a pull request with your fix. This process is very useful for debugging and narrowing down the source of issues in large codebases.\n\n\n\nIn this exercise, you’ll write a test script that automatically checks for the bug in the square function, which you can use during the git bisect process. This script will be used to help you determine the exact commit that introduced the bug.\n\n\n\nUnderstand the Bug\n\nThe bug is that the square function produces incorrect results for certain inputs, and you’ll need to test it during the git bisect process.\n\nCreate a Test Script for Bisect\n\nCreate a new file called test-bisect.R in the repository. This file will contain an R script for testing the bug. It will return 0 (success) if the bug is not present and 1 (failure) if the bug is present. git bisect uses this exit code to determine whether to continue searching in the good or bad commit range.\n\nWrite the Bisect Test Script\n\nThe script should check the functionality of the square function. For the purposes of this exercise, assume the bug is present when the result of square(2) is not equal to 4.\n\n\nsource(\"script.R\")\nresult &lt;- square(2)\n\nif (result != 4) {\n    quit(status = 1)\n} else {\n    quit(status = 0)\n}\n\n\n\n\nThis script runs an R command using Rscript, sources the script.R file, calls the square function with an input of 2, and checks if the result is 4.\nIf the result is not 4, the script exits with a status code of 1, which signals git bisect that the bug is present in the current commit (bad commit).\nIf the result is 4, the script exits with a status code of 0, signaling that the commit is “good”.\n\n\nRun git bisect\n\nNow, you can start git bisect using the following commands:\n\n\n# Start the bisect process by specifying a good commit and a bad commit\ngit bisect start\ngit bisect bad # This marks the current commit as bad (contains the bug)\ngit bisect good &lt;commit-hash&gt; # This marks an older commit as good (before the bug)\n\n# Use the bisect_test.sh script to automatically test each commit\ngit bisect run Rscript test-bisect.R\n\nInterpreting the Results\n\ngit bisect will automatically check each commit in the range between the good and bad commits by using the bisect_test.sh script. When the process finishes, git bisect will tell you the first bad commit where the bug was introduced.\nOnce the bisect process completes, run the following command to reset the repository to its original state:\n\n\ngit bisect reset\n\nCheck whether the automatic bisect has worked\n\nCheck the contents of script.R and see if you have found the bug. If not, you may need to modify test-bisect.R to better capture the case where the bug is present!"
   },
   {
     "objectID": "week8/workshop/index.html",
