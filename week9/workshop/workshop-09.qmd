@@ -13,12 +13,6 @@ format:
 ```{r, echo = FALSE, eval = file.exists("tutorial.css")}
 htmltools::includeCSS("tutorial.css")
 ```
----
-title: "Git Bisect Workshop"
-author: "Your Name"
-date: "2025-05-05"
-format: revealjs
----
 
 # Workshop: Finding and Fixing a Bug with `git bisect`
 
