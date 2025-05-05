@@ -1,0 +1,547 @@
+---
+pagetitle: "ETC5513: Reproducible and Collaborative Practices"
+subtitle: "Finding bugs, and building presentations"
+author: "Michael Lydeamore"
+email: "michael.lydeamore@monash.edu"
+date: "Week 9"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "rcp.numbat.space"
+footer: "ETC5513 Week 9"
+format: 
+  revealjs:
+    logo: ./images/monash-stacked-blue-rgb-transparent.png
+    slide-number: c
+    multiplex: false
+    theme: ../assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 750
+    css: [../assets/tachyons-addon.css, ../assets/custom.css, ../assets/lecture-01.css]
+    include-after-body: "../assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+execute:
+  echo: true
+---
+
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## Open Frame
+
+![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
+
+## Recap
+
+* Learn how to add references and bibliography
+* Dealing with large files
+* Tags
+* GitHub issues
+
+## Today's plan {#aim}
+
+::: {.callout-important}
+
+## Aim
+
+* Create a `git` project from an existing local folder
+* Licensing a repository
+* `git blame`
+* Templates for slides
+
+:::
+
+## Adding version control onto an existing project
+
+Suppose you have a folder on your computer which is not version controlled, and you decide that you would like to start tracking it.
+
+You go to GitHub and create a repo over there. You now have two options:
+
+::: {.columns}
+::: {.column width='50%'}
+::: {.fragment}
+
+#### Approach 1:
+
+* Create a GitHub repo
+* Clone the repo locally
+* Move all the files and folders from your existing project into this folder
+* Stage, commit, push
+
+:::
+:::
+::: {.column width='50%'}
+::: {.fragment}
+#### Approach 2:
+
+* Open a terminal in the directory for your folder
+* `git init` to create a `git` repostiroy
+* Stage, commit
+* `git remote add origin git@github.com:...`
+* `git push -u origin main`
+:::
+
+:::
+:::
+
+## Adding version control onto an existing project
+
+Option 2 is preferred because it [reduces duplication]{.monash-green2}.
+
+GitHub even gives you instructions:
+
+![](images/init.png){fig-align="center"}
+
+::: {.fragment}
+The `-u` flag says to link remote `origin` to branch `main`. it is a one time operation.
+:::
+
+::: {.fragment}
+Remember you can verify your remotes using `git remote -v`
+:::
+
+# Demo
+
+## Repository Visibility
+
+![](images/reposvisibility.png){fig-align="center"}
+
+[More info here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-repository-visibility)
+
+## Licensing
+
+Public repos in GitHub make your work publicly available and therefore it is important to establish how your work should be acknowledged if someone else wants to use it.
+
+> Public repositories on GitHub are often used to share open source software. For your repository to be truly open source, you'll need to license it sot that others are free to use, change and distribute the software.
+
+[More info here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository)
+
+## Available licenses in GitHub
+
+![](images/githubli.png){fig-align="center"}
+
+[More info here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#detecting-a-license)
+
+## Choosing a license
+
+![](images/chooselicense.png){fig-align="center"}
+
+[Source here](https://choosealicense.com/)
+
+## License examples
+
+::: {.columns}
+::: {.column width='50%'}
+![](images/ggplotlog.png){fig-align="center"}
+
+:::
+::: {.column width='50%'}
+![](images/forecastlogo.png){fig-align="center"}
+
+:::
+:::
+
+## No license
+
+![](images/no-permission.png){fig-align="center"}
+
+[Source here](https://choosealicense.com/)
+
+## Creative Commons License
+
+![](images/cclicenses.png){fig-align="center"}
+
+## Creative Commons License
+
+![](images/ccl.png){fig-align="center"}
+
+[More info here](https://en.wikipedia.org/wiki/Creative_Commons_license)
+
+## Location of your license
+
+You can add a license by:
+
+* Selecting the option on GitHub when you first create a repo
+* Later by placing your license text in a file named [LICENSE.md]{.monash-green2}
+
+::: {.fragment}
+Licenses go in the _root_ of the directory. Some information about licenses is sometimes included in `README.md` as well, but this is not required.
+
+[More info here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/licensing-a-repository#detecting-a-license)
+:::
+
+---
+
+## What is `git blame`?
+
+- A command that shows **who last modified each line** of a file.
+- It includes:
+  - Commit hash
+  - Author name
+  - Timestamp
+  - Line content
+
+```bash
+git blame my_script.R
+```
+
+---
+
+## Why is `git blame` useful?
+
+- **Debugging**: Find out who introduced a specific line (or bug).
+- **History**: Understand the evolution of code.
+- **Collaboration**: Ask helpful questions, not blame people!
+
+::: {.fragment}
+It's about understanding, not accusing!
+:::
+
+---
+
+## Example Output
+
+```
+3f23c8d2 (Alice Smith  2024-03-01 12:03:45 +0000  1) x <- 1
+ed32fa01 (Bob Jones    2024-03-02 09:15:23 +0000  2) y <- x + 1
+af9345dd (Charlie Liu  2024-03-03 16:42:07 +0000  3) print(y)
+```
+
+- Shows who added each line and when.
+
+---
+
+## How to Investigate Further
+
+- Use `git show <commit>` to see the full commit diff
+- Or `git log -L` to follow changes to a specific function or range
+
+```bash
+git log -L :my_function:my_script.R
+```
+
+- Combine with `git bisect` for deeper history analysis
+
+---
+
+## What is `git bisect`?
+
+- A **binary search** through your commit history to find the commit that introduced a bug.
+- You tell Git:
+  - A **bad** commit (where the bug exists)
+  - A **good** commit (before the bug existed)
+- Git checks out commits in between until it finds the culprit.
+
+---
+
+## Why use `git bisect`?
+
+* Efficient — checks only **log₂(n)** commits  
+* Ideal for long histories or subtle bugs  
+* You can even automate the check with a script!
+
+---
+
+## Visual Explanation
+
+```
+o---o---o---o---o---o---o
+G       ?       ?     B
+```
+
+- `G`: Good commit (known to be bug-free)
+- `B`: Bad commit (where bug is present)
+- Git tests midpoints (`?`) and narrows down.
+
+---
+
+## Step-by-Step Example
+
+```bash
+git bisect start
+git bisect bad                # current commit is buggy
+git bisect good <commit-id>  # known good commit
+```
+
+Git now checks out a middle commit. At each step, you say:
+
+```bash
+git bisect good   # if no bug
+git bisect bad    # if bug is present
+```
+
+---
+
+## Once Found
+
+Git will show something like:
+
+```
+3f9a2d1a is the first bad commit
+Author: Charlie <charlie@example.com>
+```
+
+Then, clean up with:
+
+```bash
+git bisect reset
+```
+
+---
+
+## Optional: Automate Testing
+
+```bash
+git bisect run Rscript test.R
+```
+
+Where `test.R` returns:
+
+- 0 → good
+- 1 → bad
+
+This can save time for large projects!
+
+---
+
+
+# Reproducible Presentations
+
+So far we have only look at written guides (like books and documents) in Quarto. Now it is time to learn how to do presentations!
+
+## Slide Structure
+
+To create slides, use horizontal rules (`---`) to separate them:
+
+```
+## Slide Title
+
+Content for this slide
+
+---
+
+## Another Slide
+
+More content
+```
+
+---
+
+## Types of Slides
+
+Use different heading levels to create **nested slides** (vertical stacks):
+
+```
+## Top-level slide
+
+---
+
+### Sub-slide (stacked under the previous)
+```
+
+Useful for going deeper on a topic without changing the horizontal flow.
+
+---
+
+## Fragments (Step-by-step Reveals)
+
+Use `:::` blocks with `.fragment` to reveal content piece-by-piece:
+
+```
+- Item 1
+::: {.fragment}
+- Item 2 (appears next)
+:::
+::: {.fragment}
+- Item 3 (appears after that)
+:::
+```
+
+Press space to reveal each in order during the presentation.
+
+---
+
+## Incremental Reveals
+
+You can automatically reveal bullet points **one at a time**  
+by setting `incremental: true` in your YAML header:
+
+```yaml
+format:
+  revealjs:
+    incremental: true
+```
+
+Then, write a normal list:
+
+```
+- First point
+- Second point
+- Third point
+```
+
+Each list item will appear step-by-step when you present.
+
+---
+
+## Columns
+
+Use a `.columns` div and `.column` blocks inside:
+
+```
+::: columns
+::: {.column width="50%"}
+Left side content
+:::
+
+::: {.column width="50%"}
+Right side content
+:::
+:::
+```
+
+Useful for comparisons, images + text, or two-part layouts.
+
+---
+
+## Themes & Transitions
+
+You can customize the look:
+
+```yaml
+format:
+  revealjs:
+    theme: solarized
+    transition: fade
+```
+
+Themes include: `simple`, `solarized`, `beige`, `night`, `white`, `moon`, etc.
+
+---
+
+## Speaker Notes
+
+Add presenter notes with `???` under the slide:
+
+```
+## Slide Title
+
+Visible content
+
+???
+
+Notes only the presenter can see.
+```
+
+Press **'s'** during the presentation to open speaker view.
+
+---
+
+## The `.smaller` class {.smaller}
+
+You can use `.smaller` to shrink text size for dense slides or long code blocks.
+
+```markdown
+
+## A slide with smaller text {.smaller}
+
+```
+
+::: {.fragment}
+This slide has `.smaller` applied!
+:::
+
+---
+
+## Other Features
+
+- Use `.pull-left` / `.pull-right` to align content
+- Embed code chunks just like in other `.qmd` documents
+- Reveal.js supports:
+  - Math (via LaTeX)
+  - Syntax highlighting
+  - Embedded videos/images
+
+---
+
+
+## Get Started
+
+To render your presentation:
+
+- Save your file as `slides.qmd`
+- Use the **Render button** in RStudio
+- Or run in the terminal:
+
+```bash
+quarto render slides.qmd
+```
+
+It will output an HTML presentation. Open it in your browser.
+
+---
+
+## Week 9 Lesson
+
+::: {.callout-important}
+* Licensing
+* Initialising a repo without GitHub
+* `git blame/bisect`
+* Reproducible Presentations
+:::

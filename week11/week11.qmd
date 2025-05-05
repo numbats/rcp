@@ -1,0 +1,125 @@
+
+# Making sure your code is transportable
+
+It used to work I'm sure!
+
+## Think about the following issue
+
+* My code ran 6 months ago ([I'm sure it did]{.monash-blue}) and now it is not working.
+* My figures in `ggplot` look funny now
+
+::: {.fragment}
+Generally, this is because a version of a package has updated.
+:::
+
+## Package environments
+
+![](https://imgs.xkcd.com/comics/python_environment.png){fig-align="center"}
+
+## Lightweight dependency management
+
+The primary solution for dependency management (which is far from perfect) is `renv`
+
+![](images/renvlogo.png){fig-align="center"}
+
+The idea is to create a [project-specific]{.monash-green2} library to ensure a project has a record of which version of R packages are used.
+
+## How does `renv` work?
+
+* Gives each R project it's own local library
+* Provides an easy way to get R sessions to _use_ a local library
+* Provides tools for managing the R packages installed in these local libraries
+
+![](images/renvlogo.png){fig-align="center"}
+
+## So what is a library path anyway?
+
+When we load a library, what exactly is going on?
+
+::: {.fragment}
+R searches in a collection of places for the `dplyr` package, and loads it.
+
+These places are called _library paths_.
+:::
+
+::: {.fragment}
+You can change the library path, and you can view them using `.libPaths()`
+:::
+
+## Library paths example
+
+Your default library path is probably something like:
+
+```
+/Library/Frameworks/R.framework/Versions/4.0/Resources/library
+```
+
+If you want to find a package, you can use `find.package("dplyr")`
+
+::: {.fragment}
+`renv` sets up a project-specific library path to keep your packages from interacting with eaach other.
+:::
+
+## `renv` workflow
+
+Via the R console:
+
+* `renv::init()` to initialise the project
+* Work as usual, installing packages, writing code
+* `renv::snapshot()` to save the state of the local library to a lockfile
+* `renv::restore()` to reverty our packages to the state encoded in the lockfile
+
+The [lockfile]{.monash-blue} contains all the information about which package version is being used, and makes your environment _reproducible_.
+
+## But why?
+
+In collaborative projects, [you may want to ensure everyone is working with the same environment]{.monash-green2}
+
+It helps protect against changes between different versions of packages.
+
+::: {.fragment}
+By sharing the lockfile, your collaborators will be using the same version of packages that you are using, without breaking their own installs.
+:::
+
+# Demo
+
+Observe the changes in `libPaths`, the new files, and the lockfile.
+
+## Managing the lockfile
+
+"If you're using a version control system with your project, then as you call `renv::snapshot()` and later commit new lockfiles to your repository, you may find it necessary later to recover older versions of your lockfiles. renv provides the functions `renv::history()` to list previous revisions of your lockfile, and `renv::revert()` to recover these older lockfiles."
+
+Currently, only Git repositories are supported by `renv::history()` and `renv::revert()`.
+
+[Source here](https://rstudio.github.io/renv/articles/renv.html)
+
+
+## Managing the lockfile
+
+Each project contains only a single `renv.lock`
+
+There are some helper functions:
+
+* `renv::history()`: find prior commtis in which the lockfile has changed
+* `renv::revert(commit = SHA1)`: Revert the lockfile to a state at a previous commit
+
+::: {.callout-important}
+Make sure to commit the lockfile often, and call `renv::snapshot()` when you're updating packages! This is the only way the changes can be recorded and shared.
+:::
+
+## Workflow for collaboration
+
+* Select a version control system (i.e. git and GitHub)
+* Initialise the project: `renv::init()`
+* Periodically, and after adding new packages, use `renv::snapshot()`
+* Stage, commit and share `renv.lock`  with others via version control.
+
+## Workflow for collaboration
+
+Once collaborators clone the repository, they also run `renv::init()`.
+
+This will automatically install the packages declared in the lockfile.
+
+By doing this, they can work in your project using exactly the same R packages that you used when the lockfile was generated.
+
+# Demo
