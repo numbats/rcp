@@ -4,10 +4,10 @@ subtitle: "Workshop 9"
 author: "Michael Lydeamore"
 date: today
 format:
-    html:
-        embed-resources: true
-        output-file: "index.html"
-        toc: true
+   html:
+      embed-resources: true
+      output-file: "index.html"
+      toc: true
 ---
 
 ```{r, echo = FALSE, eval = file.exists("tutorial.css")}
