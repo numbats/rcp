@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Michael Lydeamore">
-<meta name="dcterms.date" content="2025-04-28">
+<meta name="dcterms.date" content="2025-05-05">
 
 <title>ETC5513: Collaborative and Reproducible Practices</title>
 <style>
@@ -4809,9 +4809,12 @@ vertical-align: -.125em;
  <span class="dropdown-text">Referencing, large files, and GitHub Issues</span></a>
   </li>  
         <li class="dropdown-header">Week 8: No class (University Holiday)</li>
-        <li class="dropdown-header">Referencing, large files, and GitHub Issues</li>
         <li>
-    <a class="dropdown-item" href="../../week10/index.html">
+    <a class="dropdown-item" href="../../week9/index.html">
+ <span class="dropdown-text">Finding bugs and building presentations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../week10/index.qmd">
  <span class="dropdown-text">Keeping environments separate and reproducible</span></a>
   </li>  
         <li>
@@ -4891,7 +4894,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">28 April 2025</p>
+      <p class="date">5 May 2025</p>
     </div>
   </div>
   
@@ -4925,20 +4928,7 @@ vertical-align: -.125em;
 </section>
 <section id="simulate-a-mistake-add-a-huge-file" class="level2">
 <h2 class="anchored" data-anchor-id="simulate-a-mistake-add-a-huge-file">Simulate a Mistake: Add a Huge File</h2>
-<ol type="1">
-<li><p>In RStudio, create a new <strong>dummy file</strong>:</p>
-<ul>
-<li>New File → Text File</li>
-<li>Save it as <code>bigfile.txt</code></li>
-</ul></li>
-<li><p>Add a lot of content:</p>
-<ul>
-<li><p>You can copy-paste a lot of text</p></li>
-<li><p>OR use this in the Terminal to make a large file:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">base64</span> /dev/urandom <span class="kw">|</span> <span class="fu">head</span> <span class="at">-c</span> 60MB <span class="op">&gt;</span> bigfile.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<p>(If that’s tricky, just manually paste lots of content.)</p></li>
-</ol>
+<p>1l. Download the zip file from the Week 8 Moodle website</p>
 <hr>
 </section>
 <section id="try-to-commit-the-huge-file" class="level2">
@@ -4956,7 +4946,7 @@ GitHub will likely <strong>reject</strong> the push (file too large &gt;100MB), 
 <h2 class="anchored" data-anchor-id="try-to-fix-it-with-git-revert">Try to Fix It With <code>git revert</code></h2>
 <ol type="1">
 <li><p>Try to revert the bad commit:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert HEAD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert HEAD</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 <p>🔵 <strong>Expected Result</strong>:<br>
 Git <strong>won’t let you</strong> — because the giant file is still in the commit history.</p>
@@ -4967,9 +4957,9 @@ Git <strong>won’t let you</strong> — because the giant file is still in the 
 <h2 class="anchored" data-anchor-id="actually-fix-it-with-git-reset">Actually Fix It With <code>git reset</code></h2>
 <ol type="1">
 <li><p>Do a soft reset to move back before the bad commit:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset <span class="at">--soft</span> HEAD~1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Now <strong>unstage</strong> the big file manually in RStudio (or):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> bigfile.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> bigfile.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Delete <code>bigfile.txt</code> from your project folder.</p></li>
 <li><p>Commit the new clean state:</p>
 <pre><code>&quot;Remove large file after reset&quot;</code></pre></li>
@@ -4982,8 +4972,8 @@ Git <strong>won’t let you</strong> — because the giant file is still in the 
 <li><p>Install Git LFS:<br>
 Follow instructions here → https://git-lfs.github.com/</p></li>
 <li><p>Track large files safely:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs install</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs track <span class="st">&quot;*.csv&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs install</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> lfs track <span class="st">&quot;*.csv&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Then commit/push files as usual — Git LFS manages the storage.</p></li>
 </ul>
 <hr>
