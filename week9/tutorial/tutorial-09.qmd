@@ -1,0 +1,109 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Tutorial 9"
+author: "Michael Lydeamore"
+date: today
+format:
+    html:
+        output-file: index.html
+        embed-resources: true
+---
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+# Introduction
+
+In this tutorial, we will cover the following topics:
+
+1. Creating a Git repository from existing work using `git init` and setting up the remote.
+2. Adding a license to your repository on GitHub.
+
+
+# Setting Up a New Project in RStudio
+
+To begin, we will set up a new project in RStudio without using version control.
+
+## Step 1: Create a New Project
+
+1. Open RStudio.
+2. Go to the top menu and select `File` > `New Project...`.
+3. In the "New Project" wizard, select `New Directory`.
+4. Choose `New Project`.
+5. Enter a name for your project and select a location on your computer where you want to save it.
+6. Click `Create Project`.
+
+You now have a new RStudio project set up without version control
+
+---
+
+
+# Creating a Git Repository from Existing Work
+
+If you have an existing project that you want to version control with Git, follow these steps:
+
+## Step 1: Initialize the Git Repository
+
+1. Open your terminal or command prompt.
+2. Navigate to the root directory of your existing project using the `cd` command. For example:
+   ```bash
+   cd path/to/your/project
+   ```
+3. Initialize a new Git repository in this directory by running:
+   ```bash
+   git init
+   ```
+   This command creates a new subdirectory named `.git` that contains all of your necessary repository files.
+
+## Step 2: Add Your Files to the Repository
+
+1. Add all of your project files to the staging area:
+   ```bash
+   git add .
+   ```
+2. Commit the files to the repository with a descriptive message:
+   ```bash
+   git commit -m "Initial commit"
+   ```
+
+## Step 3: Set Up the Remote Repository
+
+1. Go to GitHub and create a new repository. Do not initialize it with a README, .gitignore, or license.
+2. Copy the URL of the new GitHub repository.
+3. In your terminal, add the remote repository URL to your local repository:
+   ```bash
+   git remote add origin git@github.com:your-username/your-repository.git
+   ```
+4. Push your local repository to GitHub:
+   ```bash
+   git push -u origin main
+   ```
+
+You should now be able to see your repository on GitHub.
+
+---
+
+
+# Adding a License on GitHub
+
+Adding a license to your repository is important for defining how others can use your code. Follow these steps to add a license:
+
+## Step 1: Choose a License
+
+1. Go to [Choose a License](https://choosealicense.org/) to find a license that suits your needs.
+2. Copy the text of the license you choose.
+
+## Step 2: Add the License to Your Repository
+
+1. In your GitHub repository, click on the "Add file" button and select "Create new file".
+2. Name the file `LICENSE` (or `LICENSE.md` if you prefer Markdown format).
+3. Paste the license text into the file.
+4. Scroll down and click "Commit new file" to add the license to your repository.
+
+::: {.callout-tip}
+GitHub will also suggest you some licenses. If these suit your needs, you can just use those.
+:::
+
+# Conclusion
+
+You have now successfully set up a new project in RStudio, created a Git repository from existing work, set up the remote, and added a license to your GitHub repository. These steps are fundamental for managing your projects and collaborating with others in a reproducible manner.
