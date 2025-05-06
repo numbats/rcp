@@ -57,11 +57,16 @@ If you have an existing project that you want to version control with Git, follo
 
 ## Step 2: Add Your Files to the Repository
 
-1. Add all of your project files to the staging area:
+1. Not all of our files should be added to git. For example, the `.Rproj.user.` folder should be left out. Create a new text file called `.gitignore` and add the pattern `.Rproj.user/` to ignore. Test if this is working using
+   ```bash
+   git status
+   ```
+
+2. Add all of your project files to the staging area:
    ```bash
    git add .
    ```
-2. Commit the files to the repository with a descriptive message:
+3. Commit the files to the repository with a descriptive message:
    ```bash
    git commit -m "Initial commit"
    ```
@@ -94,6 +99,22 @@ Adding a license to your repository is important for defining how others can use
 2. Copy the text of the license you choose.
 
 ## Step 2: Add the License to Your Repository
+
+### Method 1: Using RStudio
+
+Licenses are just plain text files (like `gitignore`).
+
+1. Create a new text file in RStudio, and past the contents of the license you chose.
+2. Save the license as LICENSE (with no extension)
+3. Add and commit the files, and push to GitHub
+   ```bash
+   git add LICENSE
+   git commit -m "Add license"
+   git push origin main
+   ```
+4. Check if you can see the license file on GitHub
+
+### Method 2: Using GitHub
 
 1. In your GitHub repository, click on the "Add file" button and select "Create new file".
 2. Name the file `LICENSE` (or `LICENSE.md` if you prefer Markdown format).
