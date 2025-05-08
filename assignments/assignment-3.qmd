@@ -56,21 +56,28 @@ You cannot use a dataset that has been used for another assignment.
 
 ## Part A
 
+::: {.callout-important}
+Join the GitHub Classroom for this assignment [here](https://classroom.github.com/a/90isL5_2).
+
+**You can choose your own group name, but make sure to submit it on the Google Form [here](https://forms.gle/qdEU7eYCsLZhRyV29)**
+:::
+
+
 As a group, you need to agree on a topic with several subtopics for each individual in the team and select a dataset or several datasets for the assignment.
 
 You should create branches for each subtopic. Each of you can work on more than one subtopic if you like.
 
 
-- Title and authors (`r add_marks(1)` mark)
-- Table of contents: Defining using adequate YAML syntax (`r add_marks(1)` mark)
-- Executive summary: Maximum of 4 sentences (`r add_marks(3)` marks)
-- Introduction: Maximum 10 sentences (`r add_marks(5)` marks)
+- Title and authors
+- Table of contents: Defining using adequate YAML syntax
+- Executive summary: Maximum of 4 sentences
+- Introduction: Maximum 10 sentences
 - The body of the report should contain the following sections:
-    - Methodology: Maximum 300 words (`r add_marks(5)` marks). 
-        - Should include a figure and a table and those must be referenced in the text and have adequate captions (`r add_marks(5)` marks).
-    - Results: Maximum 200 words (`r add_marks(3)` marks). Should include either a figure **or** a table.
+    - Methodology: Maximum 300 words
+        - Should include a figure and a table and those must be referenced in the text and have adequate captions 
+    - Results: Maximum 200 words. Should include either a figure **or** a table.
     - Discussion, conclusion and recommendations
-    - Reference section: Include at least 1 reference. (`r add_marks(1)` mark)
+    - Reference section: Include at least 1 reference. 
 
 ## Part B
 
@@ -81,61 +88,25 @@ As a team, you need to:
 3. Make sure that the report knits into a pdf without errors each time you do a merge. If errors arise please solve them.
 4. Review and Revise: Carefully review the final report to ensure that it meets all the requirements of a cohesive report and is free of errors. Make any necessary revisions and edits before submitting the report. For this, you will all probably need to work on the main branch. Please ensure that any changes made are in terms of the requirements and in a coordinated fashion to avoid any problems.
 
-The final business hospital must look professional, coherent and connected.
+The final business report must look professional, coherent and connected.
 
 Students who do not participate in Part B will receive a grade of 0 for the assignment.
 
 **Teams will not be penalised if individual students do not contribute to to the work on their respective branches**.
-
-## Marking Rubric
-
-In addition to the points for each section as described above, you will be graded on your:
-
-- Report template (`r add_marks(5)` points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report _is not beneficial_.
-- Issues with spelling and grammar (up to -5pts)
-- R code style (`r add_marks(5)` points)
-- Report quality: Sections in the report are connected and aligned with the research question in a coherent way (`r add_marks(6)` points).
-- Messages in commits are clear and informative (`r add_marks(5)` points)
-- Work on individual branches of the git repository (`r add_marks(10)` points)
-- Work on the main branch of the git repository (`r add_marks(10)` points)
-- Git tree structure (`r add_marks(5)` points)
-
-Maximum grade: `r total_marks` points.
-
-## The usage of AI
-
-You may use Generative AI (such as ChatGPT) to _correct your English_ or to help with your R code (for example to find bugs or ask for enhancements to _your existing code_). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called `Appendix`, and display screenshots of your ChatGPT queries and interactions related to this assignment.
-
-You **cannot** use ChatGPT to generate content for this assignment from scratch, including code.
-
-Monash University supports the responsible and ethical use of generative AI. For more info please refer to [Monash Policy and practise guidance around acceptable and responsible use of AI technologies](https://www.monash.edu/learning-teaching/teachhq/Teaching-practices/artificial-intelligence/policy-and-practice-guidance-around-acceptable-and-responsible-use-of-ai-technologies).
-
-::: {.callout-tip}
-Remember you can be better than ChatGPT. If you just use ChatGPT to create content for you, where is your value and why are your skills special?
-:::
 
 ## Assignment Submission
 
 The report must be rendered to PDF. Code outputs do _not_ need to be visible - you are creating a clean business report, so only include them in they are adding to your narrative.
 
 ::: {.callout-important}
-The printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages)
+The printed final PDF report cannot exceed 16 pages for teams of three or 20 pages for teams of four (not including appendix pages)
 :::
-
-
-**You do not need to upload _anything_ to Moodle. All marking will occur directly from your GitHub repositories**.
-
-## Plagiarism
-
-Monash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:
-
-https://www.monash.edu/students/admin/policies/academic-integrity
-
-You cannot re-use assignments that have been submitted or used in  other units.
 
 # Part C - Slides
 
-Create a maximum 10 slide summary of your group report. The slides must be _fully reproducible_. Join the GitHub classroom for Part B [here](https://classroom.github.com/a/ibMWZMtG).
+Create a maximum 10 slide summary of your group report. The slides must be _fully reproducible_. You should make a new `qmd` in the same repo you've used for Parts A and B. You will present these slides _as a group_ in your tutorials in Week 12.
+
+**The presentations have a _maximum_ time of 10 minutes**
 
 
 The slide format should be as follows:
@@ -156,14 +127,34 @@ Make sure to commit frequently, not just at the end of the work!
 
 ## Marking Rubric
 
-```{r}
-total_marks <- 0
-```
+In addition to the points for each section as described above, you will be graded on your:
 
-* Presentation is reproducible  (`r add_marks(5)` points)
-* Styling is sensible and does not detract from the presentation  (`r add_marks(2)` points)
-* Presentation tells a clear story  (`r add_marks(5)` points)
-* Presentation follows the required format (`r add_marks(3)`)
+### Part A:
+
+- Report template (`r add_marks(2)` points). The default Quarto template will be granted 1 point. Remember, styling that takes away from the report _is not beneficial_.
+- Format followed (`r add_marks(5)` points)
+- Table of contents using YAML (`r add_marks(1)` points)
+- Methodology no more than 300 words (`r add_marks(1)` points)
+- Methodology includes a figure and table, both referenced in text, with captions (`r add_marks(2)` points)
+- Results no more than 200 words (`r add_marks(1)` points)
+- Results contains figure and/or table, referenced in text, with caption (`r add_marks(2)` points)
+- Report quality: Sections in the report are connected and aligned with the research question in a coherent way (`r add_marks(2)` points).
+- References included (`r add_marks(1)` points)
+- Issues with spelling and grammar (up to -3pts)
+- R code style (`r add_marks(2)` points)
+- Messages in commits are clear and informative (`r add_marks(3)` points)
+
+### Part B:
+
+- Branches successfully merged (`r add_marks(3)` points)
+- Conflicts resolved (`r add_marks(3)` points)
+
+### Part C:
+
+* Presentation is reproducible  (`r add_marks(2)` points)
+* Styling is sensible and does not detract from the presentation  (`r add_marks(1)` points)
+* Presentation tells a clear story  (`r add_marks(2)` points)
+* Presentation follows the required format (`r add_marks(2)`)
 
 Maximum grade: `r total_marks` points.
 
