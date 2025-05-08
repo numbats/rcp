@@ -55,7 +55,7 @@ __You only need to use commands we have learned in class.__
 
 1. Create a new RStudio Project. In this folder, create a simple qmd file called `example.qmd` that can be knitted into a HTML file. Show the result of the knitted file.
 
-2. From the command line interface, initialise this folder as a git repository and push it to the GitHub classroom repository.
+2. From the command line interface, initialise this folder as a git repository and push it to a GitHub repository.
 
 3. Create a new branch called `testbranch`. Modify the file `example.qmd` and add the changes to both the local and remote repositories. 
 
@@ -74,6 +74,8 @@ __You only need to use commands we have learned in class.__
 10. On main, create a new section in `example.qmd` that includes an easy to make plot. Commit the changes, and demonstrate using the command line interface how to undo the commit _without_ losing your local changes.
 
 ## Marking Rubric
+
+**Please upload the completed PDF guide to Moodle for marking**
 
 * Each of the instructions will be assessed as to whether they are successfully completed or not (1 mark each, total `r add_marks(10)` points)
 * Clear commit messages used in the guide where appropriate (`r add_marks(1)` point)
