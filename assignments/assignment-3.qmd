@@ -132,23 +132,23 @@ In addition to the points for each section as described above, you will be grade
 ### Part A:
 
 - Report template (`r add_marks(2)` points). The default Quarto template will be granted 1 point. Remember, styling that takes away from the report _is not beneficial_.
-- Format followed (`r add_marks(3)` points)
-- Table of contents using YAML (`r add_marks(1)` points)
+- Issues with spelling and grammar (up to -3pts)
+- Messages in commits are clear and informative (`r add_marks(2)` points)
+
+### Part B:
+
 - Methodology no more than 300 words (`r add_marks(1)` points)
 - Methodology includes a figure and table, both referenced in text, with captions (`r add_marks(2)` points)
 - Results no more than 200 words (`r add_marks(1)` points)
 - Results contains figure and/or table, referenced in text, with caption (`r add_marks(2)` points)
 - Report quality: Sections in the report are connected and aligned with the research question in a coherent way (`r add_marks(2)` points).
 - References included (`r add_marks(1)` points)
-- Issues with spelling and grammar (up to -3pts)
-- R code style (`r add_marks(2)` points)
-- Messages in commits are clear and informative (`r add_marks(2)` points)
-
-### Part B:
-
 - Branches successfully merged (`r add_marks(3)` points)
 - Conflicts resolved (`r add_marks(2)` points)
 - Report is reproducible (`r add_marks(2)` points)
+- Format followed (`r add_marks(3)` points)
+- Table of contents using YAML (`r add_marks(1)` points)
+- R code style (`r add_marks(2)` points)
 - Reproducible tooling (`r add_marks(2)` points):
     - `gitignore`
     - issues
