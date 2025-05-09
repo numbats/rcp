@@ -63,9 +63,9 @@ Join the GitHub Classroom for this assignment [here](https://classroom.github.co
 :::
 
 
-As a group, you need to agree on a topic with several subtopics for each individual in the team and select a dataset or several datasets for the assignment.
+As a group, you need to agree on a topic, and select a dataset or several datasets for the assignment. You should decide how to divide up the work between you.
 
-You should create branches for each subtopic. Each of you can work on more than one subtopic if you like.
+You should create branches for various sections of the report (for example, Executive Summary, Methods, Figures). Each of you can work on more than one section.
 
 
 - Title and authors
@@ -132,7 +132,7 @@ In addition to the points for each section as described above, you will be grade
 ### Part A:
 
 - Report template (`r add_marks(2)` points). The default Quarto template will be granted 1 point. Remember, styling that takes away from the report _is not beneficial_.
-- Format followed (`r add_marks(5)` points)
+- Format followed (`r add_marks(3)` points)
 - Table of contents using YAML (`r add_marks(1)` points)
 - Methodology no more than 300 words (`r add_marks(1)` points)
 - Methodology includes a figure and table, both referenced in text, with captions (`r add_marks(2)` points)
@@ -142,12 +142,18 @@ In addition to the points for each section as described above, you will be grade
 - References included (`r add_marks(1)` points)
 - Issues with spelling and grammar (up to -3pts)
 - R code style (`r add_marks(2)` points)
-- Messages in commits are clear and informative (`r add_marks(3)` points)
+- Messages in commits are clear and informative (`r add_marks(2)` points)
 
 ### Part B:
 
 - Branches successfully merged (`r add_marks(3)` points)
-- Conflicts resolved (`r add_marks(3)` points)
+- Conflicts resolved (`r add_marks(2)` points)
+- Report is reproducible (`r add_marks(2)` points)
+- Reproducible tooling (`r add_marks(2)` points):
+    - `gitignore`
+    - issues
+    - `renv`
+    - Or other tools
 
 ### Part C:
 
