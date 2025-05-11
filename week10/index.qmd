@@ -1,0 +1,413 @@
+---
+pagetitle: "ETC5513: Reproducible and Collaborative Practices"
+subtitle: "Keeping environments separate and reproducible"
+author: "Michael Lydeamore"
+email: "michael.lydeamore@monash.edu"
+date: "Week 11"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "rcp.numbat.space"
+footer: "ETC5513 Week 10"
+format: 
+  revealjs:
+    logo: images/monash-stacked-blue-rgb-transparent.png
+    slide-number: c
+    multiplex: false
+    theme: ../assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 750
+    css: [../assets/tachyons-addon.css, ../assets/custom.css, ../assets/lecture-01.css]
+    include-after-body: "../assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+execute:
+  echo: true
+---
+
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## Open Frame
+
+![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
+
+# Environment reproduction
+
+## Why Do We Need This?
+
+- Projects become harder to manage as they grow
+- We want to ensure reproducibility:
+  - Use the same packages and versions
+  - Avoid redundant computation
+- `renv` handles package environments
+- `targets` handles workflow pipelines
+
+---
+
+## 📦 What is `renv`?
+
+- `renv` stands for "Reproducible ENVironments"
+- Captures your package dependencies
+- Makes your project portable and self-contained
+
+## Libraries and repositories
+
+We first have to understand what is a _library_ and what is a _repository_.
+
+A _library_ is a directory which contains _all of your install packages_. For us, so far, we have **one** library shared across all of our projects.
+
+::: {.fragment}
+You can see your current libraries by running `.libPaths()`
+:::
+
+## Libraries and repositories
+
+A _repository_ is a source of packages, such as CRAN. 
+
+Other repositories include: Bioconductor, Posit Public Package Manager, and R Universe.
+
+::: {.fragment}
+You can see your available repositories with `getOption('repos')`
+:::
+
+## Setting up `renv`
+
+```r
+install.packages("renv")
+renv::init()
+```
+
+This will set up a _project-specific library_, which isolates the packages for each project.
+
+---
+
+## How `renv` Works
+
+- `renv` creates a lockfile (`renv.lock`)
+- Tracks your installed packages and versions
+- You can restore your environment later:
+
+```r
+renv::restore()
+```
+
+- Keeps packages project-specific (not global)
+
+---
+
+## Key Files from `renv`
+
+- `renv.lock` — lists exact package versions
+- `renv/` folder — stores the project library
+- `.Rprofile` — ensures `renv` is activated when you open the project
+
+::: {.fragment}
+Make sure you check these files in to version control!
+:::
+
+---
+
+## How to use `renv`
+
+- Install packages as normal
+- After each package install, run 
+
+```r
+renv::snapshot()
+```
+
+- Push the changed `renv.lock` file to your repository
+
+---
+
+## The lockfile
+
+Here is an example lockfile:
+
+```
+{
+  "R": {
+    "Version": "4.4.3",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://cloud.r-project.org"
+      }
+    ]
+  },
+  "Packages": {
+    "markdown": {
+      "Package": "markdown",
+      "Version": "1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4584a57f565dd7987d59dda3a02cfb41"
+    },
+    "mime": {
+      "Package": "mime",
+      "Version": "0.12.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "yihui",
+      "RemoteRepo": "mime",
+      "RemoteRef": "main",
+      "RemoteSha": "1763e0dcb72fb58d97bab97bb834fc71f1e012bc",
+      "Requirements": [
+        "tools"
+      ],
+      "Hash": "c2772b6269924dad6784aaa1d99dbb86"
+    }
+  }
+}
+```
+
+There are two main things in here: `R` and `Packages`.
+
+It is `Packages` that has everything needed to reinstall an exact version of a package.
+
+## Reusing packages across projects
+
+Often we use the same packages across most of our projects. Conveniently, `renv` reuses packages across our projects by maintaining a _cache_.
+
+You'll see sometimes a message that says:
+
+```
+Linked from Cache
+```
+
+when installing. This is the package being re-used!
+
+## Risks of `renv`
+
+`renv` doesn't solve everything for you:
+
+::: {.incremental}
+
+* Doesn't manage R versions
+* When packages become "old" they have to be compiled from source
+  * Which is slow
+  * And error prone
+* Doesn't track pandoc
+* Can't help with operating system, system dependencies
+
+:::
+
+
+## Sharing Projects
+
+When someone else clones your project:
+
+1. Open the RStudio project
+2. Run:
+
+```r
+renv::restore()
+```
+
+---
+
+## Using `renv` with GitHub Actions (Advanced)
+
+- GitHub Actions can install your project dependencies automatically
+- `renv::restore()` is run as part of the CI workflow
+- Good for checking that your project runs cleanly on fresh machines
+
+---
+
+## Example GitHub Actions Setup
+
+Add this to `.github/workflows/ci.yaml`:
+
+```yaml
+name: R-CMD-check
+
+on: [push, pull_request]
+
+jobs:
+  R-CMD-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+
+      - name: Restore packages with renv
+        run: Rscript -e 'install.packages("renv"); renv::restore()'
+
+      - name: Run your script or tests
+        run: Rscript your_script.R
+```
+
+Your GitHub Action will now use the same package versions as your local setup.
+
+---
+
+## When Should You Use This?
+
+- To **check your pipeline still runs** after changes
+- When **collaborating**, to ensure a shared reproducible environment
+- For **automated reports**, like rendering Quarto documents
+
+---
+
+
+# Pipeline management
+
+## The typical pipeline
+
+Often, we end up with something like this:
+
+```
+01-data.R
+02-model.R
+03-plots.R
+```
+
+And then we source these in order each time.
+
+::: {.fragment}
+This works OK for small projects, but scales very poorly.
+:::
+
+## What is `targets`?
+
+- Think **Makefile**, but for R
+- Automates steps in your workflow
+- Re-runs only the steps that need updating
+
+```r
+install.packages("targets")
+```
+
+---
+
+## 🎯 Example Pipeline
+
+```r
+library(targets)
+
+list(
+  tar_target(data, read_csv("data.csv")),
+  tar_target(model, lm(y ~ x, data))
+)
+```
+
+- Each `tar_target()` defines a step
+- `targets` watches for changes
+
+---
+
+## How It Works
+
+Pipeline:
+```
+read_csv() → data ─┐
+                   └──> lm() → model
+```
+
+If the file changes, `targets` knows to rerun `read_csv()` and everything downstream.
+
+---
+
+## Running a Pipeline
+
+```r
+tar_make()
+```
+
+- Builds your pipeline
+- Skips steps if inputs haven’t changed
+
+---
+
+## Project Structure Example
+
+```
+your-project/
+├── _targets.R     # pipeline definition
+├── data/
+├── R/             # helper functions
+├── renv.lock
+├── renv/
+└── analysis.qmd
+```
+
+---
+
+## How does it work?
+
+When running a function, the package _hashes_ the function.
+
+If the function doesn't change, the hash will stay the same
+
+If the function has changed, then so too will the hash.
+
+## How does it work
+
+Results are stored on-disk in a compressed format.
+
+Targets can be loaded using `tar_load` or `tar_read` (learn the keybinds!)
+
+# `targets` demo
