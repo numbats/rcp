@@ -1,6 +1,6 @@
 ---
 title: 'ETC5513: Collaborative and Reproducible Practices'
-subtitle: "Workshop 9"
+subtitle: "Workshop 10"
 author: "Michael Lydeamore"
 date: today
 format:
@@ -147,13 +147,13 @@ execute:
   echo: true
 ---
 
-```{r}
+```{{r}}
 library(targets)
 library(gtsummary)
 tar_read(clean_data)
 ```
 
-```{r}
+```{{r}}
 #| results: asis
 tar_load(models)
 
