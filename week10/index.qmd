@@ -494,7 +494,6 @@ This results in
 
 ## Rendering Quarto documents
 
-::: {.fragment}
 In this small example, this feels like overkill (and it is), but on large projects, under
 
 You can also use `targets` in your Quarto documents with
