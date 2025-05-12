@@ -47,6 +47,7 @@ knitr::opts_chunk$set(
 )
 
 library(tidyverse)
+library(palmerpenguins)
 ```
 
 ## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
@@ -456,6 +457,7 @@ penguins |>
 ```
 
 ::: {.fragment}
+
 In `targets`-land, we do it like this instead:
 
 ```r
@@ -470,6 +472,7 @@ list(
       pattern = map(grouped_penguins))
 )
 ```
+
 :::
 
 ## Dynamic branching
