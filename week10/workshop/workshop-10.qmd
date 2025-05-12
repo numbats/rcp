@@ -14,7 +14,7 @@ format:
 htmltools::includeCSS("tutorial.css")
 ```
 
-## S## Part 1: Setup
+## Part 1: Setup
 
 ### Step 1: Create a new RStudio project
 
@@ -225,7 +225,8 @@ Remember to add the `_targets` folder to your `.gitignore` file!
 Change the model formula in `_targets.R`
 
 ```r
-lm(body_mass_g ~ bill_length_mm + flipper_length_mm, data = grouped_data, pattern = map(grouped_data))
+lm(body_mass_g ~ bill_length_mm + flipper_length_mm, 
+   data = grouped_data)
 ```
 
 Run
