@@ -14,25 +14,42 @@ format:
 htmltools::includeCSS("tutorial.css")
 ```
 
-## Setup
+## S## Part 1: Setup
 
-Before starting, make sure you have the following packages installed:
+### Step 1: Create a new RStudio project
 
-```r
-install.packages(c("targets", "tarchetypes", "dplyr", "readr", "broom", "palmerpenguins"))
-```
+1. In RStudio, choose **File > New Project > New Directory > New Project**.
+2. Name your project (e.g. `penguin-pipeline`).
+3. This creates a local directory.
 
-Create a new RStudio Project and initialise a targets pipeline:
+### Step 2: Initialise git
+
+1. In the R console:
+
+   ```r
+   usethis::use_git()
+   ```
+
+2. Create a repository on GitHub (you can leave it empty).
+3. Copy the repository URL (e.g. `git@github.com/yourusername/penguin-pipeline.git`).
+4. In the terminal:
+
+   ```bash
+   git remote add origin git@github.com/yourusername/penguin-pipeline.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+---
+
+
+## Step 1: Load & Clean Data
 
 ```r
 targets::tar_script()
 ```
 
 This creates `_targets.R`, which we will now edit.
-
----
-
-## Step 1: Load & Clean Data
 
 We'll use the `palmerpenguins` dataset.
 
@@ -183,3 +200,48 @@ tar_target(
    iteration = < >
 )
 ```
+
+## Step 6: Version control
+
+### Add `.gitignore`
+
+Create a `.gitignore` file with this content:
+
+```
+_targets
+.Rhistory
+.RData
+.Rproj.user
+```
+
+Save, add and commit this file.
+
+::: {.callout-tip}
+Remember to add the `_targets` folder to your `.gitignore` file!
+:::
+
+## Step 6: Invalidation
+
+Change the model formula in `_targets.R`
+
+```r
+lm(body_mass_g ~ bill_length_mm + flipper_length_mm, data = grouped_data, pattern = map(grouped_data))
+```
+
+Run
+
+```r
+tar_visnetwork()
+```
+
+What do you notice?
+
+---
+
+Rerun the pipeline with
+
+```r
+targets::tar_make()
+```
+
+Notice that only the affected targets have re-run!
