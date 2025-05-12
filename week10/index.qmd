@@ -423,7 +423,7 @@ list(
 
 In your console:
 
-```{r}
+```r
 tar_make()
 tar_read(penguins_plot)
 ```
