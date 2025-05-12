@@ -510,6 +510,31 @@ will show you outdated, up-to-date, and not yet run targets.
 
 Remember, `targets` only runs what it thinks it needs to!
 
+## How to use this with version control
+
+You should check in your `_targets.R` file, but you typically ignore the cache.
+
+To do that, add
+
+```
+_targets
+```
+to your `.gitignore` file.
+
+## Advanced `target`ting
+
+We've scratched the surface of this package. You can also:
+
+* Export your results to an AWS bucket
+* Push results to Posit `pins` for re-use elsewhere
+* Branch statically (with sensible names) or dynamically
+* Recombine results from branches
+
+::: {.fragment}
+It also forces you to write your code in a "functional" way, which leads to easier code maintenance and readability down the track.
+:::
+
+
 ## Recap
 
 `renv`:
