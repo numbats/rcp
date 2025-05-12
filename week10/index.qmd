@@ -343,7 +343,7 @@ install.packages("targets")
 
 ---
 
-## 🎯 Example Pipeline
+## Example Pipeline
 
 ```r
 library(targets)
@@ -410,4 +410,120 @@ Results are stored on-disk in a compressed format.
 
 Targets can be loaded using `tar_load` or `tar_read` (learn the keybinds!)
 
-# `targets` demo
+## Using `targets` with plots
+
+`_targets.R`
+```r
+list(
+  tar_target(
+    penguins_plot, 
+    ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point())
+)
+```
+
+In your console:
+
+```{r}
+tar_make()
+tar_read(penguins_plot)
+```
+
+::: {.fragment}
+`tar_read` prints the object inside it
+`tar_load` loads the object into your workspace (like using `<-`)
+:::
+
+## `tarchetypes`
+
+`tarchetypes` contains useful functions for working with `targets`
+
+Useful for:
+
+- Dynamic branching
+- Rendering Quarto documents
+- Utility functions
+
+## Dynamic branching
+
+Often we have a dataset where we want to run a pipeline on the groups. In standard R, we do this as follows:
+
+```{r}
+penguins |>
+  group_by(species) |>
+  summarise(mean_flipper = mean(flipper_length_mm, na.rm=TRUE))
+```
+
+::: {.fragment}
+In `targets`-land, we do it like this instead:
+
+```r
+list(
+  tar_group_by(grouped_penguins, penguins, species), 
+  tar_target(
+    mean_flipper, 
+    summarise(
+      grouped_penguins, 
+      mean_flipper = mean(flipper_length_mm, na.rm=TRUE),
+      species = unique(species)), 
+      pattern = map(grouped_penguins))
+)
+```
+:::
+
+## Dynamic branching
+
+This results in 
+
+```
+> tar_read(mean_flipper)
+# A tibble: 3 × 2
+  mean_flipper species  
+         <dbl> <fct>    
+1         190. Adelie   
+2         196. Chinstrap
+3         217. Gentoo   
+``` 
+
+**Note**: `tarchetypes` will try and row bind these outputs. If your output is not a vector, then you will need `iteration = list` as an argument to the target. We will see this in the workshop!
+:::
+
+## Rendering Quarto documents
+
+::: {.fragment}
+In this small example, this feels like overkill (and it is), but on large projects, under
+
+You can also use `targets` in your Quarto documents with
+
+```r
+tar_quarto()
+```
+
+This will scan your `qmd` file for `tar_target` commands, and load them in the way that you would expect.
+
+## Checking if targets are up to date
+
+```r
+tar_visnetwork()
+```
+
+will show you outdated, up-to-date, and not yet run targets.
+
+Remember, `targets` only runs what it thinks it needs to!
+
+## Recap
+
+`renv`:
+
+- Tracks your installed packages and versions
+- Keeps packages project-specific (not global)
+
+`targets`:
+
+- Automates steps in your workflow
+- Re-runs only the steps that need updating
+
+::: {.fragment}
+Next week:
+
+Docker!
+:::

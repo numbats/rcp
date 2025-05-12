@@ -1,0 +1,185 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Workshop 9"
+author: "Michael Lydeamore"
+date: today
+format:
+   html:
+      embed-resources: true
+      output-file: "index.html"
+      toc: true
+---
+
+```{r, echo = FALSE, eval = file.exists("tutorial.css")}
+htmltools::includeCSS("tutorial.css")
+```
+
+## Setup
+
+Before starting, make sure you have the following packages installed:
+
+```r
+install.packages(c("targets", "tarchetypes", "dplyr", "readr", "broom", "palmerpenguins"))
+```
+
+Create a new RStudio Project and initialise a targets pipeline:
+
+```r
+targets::tar_script()
+```
+
+This creates `_targets.R`, which we will now edit.
+
+---
+
+## Step 1: Load & Clean Data
+
+We'll use the `palmerpenguins` dataset.
+
+Edit your `_targets.R` file like this:
+
+```r
+library(targets)
+library(tarchetypes)
+library(dplyr)
+library(palmerpenguins)
+
+tar_option_set(packages = c("dplyr", "broom", "palmerpenguins"))
+
+list(
+  tar_target(raw_data, penguins),
+  
+  tar_target(clean_data, raw_data |> 
+               filter(!is.na(body_mass_g)) |> 
+               mutate(species = as.factor(species)))
+)
+```
+
+Now run the pipeline from the R console:
+
+```r
+targets::tar_make()
+```
+
+You should be able to see your data with
+
+```r
+tar_read(clean_data)
+```
+
+---
+
+## Step 2: Fit Models by Group
+Let’s manually define separate targets to fit a linear model (`body_mass_g ~ bill_length_mm`) for each species. This approach gets repetitive — and we’ll fix that later using dynamic branching.
+
+Add the following targets to your `_targets.R` file:
+
+```r
+  tar_target(adelie_data, filter(clean_data, species == "Adelie")),
+  tar_target(chinstrap_data, filter(clean_data, species == "Chinstrap")),
+  tar_target(gentoo_data, filter(clean_data, species == "Gentoo")),
+
+  tar_target(adelie_model, lm(body_mass_g ~ bill_length_mm, data = adelie_data)),
+  tar_target(chinstrap_model, lm(body_mass_g ~ bill_length_mm, data = chinstrap_data)),
+  tar_target(gentoo_model, lm(body_mass_g ~ bill_length_mm, data = gentoo_data))
+```
+
+Then, run:
+
+```r
+tar_make()
+```
+
+You now have three separate models, one per species.
+
+::: {.callout-tip}
+Try and plot these models from your console!
+:::
+
+---
+
+## Step 3: Use Dynamic Branching
+
+Now let’s replace our manual lapply step with **dynamic branching** from `tarchetypes`.
+
+Replace the last two targets with:
+
+```r
+  tar_group_by(
+   grouped_data, 
+   clean_data, species),
+
+  tar_target(
+   models,
+   list(lm(body_mass_g ~ bill_length_mm, data = grouped_data)), 
+   pattern = map(grouped_data)
+  )
+
+```
+
+::: {.callout-tip}
+Note the `list` in the second `tar_target`. This is because `tarchetypes` wants to row bind items together, which you can't do with raw `lm` objects.
+:::
+
+---
+
+## Step 4: Check your network of functions
+
+Run 
+
+```r
+tar_visnetwork()
+```
+
+to see what the combinations of functions looks like.
+
+---
+
+## Step 4: Report with Quarto
+
+Create a new `report.qmd` file with this content:
+
+````markdown
+---
+title: "Penguins Analysis"
+format: html
+execute:
+  echo: true
+---
+
+```{r}
+library(targets)
+library(gtsummary)
+tar_read(clean_data)
+```
+
+```{r}
+#| results: asis
+tar_load(models)
+
+lapply(models, function(input) {
+   tbl_regression(input)
+})
+```
+````
+
+You can render this `qmd` in the standard way
+
+**Challenge**: Can you work out which species is for which model? Try and add it to the output chunk above.
+
+Hint: `tar_read(models)$tar_group()`
+
+## Step 5: Pull the reporting out to `targets`
+
+Try and extract the `tbl_regression` function out into the `_targets.R` file.
+
+Here's some starter code. Try to fill in everything in the angled brackets.
+
+```r
+tar_target(
+   reporting_tables,
+   < >,
+   pattern = < >,
+   iteration = < >
+)
+```
