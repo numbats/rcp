@@ -45,6 +45,8 @@ knitr::opts_chunk$set(
   cache = TRUE,
   cache.path = "cache/"
 )
+
+library(tidyverse)
 ```
 
 ## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
