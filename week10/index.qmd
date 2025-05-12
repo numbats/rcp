@@ -456,7 +456,7 @@ penguins |>
   summarise(mean_flipper = mean(flipper_length_mm, na.rm=TRUE))
 ```
 
-::: {.fragment}
+## Dynamic branching
 
 In `targets`-land, we do it like this instead:
 
@@ -472,8 +472,6 @@ list(
       pattern = map(grouped_penguins))
 )
 ```
-
-:::
 
 ## Dynamic branching
 
@@ -493,8 +491,6 @@ This results in
 :::
 
 ## Rendering Quarto documents
-
-In this small example, this feels like overkill (and it is), but on large projects, under
 
 You can also use `targets` in your Quarto documents with
 
