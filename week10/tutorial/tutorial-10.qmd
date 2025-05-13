@@ -11,113 +11,116 @@ format:
         output-file: solution.html
         embed-resources: true
 ---
-```{r, echo = FALSE, eval = file.exists("tutorial.css")}
-htmltools::includeCSS("tutorial.css")
-```
 
+## Objectives
 
-## `r emo::ji("target")` Objectives
+* Learn to use `renv` for dependency management
+* Collaborate with a partner to test reproducibility
+* Practice using GitHub for version control
 
-* Learn to use `git lfs` to deal with large files
-* Create licenses in our repostiroies
-* Use `renv` to create a local library
+## Pair Programming Setup
 
-## Setting up licensed repositories
+1. Pair up with a partner and decide who will be **Person A** and **Person B**.
 
-For this week's tutorial, you'll need a brand new repository to work in. It can be public or private.
+2. Both partners should create a new repository on GitHub:
+   - Go to [GitHub](https://github.com) and log in.
+   - Click on the **New Repository** button.
+   - Give your repository a name (e.g., `renv-tutorial`).
+   - Check the boxes to include a **license**, a **`.gitignore`** file, and a **README** file.
+   - Click **Create Repository**.
 
-1. Create a new repository with your choice of name. Ensure that it has a **license**, a **`.gitignore`** file and a **`README`** file.  
-You should select these from the repo creation menu, not by committing them yourself later.
+3. Clone your repository to your local machine:
+   - Copy the repository URL from GitHub.
+   - In RStudio, go to **File > New Project > Version Control > Git**.
+   - Paste the repository URL and choose a local folder to clone the repository.
 
-2. Clone the repository to your local machine
+4. Open the cloned repository in RStudio.
 
-3. Change the license file to a different one. Remember you can find licenses on [choosealicense.com](https://www.choosealicense.com). Stage, commit and push your changes.
+5. Inside your repository, create a new Quarto file:
+   - Go to **File > New File > Quarto Document**.
+   - Save the file as `analysis.qmd`.
 
-4. _Revert_ the commit you just made.
+## Initializing `renv`
 
-::: {.unilur-solution}
-`git revert HEAD~0`
+1. Initialize `renv` in your R session **not inside the Quarto document**:
+   ```r
+   renv::init()
+   ```
+   - This will create a local library for your project and generate `renv` files.
 
-You don't need the `HEAD~0` to revert the most recent commit.
+2. Stage, commit, and push the changes to GitHub:
+   ```bash
+   git add .
+   git commit -m "Initialize renv"
+   git push origin main
+   ```
+
+## Data Analysis Tasks
+
+### Person A: Palmer Penguins
+
+1. Install the `palmerpenguins` package:
+   ```r
+   install.packages("palmerpenguins")
+   ```
+
+2. Use the `penguins` dataset to:
+   - Create a summary table of the data.
+   - Generate a plot (e.g., scatterplot of flipper length vs. body mass).
+
+::: {.callout-tip}
+Make sure you add the library command to your Quarto document
 :::
 
-5. _Reset_ the last two commits. You should end up with your original license file back on the repo.
+3. Add cross-references to the plot in your Quarto document.
 
-::: {.unilur-solution}
-`git reset HEAD~2`
-:::
+4. Snapshot the project dependencies **in the R console**:
+   ```r
+   renv::snapshot()
+   ```
 
-6. Commit, stage and push your changes (if there are any). What do you notice?
+5. Stage, commit, and push your changes to GitHub.
 
-::: {.unilur-solution}
-Any evidence of the license change has been removed from the repository. This is known as a _destructive_ operation.
-:::
+### Person B: Forecast Gas Data
 
-7. Edit the `README.md` file to include your name. Stage and commit (but don't push).
+1. Install the `forecast` package:
+   ```r
+   install.packages("forecast")
+   ```
 
-8. _Amend_ the most recent commit to also include the course code and the tutorial number. Include an _expanded_ commit message for the amended commit.
+2. Use the `gas` dataset to:
+   - Create a summary table of the data.
+   - Generate a plot (e.g., time series plot of gas consumption).
 
-::: {.unilur-solution}
-`git commit --amend` should open your text editor.
+3. Add cross-references to the plot in your Quarto document.
 
-To include an expanded commit message, leave a blank line between the summary and expanded text.
-:::
+4. Snapshot the project dependencies:
+   ```r
+   renv::snapshot()
+   ```
 
-9. Push your changes. Can you see the expanded commit message on GitHub?
+5. Stage, commit, and push your changes to GitHub.
 
-## Lightweight dependency management using `renv`
+## Testing Reproducibility
 
-Inside your repo from the previous section:
+1. Share your repository details with your partner.
 
-1. Create a qmd file that has a libraries code chunk, and load the `dplyr` and `ggplot2` libraries.
+2. Clone each other's repository and open it in RStudio.
 
-2. Stage the changes, commit and push.
+3. Restore the project dependencies:
+   ```r
+   renv::restore()
+   ```
 
-3. What are the library paths for this project?
+   You should see `renv` installing the necessary dependencies for the project.
 
-::: {.unilur-solution}
-```
-.libPaths()
-"/Library/Frameworks/R.framework/Versions/4.0/Resources/library"
-```
-:::
+4. Check your library paths with `.libPaths()`. Do you recognise the path?
 
-4. Install the `renv` package
+4. Render the Quarto document. Verify that you can reproduce the analysis and outputs.
 
-5. Initialise `renv` in your R seession
+5. Discuss any issues encountered and how to resolve them.
 
-::: {.unilur-solution}
-`renv::init()`
-:::
-
-6. What new files or folders have been made in your repo with this command?
-
-::: {.unilur-solution}
-There is a new folder called `renv`, a new file called `.Rprofile` and a new filed called `renv.lock`.
-:::
-
-7. Using the terminal, use `cd` and `ls` to find the new files.
-
-8. In the terminal, check the status of your repo.
-
-::: {.unilur-solution}
-![](../images/renv_init_files.png){fig-align="center"}
-:::
-
-9. Create a snapshot of your repostiory using `renv::snapshot()`
-
-10. Check the status of your repo, stage, commit and push the changes into the remote repository.
-
-::: {.unilur-solution}
-```
-git status
-git add .
-git commit -m "Adding renv files for dependency management"
-git push origin main
-```
-:::
-
-**Extension:** Try adding a development package from GitHub, such as the [`naniar`](https://github.com/njtierney/naniar) package. Follow the `renv` workflow. Does the package get recorded? Can you see it in the lockfile? How is it recorded differently from packages on CRAN?
+**Extension:** Try adding a development package from GitHub (e.g., `naniar`) and follow the `renv` workflow. Verify if the package is recorded in the lockfile and how it differs from CRAN packages.
 
 
 
