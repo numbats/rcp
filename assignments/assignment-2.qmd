@@ -77,7 +77,7 @@ __You only need to use commands we have learned in class.__
 
 **Please upload the completed PDF guide to Moodle for marking**
 
-* Each of the instructions will be assessed as to whether they are successfully completed or not (1 mark each, total `r add_marks(10)` points)
+* Each of the instructions will be assessed as to whether they are successfully completed or not (2 marks each, total `r add_marks(20)` points)
 * Clear commit messages used in the guide where appropriate (`r add_marks(1)` point)
 * Guide has good flow and is clear (`r add_marks(2)` points)
 * Issues with language and grammar: Maximum deduction of 3 points
