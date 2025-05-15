@@ -81,16 +81,16 @@ Make sure you add the library command to your Quarto document
 
 5. Stage, commit, and push your changes to GitHub.
 
-### Person B: Forecast Gas Data
+### Person B: Life Tables
 
-1. Install the `forecast` package:
+1. Install the `HistData` package:
    ```r
-   install.packages("forecast")
+   install.packages("HistData")
    ```
 
-2. Use the `gas` dataset to:
+2. Use the `Breslau` dataset, filtered to `age >= 5`, to:
    - Create a summary table of the data.
-   - Generate a plot (e.g., time series plot of gas consumption).
+   - Generate a plot (e.g., Age at death against number of deaths).
 
 3. Add cross-references to the plot in your Quarto document.
 
