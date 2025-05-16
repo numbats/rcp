@@ -1,0 +1,190 @@
+---
+title: 'ETC5513: Collaborative and Reproducible Practices'
+subtitle: "Workshop 11"
+author: "Michael Lydeamore"
+date: today
+format:
+   html:
+      embed-resources: true
+      output-file: "index.html"
+      toc: true
+---
+
+## Workshop Goals
+
+By the end of this workshop, you'll:
+
+1. Have Docker running on your own machine
+2. Run RStudio Server in a container
+3. Launch your own local chatbot using `ollama` and `open-webui`
+4. Understand how to use Docker Compose to manage complex environments
+
+---
+
+## Part 1: Set up Docker
+
+### 1. Install Docker Desktop
+
+- Go to [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
+- Download Docker Desktop for your operating system (Mac, Windows, or Linux)
+- Follow the installation instructions
+- Launch Docker Desktop
+
+To test your setup, run this in the terminal:
+
+```bash
+docker run hello-world
+```
+
+If you see a "Hello from Docker!" message, you're good to go!
+
+---
+
+## Part 2: Run RStudio Server with Docker Compose
+
+You'll use a **Docker Compose file** to spin up a full RStudio Server container.
+
+1. Create a new folder for this project and add this file as `docker-compose.yml`:
+
+```yaml
+services:
+  rstudio:
+    image: rocker/rstudio
+    ports:
+      - "8787:8787"
+    environment:
+      - PASSWORD=rstudio
+    volumes:
+      - .:/home/rstudio
+    container_name: rstudio-docker
+```
+
+2. From the terminal in that folder, run:
+
+```bash
+docker compose up -d
+```
+
+3. Open your browser and go to:
+
+```
+http://localhost:8787
+```
+
+- Username: `rstudio`
+- Password: `rstudio`
+
+🧪 Try making a small script or loading a package!
+
+To stop the container:
+
+```bash
+docker compose down
+```
+
+---
+
+## Part 3: Run a Local Chatbot with Open WebUI + Ollama (Bundled)
+
+In this section, we will run a local chatbot using `ollama` and `open-webui`.
+
+### 1. Create a new folder and inside it, add this `docker-compose.yml`:
+
+```yaml
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:ollama
+    ports:
+      - 3000:8080
+    volumes:
+      - open-webui-data:/app/backend/data
+
+volumes:
+  open-webui-data:
+```
+
+> This setup includes **Ollama** already inside the container and will download models as needed.
+
+---
+
+### 2. Run the chatbot:
+
+From the terminal in that folder:
+
+```bash
+docker compose up -d
+```
+
+Once it finishes setting up, visit:
+
+```
+http://localhost:3000
+```
+
+Set up a local account, and select model `llama3.2`. This will take some time to download!
+
+---
+
+### 3. Try it out!
+
+- Ask the model some questions.
+- Open multiple tabs to simulate multiple sessions.
+- Try using larger models like `llava` or `codellama` if you're curious (and have RAM to spare).
+
+To stop the server:
+
+```bash
+docker compose down
+```
+
+---
+
+*Note:* This bundled version is great for local experimentation, and includes both the LLM and a clean interface. It is entirely possible to run `ollama` separately from `open-webui`:
+
+**You do not need to do this step in the workshop**
+
+### 1. Install Ollama
+
+- Go to [https://ollama.com](https://ollama.com) and install for your OS
+
+### 2. Run `ollama` in the background:
+
+```bash
+ollama serve
+```
+
+Then pull a model like:
+
+```bash
+ollama run llama2
+```
+
+Keep this running!
+
+
+### 3. Set up `open-webui` with Docker Compose
+
+Create another folder and add this `docker-compose.yml`:
+
+```yaml
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - 3000:3000
+    volumes:
+      - open-webui-data:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+
+volumes:
+  open-webui-data:
+```
+
+Then run:
+
+```bash
+docker compose up -d
+```
+
+Visit: [http://localhost:3000](http://localhost:3000)
