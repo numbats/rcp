@@ -16,118 +16,37 @@ htmltools::includeCSS("tutorial.css")
 ```
 
 
-## `r emo::ji("target")` Objectives
+## `git` scavanger hunt
 
-* Recap moving through git repositories
-* Practice undoing and resetting commits
+Today, we will do the git scavenger hunt.
 
-## Moving back in time: finding our way in a Git repo
-
-1. How can we explore old commits?
+Follow the instructions at <https://github.com/KrisanatA/hacky-hour-git-scavenger-hunt> and see if you can free the Travelling Symphony.
 
 ::: {.unilur-solution}
-`git log --oneline`
-:::
+Steps to complete the puzzle:
 
-2. How are the commits identified?
-
-::: {.unilur-solution}
-They are identified with a unique SHA or SHA1 number.
-:::
-
-3. Fork the following repo: [https://github.com/github/explore](https://github.com/github/explore). Clone the repo locally.
-   
-4. Using your terminal look at the commits. How can you go up and down over the commits? How can you get out of the list?
-
-::: {.unilur-solution}
-You can move up and down by pressing `u` or `d`. To exit, press `q`.
-:::
-
-5. List the commits that have been done in the repo since 14 May 2024 only.
-
-::: {.unilur-solution}
-`git log --since=14-05-2024`
-:::
-
-6. Open the local project in RStudio and have a look at the tree history and the commit messages. Specially have a look at longer commits that contain not only one line but also some more text.
-
-7. Where is the repo HEAD?
-
-8. Using the command line interface or terminal move the HEAD of the repository to two commits back from the most recent
-
-::: {.unilur-solution}
-`git checkout e208fa8`
-:::
-
-9. What is the first line of the commit message of this commit?
-
-::: {.unilur-solution}
-Merge pull request 4339 from isasharafdin/todo
-:::
-
-10. Which files have been modified in that commit?   
-
-::: {.unilur-solution}
-Just `topics/todo/index.md`
-:::
-
-11. What is the difference between this commit and the previous commit?
-
-::: {.unilur-solution}
-First, `git log e208fa8` to find the SHA of the previous commits. Then, `git diff ff120c2 HEAD`
-
-:::
-
-12. Move the HEAD of the repository back to where was originally located (last commit of the main (or master) branch)
-
-::: {.unilur-solution}
-`git checkout main`
-:::
-
-13. Find the commit with message "add in lite" what was change in the modified file?  
-
-::: {.unilur-solution}
-`git log --grep="add in lite"`
-:::
-
-14. Move back to the latest commit in the main (or master) branch of the repo so that you can keep making commits without being in a detached HEAD.
-  
-15. Using your terminal add a new file "myexample.txt" in the repo, stage, commit and push the file to **your** remote repo
-
-::: {.unilur-solution}
-![](../images/com2.png){fig-align="center"}
-
-:::
-
-16. Let's add another file same as above now called "myexample2.txt". **Stage** the file and then **unstage** the file.
-
-::: {.unilur-solution}
-```
-git status
-git add .
+1. `git switch the-severn-city`
+2. Open `index.html`.  
+Read `git log`  
+Create a file called `main.scss` and commit it  
+Run `git show HEAD` and paste the contents into the webpage.
+3. `git switch bridge-of-death`
+4. `git tag -l v9 -n10` or just `git tag -l -n10` will do
+5. `git switch cherry-picking`
+6. `git switch cherry-tree`  
+7. `git cherry-pick f87be80 2208c16 ca15ae6`  
+Fix the merge conflicts at each step. Should be left with a message that says:  
+"You are closer to the Severn City, Kirsten. To find the next clue, you must look in the branch 'severn-airport'"
+8. Look in the `renv.lock` file
+9. List all branches using `git branch -a`. The three branches of interest are:  
+    * `first-r-binary-released`
+    * `first-rstudio-release`
+    * `first-r-ladies-meetup`
+10. Merge these in order, and you are left with some ASCII art that points you to <https://krisanata.github.io/personal-website/hacky-hour>
+11. base64 decode the string to find the name of the prophet. Google will give you an answer. The R code gives you number strings which you have to further decode:  
+```r
+rawToChar(base64enc::base64decode('VGhlIGFuc3dlciB0byBhbGwgb2YgdGhpcyBpcyAiRHIuIEVsZXZlbiI='))
 ```
 
-To unstage, `git reset`.
-:::
-
-17. Stage "myexample2.txt", commit and push it to the remote repository. 
-
-18. You realized that you made a mistake and you want to undo 17. You don't want to remove the commit from the history. How can you do that?
-
-::: {.unilur-solution}
-`git revert SHA`
-:::
-
-19. Run a git log --oneline  and have a look at the commit that you did before the last commit.
-
-20. Pick the commit that you did before the last commit and do git reset SHA. What happens? Why is this not best practice?
-
-::: {.unilur-solution}
-```
-git status
-git log
-git reset SHA
-```
-
-You will see that the last commit has disappeared from the repo history. This is not considered best practice as it modifies the public record of the repository history.
+The final solution is "Dr. Eleven".
 :::
