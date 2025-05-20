@@ -85,7 +85,7 @@ As a team, you need to:
 
 1. Merge the branches: Start by merging all the branches into the main branch. You will need to get organized and do this one by one so that you can resolve the conflicts that will appear.
 2. Resolve conflicts: Since you will be working on the same sections, conflicts may arise when the same lines of code are modified in different branches. To resolve conflicts, edit the affected files and choose which version to keep. Once you have resolved the conflicts, commit the changes.
-3. Make sure that the report knits into a pdf without errors each time you do a merge. If errors arise please solve them.
+3. Make sure that the report renders into a pdf without errors each time you do a merge. If errors arise please solve them.
 4. Review and Revise: Carefully review the final report to ensure that it meets all the requirements of a cohesive report and is free of errors. Make any necessary revisions and edits before submitting the report. For this, you will all probably need to work on the main branch. Please ensure that any changes made are in terms of the requirements and in a coordinated fashion to avoid any problems.
 
 The final business report must look professional, coherent and connected.
