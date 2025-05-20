@@ -34,16 +34,20 @@ Run `git show HEAD` and paste the contents into the webpage.
 4. `git tag -l v9 -n10` or just `git tag -l -n10` will do
 5. `git switch cherry-picking`
 6. `git switch cherry-tree`  
-7. `git cherry-pick f87be80 2208c16 ca15ae6`  
+7. `git cherry-pick c1b5778 80fad82 23c1589`  
 Fix the merge conflicts at each step. Should be left with a message that says:  
 "You are closer to the Severn City, Kirsten. To find the next clue, you must look in the branch 'severn-airport'"
-8. Look in the `renv.lock` file
-9. List all branches using `git branch -a`. The three branches of interest are:  
+8. `git switch severn-airport`
+9. Look in the `renv.lock` file
+10. List all branches using `git branch -a`. The three branches of interest are:  
     * `first-r-binary-released`
     * `first-rstudio-release`
     * `first-r-ladies-meetup`
-10. Merge these in order, and you are left with some ASCII art that points you to <https://krisanata.github.io/personal-website/hacky-hour>
-11. base64 decode the string to find the name of the prophet. Google will give you an answer. The R code gives you number strings which you have to further decode:  
+11. Merge these in order, and you are left with some ASCII art that points you to <https://krisanata.github.io/personal-website/>.
+12. The hint here is the text  
+> I’m also helping organise the Hacky-Hour session, which is like a “getaway” for me.  
+So you should go to <https://krisanata.github.io/personal-website/hacky-hour>
+12. base64 decode the string to find the name of the prophet. Google will give you an answer. The R code gives you number strings which you have to further decode:  
 ```r
 rawToChar(base64enc::base64decode('VGhlIGFuc3dlciB0byBhbGwgb2YgdGhpcyBpcyAiRHIuIEVsZXZlbiI='))
 ```
