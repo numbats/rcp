@@ -1,58 +1,36 @@
 ######## Course info ########
 library(tidyverse)
+library(rmarkdown)
 
 # Start of semester
-start_semester <- "2024-03-03"
+start_semester <- "2026-03-02"
 
 # Week of mid-semester break
-mid_semester_break <- "2024-04-21"
+mid_semester_break <- "2026-04-06"
+
+## Extract titles from index files
+
+files <- list.files(
+  path = ".",
+  pattern = "^index\\.qmd$",
+  recursive = TRUE,
+  full.names = TRUE
+)
+
+titles <- sapply(files, function(f) {
+  meta <- yaml_front_matter(f)
+  meta$subtitle %||% NA
+})
+
+week_titles <- data.frame(file = files, title = titles)
+week_titles$week <- as.integer(
+  sub(".*/week([0-9]+)/index\\.qmd$", "\\1", week_titles$file)
+)
 
 # Schedule
-schedule <- tibble(
-    Week = seq(12),
-    Topic = c(
-        "Introduction to collaborative and reproducible practices",
-        "Reproducible reports using Quarto",
-        "Introduction to version control systems: git and GitHub",
-        "Reproducible reporting using Quarto, git and GitHub",
-        "Deeper git knowledge, stashing and tools",
-        "Reproducible reporting and version control systems",
-        "Workflows for reproducible data analysis",
-        "Reproducible reporting for specialised and broad audiences",
-        "Advanced collaborative practices",
-        "Docker - the extreme end of reproducibility",
-        "Reproducible workflows in consultancy",
-        "Course recap"
-    ),
-    Reference = c(
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ),
-    Reference_URL = c(
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    )
-)
+schedule <- week_titles |>
+    arrange(week) |>
+    rename(Week = week, Topic = title)
 
 # Add mid-semester break
 calendar <- tibble(

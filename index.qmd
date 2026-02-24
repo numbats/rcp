@@ -55,6 +55,7 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 #| output: asis
 schedule |>
   transmute(
+    Week = Week,
     Date = format(Date, "%d %b"),
     Show = (!is.na(Week) & Week <= 12) & !grepl("University Holiday", Topic),
     Show_Tutorial = !is.na(Week) & Week <= 12,
