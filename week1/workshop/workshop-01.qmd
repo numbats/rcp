@@ -30,14 +30,14 @@ R is maintained by an international team of developers and is available via The 
 
 You can find some further information about how to install R [here](https://learnr.numbat.space/chapter1).
 
-## Install RStudio on your computer
+## Install Positron on your computer
 
-RStudio is an integrated development environment for R, a programming language for statistical computing and graphics. It is available in two formats: RStudio Desktop is a regular desktop application while RStudio Server runs on a remote server and allows accessing RStudio using a web browser. (Source: Wikipedia)
+Positron is an integrated development environment for R, a programming language for statistical computing and graphics. It is a reasonably new product, but is designed to integrate with a fairly standard development system, so the workflow can be applied to other languages.
 
 ::: callout-tip
-## RStudio
+## Positron
 
-[Install RStudio here](https://posit.co/download/rstudio-desktop/)
+[Positron](https://positron.posit.co/)
 :::
 
 ## Get yourself a free GitHub Student Developer pack
@@ -55,6 +55,15 @@ Have a read about R [here](https://www.r-project.org/about.html).
 Sign up for a free ChatGPT account [here](https://chat.openai.com/auth/login). You can use your Monash email address if you like.
 
 Ask ChatGPT to give you an example of R code, then copy the code into RStudio and execute it. Compare with your colleagues at your table. Is it the same? Is it different? Is it correct?
+
+## Installing tools
+
+If you haven't already done so, get yourself set up with the remaining necessary tools for this unit:
+
+* [Quarto](https://quarto.org/)
+* [git](https://git-scm.com/)
+* [git lfs](https://git-lfs.com/) although we won't need this for quite a few weeks
+
 
 ## R in practice
 
