@@ -534,7 +534,7 @@ All in a [sequential]{.monash-green2} and [dynamic]{.monash-green2} way!
 
 Code?
 
-# R & RStudio?
+# R & Positron?
 
 ::: {.columns}
 
@@ -543,7 +543,7 @@ Code?
 :::
 
 ::: {.column width="50%"}
-![](images/RStudio_logo_flat.svg)
+![](images/positron_logo.png)
 :::
 :::
 
