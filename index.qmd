@@ -35,17 +35,17 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Weekly schedule
 
-* 2 hour workshop, Mondays 5pm-7pm each week
-* 1 hour workshop, Mondays 7pm-8pm each week
+* 2 hour seminar, Thursdays 10am-12pm each week
+* 1 hour workshop, 1pm-2pm each week except Week 1
 * 1 hour tutorial, one of:
-  * Thursday 4pm-5pm
-  * Friday 3pm-4pm
-  * Friday 4pm-5pm
+  * Wednesday 1pm-2pm
+  * Wednesday 2pm-3pm
+  * Wednesday 3pm-4pm
 
 ## Consultation
 
-* Michael Lydeamore: Thursday 1pm-2pm hybrid
-* Naveen Kaushik: Tuesday 4pm-5.30pm online
+* Michael Lydeamore: 
+* Naveen Kaushik: 
 
 ```{r}
 #| label: schedule2
@@ -72,6 +72,6 @@ schedule |>
 * [Assignment 1](assignments/assignment-1.html)
 * [Assignment 2](assignments/assignment-2.html)
 * [Assignment 3](assignments/assignment-3.html)
-* [Oral Assessment](assignments/assignment-oral.html)
+* Mid-semester test
 
 Refer to Moodle for due dates and submission information.
