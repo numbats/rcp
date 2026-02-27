@@ -93,10 +93,10 @@ Lecturer: *`r rmarkdown::metadata$author`*
 2. Unit structure
 3. Assessment
 4. Introduction to reproducibility
-5. Looked at R, RStudio and `git`
+5. Looked at R, Positron and `git`
 
 ::: {.fragment}
-In the tutorial, you got to know more about R, and some of the available R and RStudio resources to help you through the semester.
+In the tutorial, you got to know more about R, and some of the available R and Positron resources to help you through the semester.
 :::
 
 ::: {.fragment}
@@ -114,11 +114,10 @@ You were also introduced to ChatGPT that you can use to assist in your learning.
 * R Code Chunk Options
 * Including images and figures
 * Computer file architecture
-* RStudio Projects
+* Positron Projects
 * Good coding practices
 :::
 
-Second hour: hands on practice
 
 # Scaffolding of reproducible research & reporting
 
@@ -179,7 +178,7 @@ Our reproducible documents will be created using the scripting language [R]{.mon
 
 # Let's talk about computer paths
 
-And then RStudio Projects
+And then Positron Projects
 
 # Computer paths
 
@@ -254,7 +253,7 @@ Having clarity about that and the projects file architecture gives you total con
 * All paths should be relative to the project folder. [Why?]{.monash-green2}
 * Remember, absolute paths are __not__ reproducible
 
-## RStudio Project Example
+## Project Example
 
 * Data folder: Contains all the data for the project
 * Images/Figures folder: Contains all pictures not produced by your code in the qmd file
@@ -264,7 +263,19 @@ Having clarity about that and the projects file architecture gives you total con
 
 ![](images/project-example.jpg)
 
+## Handling projects in Positron
+
+In Positron, a project is simply a folder. You can create a new project by creating a new folder, and then opening that folder in Positron.
+
+You can also create projects from templates, or from git repositories.
+
+You can see what project you have open in the top right corner of the interface:
+
+![](images/2026-02-27-14-54-39.png){fig-align="center"}
+
 ## RStudio projects
+
+
 
 RStudio projects automatically handle relative paths and working directories
 
@@ -280,21 +291,6 @@ You can create an RStudio project
 ::: {.aside}
 They are specific to RStudio -> If you use a different IDE you need a different solution
 :::
-
-## Creating a new project
-
-File > New project > Fill out the Options
-
-![](images/newproject.png){fig-align="center"}
-
-## RStudio Project Advantages
-
-When you make a new RStudio Project, it:
-
-* Creates a project file (with the `.Rproj` extension) within the project directory
-  * This file can be used a as a shortcut to open the project directly
-* Creates a hidden directory (`.Rproj.user`) where project-specific temporary fiels are stored
-* Loads the project into RStudio and displays it's name in the Projects toolbar
 
 ## What is Markdown?
 
@@ -598,7 +594,7 @@ ggplot(data = InsectSprays,
 You can quickly insert an R code chunk into your file with:
 
 * Keyboard shortcut [Ctrl + Alt + I]{.monash-green2} (Mac: Cmd + Option + I)
-* The [Add Chunk]{.monash-green2} command in the editor toolbar or
+* The [Quarto: Insert Code Cell]{.monash-green2} command in the editor toolbar or
 * Typing the chunk delimeters (```)
 
 ::: {.fragment}
@@ -660,9 +656,9 @@ Use these with care: It is easy to accidentally _not_ refresh an updated chunk!
 
 ## Rendering Quarto to HTML
 
-Use the "Render" button at the top
+Use the "Preview" button at the top
 
-![](images/quarto-export-demo.png)
+![](images/2026-02-27-15-36-26.png){fig-align="center"}
 
 ## Rendering Quarto to PDF
 
