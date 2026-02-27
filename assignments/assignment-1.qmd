@@ -55,10 +55,11 @@ You cannot use a dataset that has been used for another assignment.
 
 ## Part A: Setting up version control
 
-In this assignment, you need to create an RStudio project that will be able to produce a reproducible HTML report. For the report, please select a data set that interest you. One possible data source is [Our World in Data](https://ourworldindata.org/); you may also like to look over the [TidyTuesday](https://github.com/rfordatascience/tidytuesday) datasets.
+In this assignment, you need to create a project that will be able to produce a reproducible HTML report. For the report, you will each have your own unique dataset to work on. Your dataset will be in the `data/` folder on the GitHub repository.
 
-The size of the data set is not relevant, however your data must contain at least 3 numerical variables and a character or factor variable and its size must not be more than 50MB.
-Your reproducible report should be created using a Quarto file in Rstudio  and needs to be knitted into a HTML file. The report must knit into HTML without any errors.
+I will push these datasets to your repos periodically, as you each create the repo. If your dataset is not there, please let me know and I will tend to it as soon as possible.
+
+Your reproducible report should be created using a Quarto file in Rstudio  and needs to be rendered into a HTML file. The report must knit into HTML without any errors.
 
 You will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom [here](https://classroom.github.com/a/5fkkugX_). Make sure to choose your Monash username from the list so we can find your assignment.
 
@@ -73,65 +74,63 @@ The GitHub repo will appear in the GitHub classroom space. **Do not work in or c
 :::
 
 
-
-You can delete the example files out of `Data/` and `Images/`.
-
 ## Part B: Creating a reproducible report
 
-There is a pre-made RStudio project in the git repository. Open that with RStudio and we will work inside that project.
+There is some pre-made structure in the repository. Open the folder in Positron as we have done in class to work on.
 
 ### R code chunk for loading libraries (`r add_marks(3)` points)
 
-Create a new Quarto file using RStudio. This file is where we will create the report for the rest of this assignment, so make sure to give it a sensible name (1 point).
+Create a new Quarto file. This file is where we will create the report for the rest of this assignment, so make sure to give it a sensible name (1 point).
 
 Load all the libraries you will use in the report in an R chunk located at the beginning of your Quarto file. _Make sure you set the options so that you do not display any R code, messages, or warnings in the rendered HTML document (for this chunk)_ (1 point).
 
-Change the `YAML` options for this Quarto file to render both a HTML and a PDF report. 
+Set the YAML so that the report will be output as a HTML and PDF file.
 
-### Introduction section (`r add_marks(5)` points)
+### Introduction section (`r add_marks(2)` points)
 
 Using markdown, write a 4 sentence **maximum** motivation of what you are going to research and why. _Make sure it is relevant to your dataset_.
 
-### Research Question section (`r add_marks(5)` points)
+### Research Question section (`r add_marks(2)` points)
 
 Using markdown, discuss in 3 sentences **maximum**, the specific question that you are going to investigate or answer in this report using your selected data.
 
-### Dataset Introduction section (`r add_marks(5)` points)
+### Dataset Introduction section (`r add_marks(3)` points)
 
-In this section, briefly describe your data (i.e. what the data is measuring or recording) in five sentences **maximum** using markdown. You must provide a link to the location of the data inserted in the text using markdown.
+In this section, briefly describe your data (i.e. what the data is measuring or recording) in five sentences **maximum** using markdown.
 
-Create a table using the `kable()` function from the `knitr` R package to report the variable names. Add a table caption that briefly describes the table in no more than 2 sentences. Include a cross-reference to the table in your text.
+To do this, you will need to clean your dataset. Include a description of this cleaning process (not the code) in the report. The code to clean the dataset _must_ be included in the Quarto file, but not in the report.
 
 ### Dataset Description subsection (`r add_marks(5)` points)
 
 Create a _subsection_ that will report details about your data. You must include the size of the dataset such as the number of observations, variables and variable types. You must include the following:
 
 * A sentence that includes _inline R code_ describing the number of variables and observations in your dataset.
-* A screenshot of your inline R code, saved as a png file. Upload this file inside the Image folder.
-* Include that picture in your subsection. You can either use an R code chunk (with `knitr::include_graphics`) or markdown image syntax (`![]()`).
 * Using the function `head()`, display the first two rows of data to show the types of variables that are in the dataset (i.e. numeric, character/factor etc).
+
+Create two other summaries of your data, one as a plot and one as a table. Examples include counts of certain variables in groups, or summary statistics of numeric variables. Make sure these summaries are providing a broader context to the report and are not just arbitrary commentaries.
 
 ## Results section (`r add_marks(5)` points)
 
 Using visualisations of the data, discuss the answer to your research questions. You must:
 
 * Create 2 figures maximum of your data that will help you answer your research question. Each figure must have a caption using the options inside the R code chunk. Create the figures using the `ggplot2` package.
-* Using markdown, add a list with two bullet points describing what you see in each of the figures using italic font and how that can help you answer your research question. Make sure you cross-reference the figures in the text.
+* The figures must have captions, and must be referred to in the text of the results section.
+
+As well as the figures, you must also include a paragraph describing these results and how they link back to your research question. Remember, you can use inline code to extract certain numbers automatically.
 
 ## Marking Rubric
 
 In addition to the points as described above, you will be graded on your:
 
-* Report template (`r add_marks(5)` points). The default Quarto template will be granted 1 point. More sophisticated templates will add more points into this component, up to 5. Remember, styling that takes away from the report _is not beneficial_.
-* Issues with spelling and grammar (up to -5 points).
-* R code style (i.e. spacing, variable names) (`r add_marks(5)` points)
-* Report quality: Sections in the report are connected and aligned with the research question in a coherent way (`r add_marks(6)` points).
+* Issues with spelling and grammar (up to -3 points).
+* R code style (i.e. spacing, variable names) (`r add_marks(2)` points)
+* Report quality: Sections in the report are connected and aligned with the research question in a coherent way (`r add_marks(2)` points).
 
 Maximum grade: `r total_marks` points.
 
 ## The usage of AI
 
-You may use Generative AI (such as ChatGPT) to _correct your English_ or to help with your R code (for example to find bugs or ask for enhancements to _your existing code_). However, if you use ChatGPT you must declare it by adding a section in your Quarto report called `Appendix`, and display screenshots of your ChatGPT queries and interactions related to this assignment.
+You may use Generative AI (such as ChatGPT) to _correct your English_ or to help with your R code (for example to find bugs or ask for enhancements to _your existing code_). However, if you use ChatGPT you must declare it in a separate qmd file called  `appendix.qmd`, and display screenshots of your AI queries and interactions related to this assignment. The appendix does not count towards your page limit.
 
 You **cannot** use ChatGPT to generate content for this assignment from scratch, including code.
 
