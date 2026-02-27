@@ -334,10 +334,10 @@ Materials are designed to develop your **hard and soft skills**.
 ## 💯 Course assessments
 
 * **3 Assignments:**
-  * [**A1**]{.monash-blue}: Released week 3, due week 5: [20%]{.monash-green2}
-  * [**A2**]{.monash-blue}: Released week 7, due week 9: [30%]{.monash-green2}
-  * [**A3**]{.monash-blue}: Released week 10, due week 12: [40%]{.monash-green2}
-* **Oral interview:** Based on W1-W7 content: Week 12: [10%]{.monash-green2}
+  * [**A1**]{.monash-blue}: Released week 1, due week 5: [25%]{.monash-green2}
+  * [**A2**]{.monash-blue}: Released week 5, due week 9: [25%]{.monash-green2}
+  * [**A3**]{.monash-blue}: Released week 9, due week 12: [25%]{.monash-green2}
+* **Mid-semester test:** Based on W1-W7 content: Week 8: [25%]{.monash-green2}
 
 ## ETC5513 Code of Conduct
 
@@ -567,22 +567,18 @@ They are related but they are not the same. [Why?]{.monash-blue}
 R by itself has the capabilities to gather and analyse data, and with a little help from `knitr` and `quarto`, with some markup languages, present results in a way that is highly reproducible.
 :::
 
-## RStudio
+## Positron
 
-Is an integrated developer environment (IDE)
+is an integrated developer environment (IDE)
 
 ::: {.aside}
-Other IDEs exist, mainly [VSCode](https://code.visualstudio.com/) which is rapidly gaining popularity
+Other IDEs exist, mainly [RStudio](https://posit.co/download/rstudio-desktop/) which is enormously popular, but does not have the same level of integration with `git`.
 :::
 
-We don't _need_ RStudio, but it lets us do things more easily.
+We don't _need_ an IDE, but it lets us do things more easily.
 
 * A happy medium between R's text-based interface and a pure GUI
 * It is closely integrated with `git` (version control)
-
-::: {.fragment}
-It has a cloud counterpart called [**RStudio Cloud**]{.monash-blue}
-:::
 
 ## Important distinction
 
@@ -592,24 +588,10 @@ It has a cloud counterpart called [**RStudio Cloud**]{.monash-blue}
 
 ## Important distinction
 
-### RStudio is the [integrated development environment]{.monash-blue}
+### Positron is the [integrated development environment]{.monash-blue}
 
-![](images/Rstudio.png){width="80%" fig-align="center"}
+![](images/positron_logo.png){width="80%" fig-align="center"}
 
-## RStudio Cloud
-It's RStudio, in the cloud.
-
-![](images/Rstudiocloud.png){width="80%" fig-align="center"}
-
-::: {.fragment}
-[**Why?**]{.monash-blue}
-:::
-
-## RStudio Cloud
-
-* Allows the users to run reproducible reports without the need of installing any additional software or configurations in their own computer. It basically looks exactly like Rstudio but it runs in the cloud and can be loaded using any browser.  
-* Rstudio Cloud allows us to work in the same environment regardless the computer operating system that each of you have in your computers.
-* Rstudio will provide the means for us to first focus on learning R and Rstudio without having to worry about installing them locally in each computer (we'll do that later once you are more familiar with the language and the Rstudio environment).
 
 ## Version Control
 
@@ -697,12 +679,10 @@ Photo by <a href="https://unsplash.com/@ul01?utm_source=unsplash&amp;utm_medium=
 ## Main tools
 
 * R
-* RStudio
-* GitHub Desktop
+* Positron
 * [Command Line Interface]{.monash-green2}
 * `git`
 * GitHub
-* VSCode
 
 ::: {.fragment}
 During this semester these tools will be _essential_ for us to build reproducible and collaborative research practices.
@@ -715,7 +695,7 @@ This week the tutorial will focus on providing an introduction to different reso
 * These slides are on Moodle and the course website
 * You will also find the tutorial for this week
 * Familiarise yourself with _all_ the resources in the tutorial and get to know your colleagues (this is quite important!)
-* Overview of RStudio and an introduction to R
+* Overview of Positron and an introduction to R
 
 ## Week 1 Lesson
 
