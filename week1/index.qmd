@@ -190,64 +190,14 @@ Please participate during the lectures and tutorials. The success of the unit de
 1.	Course introduction to collaborative and reproducible practices
 2.	Reproducible reports using R markdown
 3.	Introduction to version control systems: Git and GitHub
-4.	Reproducible reporting using R markdown, Git and GitHub 
+4.	Reproducible reporting using Quarto, Git and GitHub 
 5.	Deeper git knowledge, stashing and tools
 6.	Reproducible reporting and version control systems
-7.	Workflows for reproducible data analysis
-8.	Reproducible reporting for specialized and broad audiences
-9.	Advanced collaborative practices 
-10.	Even more advanced collaborative practices
+7.	Undoing, exploring, and cleaning with git
+8.	Referencing, large files, and GitHub issues
+9.	Finding bugs, building pipelines, and presentations
+10.	Keeping environments separate and reproducible
 11.	Summary and Recap
-
-## 🏛️ ETC5513 unit structure 
-
-::: {.columns .fragment}
-
-::: {.column width="66%" .center}
-
-Start with individual projects 
-
-:::
-
-::: {.column width="33%"}
-
-![](images/william-iven-gcsNOsPEXfs-unsplash.jpg){width="50%"}
-
-:::
-
-:::
-
-::: {.columns .fragment}
-
-::: {.column width="66%" .center}
-
-Will continue with a class group project 
-
-:::
-
-::: {.column width="33%"}
-
-![](images/helloquence-5fNmWej4tAA-unsplash.jpg){width="50%"}
-
-:::
-
-:::
-
-::: {.columns .fragment}
-
-::: {.column width="66%" .center}
-
-Finally, you will work on yuour own projects
-
-:::
-
-::: {.column width="33%"}
-
-![](images/baim-hanif-pYWuOMhtc6k-unsplash.jpg){width="50%"}
-
-:::
-
-:::
 
 ## Unit structure and resources
 
@@ -323,8 +273,10 @@ Materials are designed to develop your **hard and soft skills**.
 
 ## ✋ Consultation hours
 
-* [Michael]{.monash-blue}: Thursdays 1.00-2.00pm In Person (Building 6 Room 354) and on Zoom
-* [Naveen Kaushik]{.monash-blue}: Tuesdays 4.00-5.30pm on Zoom
+* [Michael]{.monash-blue}: Tuesdays 11.30-12.30 in person (Building 6 Room 354)
+* [Naveen Kaushik]{.monash-blue}: Mondays 12pm-1pm on Zoom
+
+You can post on the discussion forum any time you have any other question.
 
 
 **Please see Moodle for Zoom details**
@@ -338,6 +290,12 @@ Materials are designed to develop your **hard and soft skills**.
   * [**A2**]{.monash-blue}: Released week 5, due week 9: [25%]{.monash-green2}
   * [**A3**]{.monash-blue}: Released week 9, due week 12: [25%]{.monash-green2}
 * **Mid-semester test:** Based on W1-W7 content: Week 8: [25%]{.monash-green2}
+
+## Mid-semester test
+
+* Conducted in the usual workshop time, but two hours is allocated
+* Test will run for 60 minutes
+* Closed-book, and invigilated.
 
 ## ETC5513 Code of Conduct
 

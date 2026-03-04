@@ -292,6 +292,12 @@ You can create an RStudio project
 They are specific to RStudio -> If you use a different IDE you need a different solution
 :::
 
+## Positron "projects"
+
+Positron has a less formal idea of a project. It is just a folder that contains all your files, and potentially workspace-specific settings.
+
+To create a new Positron "project", simply create a new folder and open it in Positron.
+
 ## What is Markdown?
 
 Markdown is a lightweight markup language that you can use to add formatting elements to plain text documents.
@@ -308,13 +314,13 @@ Today, we'll learn how to do it.
 
 ## Main tools for combining R code and text
 
-Our main tool is going to be `R` and it's packages. We will be using `R` via RStudio.
+Our main tool is going to be `R` and it's packages. We will be using `R` via Positron.
 
 * `R` is structured into libraries
 * For reproducibility, we have two libraries that are crucial
 * Does anyone know which ones are those?
 
-![](images/Rstudio.png){fig-align="center" width="40%"}
+![](images/2026-03-05-08-48-04.png){fig-align="center"}
 
 # Quarto and `knitr`
 
@@ -501,6 +507,7 @@ R Code is included in [chunks]{.monash-green2}:
 
 ::: {.columns}
 ::: {.column width='50%'}
+
 Code:
 
 ````
@@ -518,6 +525,7 @@ ggplot(cars,
 
 :::
 ::: {.column width='50%'}
+
 Result:
 
 ```{r}
@@ -530,6 +538,7 @@ ggplot(cars,
        ) +
   geom_point()
 ``` 
+
 :::
 :::
 
@@ -537,6 +546,7 @@ ggplot(cars,
 
 ::: {.columns}
 ::: {.column width='50%'}
+
 Code:
 
 ````
@@ -562,8 +572,10 @@ ggplot(data = InsectSprays,
 ```
 
 ````
+
 :::
 ::: {.column width='50%'}
+
 Result:
 
 ```{r}
@@ -586,7 +598,9 @@ ggplot(data = InsectSprays,
   geom_boxplot(alpha = 0.6) +
   ggtitle("Insect sprays boxplots")
 ```
+
 :::
+
 :::
 
 ## R Code Chunks {.smaller}
