@@ -35,7 +35,7 @@ htmltools::includeCSS("tutorial.css")
 
 ## `r emo::ji("target")` Objectives
 
-* Working on a reproducible  Rstudio project
+* Working on a reproducible project
 * Produce a html report using an qmd file and explore  YAML themes to define your prefer template
 * Practice markdown syntax
 * Practice R coding
@@ -49,19 +49,21 @@ htmltools::includeCSS("tutorial.css")
 This is an **individual** assignment.
 
 The final PDF report can not have more than 5 pages (not including the appendix).
-
-You cannot use a dataset that has been used for another assignment.
 :::
+
+## Background
+
+You are the Head of Marketing for an online retailer. Over the last quarter we ran a personalised marketing campaign that varied how much we spent contacting individual customers (ads, emails, coupons). I want you to treat the data as the canonical record of that campaign and answer one question: did higher marketing spend per customer lead to higher purchase amounts?
 
 ## Part A: Setting up version control
 
 In this assignment, you need to create a project that will be able to produce a reproducible HTML report. For the report, you will each have your own unique dataset to work on. Your dataset will be in the `data/` folder on the GitHub repository.
 
-I will push these datasets to your repos periodically, as you each create the repo. If your dataset is not there, please let me know and I will tend to it as soon as possible.
+You can find your dataset on Moodle, in the Assignment 1 section, under **Feedback**.
 
-Your reproducible report should be created using a Quarto file in Rstudio  and needs to be rendered into a HTML file. The report must knit into HTML without any errors.
+Your reproducible report should be created using a Quarto file and needs to be rendered into a HTML and a PDF file. The report must render without any errors.
 
-You will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom [here](https://classroom.github.com/a/5fkkugX_). Make sure to choose your Monash username from the list so we can find your assignment.
+You will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom [here](https://classroom.github.com/a/dVwQYEj1). Make sure to choose your Monash username from the list so we can find your assignment.
 
 ### Repository setup (`r add_marks(6)` points)
 
@@ -102,10 +104,7 @@ To do this, you will need to clean your dataset. Include a description of this c
 
 ### Dataset Description subsection (`r add_marks(5)` points)
 
-Create a _subsection_ that will report details about your data. You must include the size of the dataset such as the number of observations, variables and variable types. You must include the following:
-
-* A sentence that includes _inline R code_ describing the number of variables and observations in your dataset.
-* Using the function `head()`, display the first two rows of data to show the types of variables that are in the dataset (i.e. numeric, character/factor etc).
+Create a _subsection_ that will report details about your data. You must include the size of the dataset such as the number of observations, variables and variable types. You must include a sentence that includes _inline R code_ describing the number of variables and observations in your dataset.
 
 Create two other summaries of your data, one as a plot and one as a table. Examples include counts of certain variables in groups, or summary statistics of numeric variables. Make sure these summaries are providing a broader context to the report and are not just arbitrary commentaries.
 
@@ -130,9 +129,7 @@ Maximum grade: `r total_marks` points.
 
 ## The usage of AI
 
-You may use Generative AI (such as ChatGPT) to _correct your English_ or to help with your R code (for example to find bugs or ask for enhancements to _your existing code_). However, if you use ChatGPT you must declare it in a separate qmd file called  `appendix.qmd`, and display screenshots of your AI queries and interactions related to this assignment. The appendix does not count towards your page limit.
-
-You **cannot** use ChatGPT to generate content for this assignment from scratch, including code.
+You may use Generative AI (such as ChatGPT) to _correct your English_ or to help with your R code (for example to find bugs or ask for enhancements to _your existing code_). However, you must declare your use of AI in a separate qmd file called  `appendix.qmd`, and display screenshots of your AI queries and interactions related to this assignment. The appendix does not count towards your page limit.
 
 Monash University supports the responsible and ethical use of generative AI. For more info please refer to [Monash Policy and practice guidance around acceptable and responsible use of AI technologies](https://www.monash.edu/learning-teaching/teachhq/Teaching-practices/artificial-intelligence/policy-and-practice-guidance-around-acceptable-and-responsible-use-of-ai-technologies).
 
