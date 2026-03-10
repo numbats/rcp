@@ -63,7 +63,7 @@ You can find your dataset on Moodle, in the Assignment 1 section, under **Feedba
 
 Your reproducible report should be created using a Quarto file and needs to be rendered into a HTML and a PDF file. The report must render without any errors.
 
-You will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom [here](https://classroom.github.com/a/dVwQYEj1). Make sure to choose your Monash username from the list so we can find your assignment.
+You will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom [here](https://classroom.github.com/a/dVwQYEj1){target="_blank"}. Make sure to choose your Monash username from the list so we can find your assignment.
 
 ### Repository setup (`r add_marks(6)` points)
 
