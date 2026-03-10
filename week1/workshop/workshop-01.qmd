@@ -71,3 +71,5 @@ There are plenty of resources to start getting to know how R works. Here are a c
 
 1.  [StartR](https://startr.numbat.space/)
 2.  [Posit (R) Primers](https://posit.cloud/learn/recipes)
+
+For the remainder of today's workshop, start working through Module 3 of the StartR course. This will give you a good introduction to R, and will prepare you for the next few weeks of workshops and assignments.
