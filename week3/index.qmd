@@ -263,7 +263,7 @@ Let's think of the connections between the different versions of an R project as
 
 ## We need to learn
 
-- How Git operates --> shell/command line
+- How Git operates 
 - How to connect our R projects to a Git repo
 - How to connect our local Git repo to a Git Cloud repository (GitHub).
 
@@ -622,13 +622,13 @@ Let's look at all these in more detail!
 
 ![](images/creatingrepo.png){fig-align="center"}
 
-## Configuring Git in your Rstudio using the terminal
+## Configuring Git using the terminal
 
 First open your command line interface/Terminal/Git Bash Shell:
 
 ![](images/setgit2.png){fig-align="center"}
 
-## Configuring Git in your Rstudio  project {.smaller}
+## Configuring Git {.smaller}
 
 First of all we need to get your Git configured in Rstudio (the same follows for your own computer):
 
@@ -643,22 +643,6 @@ To check that everything is set up correctly, **type the following in the CLI**:
 
 `git config --global user.email` and `git config --global user.email`
    
-
-## Configuring Git in your Rstudio Cloud project using the R console
-
-
-Alternatively you could type the following in your R console inside Rstudio: 
-
-
-```{{r}}
-install.packages(usethis)
-
-library(usethis)
-
-usethis::use_git_config(user.name = "Your Name Surname",
-                        user.email = "Your monash email")
-```
-
 
 <!-- --- -->
 <!-- # Configuring Github II -->
