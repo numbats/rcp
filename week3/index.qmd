@@ -742,6 +742,15 @@ Working in your computer and updating the remote repo in GitHub
 :::
 :::
 
+## General workflow in the Positron GUI
+
+* Look at changes to your files in the Git tab
+* Press the '+' to stage the files you want to commit
+* Write a commit message and press the 'Commit' button
+* Press the 'Sync' button to update the remote repository in GitHub
+
+![](images/2026-03-12-09-51-13.png){fig-align="center"}
+
 ## General Workflow (via Terminal) {.smaller}
 
 You typically clone a repo only once. After that each time you work on your repo you will use the following Git commands: 
