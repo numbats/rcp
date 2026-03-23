@@ -107,7 +107,7 @@ Hint: `mkdir`
 Open your command line interface/Terminal/Git Bash Shell window and type the following:
 
 ::: {.callout-important}
-Please replace "Firstname lastname" with your own details and choose a name that is identifiable for credit (this information is the one that identifies you)
+Please replace "Firstname lastname" with your own details
 :::
 
 `git config --global user.name "Firstname lastname"`
@@ -116,8 +116,15 @@ Set your **Monash email address** to be associated with each history commit:
 
 `git config --global user.email "valid email address"`
 
+#### SSH key configuration
 
-Now go to your Rstudio session and follow the next steps:
+Setting up your SSH key is a **one-time operation**. There are two ways to do this: using RStudio or using the terminal. Either way will work. Pick your options using the tabs.
+
+::: {.panel-tabset}
+
+## Rstudio
+
+Go to your Rstudio session and follow the next steps:
    
 - Select Tools from the menu and go to Global Options
 - Click Git/SVN on the left panel
@@ -142,6 +149,31 @@ Next we are going to create an SSH key as follows (we want to do this to avoid h
   
 The process described above allows you to interact between your local Git and GitHub without having to write your GitHub logging details each time you do a git operation between your local and your remote repository.
 
+## Terminal
+
+In your terminal, type
+
+```
+ssh-keygen -t ed25519 -C
+```
+
+and follow the prompts. When it asks you to "Enter a file in which to save the key", just press `Enter` to accept the default location. When it asks you to "Enter passphrase (empty for no passphrase)", you can choose whether you would like to add a passphrase. If you do not want a passphrase, press Enter twice.
+
+To copy your public key, you can use the following command in your terminal:
+
+```
+cat ~/.ssh/id_ed25519.pub
+```
+f
+Navigate to GitHub and go to the top right corner where your avatar is, select your avatar and select **Settings** from the drop-down menu. 
+
+![](../images/ssh_keys.png){fig-align="center"}
+
+Go to SSH and GPG keys item in the left side menu inside your GitHub account. Click the green "New SSH key" button and give your key a title and paste the key you copy from Rstudio in the step above into the Key text-box. Then click "Add SSH key".
+  
+The process described above allows you to interact between your local Git and GitHub without having to write your GitHub logging details each time you do a git operation between your local and your remote repository.
+
+::: 
    
 ### 2. Creating a repository on GitHub
 
