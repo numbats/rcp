@@ -6,214 +6,259 @@ format: html
 editor: visual
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # **Git and GitHub Workshop**
-**Audience:** First-year Master’s students (new to coding and version control)  
-**Objective:** By the end of these instructions, you will be able to:  
-✅ Create a GitHub repository  
-✅ Clone it to your computer  
-✅ Make changes, commit them, and push updates to GitHub  
 
----
+**Audience:** First-year Master’s students (new to coding and version control)\
+**Objective:** By the end of these instructions, you will be able to:\
+✅ Create a GitHub repository\
+✅ Clone it to your computer\
+✅ Make changes, commit them, and push updates to GitHub
 
-## **📌 Why Use Git and GitHub?**  
+------------------------------------------------------------------------
+
+## **📌 Why Use Git and GitHub?**
+
 Git is a tool that helps you track changes in your code over time. GitHub is a platform that stores your code online and allows you to share it with others.
 
-With Git and GitHub, you can:  
+With Git and GitHub, you can:
 
-- Keep a history of your changes  
-- Work on projects from different computers  
-- Collaborate with others easily  
+-   Keep a history of your changes\
+-   Work on projects from different computers\
+-   Collaborate with others easily
 
----
+------------------------------------------------------------------------
 
-## **🛠️ Setup Requirements**  
-### ✅ Install Git on your computer:  
-- **MacOS:** Open Terminal and install Git using Homebrew:
-```bash
+## **🛠️ Setup Requirements**
+
+### ✅ Install Git on your computer:
+
+-   **MacOS:** Open Terminal and install Git using Homebrew:
+
+``` bash
 brew install git
 ```
 
-- **Windows:** Download and install Git from [https://git-scm.com](https://git-scm.com).  
+-   **Windows:** Download and install Git from <https://git-scm.com>.
 
-- **Linux:** Install Git using your package manager:
-```bash
+-   **Linux:** Install Git using your package manager:
+
+``` bash
 sudo apt install git
 ```
 
-### ✅ Create a GitHub account:  
-- Go to [https://github.com](https://github.com) and sign up.  
+### ✅ Create a GitHub account:
 
----
+-   Go to <https://github.com> and sign up.
 
-## **1. Create a Repository on GitHub**  
-1. Open [https://github.com](https://github.com) and log in.  
-2. In the top-right corner, click the **+** icon → **New Repository**.  
-3. Fill out the repository details:  
-   - **Repository name**: `my-first-repo`  
-   - **Description**: (Optional)  
-   - Set it to **Public** (or **Private** if preferred)  
-   - Check **Add a README file**  
-4. Click **Create repository**  
+------------------------------------------------------------------------
 
-✅ *You’ve created your first repository!*  
+## **1. Create a Repository on GitHub**
 
----
+1.  Open <https://github.com> and log in.\
+2.  In the top-right corner, click the **+** icon → **New Repository**.\
+3.  Fill out the repository details:
+    -   **Repository name**: `my-first-repo`\
+    -   **Description**: (Optional)\
+    -   Set it to **Public** (or **Private** if preferred)\
+    -   Check **Add a README file**\
+4.  Click **Create repository**
 
-## **2. Clone the Repository to Your Computer**  
-1. Open your repository on GitHub.  
-2. Click the green **Code** button → Select **SSH** → Copy the SSH URL.  
-3. Open a terminal (Command Prompt, Git Bash, or similar).  
-4. Navigate to a directory where you want to store your project:
-```bash
+✅ *You’ve created your first repository!*
+
+------------------------------------------------------------------------
+
+## **2. Clone the Repository to Your Computer**
+
+1.  Open your repository on GitHub.\
+2.  Click the green **Code** button → Select **SSH** → Copy the SSH URL.\
+3.  Open a terminal (Command Prompt, Git Bash, or similar).\
+4.  Navigate to a directory where you want to store your project:
+
+``` bash
 cd ~/Documents
 ```
-5. Clone the repository:
-```bash
+
+5.  Clone the repository:
+
+``` bash
 git clone git@github.com:your-username/my-first-repo.git
 ```
-6. Change into the repository folder:
-```bash
+
+6.  Change into the repository folder:
+
+``` bash
 cd my-first-repo
 ```
 
-✅ *You’ve now downloaded a local copy of your repository.*  
+✅ *You’ve now downloaded a local copy of your repository.*
 
----
+------------------------------------------------------------------------
 
-## **3. Make Changes to a File**  
-1. Open the repository folder in a text editor (like VS Code).  
-2. Open the `README.md` file.  
-3. Add a line of text:
-```markdown
+## **3. Make Changes to a File**
+
+1.  Open the repository folder in a text editor (like VS Code).\
+2.  Open the `README.md` file.\
+3.  Add a line of text:
+
+``` markdown
 This is my first repository for my coding project.
 ```
-4. Save the file.  
 
-✅ *You’ve made your first change!*  
+4.  Save the file.
 
----
+✅ *You’ve made your first change!*
 
-## **4. Stage, Commit, and Push Changes**  
+------------------------------------------------------------------------
+
+## **4. Stage, Commit, and Push Changes**
+
 Now you need to tell Git to track and save these changes.
 
-### **👉 Step 1: Check the Status**  
+### **👉 Step 1: Check the Status**
+
 In the terminal, check which files have changed:
-```bash
+
+``` bash
 git status
 ```
-You should see the `README.md` file listed as modified.  
 
----
+You should see the `README.md` file listed as modified.
 
-### **👉 Step 2: Stage the Changes**  
+------------------------------------------------------------------------
+
+### **👉 Step 2: Stage the Changes**
+
 Stage the file so Git knows to track it:
-```bash
+
+``` bash
 git add README.md
 ```
 
----
+------------------------------------------------------------------------
 
-### **👉 Step 3: Commit the Changes**  
+### **👉 Step 3: Commit the Changes**
+
 Create a snapshot of the changes and add a descriptive message:
-```bash
+
+``` bash
 git commit -m "Added personal message to README"
 ```
 
----
+------------------------------------------------------------------------
 
-### **👉 Step 4: Push the Changes**  
+### **👉 Step 4: Push the Changes**
+
 Send the changes to GitHub:
-```bash
+
+``` bash
 git push
 ```
 
-✅ *Check your repository on GitHub → Refresh the page → Your new content should be visible!*  
+✅ *Check your repository on GitHub → Refresh the page → Your new content should be visible!*
 
----
+------------------------------------------------------------------------
 
-## **5. Make More Changes (Optional)**  
-1. Open the `README.md` file again.  
-2. Add another line of text:
-```markdown
+## **5. Make More Changes (Optional)**
+
+1.  Open the `README.md` file again.\
+2.  Add another line of text:
+
+``` markdown
 Here’s a second change to my repository.
 ```
-3. Save the file.  
 
-### **👉 Repeat the Git Workflow**  
-1. Check status:
-```bash
+3.  Save the file.
+
+### **👉 Repeat the Git Workflow**
+
+1.  Check status:
+
+``` bash
 git status
 ```
-2. Stage the change:
-```bash
+
+2.  Stage the change:
+
+``` bash
 git add README.md
 ```
-3. Commit the change:
-```bash
+
+3.  Commit the change:
+
+``` bash
 git commit -m "Added second line to README"
 ```
-4. Push the change to GitHub:
-```bash
+
+4.  Push the change to GitHub:
+
+``` bash
 git push
 ```
 
-✅ *Refresh your GitHub repository to confirm the update.*  
+✅ *Refresh your GitHub repository to confirm the update.*
 
----
+------------------------------------------------------------------------
 
-## **6. How to Check the History**  
+## **6. How to Check the History**
+
 To see a history of your commits, type:
-```bash
+
+``` bash
 git log
 ```
-- Press `q` to exit the log view.  
 
----
+-   Press `q` to exit the log view.
 
-## **7. Troubleshooting Tips**  
-💡 **Permission denied when cloning?**  
-- Make sure your SSH key is set up correctly. Follow GitHub’s guide on setting up SSH keys [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).  
+------------------------------------------------------------------------
 
-💡 **Git asks for your username and password?**  
-- You might not be using SSH. Double-check that you copied the SSH URL, not the HTTPS one.  
+## **7. Troubleshooting Tips**
 
-💡 **Changes aren’t showing on GitHub?**  
+💡 **Permission denied when cloning?**\
+- Make sure your SSH key is set up correctly. Follow GitHub’s guide on setting up SSH keys [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh).
+
+💡 **Git asks for your username and password?**\
+- You might not be using SSH. Double-check that you copied the SSH URL, not the HTTPS one.
+
+💡 **Changes aren’t showing on GitHub?**\
 - Make sure you’ve pushed your changes:
-```bash
+
+``` bash
 git push
-```  
+```
 
----
+------------------------------------------------------------------------
 
-## **✅ Workflow Summary**  
-1. **Make changes** – Edit your files.  
-2. **Stage changes** – `git add <filename>`  
-3. **Commit changes** – `git commit -m "Message"`  
-4. **Push changes** – `git push`  
+## **✅ Workflow Summary**
 
----
+1.  **Make changes** – Edit your files.\
+2.  **Stage changes** – `git add <filename>`\
+3.  **Commit changes** – `git commit -m "Message"`\
+4.  **Push changes** – `git push`
 
-## **🎯 What Success Looks Like**  
-✅ A GitHub repository created.  
-✅ Files cloned to your local machine.  
-✅ Successfully edited, committed, and pushed changes to GitHub.  
+------------------------------------------------------------------------
 
----
+## **🎯 What Success Looks Like**
 
-## **🚀 Next Steps**  
-- Try adding more files and making more commits.  
-- Explore creating a branch and making a pull request.  
-- Experiment with resolving conflicts and merging branches.  
+✅ A GitHub repository created.\
+✅ Files cloned to your local machine.\
+✅ Successfully edited, committed, and pushed changes to GitHub.
 
----
+------------------------------------------------------------------------
 
-## **👏 Well Done!**  
-You’ve completed the Git and GitHub workshop. Version control will now make your coding projects more organized and stress-free!  
+## **🚀 Next Steps**
 
----
+-   Try adding more files and making more commits.\
+-   Explore creating a branch and making a pull request.\
+-   Experiment with resolving conflicts and merging branches.
 
+------------------------------------------------------------------------
+
+## **👏 Well Done!**
+
+You’ve completed the Git and GitHub workshop. Version control will now make your coding projects more organized and stress-free!
+
+------------------------------------------------------------------------

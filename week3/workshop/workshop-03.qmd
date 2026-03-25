@@ -4,7 +4,7 @@ subtitle: "Workshop 3"
 author: "Michael Lydeamore"
 date: today
 format:
-    unilur-html: 
+    unilur-html+solution: 
         embed-resources: true
         output-file: "index.html"
 ---
@@ -65,12 +65,21 @@ Hint: `mkdir`
 `mkdir data figures`
 :::
 
-7. Use the command `touch` to create two files inside Tutorial3 `example.qmd` `example1.qmd`
+7. Use the command `touch` or `ni` to create two files inside Tutorial3 `example.qmd` `example1.qmd`
 
 ::: {.unilur-solution}
-`cd Tutorial3`
-
-`touch Tutorial3/example.qmd Tutorail3/example1.qmd`
+::: {.panel-tabset}
+### macOS / Linux (bash)
+```bash
+cd Tutorial3
+touch example.qmd example1.qmd
+```
+### Windows (PowerShell)
+```powershell
+cd Tutorial3
+ni example.qmd, example1.qmd
+```
+:::
 :::
     
 8.  Delete `example1.qmd`
@@ -82,11 +91,20 @@ Hint: `mkdir`
 9.  Inside `ETC5513_tutorial3` create a new file called `file1.txt`
 
 ::: {.unilur-solution}
-`cd ..`
-
-`ls`
-
-`touch file1.txt`
+::: {.panel-tabset}
+### macOS / Linux (bash)
+```bash
+cd ..
+ls
+touch file1.txt
+```
+### Windows (PowerShell)
+```powershell
+cd ..
+ls
+ni file1.txt
+```
+:::
 :::
 
 10.  Move `file1.txt` from `ETC5513_tutorial3` into a new folder (or directory) called `Example`. The folder `Example` and `ETC5513_tutorial3` should be at the same level.  
@@ -153,18 +171,31 @@ The process described above allows you to interact between your local Git and Gi
 
 In your terminal, type
 
+::: {.panel-tabset}
+### macOS / Linux (bash)
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
-ssh-keygen -t ed25519 -C
+### Windows (PowerShell)
+```powershell
+ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
+:::
 
 and follow the prompts. When it asks you to "Enter a file in which to save the key", just press `Enter` to accept the default location. When it asks you to "Enter passphrase (empty for no passphrase)", you can choose whether you would like to add a passphrase. If you do not want a passphrase, press Enter twice.
 
 To copy your public key, you can use the following command in your terminal:
 
-```
+::: {.panel-tabset}
+### macOS / Linux (bash)
+```bash
 cat ~/.ssh/id_ed25519.pub
 ```
-f
+### Windows (PowerShell)
+```powershell
+Get-Content $env:USERPROFILE/.ssh/id_ed25519.pub
+```
+:::
 Navigate to GitHub and go to the top right corner where your avatar is, select your avatar and select **Settings** from the drop-down menu. 
 
 ![](../images/ssh_keys.png){fig-align="center"}
