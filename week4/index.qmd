@@ -164,13 +164,16 @@ knitr::include_graphics("figs/insert_fig.png")
 
 Global options are those that [are applied to the entire document]{.monash-green2}.
 
-![](images/setup.png){fig-align="center"}
-
-**Best is to add this R code chunk at the beginning of the document before the libraries R code chunk.**
+```yaml
+execute:
+  echo: true
+  warning: false
+  message: false
+  cache: true
+  cache.path: "cache/"
+```
 
 They can be overwritten by the individual R code chunk options!
-
-[Knitr reference guide here](https://yihui.org/knitr/options/#plots)
 
 
 ## Quarto and referencing
@@ -183,8 +186,8 @@ If you've used Bookdown before, just note that you no longer need to swap output
 
 ```{{yaml}}
 title: "My Report"
-author: "Patricia Menéndez"
-output:
+author: "Michael Lydeamore"
+format:
   html: default    
 ```
   
@@ -328,19 +331,10 @@ Note that for this to work, we need to set `number-sections: true` in the YAML, 
 # Referencing Demo
 
 
-## Html reports templates
-
-
-- Templates can be modified by changing YAML options
-- There are lots of available Quqarto templates 
-- YAML can be further modify by using css files. More info [here](https://geomoer.github.io/moer-base-r/unit99/sl03_css.html).
-
-Let's have a look at an example.
-
 # Let's learn more about Git
 
 
-## Recap {.smaller}
+## Recap - Terminal {.smaller}
  
 -  `git clone` is used to target an existing repository and create a clone, or copy of the target repository.
 -  `git pull` is used to fetch and download content from a remote repository and immediately update the local repository to match that content.
@@ -348,6 +342,11 @@ Let's have a look at an example.
 -  `git add file_name`  adds a change in the working directory to the staging area
 -  `git commit -m "Message"` (m = message for commit. The git commit is used to create a snapshot of the staged changes along a timeline of a Git projects history.)
 -  `git push origin branch name` is used to upload local repository content to a remote repository. 
+
+## Recap - GUI {.smaller}
+
+-  `git clone` is used to target an existing repository and create a clone, or copy of the target repository.
+- From there, use the Source Control pane in Positron to stage, commit and push changes to GitHub.
   
 ## Branching {.smaller}
 
@@ -428,13 +427,14 @@ Using the `switch` command
 `git push origin newbranch_name`
 
 Alternatively if we had files or changes added into that branch:
-- `git add .` (adding all the modified files into the staging area)
+
+- `git add <files>` (adding all the modified files into the staging area)
 - `git commit -m "Updating new newbranch_name"`
 - `git push origin newbranch_name`
 
 ## Merging branches
 
-- `git checkout main`: First move to the branch we want to move content into
+- `git switch main`: First move to the branch we want to move content into
 - `git merge newbranch_name -m "Merging branches"`
 - `git push origin main` to update the remote repository
 
@@ -521,7 +521,7 @@ Note: If the git repo contains more than one [remote]{.monash-green2}, such as [
 
 The branches fetched from the remote origin would be preceded by `remotes/origin/`
 
-## Etiquette for working on someone else branch
+## Etiquette for working on someone else branch {.smaller}
 
 - To work on someone’s branch, make a local copy of it
 - Work on your local branch (new branch)
@@ -529,14 +529,18 @@ The branches fetched from the remote origin would be preceded by `remotes/origin
  
 
 To do that:
+
 -  First make sure you are working in that branch in your local repo: `git branch -a`
-- Add changes into the staging area, commit and push changes to the corresponding branch into the remote repository: `git add files`, `git commit -m "Message"`, `git push origin name-of-the-branch`
+- Add changes into the staging area, commit and push changes to the corresponding branch into the remote repository: 
+  - `git add files`
+  - `git commit -m "Message"`, 
+  - `git push origin name-of-the-branch`
 
 ![](images/branches.png){fig-align="center"}
 
 ## How to go back to your previous branch? {.smaller}
 
-- `git checkout branchname`
+- `git switch branchname`
 
 Imagine that you have two branches:
 
@@ -547,7 +551,7 @@ To check in which branch you are currently
 
 * `git branch` or `git branch -a`, you will see an `*` to let you in which branch the `HEAD` of your repository currently is.   
 
-To go back to main branch (assuming that you were in there): `git checkout main`
+To go back to main branch (assuming that you were in there): `git switch main`
 
 # Merging diverging branches
 
@@ -561,7 +565,7 @@ Resource [here](https://www.atlassian.com/git/tutorials/using-branches/git-merge
 
 Suppose we have two branches: `main` and `new_development` and our goal is to bring changes from the branch `new_development` into our `main` branch:
 
-1. For merging, go to `main` branch: `git checkout main`
+1. For merging, go to `main` branch: `git switch main`
 2. `git merge new_development`
 3. `git push origin main`
 3. This will incorporate the changes made in the branch new_development into the main branch.
@@ -629,7 +633,7 @@ Edit the file
 
 ## Resolving conflicts
 
-When you open the conflict file in a **text editor such as Rstudio**, you will see the conflicted part marked like this:
+When you open the conflict file in a **text editor**, you will see the conflicted part marked like this:
 
 ```
 /* code unaffected by conflict */
