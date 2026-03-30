@@ -1,446 +1,132 @@
 ---
 title: 'ETC5513: Collaborative and Reproducible Practices'
-subtitle: "Tutorial 4"
+subtitle: "Tutorial 4: Figures, Tables, and Cross-Referencing"
 author: "Michael Lydeamore"
 date: today
 format:
     unilur-html:
-        output-file: index.html
-        embed-resources: true
-        toc: true
-    unilur-html+solution:
-        output-file: solution.html
-        embed-resources: true
+      output-file: index.html
 ---
 
+## 🎯 Objectives
 
-```{r, echo = FALSE, eval = file.exists("tutorial.css")}
-htmltools::includeCSS("tutorial.css")
-```
+Building on our ability to sync repositories and manage branches, today we focus on the technical side of professional reporting:
 
+* Create a Quarto report with a table, figures, and sections that are labelled and referenced
+* Generate professional figures with captions and sub-figures
+* Use **cross-referencing** to link text to your figures and tables dynamically
+* (Extension) Implement **academic referencing** using BibTeX in Quarto
 
-## `r emo::ji("target")` Objectives
-
-* Create repositories and syncrhonize them between your local and remote repos
-* Create a Quarto report with a tabell, figures and sections that are labelled and referenced
-* Create branches in local and remote repositories
-* Deal with merge conflicts
-
-## Creating a new project
-
-Let's practice creating a new project from scratch. We will start by making the remote repository in GitHub.
-
-1. Go to [https://github.com](https://github.com) and log in.
-
-2. Click the **+** icon in the top-right corner → choose **"New repository"**.
-
-3. Fill out the form:
-   - **Repository name**: e.g., `my-new-project`
-   - (Optional) Add a short **description**
-   - Choose **Public** (or **Private** if preferred)
-   - ✅ Check **"Add a README file"**
-
-4. Click the **"Create repository"** button at the bottom.
-
-*Your repository is now created and ready to use!*
-
-Now, we need to _clone_ the repository. 
-
-## 💻 Step 2: Clone the Repository Using the Terminal
-
-1. On your new repository page, click the green **"Code"** button.
-
-2. Choose the **SSH** tab (⚠️ *not HTTPS*) and copy the URL.  
-   It will look like this:  
-   ```text
-   git@github.com:your-username/my-new-project.git
-   ```
-
-3. Open your **terminal**.
-
-4. Navigate to the folder where you want to store your project (e.g., `Documents`):
-   ```bash
-   cd ~/Documents
-   ```
-
-5. Use the `git clone` command followed by the URL:
-   ```bash
-   git clone git@github.com:your-username/my-new-project.git
-   ```
-
-6. Move into the project folder:
-   ```bash
-   cd my-new-project
-   ```
-
-````markdown
-## 🌿 Step 3: Create a Branch, Make Changes, and Push
-
-Now that your repository is cloned, you’re ready to create a **branch**, make some changes, and push it to GitHub.
+We will be using the repository we made in this week's workshop. Open this project in your IDE of choice and create a new `.qmd` file for this tutorial. Make sure to add it to version control.
 
 ---
 
-# Branching
+## 🖼️ Task 1: Working with Figures
 
-### 🔀 1. Create a New Branch
+In Quarto, figures are more than just images; they are numbered entities with metadata. To make a figure "referencable," its label **must** start with the prefix `fig-`.
 
-In the terminal, make sure you're inside your project folder:
-
-```bash
-cd my-new-project
-```
-
-::: {.callout-tip}
-
-Remember you can always check where you are by typing
-```bash
-pwd
-```
-
-:::
-
-
-Create and switch to a new branch (you can name it anything — here we'll use `feature`):
-
-```bash
-git branch feature
-git switch feature
-```
-
-::: {.callout-tip}
-You can also do this in one command with
-```bash
-git switch -c feature
-```
-:::
-
-
-✅ You are now working in a new branch called `feature`.
-
----
-
-### ✍️ 2. Make a Change to a File
-
-Open the `README.md` file in RStudio.
-
-Add a new line to the bottom, such as:
-
-```markdown
-This is a change I made on the feature branch.
-```
-
-Save the file.
-
----
-
-### 💾 3. Stage and Commit the Change
-
-Check which files were changed:
-
-```bash
-git status
-```
-
-Stage the file:
-
-```bash
-git add README.md
-```
-
-Commit the change:
-
-```bash
-git commit -m "Added a line to README on feature branch"
-```
-
-✅ Your change is now saved locally in your branch.
-
----
-
-### 🚀 4. Push the Branch to GitHub
-
-Now push your new branch to the remote (GitHub):
-
-```bash
-git push -u origin feature
-```
-
-✅ You should now see the `feature` branch appear on GitHub. Go to your repository in the browser and click the "branches" dropdown to check!
-
-::: {.callout-tip}
-We need the `-u` flag on the `push` command to tell `git` to link together the remote (origin) and our local branch. From now on, we can just use `git push` and `git` will remember the link.
-:::
-
-# 🔁 Merge Your Branch Using the Terminal
-
-Now that you’ve made and committed changes on your feature branch, let’s **merge those changes into the `main` branch** — all from the terminal.
-
----
-
-### 🔄 1. Switch Back to the `main` Branch
-
-First, make sure you’re back on the `main` branch:
-
-```bash
-git switch main
-```
-
----
-
-### 🔃 2. Pull the Latest Changes from GitHub
-
-Before merging, make sure your local `main` branch is up to date with the remote:
-
-```bash
-git pull origin main
-```
-
----
-
-### 🔀 3. Merge the Feature Branch into Main
-
-Now merge your feature branch into `main`. For example, if your branch is called `feature`:
-
-```bash
-git merge feature
-```
-
-✅ This combines the changes from `feature` into `main`.
-
----
-
-### 🚀 4. Push the Merged Changes to GitHub
-
-Now push the updated `main` branch to GitHub:
-
-```bash
-git push origin main
-```
-
-✅ Your main branch on GitHub now includes the changes from your feature branch!
-
----
-
-### 🧹 5. (Optional) Delete the Feature Branch
-
-You can now delete the feature branch locally:
-
-```bash
-git branch -d feature
-```
-
-If you also want to delete it on GitHub:
-
-```bash
-git push origin --delete feature
-```
-
-# ⚔️ Create and Resolve a Merge Conflict
-
-Now that you know how merging works, let’s **deliberately cause a merge conflict** and walk through how to fix it.
-
-Merge conflicts happen when two branches change the *same part* of a file in different ways — Git doesn't know which version to keep.
-
----
-
-### 🔧 1. Start Fresh in `main`
-
-Make sure you're on the `main` branch:
-
-```bash
-git switch main
-```
-
-Create a new branch but do not switch to it:
-
-```bash
-git branch conflict-branch
-```
-
-Open the `README.md` file and **change the first line** to:
-
-```markdown
-This line was edited on main.
-```
-
-Save the file, then stage and commit the change:
-
-```bash
-git add README.md
-git commit -m "Edit first line on main"
-```
-
----
-
-### 🌿 2. Create a New Branch and Make a Conflicting Change
-
-Switch to the new branch:
-
-```bash
-git switch conflict-branch
-```
-
-Open `README.md` again, but this time change the same first line to:
-
-```markdown
-This line was edited on conflict-branch.
-```
-
-Save it, then stage and commit:
-
-```bash
-git add README.md
-git commit -m "Edit first line on conflict-branch"
-```
-
----
-
-### 🔁 3. Merge the Branch into `main`
-
-Switch back to `main`:
-
-```bash
-git switch main
-```
-
-Try to merge the branch:
-
-```bash
-git merge conflict-branch
-```
-
-🛑 Uh-oh! You’ll see a **merge conflict** message. Git can’t automatically merge the file.
-
----
-
-### 🧠 4. Resolve the Conflict
-
-Open `README.md`. You’ll see something like this:
-
-```plaintext
-<<<<<<< HEAD
-This line was edited on main.
-=======
-This line was edited on conflict-branch.
->>>>>>> conflict-branch
-```
-
-This means:
-- Everything between `<<<<<<< HEAD` and `=======` is from `main`
-- Everything after `=======` is from `conflict-branch`
-
-Edit the file to keep *only one version* — or combine them. For example:
-
-```markdown
-This line includes changes from both branches.
-```
-
-Make sure you delete the conflict markers (`<<<<<<< HEAD`, `=======` and `>>>>>>> conflict-branch`) as part of your changes.
-
-Save the file.
-
----
-
-### ✅ 5. Finalize the Merge
-
-After resolving the conflict:
-
-1. Stage the fixed file:
-
-```bash
-git add README.md
-```
-
-2. Complete the merge with a commit:
-
-```bash
-git commit -m "Resolved merge conflict in README.md"
-```
-
-3. Push the updated `main` branch to GitHub:
-
-```bash
-git push origin main
-```
-
-🎉 You’ve resolved a merge conflict like a pro!
-
-
-# Cross-referencing and academic referencing
-
-In this exercise you will learn how to reference figures, tables and sections in your report. We will also learn how to cite external sources.
-
-1. Open the file `week4.qmd` and add the following to the end of the document:
+### Exercise
+1. Create a new code chunk in your QMD.
+2. Use the following code to generate a plot:
 
 ```{{r}}
-#| label: fig-penguins
-#| fig-cap: "Bill length vs bill depth of three species of penguins from the Palmer Station, Antarctica"
-
+#| label: fig-penguins-scatter
+#| fig-cap: "Body mass vs. Flipper length for three penguin species."
+#| warning: false
+library(ggplot2)
 library(palmerpenguins)
 
-ggplot(penguins, aes(x=bill_length_mm, y=bill_depth_mm, colour=species)) +
-  geom_point()
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal()
 ```
 
-```{r}
-#| echo: false
-#| eval: false
+> **Pro-Tip:** The `#| label: fig-xxx` chunk option is vital. Without the `fig-` prefix, Quarto will not include this in the automatic "List of Figures" or allow for dynamic cross-references.
 
-library(tidyverse)
-library(palmerpenguins)
+Commit these changes to your repository with a meaningful commit message, and push to GitHub.
 
-ggplot(penguins, aes(x=bill_length_mm, y=bill_depth_mm, colour=species)) +
-  geom_point()
+---
+
+## 📊 Task 2: Creating Professional Tables
+
+Static Markdown tables are fine for simple notes, but for reproducible research, we generate tables directly from data frames. To cross-reference a table, the label **must** start with `tbl-`.
+
+### Exercise
+Create a summary table of the penguin data using `knitr::kable`:
+
+```{{r}}
+#| label: tbl-penguin-summary
+#| tbl-cap: "Mean body mass of penguins by species and sex."
+library(dplyr)
+
+penguins |>
+  filter(!is.na(sex)) |>
+  group_by(species, sex) |>
+  summarise(mean_mass = mean(body_mass_g)) |>
+  knitr::kable()
 ```
 
-2. Add a sentence below this chunk that says: `@fig-penguins shows that the three species of penguins have clusters of bill depths and bill lengths that largely do not overlap`
+Commit these changes to your repository with a meaningful commit message, and push to GitHub.
 
-3. Render the document. You should see a hyperlink to Figure 1, that links back to your original figure.
+---
 
-# Home extension: Academic referencing
+## 🔗 Task 3: Dynamic Cross-Referencing
 
-With Quarto, we no longer need to type out references manually. With the help of some external software, our external references can be automatically generated.
+One of the greatest strengths of Quarto is automation. If you add a new figure at the beginning of your document, Quarto renumbers every subsequent figure and update every mention in your text automatically.
 
-::: {.callout-tip}
-If you get stuck on this section, check out the video on Moodle.
-:::
+### Syntax
+* To reference a figure: Use `@fig-label`
+* To reference a table: Use `@tbl-label`
 
+### Exercise
+Write a short paragraph in your document referencing the items you created above:
 
-1. Download Zotero: <https://www.zotero.org/> and register for a free account.
-2. Install the Better BibTeX for Zotero extension: <https://retorque.re/zotero-better-bibtex/installation/>
-3. Install the relevant Connector for your web browser: <https://www.zotero.org/download/connectors>
-4. We will add the reference by it's _Digial Object Identifier_ or DOI. The DOI for `palmerpenguins` is 10.5281/zenodo.3960218. Press the small "Add item by identifier" button in Zotero, and paste in the DOI:
+> As shown in @fig-penguins-scatter, there is a clear positive correlation between flipper length and body mass. The specific averages for each group are detailed in @tbl-penguin-summary.
 
-![](../images/add_object.png){fig-align="center"}
+Commit these changes to your repository with a meaningful commit message, and push to GitHub.
 
-5. In Zotero, right click the newly added item, go to "Better BibTex" -> "copy BibTeX to clipboard"
+---
 
-![](../images/copy-bibtex.png){fig-align="center"}
+## 🎓 Extension: Academic Referencing
 
+To use academic citations, you need a bibliography file (usually a `.bib` file). 
 
-6. Inside your project, create a new file called `references.bib`. Paste the BibTeX you just copied in there. It should look something like this:
+### 1. Create a Bibliography
+Create a new text file in your project folder named `references.bib` and paste this BibTeX entry inside:
 
-```
-@misc{horstAllisonhorstPalmerpenguinsV0102020,
-  title = {Allisonhorst/Palmerpenguins: V0.1.0},
-  shorttitle = {Allisonhorst/Palmerpenguins},
-  author = {Horst, Allison M and Hill, Alison Presmanes and Gorman, Kristen B},
+```bibtex
+@Manual{,
+  title = {palmerpenguins: Palmer Archipelago (Antarctica) penguin data},
+  author = {Allison Marie Horst and Alison Presmanes Hill and Kristen B Gorman},
   year = {2020},
-  month = jul,
-  doi = {10.5281/ZENODO.3960218},
-  urldate = {2025-03-24},
-  abstract = {CRAN release of palmerpenguins v0.1.0 R package by Horst, Hill and Gorman (July 2020).},
-  copyright = {Open Access},
-  howpublished = {Zenodo}
+  note = {R package version 0.1.0},
+  doi = {10.5281/zenodo.3960218},
+  url = {https://allisonhorst.github.io/palmerpenguins/},
 }
 ```
 
-7. In `week4.qmd`, add the following to the YAML:
+### 2. Update your YAML
+Add the `bibliography` field to the top of your `.qmd` file:
 
-```
+```yaml
+---
+title: "Workshop 4"
 bibliography: references.bib
+---
 ```
 
-8. In the sentence we wrote describing Figure 1, add the following to the end of the sentence: `@horstAllisonhorstPalmerpenguinsV0102020`.
+### 3. Cite in Text
+Use the key from your `.bib` file preceded by an `@` symbol.
 
-9. Re-render the document. You should have a reference to the package where you typed `@horstAllisonhorstPalmerpenguinsV0102020`, and you should see a references section at the end of the document.
+* **Parenthetical:** The data was originally collected by Gorman et al. [@penguins_data].
+* **Narrative:** @penguins_data argues that...
+
+Quarto will automatically generate a **References** section at the very end of your document.
+
+---
+
+## 🧹 Summary Checklist
+- [ ] Do all my figure labels start with `fig-`?
+- [ ] Do all my table labels start with `tbl-`?
+- [ ] Did I use the `@` symbol to link to them in my text?
+- [ ] (Extension) Is my `.bib` file saved in the same folder as my `.qmd`?
