@@ -67,7 +67,7 @@ Now, we need to _clone_ the repository.
    cd my-new-project
    ```
 
-````markdown
+
 ## 🌿 Step 3: Create a Branch, Make Changes, and Push
 
 Now that your repository is cloned, you’re ready to create a **branch**, make some changes, and push it to GitHub.
@@ -97,7 +97,6 @@ pwd
 Create and switch to a new branch (you can name it anything — here we'll use `feature`):
 
 ```bash
-git branch feature
 git switch feature
 ```
 
@@ -129,7 +128,7 @@ Save the file.
 
 ### 💾 3. Stage and Commit the Change
 
-Check which files were changed:
+Check which files were changed. You can do this in the Source Control pane in Positron, or using the terminal:
 
 ```bash
 git status
@@ -173,7 +172,7 @@ Now that you’ve made and committed changes on your feature branch, let’s **m
 
 ### 🔄 1. Switch Back to the `main` Branch
 
-First, make sure you’re back on the `main` branch:
+First, make sure you’re back on the `main` branch. You can do this using the branch switcher in Positron, or using the terminal:
 
 ```bash
 git switch main
@@ -320,6 +319,7 @@ This line was edited on conflict-branch.
 ```
 
 This means:
+
 - Everything between `<<<<<<< HEAD` and `=======` is from `main`
 - Everything after `=======` is from `conflict-branch`
 
