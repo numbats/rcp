@@ -97,6 +97,7 @@ pwd
 Create and switch to a new branch (you can name it anything — here we'll use `feature`):
 
 ```bash
+git branch feature
 git switch feature
 ```
 
