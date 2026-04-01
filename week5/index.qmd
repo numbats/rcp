@@ -267,13 +267,12 @@ Typically in a project there might be files that we decided to not track and ign
 
 Examples include files that are built artifacts and machine generated files that can be derived from your repository source or should otherwise not be committed.
 
-## In Rstudio  
+## In Positron  
 
-- [**Blue-M**]{style="color:blue"}: a file that is already under version control that has been modified. 
-- [**Orange-?**]{style="color:orange"}: a file that is not under version control (yet...). 
-- [**Green-A**]{style="color:green"}: a file that was not under version control, but which has been staged to be committed 
+- [**Orange-M**]{style="color:blue"}: a file that is already under version control that has been modified. 
+- [**Green-U**]{style="color:green"}: a file that is not under version control (yet...). 
 - [**Red-D**]{style="color:red"}: a file under version control has been deleted.  To make it really disappear, you have to staged its disappearance and commit. 
-- [**Purple-R**]{style="color:purple"}: a file that was renamed.  (Note that git in Rstudio seems to be figuring this out on its own.) 
+- [**Purple-R**]{style="color:purple"}: a file that was renamed.
 
 ## .gitignore
 
@@ -321,12 +320,12 @@ From the command line you can create a `.gitignore` file for your repository.
 
 `touch .gitignore`
 
-You can edit the file using Rstudio or VSCode.
+You can edit the file using any editor
 
 You can also create a `.gitignore` file from GitHub.
 
 ::: {.fragment}
-You can edit it later using RStudio or VSCode.
+You can edit it later!
 :::
 
 :::
@@ -385,10 +384,6 @@ Search/navigate repo from within our Github account.
 ## Forked repo 
 
 ![](images/forked.png){fig-align="center"}
-
-## Our repos in GitHub
-
-![](images/repos.png){fig-align="center"}
 
 ## Differences between forking and cloning a repo {.smaller}
 
@@ -471,68 +466,6 @@ knitr::include_graphics("images/pr7.png")
 knitr::include_graphics("images/pr8.png")
 ```
 
-# VSCode
-
-![](images/vscode_icon.png){fig-align="center"}
-
-* VSCode is a powerful IDE that works across many different languages.
-* It also has excellent Git integration so we can track and create repos, branches, stage, commit and push files.
-* Make sure you log into VSCode using your GitHub account.
-
-## Opening VSCode
-
-![](images/vscode_git_create.jpg){fig-align="center"}
-
-## Editing the README.md file
-
-![](images/vscode_readme_edit.jpg){fig-align="center"}
-
-## Staged the  changes  README.md file
-
-![](images/vscode_git_stage.jpg){fig-align="center"}
-
-
-## Commit the  changes  README.md file
-
-![](images/vscode_git_commit.jpg){fig-align="center"}
-
-## Visualizing all the files
-
-![](images/vscode_git_tree.jpg){fig-align="center"}
-
-
-## Creating new branch
-
-![](images/vscode_git_create_branch.jpg){fig-align="center"}
-
-## In the meantime in GitHub
-
-![](images/vscode_git_branch_on_gh.jpg){fig-align="center"}
-
-
-## Resolving conflicts
-
-![](images/vscode_merge_conflict_1.jpg){fig-align="center"}
-
-## Resolving conflicts
-
-![](images/vscode_merge_conflict_2.jpg){fig-align="center"}
-
-## Resolving conflicts
-
-![](images/vscode_merge_conflict_3.jpg){fig-align="center"}
-
-## Resolving conflicts
-
-![](images/vscode_merge_conflict_4.jpg){fig-align="center"}
-
-# Before the tutorial
-
-- Please make sure you have R and Rstudio locally installed
-
-- Please make sure that your GitHub is connected to VSCode and VSCode is installed. 
-
-
 ## What you should know by now?
 
 - Crate reproducible simple html reports.
@@ -556,7 +489,6 @@ From now on we will learn more on creating beautiful and reproducible reports!
 
 Next week we will discuss the importance of reproducible reporting and the usage of version control systems. We will do few hands on exercises so please make sure you bring your computer to the lecture.
 
-
 - Tutorial this week you will start working in pairs.
 - You will continue working in pairs in Week 6 too.
 - In Week 6, we'll keep of practicing all the things that we have learned so far.
@@ -569,5 +501,4 @@ Next week we will discuss the importance of reproducible reporting and the usage
 ## Recap
 1. More Git/GitHub tools
 2. Pull requests: a tool to collaborate with others via GitHub 
-3. VSCode 
 :::
