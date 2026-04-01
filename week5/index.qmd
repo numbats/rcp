@@ -95,7 +95,6 @@ Lecturer: *`r rmarkdown::metadata$author`*
 * More on Git:
   - Branches
 * Solving Git merging conflicts
-* Install VSCode as a GUI to work with Git/GitHub and as a text editor for commits.
 
 ## Today's plan {#aim}
 
@@ -104,7 +103,6 @@ Lecturer: *`r rmarkdown::metadata$author`*
 ## Aim
 1. More Git/GitHub tools
 2. Pull requests: a tool to collaborate with others via GitHub 
-3. VSCode 
 :::
 
 With this you have learned the **basics** to [create]{.monash-green2} reproducible and collaborative reports.
@@ -477,8 +475,6 @@ knitr::include_graphics("images/pr8.png")
 - Being able to solve merging conflicts
 - Forking repos in GitHub
 - Interact with others using pull requests on GitHub
-- Basic operations with VSCode.
-
 # We have the scaffolding ready for collaborative and reproducible reporting
 
 
