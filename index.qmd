@@ -18,7 +18,7 @@ This unit develops teamwork skills, through instruction on reproducibility and v
 ## Teachers
 
 * [**Michael Lydeamore**](https://www.michaellydeamore.com). Chief Examiner. Email: [michael.lydeamore@monash.edu](mailto:michael.lydeamore@monash.edu)
-* [**Naveen Kaushik**](https://www.linkedin.com/in/naveen-kaushik/). Email: [naveen.kaushik@monash.edu](mailto:naveen.kaushik@monash.edu)
+* **Maliny Po**. Email: [maliny.po@monash.edu](mailto:maliny.po@monash.edu)
 
 ```{r}
 #| label: load_packages
@@ -44,8 +44,8 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Consultation
 
-* Michael Lydeamore: 
-* Naveen Kaushik: 
+* Michael Lydeamore: Tuesdays 4pm-5pm
+* Maliny Po: Friday 11pm-12pm
 
 ```{r}
 #| label: schedule2
