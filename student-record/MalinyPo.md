@@ -1,1 +1,1 @@
-Hello! This is Maliny. Here is my contribution to the unit repository.
+Hello! This is Maliny's contribution to the unit repository.
