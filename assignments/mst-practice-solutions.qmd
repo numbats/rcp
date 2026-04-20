@@ -1,0 +1,246 @@
+---
+title: "ETC5513: Practice Test solutions"
+author: "Michael Lydeamore"
+---
+
+# Multiple choice questions
+
+## Which statement about dynamic documents is most accurate?
+
+* [They combine analysis code and narrative text so outputs can be regenerated automatically.]{style="background: lightgreen;"} ✅
+* They are static reports that must be edited manually after each analysis update.
+* They only work when exporting to PDF.
+* They cannot include figures produced from code.
+
+
+## Why are absolute file paths usually discouraged in collaborative reproducible projects?
+
+* They are slower than relative paths in all operating systems.
+* [They often depend on one person's machine-specific folder structure.]{style="background: lightgreen;"} ✅
+* They prevent use of Quarto chunk options.
+* They are not supported by git.
+
+## Which Quarto chunk option prevents code from running?
+
+* `echo: false`
+* `message: false`
+* [`eval: false`]{style="background: lightgreen;"}✅ 
+* `fig-cap:`
+
+
+## Which command best shows the current branch and whether local branches are ahead/behind their tracked remotes?
+
+Which command best shows the current branch and whether local branches are ahead/behind their tracked remotes?
+
+* [`git branch -vv`]{style="background: lightgreen;"} ✅
+* `git remote add`
+* `git stash list` 
+* `git log --graph`
+
+
+## Which command updates your local branch by fetching and then integrating remote changes in one step?
+
+Which command updates your local branch by fetching and then integrating remote changes in one step?
+
+* git fetch
+* [`git pull`]{style="background: lightgreen;"} ✅
+* git clone
+* git stash pop
+
+
+## You want to include only one stash entry (not necessarily the latest). Which command format is correct?
+
+You want to include only one stash entry (not necessarily the latest). Which command format is correct?
+
+* [`git stash pop stash@{1}`]{style="background: lightgreen;"} ✅
+* `git stash merge stash@{1}`
+* `git pop stash@{1}`
+* `git apply stash@{1}`
+
+## Which option best describes what a fork is on GitHub?
+
+Which option best describes what a fork is on GitHub?
+
+* A temporary local stash of uncommitted changes.
+* [A copy of another repository into your own GitHub account.]{style="background: lightgreen;"} ✅
+* A command that deletes old remote branches.
+* A merge strategy used after rebase.
+
+
+## For section cross-references in Quarto (for example, `@sec-intro`), what is required?
+
+For section cross-references in Quarto (for example, `@sec-intro`), what is required?
+
+* [The heading must include an identifier such as <code>sec-intro</code> and section numbering must be enabled.]{style="background: lightgreen;"} ✅
+* Only a figure label is needed.
+* The section title must be written in ALL CAPS.
+* A bibliography file must be present.
+
+
+## Which statement about <code>git revert</code> is correct?
+
+Which statement about <code>git revert</code> is correct?
+
+* It removes commits from history permanently.
+* [It creates a new commit that undoes a previous commit.]{style="background: lightgreen;"} ✅
+* It only works before pushing to GitHub.
+* It is identical to <code>git reset --hard</code>."
+
+
+## You need to remove a remote branch called <code>draft-week7</code>. Which command is correct?
+
+You need to remove a remote branch called <code>draft-week7</code>. Which command is correct?
+
+* <code>git branch -d draft-week7</code>
+* <code>git rm draft-week7</code>
+* [<code>git push origin --delete draft-week7</code>]{style="background: lightgreen;"} ✅
+* <code>git switch --delete draft-week7</code>"
+
+
+# Free-answer questions
+
+## Quarto YAML with multiple outputs {type=essay}
+
+Write a minimal Quarto YAML header for a document titled "Practice Test 2" that:
+
+* Includes your name as author,
+* Renders to both HTML and PDF,
+* Uses the HTML theme `cosmo`,
+* Sets global execution so code is shown, warnings are hidden, and cache is enabled.
+
+```yaml
+---
+title: "Practice Test 2"
+author: "Michael Lydeamore"
+format:
+    pdf: default
+    html:
+        theme: cosmo
+execute:
+    echo: true
+    warning: false
+    cache: true
+---
+```
+
+Marking scheme: 
+* 1 mark for theme with correct indenting under pdf
+* 1 mark for the execute block
+* 1 mark for including the fences
+* 1 mark for the author and pdf fields
+* Order of items does not matter
+
+## Figure chunk and cross-reference {type=essay}
+
+Write one R code chunk (including chunk options) that creates a scatter plot of `speed` vs `dist` from `cars`, and make it cross-referenceable.
+
+Requirements:
+
+* Label must begin with `fig-`,
+* Add a caption via chunk options,
+* Hide code but show the figure.
+
+Then write one Markdown sentence that references your figure.
+
+```{{r}}
+#| label: fig-scatterplot
+#| fig-cap: Scatterplot of speed vs distance in the cars dataset
+#| echo: false
+
+ggplot(mtcars, aes(x=speed, y=dist)) + geom_point()
+```
+
+As you can see in `@fig-scatterplot`, the speed and distance are related.
+
+Marking scheme:
+
+* 1 mark for echo + label
+* 1 mark for fig-cap option
+* 1 mark for the cross-reference. Note in these solutions I have surrounded in backticks so it displays correctly but in your actual solution this is not correct.
+* 1 mark for building a plot. Does not have to be a ggplot, as long as it is a scatterplot it is OK.
+
+
+## Local vs remote synchronization {type=essay}
+
+Briefly explain the difference between `git fetch` and `git pull`.
+
+Then provide a short command sequence to:
+
+* Check branch tracking status,
+* Fetch updates from `origin`,
+* Merge `origin/main` into local `main`.
+
+`git fetch` grabs the changes from all remotes, but does not merge them into your working tree. Effectively, this leaves the HEAD pointer where it is, but allows you to see changes on the remote you do not yet have.
+
+`git pull` first performs a `git fetch`, but then tries to move your HEAD pointer to the latest commit, either by merging, or fast-forwarding, or other strategies. You can think of `git pull` as `git fetch` + `git merge` in one step.
+
+Command sequence:
+
+```bash
+git branch -vv
+git switch main
+git fetch origin
+git merge origin/main
+```
+
+Marking scheme:
+
+* 1 mark for correctly describing `git fetch`
+* 1 mark for correctly describing `git pull`
+* 1 mark for checking branch tracking status (any correct command is OK, but `git branch -vv` is the most straightforward)
+* 1 mark for the command sequence to fetch and merge
+
+## Using .gitignore effectively {type=essay}
+
+Write a `.gitignore` snippet that ignores:
+
+* All `.log` files,
+* The `.Rhistory` and `.RData` files,
+* Everything in `cache/`,
+* Except for `cache/README.md`.
+
+
+```
+*.log
+.Rhistory
+.RData
+cache/*
+!cache/README.md
+```
+
+Marking scheme:
+
+* 1 mark for ignoring all .log files
+* 1 mark for ignoring .Rhistory and .RData
+* 1 mark for ignoring everything in cache/
+* 1 mark for the exception to ignore rule for cache/README.md
+
+
+## Stash workflow scenario {type=essay}
+
+You are halfway through edits on `report.qmd` and `analysis.R`, but must urgently switch to another branch to fix a bug.
+
+Write a safe stash-based command sequence to:
+
+* Save your current work with a message,
+* Switch to `main`,
+* Return to your feature branch later,
+* Re-apply your saved work.
+
+Add one short line describing the difference between using `apply` and `pop` at the final step.
+
+```bash
+git stash -m "WIP: edits to report and analysis"
+git switch main
+...do work...
+git switch feature-branch
+git stash pop
+```
+
+The difference between `apply` and `pop` is that `pop` removes the stash entry after applying it, while `apply` leaves the stash entry in place so you can apply it again later if needed.
+
+Marking scheme:
+
+* 1 mark for stashing with a message
+* 1 mark for switching to main and switching back to the feature-branch
+* 1 mark for using `git stash pop` to re-apply the saved work. Note you can use `pop` or `apply` for the mark.

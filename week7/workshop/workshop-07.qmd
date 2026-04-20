@@ -34,14 +34,10 @@ By the end of this workshop, you’ll be able to:
 
 2. Click the green **Code** button and copy the **SSH** URL.
 
-3. In RStudio, open a new **RStudio Project**:
-   - Go to **File → New Project → Version Control → Git**
-   - Paste in the SSH URL
-   - Choose a location and click **Create Project**
-
-4. Open the **Terminal** tab in RStudio (or use the Git pane).  
-   You now have a GitHub-connected repo ready to go.
-
+3. In Positron, create a new project from version control:
+   - Open the command palette (Ctrl+Shift+P or Cmd+Shift+P)
+   - Git: Clone
+   - Paste the URL and choose a local directory
 
 3. Create a new file called `model.R`. Add a few lines of R code that load a library, and draw a plot.
 
