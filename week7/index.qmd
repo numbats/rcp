@@ -361,7 +361,7 @@ git clean -f   # permanently delete
 
 ## 🧪 Activity: Cleaning Up
 
-1.  In RStudio, create a few new files **but don’t add them to Git**
+1.  In Positron, create a few new files **but don’t add them to Git**
 2.  Run:
 
 ``` bash
@@ -476,7 +476,18 @@ Then save + edit the commit message.
 ---
 
 
-# LaTeX
+# PDF Outputs
+
+So far, we have only looked at HTML output in any detail.
+
+Many times, we will want (or be required to produce) PDF outputs.
+
+There are two ways in Quarto do this:
+
+* LaTeX
+* Typst
+
+## LaTeX
 
 ![](images/LaTeX.png){fig-align="center"}
 
@@ -553,22 +564,12 @@ author: "Your Name"
 institute: "Department of Econometrics and Business Statistics"
 output: 
  pdf:
-   toc: true
-   toc_depth: 2
    number_sections: true
    highlight: tango
 header-includes: 
-  - \usepackage{titling}
-  - \pretitle{\begin{center} \includegraphics[width=5in,height=13in]{figs/front.jpg}\LARGE\\}
-  - \posttitle{\end{center}}
-  - \usepackage{fontawesome}
-  - \usepackage[most]{tcolorbox}
-  - \usepackage{xcolor}
-  - \usepackage{sectsty}
-  - \sectionfont{\color{olive}}
-  - \usepackage{verbatim}
+  - \usepackage{secsty, xcolor}
+  - \sectionfront{\color{cyan}}
 ```
-
 
 ## Integrate a LaTeX template into a quarto file
 
@@ -614,6 +615,51 @@ $if(branding)$%
 
 Which is doing a lot of positioning of pictures for the template.
 
+## Typst
+
+Typst is a newer document processing format, designed to take the typesetting style of LaTeX, but have much faster compile times and reduced dependency management.
+
+From my (limited) experience, it is much much faster.
+
+You can use typst with
+
+```yaml
+format: typst
+```
+
+## Typst
+
+For most PDFs, I would suggest using typst now. It can do:
+
+* Table of contents
+* Cross-referencing
+* Figures & Tables
+* Mathematics notation
+
+::: {.fragment}
+I believe it is fully extendable, but I have not personally had experience doing that.
+:::
+
+## Typst customisation
+
+Similar to LaTex, you can add `include-` to to basic customisation of your typst document:
+
+```yaml
+include-before:
+      - '#show heading.where(level: 1): set text(fill: rgb("#cc0000"))'
+```
+
+## Typst templates
+
+There are a handful of Typst templates out there. One we will try is:
+
+< https://github.com/quarto-monash/honours-thesis >
+
+which is a Thesis template. If you are doing a research project this will be of interest to you.
+
+
+# Demo
+
 ## Week 6 Lesson
 
 ::: {.callout-important}
@@ -622,6 +668,6 @@ Which is doing a lot of positioning of pictures for the template.
 
 * Undoing mistakes with `amend`, `revert`, and `rm`
 * Cleaning repos
-* An introduction to latex
+* An introduction to latex and typst
 
 :::
