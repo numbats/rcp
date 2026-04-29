@@ -395,7 +395,7 @@ Your collaborators can see the issue:
 # Practice time
 
 
-## Week 9 Lesson
+## Week 8 Lesson
 
 ::: {.callout-important}
 * Learn how to add references and bibliography
