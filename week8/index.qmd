@@ -108,37 +108,6 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 :::
 
-## Parts of a LaTeX file
-
-```{tex}
-#| eval: false
-\documentclass{article} % Preamble/header: load packages, set options
-\usepackage{amsmath}
-\author{M. J. Lydeamore}
-
-\begin{document} % Body starts here, and goes until corresponding 'end'
-
-\section{Introduction}
-
-\end{document} % "After body" but before end
-```
-
-The `includes-in-*` sections in Quarto go into each of these pieces of the LaTeX code.
-
-## Different ways to include LaTeX {.incremental}
-
-1. Manually typing out the code
-2. Using an input `.tex` file
-3. Customised template file
-
-::: {.fragment}
-Many templates are available:
-
-[Journal articles](https://quarto.org/docs/journals/)
-[Monash templates](https://robjhyndman.com/hyndsight/quarto_templates.html)
-[Question/Answer templates](https://github.com/ginolhac/unilur)
-:::
-
 # Referencing
 
 There's a system for it, _never_ do it manually!
