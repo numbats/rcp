@@ -22,3 +22,4 @@ collab-comments.json
 mst.*
 mst_practice.*
 moodlequiz-instructions.html
+**/*.quarto_ipynb

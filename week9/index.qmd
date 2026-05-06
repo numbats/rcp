@@ -23,6 +23,14 @@ format:
     chalkboard:
       boardmarker-width: 5
       buttons: true
+filters:
+  - flourish
+  - more-fragments
+  - roughnotation
+  - timeline
+revealjs-plugins:
+  - chat-bubbles
+  - codewindow
 execute:
   echo: true
 ---
@@ -545,3 +553,265 @@ It will output an HTML presentation. Open it in your browser.
 * `git blame/bisect`
 * Reproducible Presentations
 :::
+
+# Bonus: Fun RevealJS Extensions
+
+## Activate the extensions
+
+These examples use locally installed Quarto extensions:
+
+```yaml
+filters:
+  - flourish
+  - more-fragments
+  - roughnotation
+  - timeline
+
+revealjs-plugins:
+  - chat-bubbles
+  - codewindow
+```
+
+Install them with `quarto add <github-owner>/<github-repo>` and commit the `_extensions/` directory with the slides.
+
+# quarto-revealjs-more-fragments
+
+## More fragments
+
+Use any supported animation class with `.fragment`.
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.fragment .bounceIn}
+`bounceIn`
+:::
+
+::: {.fragment .slideInRight .fast}
+`slideInRight` with `.fast`
+:::
+:::
+
+::: {.column width="50%"}
+This [word]{.fragment .tada} animates inline.
+
+[Letter by letter]{.fragment .letters .zoomIn .letter-fast}
+:::
+:::
+
+Links: [docs](https://emilhvitfeldt.github.io/quarto-revealjs-more-fragments/) |
+[GitHub](https://github.com/EmilHvitfeldt/quarto-revealjs-more-fragments) |
+[Animate.css](https://animate.style/)
+
+## More fragments source {.smaller}
+
+````markdown
+::: {.columns}
+::: {.column width="50%"}
+::: {.fragment .bounceIn}
+`bounceIn`
+:::
+
+::: {.fragment .slideInRight .fast}
+`slideInRight` with `.fast`
+:::
+:::
+
+::: {.column width="50%"}
+This [word]{.fragment .tada} animates inline.
+
+[Letter by letter]{.fragment .letters .zoomIn .letter-fast}
+:::
+:::
+````
+
+# quarto-roughnotation
+
+## Rough notation
+
+Hand-drawn annotations appear as fragments:
+
+- Use it to [highlight the main idea]{.rn-fragment rn-type=highlight rn-color="#fff17680"}.
+- Use it to [circle a command]{.rn-fragment rn-type=circle rn-color="#006DAE" rn-padding=8}.
+- Use it to [strike through the risky option]{.rn-fragment rn-type="strike-through" rn-color="#E4002B" rn-strokeWidth=3}.
+
+Links: [docs](https://emilhvitfeldt.github.io/quarto-roughnotation/) |
+[GitHub](https://github.com/EmilHvitfeldt/quarto-roughnotation) |
+[RoughNotation](https://roughnotation.com/)
+
+## Rough notation source {.smaller}
+
+````markdown
+- Use it to [highlight the main idea]{.rn-fragment rn-type=highlight rn-color="#fff17680"}.
+- Use it to [circle a command]{.rn-fragment rn-type=circle rn-color="#006DAE" rn-padding=8}.
+- Use it to [strike through the risky option]{.rn-fragment rn-type="strike-through" rn-color="#E4002B" rn-strokeWidth=3}.
+````
+
+## Rough notation on code chunks
+
+Use `flourish` to target text inside a code chunk, then pass roughnotation settings through CSS custom properties.
+
+```{r}
+#| eval: false
+#| flourish:
+#|   - target: "mean"
+#|     style: "--rn-type: circle; --rn-color: #006DAE; --rn-padding: 6; --rn-index: 0;"
+#|   - target: "TRUE"
+#|     style: "--rn-type: underline; --rn-color: #E4002B; --rn-strokeWidth: 3; --rn-index: 1;"
+x <- c(1, 2, NA, 4)
+mean(x, na.rm = TRUE)
+```
+
+## Rough notation on code chunks source {.smaller}
+
+```{{r}}
+#| eval: false
+#| flourish:
+#|   - target: "mean"
+#|     style: "--rn-type: circle; --rn-color: #006DAE; --rn-padding: 6; --rn-index: 0;"
+#|   - target: "TRUE"
+#|     style: "--rn-type: underline; --rn-color: #E4002B; --rn-strokeWidth: 3; --rn-index: 1;"
+x <- c(1, 2, NA, 4)
+mean(x, na.rm = TRUE)
+```
+
+# quarto-timeline
+
+## Timeline
+
+:::: {.timeline .horizontal .fragment-conveyor .tl-label-badge .tl-diamond}
+::: {.event data-label="1"}
+**Idea**
+
+Start with a plain `.qmd`.
+:::
+
+::: {.event .fragment data-label="2"}
+**Style**
+
+Add the filter.
+:::
+
+::: {.event .fragment data-label="3"}
+**Narrate**
+
+Reveal events as the story unfolds.
+:::
+
+::: {.event .fragment data-label="4"}
+**Share**
+
+Publish the HTML slides.
+:::
+::::
+
+Links: [docs](https://emilhvitfeldt.github.io/quarto-timeline/) |
+[layouts](https://emilhvitfeldt.github.io/quarto-timeline/layouts.html) |
+[GitHub](https://github.com/EmilHvitfeldt/quarto-timeline)
+
+## Timeline source {.smaller}
+
+````markdown
+:::: {.timeline .horizontal .fragment-conveyor .tl-label-badge .tl-diamond}
+::: {.event data-label="1"}
+**Idea**
+
+Start with a plain `.qmd`.
+:::
+
+::: {.event .fragment data-label="2"}
+**Style**
+
+Add the filter.
+:::
+
+::: {.event .fragment data-label="3"}
+**Narrate**
+
+Reveal events as the story unfolds.
+:::
+
+::: {.event .fragment data-label="4"}
+**Share**
+
+Publish the HTML slides.
+:::
+::::
+````
+
+# quarto-revealjs-chat-bubbles
+
+## Chat bubbles
+
+:::: {.chat}
+::: {.bubble-right}
+Could this be a slide?
+:::
+
+::: {.fragment .bubble-left}
+Only if the conversation helps the concept.
+:::
+
+[+1]{.fragment .reaction}
+
+::: {.fragment .bubble-right .typing}
+Deal. Reveal it one message at a time.
+:::
+::::
+
+Links: [docs](https://emilhvitfeldt.github.io/quarto-revealjs-chat-bubbles/) |
+[GitHub](https://github.com/EmilHvitfeldt/quarto-revealjs-chat-bubbles)
+
+## Chat bubbles source {.smaller}
+
+````markdown
+:::: {.chat}
+::: {.bubble-right}
+Could this be a slide?
+:::
+
+::: {.fragment .bubble-left}
+Only if the conversation helps the concept.
+:::
+
+[+1]{.fragment .reaction}
+
+::: {.fragment .bubble-right .typing}
+Deal. Reveal it one message at a time.
+:::
+::::
+````
+
+# quarto-revealjs-codewindow
+
+## Code window
+
+:::: {.codewindow .r width="85%"}
+analysis.R
+
+```r
+library(dplyr)
+
+penguins |>
+  filter(species == "Adelie") |>
+  summarise(mean_bill = mean(bill_length_mm, na.rm = TRUE))
+```
+::::
+
+Links: [docs](https://emilhvitfeldt.github.io/quarto-revealjs-codewindow/) |
+[GitHub](https://github.com/EmilHvitfeldt/quarto-revealjs-codewindow)
+
+## Code window source {.smaller}
+
+````markdown
+:::: {.codewindow .r width="85%"}
+analysis.R
+
+```r
+library(dplyr)
+
+penguins |>
+  filter(species == "Adelie") |>
+  summarise(mean_bill = mean(bill_length_mm, na.rm = TRUE))
+```
+::::
+````
