@@ -36,7 +36,7 @@ jobs:
 
       - name: Install libcurl on Linux
         if: runner.os == 'Linux'
-        run: sudo apt-get update -y && sudo apt-get install -y libcurl4-openssl-dev
+        run: sudo apt-get update -y && sudo apt-get install -y libcurl4-openssl-dev && sudo apt-get install -y r-cran-base64enc
       
       - uses: r-lib/actions/setup-renv@v2
 
