@@ -35,7 +35,7 @@ htmltools::includeCSS("tutorial.css")
 
 ## `r emo::ji("target")` Objectives
 
-* Working on a reproducible  Rstudio project
+* Working on a reproducible project
 * Produce a pdf report using the template discussed in Week 7 or Week 8.
 * Practice markdown syntax
 * Practice R coding
@@ -57,7 +57,7 @@ You cannot use a dataset that has been used for another assignment.
 ## Part A
 
 ::: {.callout-important}
-Join the GitHub Classroom for this assignment [here](https://classroom.github.com/a/90isL5_2).
+Join the GitHub Classroom for this assignment [here](https://classroom.github.com/a/DXRNWO7H).
 
 **You can choose your own group name, but make sure to submit it on the Google Form [here](https://forms.gle/qdEU7eYCsLZhRyV29)**
 :::
