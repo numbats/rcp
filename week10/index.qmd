@@ -90,465 +90,350 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
 
-# Environment reproduction
+## Recap
 
-## Why Do We Need This?
+* Start learning about LaTeX
+* LaTeX integration in QMD files
+* Understand commits and SHA1 numbers
+* Moving back to past commits
+* Reverting commits
 
-- Projects become harder to manage as they grow
-- We want to ensure reproducibility:
-  - Use the same packages and versions
-  - Avoid redundant computation
-- `renv` handles package environments
-- `targets` handles workflow pipelines
+## Today's plan {#aim}
 
----
+::: {.callout-important}
 
-## 📦 What is `renv`?
+## Aim
 
-- `renv` stands for "Reproducible ENVironments"
-- Captures your package dependencies
-- Makes your project portable and self-contained
+* Learn how to add references and bibliography
+* Dealing with large files
+* Tags
+* GitHub issues
 
-## Libraries and repositories
-
-We first have to understand what is a _library_ and what is a _repository_.
-
-A _library_ is a directory which contains _all of your install packages_. For us, so far, we have **one** library shared across all of our projects.
-
-::: {.fragment}
-You can see your current libraries by running `.libPaths()`
 :::
 
-## Libraries and repositories
+## Parts of a LaTeX file
 
-A _repository_ is a source of packages, such as CRAN. 
+```{tex}
+#| eval: false
+\documentclass{article} % Preamble/header: load packages, set options
+\usepackage{amsmath}
+\author{M. J. Lydeamore}
 
-Other repositories include: Bioconductor, Posit Public Package Manager, and R Universe.
+\begin{document} % Body starts here, and goes until corresponding 'end'
+
+\section{Introduction}
+
+\end{document} % "After body" but before end
+```
+
+The `includes-in-*` sections in Quarto go into each of these pieces of the LaTeX code.
+
+## Different ways to include LaTeX {.incremental}
+
+1. Manually typing out the code
+2. Using an input `.tex` file
+3. Customised template file
 
 ::: {.fragment}
-You can see your available repositories with `getOption('repos')`
+Many templates are available:
+
+[Journal articles](https://quarto.org/docs/journals/)
+[Monash templates](https://robjhyndman.com/hyndsight/quarto_templates.html)
+[Question/Answer templates](https://github.com/ginolhac/unilur)
 :::
 
-## Setting up `renv`
+# Referencing
 
-```r
-install.packages("renv")
-renv::init()
-```
+There's a system for it, _never_ do it manually!
 
-This will set up a _project-specific library_, which isolates the packages for each project.
+## The bibliography file
 
----
+First thing we need is a place to store information about our references.
 
-## How `renv` Works
+A standard file format is called the _bibliography database file_ (which ends in `.bib`).
 
-- `renv` creates a lockfile (`renv.lock`)
-- Tracks your installed packages and versions
-- You can restore your environment later:
+![](images/bib.png){fig-align="center"}
 
-```r
-renv::restore()
-```
+## The bibliography file
 
-- Keeps packages project-specific (not global)
+* To cite a paper in the text, we use the key from the bib file
+* These files are _plain text_, so you can open them in RStudio or VSCode
 
----
+::: {.incremental}
+To get bib entries:
 
-## Key Files from `renv`
-
-- `renv.lock` — lists exact package versions
-- `renv/` folder — stores the project library
-- `.Rprofile` — ensures `renv` is activated when you open the project
-
-::: {.fragment}
-Make sure you check these files in to version control!
+* Google Scholar
+* Reference manager such as Zotero or Mendeley
 :::
 
----
-
-## How to use `renv`
-
-- Install packages as normal
-- After each package install, run 
-
-```r
-renv::snapshot()
-```
-
-- Push the changed `renv.lock` file to your repository
-
----
-
-## The lockfile
-
-Here is an example lockfile:
+## The bibliography file: Example
 
 ```
-{
-  "R": {
-    "Version": "4.4.3",
-    "Repositories": [
-      {
-        "Name": "CRAN",
-        "URL": "https://cloud.r-project.org"
-      }
-    ]
-  },
-  "Packages": {
-    "markdown": {
-      "Package": "markdown",
-      "Version": "1.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "4584a57f565dd7987d59dda3a02cfb41"
-    },
-    "mime": {
-      "Package": "mime",
-      "Version": "0.12.1",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "yihui",
-      "RemoteRepo": "mime",
-      "RemoteRef": "main",
-      "RemoteSha": "1763e0dcb72fb58d97bab97bb834fc71f1e012bc",
-      "Requirements": [
-        "tools"
-      ],
-      "Hash": "c2772b6269924dad6784aaa1d99dbb86"
-    }
-  }
+@Manual{R-base,
+  title = {R: A Language and Environment for Statistical
+           Computing}, 
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2019},
+  url = {https://www.R-project.org},
 }
 ```
 
-There are two main things in here: `R` and `Packages`.
-
-It is `Packages` that has everything needed to reinstall an exact version of a package.
-
-## Reusing packages across projects
-
-Often we use the same packages across most of our projects. Conveniently, `renv` reuses packages across our projects by maintaining a _cache_.
-
-You'll see sometimes a message that says:
-
-```
-Linked from Cache
-```
-
-when installing. This is the package being re-used!
-
-## Risks of `renv`
-
-`renv` doesn't solve everything for you:
-
-::: {.incremental}
-
-* Doesn't manage R versions
-* When packages become "old" they have to be compiled from source
-  * Which is slow
-  * And error prone
-* Doesn't track pandoc
-* Can't help with operating system, system dependencies
-
+::: {.fragment}
+To cite this in your quarto file, use `@R-base`
 :::
 
 
-## Sharing Projects
+## Citing R packages
+You can get the citations for R packages using `toBibtex(citation("tidyverse"))`
 
-When someone else clones your project:
+![](images/citatitionrpackages.png){fig-align="center"}
 
-1. Open the RStudio project
-2. Run:
+# Demo & Practice
 
-```r
-renv::restore()
-```
+## Large files in `git` and GitHub
 
----
+What happens when you commit a big file on GitHub?
 
-## Using `renv` with GitHub Actions (Advanced)
-
-- GitHub Actions can install your project dependencies automatically
-- `renv::restore()` is run as part of the CI workflow
-- Good for checking that your project runs cleanly on fresh machines
-
----
-
-## Example GitHub Actions Setup
-
-Add this to `.github/workflows/ci.yaml`:
-
-```yaml
-name: R-CMD-check
-
-on: [push, pull_request]
-
-jobs:
-  R-CMD-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
-
-      - name: Install system dependencies
-        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
-
-      - name: Restore packages with renv
-        run: Rscript -e 'install.packages("renv"); renv::restore()'
-
-      - name: Run your script or tests
-        run: Rscript your_script.R
-```
-
-Your GitHub Action will now use the same package versions as your local setup.
-
----
-
-## When Should You Use This?
-
-- To **check your pipeline still runs** after changes
-- When **collaborating**, to ensure a shared reproducible environment
-- For **automated reports**, like rendering Quarto documents
-
----
-
-
-# Pipeline management
-
-## The typical pipeline
-
-Often, we end up with something like this:
-
-```
-01-data.R
-02-model.R
-03-plots.R
-```
-
-And then we source these in order each time.
+__Files larger than 50mb won't upload properly__
 
 ::: {.fragment}
-This works OK for small projects, but scales very poorly.
+Instead, we deal with these using Git Large File Storage (lfs).
+
+[Please see info for installation here and **make sure you install this extension**.](https://git-lfs.github.com)
 :::
-
-## What is `targets`?
-
-- Think **Makefile**, but for R
-- Automates steps in your workflow
-- Re-runs only the steps that need updating
-
-```r
-install.packages("targets")
-```
-
----
-
-## Example Pipeline
-
-```r
-library(targets)
-
-list(
-  tar_target(data, read_csv("data.csv")),
-  tar_target(model, lm(y ~ x, data))
-)
-```
-
-- Each `tar_target()` defines a step
-- `targets` watches for changes
-
----
-
-## How It Works
-
-Pipeline:
-```
-read_csv() → data ─┐
-                   └──> lm() → model
-```
-
-If the file changes, `targets` knows to rerun `read_csv()` and everything downstream.
-
----
-
-## Running a Pipeline
-
-```r
-tar_make()
-```
-
-- Builds your pipeline
-- Skips steps if inputs haven’t changed
-
----
-
-## Project Structure Example
-
-```
-your-project/
-├── _targets.R     # pipeline definition
-├── data/
-├── R/             # helper functions
-├── renv.lock
-├── renv/
-└── analysis.qmd
-```
-
----
-
-## How does it work?
-
-When running a function, the package _hashes_ the function.
-
-If the function doesn't change, the hash will stay the same
-
-If the function has changed, then so too will the hash.
-
-## How does it work
-
-Results are stored on-disk in a compressed format.
-
-Targets can be loaded using `tar_load` or `tar_read` (learn the keybinds!)
-
-## Using `targets` with plots
-
-`_targets.R`
-```r
-list(
-  tar_target(
-    penguins_plot, 
-    ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_point())
-)
-```
-
-In your console:
-
-```r
-tar_make()
-tar_read(penguins_plot)
-```
 
 ::: {.fragment}
-`tar_read` prints the object inside it
-`tar_load` loads the object into your workspace (like using `<-`)
+GitHub and BitBucket both have LFS support, and handle changes to these files much more sensibly.
 :::
 
-## `tarchetypes`
+## Setup for `git` LFS
 
-`tarchetypes` contains useful functions for working with `targets`
+To set up large file storage:
 
-Useful for:
+* Navigate to the repo
+* In the CLI, type `git lfs install`
 
-- Dynamic branching
-- Rendering Quarto documents
-- Utility functions
-
-## Dynamic branching
-
-Often we have a dataset where we want to run a pipeline on the groups. In standard R, we do this as follows:
-
-```{r}
-penguins |>
-  group_by(species) |>
-  summarise(mean_flipper = mean(flipper_length_mm, na.rm=TRUE))
-```
-
-## Dynamic branching
-
-In `targets`-land, we do it like this instead:
-
-```r
-list(
-  tar_group_by(grouped_penguins, penguins, species), 
-  tar_target(
-    mean_flipper, 
-    summarise(
-      grouped_penguins, 
-      mean_flipper = mean(flipper_length_mm, na.rm=TRUE),
-      species = unique(species)), 
-      pattern = map(grouped_penguins))
-)
-```
-
-## Dynamic branching
-
-This results in 
+Now, large files can be tracked using the relevant command. For example:
 
 ```
-> tar_read(mean_flipper)
-# A tibble: 3 × 2
-  mean_flipper species  
-         <dbl> <fct>    
-1         190. Adelie   
-2         196. Chinstrap
-3         217. Gentoo   
-``` 
-
-**Note**: `tarchetypes` will try and row bind these outputs. If your output is not a vector, then you will need `iteration = list` as an argument to the target. We will see this in the workshop!
-:::
-
-## Rendering Quarto documents
-
-You can also use `targets` in your Quarto documents with
-
-```r
-tar_quarto()
+git lfs track '*.nc'
+git lfs track '*.csv'
+git lfs track '*.pdf'
 ```
 
-This will scan your `qmd` file for `tar_target` commands, and load them in the way that you would expect.
-
-## Checking if targets are up to date
-
-```r
-tar_visnetwork()
-```
-
-will show you outdated, up-to-date, and not yet run targets.
-
-Remember, `targets` only runs what it thinks it needs to!
-
-## How to use this with version control
-
-You should check in your `_targets.R` file, but you typically ignore the cache.
-
-To do that, add
-
-```
-_targets
-```
-to your `.gitignore` file.
-
-## Advanced `target`ting
-
-We've scratched the surface of this package. You can also:
-
-* Export your results to an AWS bucket
-* Push results to Posit `pins` for re-use elsewhere
-* Branch statically (with sensible names) or dynamically
-* Recombine results from branches
+**Note the quotes!**
 
 ::: {.fragment}
-It also forces you to write your code in a "functional" way, which leads to easier code maintenance and readability down the track.
+This will create a `.gitattributes` file. Make sure to add this to your repo.
+
+Then, use your standard workflow of add, commit, push.
 :::
 
+## Summary
 
-## Recap
-
-`renv`:
-
-- Tracks your installed packages and versions
-- Keeps packages project-specific (not global)
-
-`targets`:
-
-- Automates steps in your workflow
-- Re-runs only the steps that need updating
+1. Navigate to the local repo and run `git lfs install`
+2. `git lfs track "*.csv"
+3. `git add .gitattributes`
+4. `git add data.csv` as per normal
 
 ::: {.fragment}
-Next week:
+It is essential you run `git lfs install` before committing and pushing, otherwise you will get an error message.
+:::
 
-Docker!
+## What if I already have a large file?
+
+If you have committed a large file, you probably got an error message you have to fix.
+
+Recall:
+
+```
+git reset --soft HEAD~1
+```
+
+Then:
+
+```
+git lfs install
+git add .gitattributes file.csv
+git commit -m "Adding data files through GIT LFS"
+git push origin main
+```
+
+# Demo
+
+## More on committing
+
+So far, we've used a [one-line commit]{.monash-blue} (although we could do with more practice on those)
+
+::: {.fragment}
+We can add more text into a commit, and many times this is sensible.
+
+Detailed commit structure:
+
+[First line]{.monash-green2}
+
+[Blank line]{.red}
+
+[Rest of the text]{.monash-green2}
+:::
+
+![](images/commitsexample.png){fig-align="center"}
+
+# Demo
+
+## Git tags
+
+[tags]{.monash-green2} are custom labels or references that point to specific points in your `git` history
+
+Generlaly used to capture a specific point in the repo history, like a release, or a report milestone.
+
+::: {.callout-tip}
+You can think of a tag like a branch that doesn't change
+:::
+
+Unlike branches, tags don't have any further history of commits.
+
+Great tutorial on [tags here](https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag)
+
+## Git tags example
+
+![](images/tags.png){fig-align="center"}
+
+## Types of tags
+
+There are two types of tags: [lightweight]{.monash-green2} and [annotated]{.monash-green2}. The difference is the metadata they come with.
+
+Best practice is [lightweight]{.monash-green2} tags for personal use, and [annotated tags]{.monash-green2} as marks for version releases
+
+Annotated tags stores extra metadata like the tagger name, email and date
+
+Lightweight tags are only a pointer to a commit.
+
+![](images/tagex.png){fig-align="center"}
+
+
+## Creating and sharing tags
+
+To create an annotated tag:
+
+```
+git tag -a v 1.0
+```
+
+or
+
+```
+git tag -a v1.0 SHA1
+```
+
+This will create a new _annotated_ tag with label [v1.0]{.monash-green2}. The command will open your text editor for further metadata.
+
+## Annotated tag example
+![](images/taga.png){fig-align="center"}
+
+## Lightweight tags
+
+`git tag v1.0` will create a lightweight tag
+
+::: {.fragment}
+Can you spot the difference?
+:::
+
+## Listing tags
+
+`git tag`
+
+![](images/tagslist.png){fig-align="center"}
+
+`git tag -n` will also show us the associated message, or you can do `git show tagname`
+
+## Tagging old commits
+
+By default, `git tag` creates a tag on HEAD
+
+If you want to tag an old commit:
+
+```
+git log --oneline
+git tag -a v1.2 15027957951b64cf874c3557a0f
+```
+
+## Sharing tags
+
+Sharing tags is similar to pushing branches.
+
+**By default, `git push` does not push tags**
+
+`git push origin tagname` will push the tag.
+
+## Viewing your tags on GitHub
+
+![](images/tagsgh1.png){fig-align="center"}
+
+## Viewing your tags on GitHub
+
+![](images/tagsgh2.png){fig-align="center"}
+
+## Checking tags
+
+You can check out tags: `git checkout v1.0`
+
+This will put you in a detached HEAD state, so commits won't be recorded
+
+::: {.fragment}
+Unless??
+:::
+
+## Deleting a tag
+
+* `git tag`: Lists tags
+* `git tag -d v1`: Deletes tag v1
+* `git push origin --delete v1`: Deletes it from the remote
+
+## Why use tags?
+
+We could just use a branch (that never gets merged) instead of a tag.
+
+For storing points in history, this is fine (although not the intention of a branch)
+
+A branch is supposed to be a "variation" on the main repository, not a point-in-time record
+
+Tags are designed to fill that void.
+
+![](images/branches.png){fig-align="center"}
+
+# GitHub Issues
+
+"I have a problem"
+
+## GitHub Issues
+
+You can create a GitHub Issue on the web:
+
+![](images/issue.png){fig-align="center"}
+
+## GitHub Issues
+
+Your collaborators can see the issue:
+
+![](images/collaboratorsissue.png){fig-align="center"}
+
+## More on issues
+
+![](images/issues.png){fig-align="center"}
+
+[More info about issues here](https://guides.github.com/features/issues/)
+
+# Practice time
+
+
+## Week 9 Lesson
+
+::: {.callout-important}
+* Learn how to add references and bibliography
+* Dealing with large files
+* Tags
+* GitHub issues
 :::
