@@ -1,22 +1,10 @@
 ---
-title: 'ETC5513: Collaborative and Reproducible Practices'
-subtitle: "Workshop 9"
-author: "Michael Lydeamore"
-date: today
+title: "Git Bisect Exercise: Campus Coffee Calculator"
 format:
-   html:
-      embed-resources: true
-      output-file: "index.html"
-      toc: true
+  html:
+    toc: true
+    embed-resources: true
 ---
-
-```{r, echo = FALSE, eval = file.exists("tutorial.css")}
-htmltools::includeCSS("tutorial.css")
-```
-
-# Workshop: Finding and Fixing a Bug with `git bisect`
-
-You'll need to fork and clone the repo at [https://github.com/mikelydeamore/git-bisect-demo](https://github.com/mikelydeamore/git-bisect-demo) to complete this workshop.
 
 ## Scenario
 
@@ -79,10 +67,6 @@ Start the bisect with:
 ```sh
 git bisect start HEAD known-good
 ```
-
-First, have a look at the code in `tests/test-pricing.R` to make sure you understand how the test works. Then, follow the steps in git bisect to manually find the bad commit.
-
-## Automating git bisect
 
 Then run the test automatically across commits:
 
