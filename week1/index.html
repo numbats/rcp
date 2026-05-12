@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Michael Lydeamore">
   <meta name="dcterms.date" content="2001-01-01">
@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,7 +33,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-eeb5ccf5e2485fa37df59773d927e4b2.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cf6c1489a25ea9570cdd96b37dac80f5.css">
   <link rel="stylesheet" href="../assets/tachyons-addon.css">
   <link rel="stylesheet" href="../assets/custom.css">
   <link rel="stylesheet" href="../assets/lecture-01.css">
@@ -269,36 +272,15 @@
 <li>Course introduction to collaborative and reproducible practices</li>
 <li>Reproducible reports using R markdown</li>
 <li>Introduction to version control systems: Git and GitHub</li>
-<li>Reproducible reporting using R markdown, Git and GitHub</li>
+<li>Reproducible reporting using Quarto, Git and GitHub</li>
 <li>Deeper git knowledge, stashing and tools</li>
 <li>Reproducible reporting and version control systems</li>
-<li>Workflows for reproducible data analysis</li>
-<li>Reproducible reporting for specialized and broad audiences</li>
-<li>Advanced collaborative practices</li>
-<li>Even more advanced collaborative practices</li>
+<li>Undoing, exploring, and cleaning with git</li>
+<li>Referencing, large files, and GitHub issues</li>
+<li>Finding bugs, building pipelines, and presentations</li>
+<li>Keeping environments separate and reproducible</li>
 <li>Summary and Recap</li>
 </ol>
-</section>
-<section id="etc5513-unit-structure" class="slide level2">
-<h2>🏛️ ETC5513 unit structure</h2>
-<div class="columns fragment">
-<div class="column center" style="width:66%;">
-<p>Start with individual projects</p>
-</div><div class="column" style="width:33%;">
-<p><img data-src="images/william-iven-gcsNOsPEXfs-unsplash.jpg" style="width:50.0%"></p>
-</div></div>
-<div class="columns fragment">
-<div class="column center" style="width:66%;">
-<p>Will continue with a class group project</p>
-</div><div class="column" style="width:33%;">
-<p><img data-src="images/helloquence-5fNmWej4tAA-unsplash.jpg" style="width:50.0%"></p>
-</div></div>
-<div class="columns fragment">
-<div class="column center" style="width:66%;">
-<p>Finally, you will work on yuour own projects</p>
-</div><div class="column" style="width:33%;">
-<p><img data-src="images/baim-hanif-pYWuOMhtc6k-unsplash.jpg" style="width:50.0%"></p>
-</div></div>
 </section>
 <section id="unit-structure-and-resources" class="slide level2">
 <h2>Unit structure and resources</h2>
@@ -398,9 +380,10 @@
 <section id="consultation-hours" class="slide level2">
 <h2>✋ Consultation hours</h2>
 <ul>
-<li><span class="monash-blue">Michael</span>: Thursdays 1.00-2.00pm In Person (Building 6 Room 354) and on Zoom</li>
-<li><span class="monash-blue">Naveen Kaushik</span>: Tuesdays 4.00-5.30pm on Zoom</li>
+<li><span class="monash-blue">Michael</span>: Tuesdays 11.30-12.30 in person (Building 6 Room 354)</li>
+<li><span class="monash-blue">Naveen Kaushik</span>: Mondays 12pm-1pm on Zoom</li>
 </ul>
+<p>You can post on the discussion forum any time you have any other question.</p>
 <p><strong>Please see Moodle for Zoom details</strong></p>
 </section>
 <section id="course-assessments" class="slide level2">
@@ -408,11 +391,19 @@
 <ul>
 <li><strong>3 Assignments:</strong>
 <ul>
-<li><span class="monash-blue"><strong>A1</strong></span>: Released week 3, due week 5: <span class="monash-green2">20%</span></li>
-<li><span class="monash-blue"><strong>A2</strong></span>: Released week 7, due week 9: <span class="monash-green2">30%</span></li>
-<li><span class="monash-blue"><strong>A3</strong></span>: Released week 10, due week 12: <span class="monash-green2">40%</span></li>
+<li><span class="monash-blue"><strong>A1</strong></span>: Released week 1, due week 5: <span class="monash-green2">25%</span></li>
+<li><span class="monash-blue"><strong>A2</strong></span>: Released week 5, due week 9: <span class="monash-green2">25%</span></li>
+<li><span class="monash-blue"><strong>A3</strong></span>: Released week 9, due week 12: <span class="monash-green2">25%</span></li>
 </ul></li>
-<li><strong>Oral interview:</strong> Based on W1-W7 content: Week 12: <span class="monash-green2">10%</span></li>
+<li><strong>Mid-semester test:</strong> Based on W1-W7 content: Week 8: <span class="monash-green2">25%</span></li>
+</ul>
+</section>
+<section id="mid-semester-test" class="slide level2">
+<h2>Mid-semester test</h2>
+<ul>
+<li>Conducted in the usual workshop time, but two hours is allocated</li>
+<li>Test will run for 60 minutes</li>
+<li>Closed-book, and invigilated.</li>
 </ul>
 </section>
 <section id="etc5513-code-of-conduct" class="slide level2">
@@ -442,12 +433,10 @@
 </section>
 <section id="the-classic-analysis-pipeline" class="slide level2">
 <h2>The classic analysis pipeline</h2>
-<div>
 <ol type="1">
 <li class="fragment">You carry out your analysis in R, Python or MATLAB (with some code), or perhaps you use Excel</li>
 <li class="fragment">You paste you results into your Word document or Google Doc.</li>
 </ol>
-</div>
 <div class="fragment center">
 <div style="text-align: center !important;">
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -541,7 +530,7 @@
 <ul>
 <li>Working to make your research reproducible does require extra upfront effort.</li>
 <li>Making a project reproducible from the start encourages you to use better work habits.</li>
-<li>It should push you to bring your data and source code up to a higher level of quality than you might if you “thought ‘no one was looking’” [Donoho, 2010, 386].</li>
+<li>It should push you to bring your data and source code up to a higher level of quality than you might if you “thought ‘no one was looking’ ” [Donoho, 2010, 386].</li>
 <li>Reproducible research needs to be stored so that other researchers can actually access the data and source code.</li>
 <li>Changes are easier to implement especially when using dynamic reproducible documents.</li>
 <li>Reproducible research has higher impact.</li>
@@ -639,13 +628,13 @@
 </section>
 
 <section>
-<section id="r-rstudio" class="title-slide slide level1 center">
-<h1>R &amp; RStudio?</h1>
+<section id="r-positron" class="title-slide slide level1 center">
+<h1>R &amp; Positron?</h1>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><img data-src="images/1000px-R_logo.svg.png" style="width:45.0%"></p>
 </div><div class="column" style="width:50%;">
-<p><img data-src="https://rstudio.com/wp-content/uploads/2018/10/RStudio-Logo.svg"></p>
+<p><img data-src="images/positron_logo.png"></p>
 </div></div>
 <div class="fragment">
 <p>They are related but they are not the same. <span class="monash-blue">Why?</span></p>
@@ -667,20 +656,17 @@
 <p>R by itself has the capabilities to gather and analyse data, and with a little help from <code>knitr</code> and <code>quarto</code>, with some markup languages, present results in a way that is highly reproducible.</p>
 </div>
 </section>
-<section id="rstudio" class="slide level2">
-<h2>RStudio</h2>
-<p>Is an integrated developer environment (IDE)</p>
+<section id="positron" class="slide level2">
+<h2>Positron</h2>
+<p>is an integrated developer environment (IDE)</p>
 
-<p>We don’t <em>need</em> RStudio, but it lets us do things more easily.</p>
+<p>We don’t <em>need</em> an IDE, but it lets us do things more easily.</p>
 <ul>
 <li>A happy medium between R’s text-based interface and a pure GUI</li>
 <li>It is closely integrated with <code>git</code> (version control)</li>
 </ul>
-<div class="fragment">
-<p>It has a cloud counterpart called <span class="monash-blue"><strong>RStudio Cloud</strong></span></p>
-</div>
 <aside><div>
-<p>Other IDEs exist, mainly <a href="https://code.visualstudio.com/">VSCode</a> which is rapidly gaining popularity</p>
+<p>Other IDEs exist, mainly <a href="https://posit.co/download/rstudio-desktop/">RStudio</a> which is enormously popular, but does not have the same level of integration with <code>git</code>.</p>
 </div></aside></section>
 <section id="important-distinction" class="slide level2">
 <h2>Important distinction</h2>
@@ -689,26 +675,9 @@
 <img data-src="images/R.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="important-distinction-1" class="slide level2">
 <h2>Important distinction</h2>
-<h3 id="rstudio-is-the-integrated-development-environment">RStudio is the <span class="monash-blue">integrated development environment</span></h3>
+<h3 id="positron-is-the-integrated-development-environment">Positron is the <span class="monash-blue">integrated development environment</span></h3>
 
-<img data-src="images/Rstudio.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
-<section id="rstudio-cloud" class="slide level2">
-<h2>RStudio Cloud</h2>
-<p>It’s RStudio, in the cloud.</p>
-
-<img data-src="images/Rstudiocloud.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment">
-<p><span class="monash-blue"><strong>Why?</strong></span></p>
-</div>
-</section>
-<section id="rstudio-cloud-1" class="slide level2">
-<h2>RStudio Cloud</h2>
-<ul>
-<li>Allows the users to run reproducible reports without the need of installing any additional software or configurations in their own computer. It basically looks exactly like Rstudio but it runs in the cloud and can be loaded using any browser.<br>
-</li>
-<li>Rstudio Cloud allows us to work in the same environment regardless the computer operating system that each of you have in your computers.</li>
-<li>Rstudio will provide the means for us to first focus on learning R and Rstudio without having to worry about installing them locally in each computer (we’ll do that later once you are more familiar with the language and the Rstudio environment).</li>
-</ul>
-</section>
+<img data-src="images/positron_logo.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="version-control" class="slide level2">
 <h2>Version Control</h2>
 <div class="callout callout-note callout-titled callout-style-default">
@@ -804,7 +773,6 @@
 </section>
 <section id="recomendations-summary" class="slide level2">
 <h2>Recomendations summary</h2>
-<div>
 <ol type="1">
 <li class="fragment">Plan in advance</li>
 <li class="fragment">Consider adequate file systems for the project</li>
@@ -813,7 +781,6 @@
 <li class="fragment">Consider using a code environment container</li>
 <li class="fragment">Add a license for sharing your work</li>
 </ol>
-</div>
 </section>
 <section id="etc5513-ingredients" class="slide level2">
 <h2>ETC5513 Ingredients</h2>
@@ -830,11 +797,10 @@
 <h2>Main tools</h2>
 <ul>
 <li>R</li>
-<li>RStudio</li>
+<li>Positron</li>
 <li><span class="monash-green2">Command Line Interface</span></li>
 <li><code>git</code></li>
 <li>GitHub</li>
-<li>VSCode</li>
 </ul>
 <div class="fragment">
 <p>During this semester these tools will be <em>essential</em> for us to build reproducible and collaborative research practices.</p>
@@ -847,7 +813,7 @@
 <li>These slides are on Moodle and the course website</li>
 <li>You will also find the tutorial for this week</li>
 <li>Familiarise yourself with <em>all</em> the resources in the tutorial and get to know your colleagues (this is quite important!)</li>
-<li>Overview of RStudio and an introduction to R</li>
+<li>Overview of Positron and an introduction to R</li>
 </ul>
 </section>
 <section id="week-1-lesson" class="slide level2">
@@ -1080,7 +1046,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1110,229 +1076,174 @@
     <link rel="stylesheet" href="assets/monash-after-body.css">
     <link rel="stylesheet" href="assets/fontawesome-free-6.1.1-web/css/all.css">
     <script src="assets/fontawesome-free-6.1.1-web/js/all.js"></script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/rcp\.numbat\.space");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/rcp\.numbat\.space");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

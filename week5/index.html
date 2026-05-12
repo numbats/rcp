@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Michael Lydeamore">
   <meta name="dcterms.date" content="2001-05-01">
@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,7 +33,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-eeb5ccf5e2485fa37df59773d927e4b2.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cf6c1489a25ea9570cdd96b37dac80f5.css">
   <link rel="stylesheet" href="../assets/tachyons-addon.css">
   <link rel="stylesheet" href="../assets/custom.css">
   <link rel="stylesheet" href="../assets/lecture-01.css">
@@ -171,7 +174,6 @@
 <li>Branches</li>
 </ul></li>
 <li>Solving Git merging conflicts</li>
-<li>Install VSCode as a GUI to work with Git/GitHub and as a text editor for commits.</li>
 </ul>
 </section>
 <section id="aim" class="slide level2">
@@ -188,7 +190,6 @@
 <ol type="1">
 <li>More Git/GitHub tools</li>
 <li>Pull requests: a tool to collaborate with others via GitHub</li>
-<li>VSCode</li>
 </ol>
 </div>
 </div>
@@ -357,14 +358,13 @@ stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
 <p>Typically in a project there might be files that we decided to not track and ignore.</p>
 <p>Examples include files that are built artifacts and machine generated files that can be derived from your repository source or should otherwise not be committed.</p>
 </section>
-<section id="in-rstudio" class="slide level2">
-<h2>In Rstudio</h2>
+<section id="in-positron" class="slide level2">
+<h2>In Positron</h2>
 <ul>
-<li><span style="color:blue"><strong>Blue-M</strong></span>: a file that is already under version control that has been modified.</li>
-<li><span style="color:orange"><strong>Orange-?</strong></span>: a file that is not under version control (yet…).</li>
-<li><span style="color:green"><strong>Green-A</strong></span>: a file that was not under version control, but which has been staged to be committed</li>
+<li><span style="color:blue"><strong>Orange-M</strong></span>: a file that is already under version control that has been modified.</li>
+<li><span style="color:green"><strong>Green-U</strong></span>: a file that is not under version control (yet…).</li>
 <li><span style="color:red"><strong>Red-D</strong></span>: a file under version control has been deleted. To make it really disappear, you have to staged its disappearance and commit.</li>
-<li><span style="color:purple"><strong>Purple-R</strong></span>: a file that was renamed. (Note that git in Rstudio seems to be figuring this out on its own.)</li>
+<li><span style="color:purple"><strong>Purple-R</strong></span>: a file that was renamed.</li>
 </ul>
 </section>
 <section id="gitignore" class="slide level2">
@@ -409,10 +409,10 @@ stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
 <div class="column" style="width:50%;">
 <p>From the command line you can create a <code>.gitignore</code> file for your repository.</p>
 <p><code>touch .gitignore</code></p>
-<p>You can edit the file using Rstudio or VSCode.</p>
+<p>You can edit the file using any editor</p>
 <p>You can also create a <code>.gitignore</code> file from GitHub.</p>
 <div class="fragment">
-<p>You can edit it later using RStudio or VSCode.</p>
+<p>You can edit it later!</p>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -476,10 +476,6 @@ stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
 <h2>Forked repo</h2>
 
 <img data-src="images/forked.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="our-repos-in-github" class="slide level2">
-<h2>Our repos in GitHub</h2>
-
-<img data-src="images/repos.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="differences-between-forking-and-cloning-a-repo" class="slide level2 smaller">
 <h2>Differences between forking and cloning a repo</h2>
 <ul>
@@ -538,73 +534,11 @@ stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
 <h2>Pull request okayama1 GitHub Inbox</h2>
 
 <img data-src="images/pr7.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section>
 <section id="pull-request-okayama1-github-request-received" class="title-slide slide level1 center">
 <h1>Pull request okayama1 GitHub request received</h1>
 
 <img data-src="images/pr8.png" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
-
-<section>
-<section id="vscode" class="title-slide slide level1 center">
-<h1>VSCode</h1>
-
-<img data-src="images/vscode_icon.png" class="quarto-figure quarto-figure-center r-stretch"><ul>
-<li>VSCode is a powerful IDE that works across many different languages.</li>
-<li>It also has excellent Git integration so we can track and create repos, branches, stage, commit and push files.</li>
-<li>Make sure you log into VSCode using your GitHub account.</li>
-</ul>
-</section>
-<section id="opening-vscode" class="slide level2">
-<h2>Opening VSCode</h2>
-
-<img data-src="images/vscode_git_create.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="editing-the-readme.md-file" class="slide level2">
-<h2>Editing the README.md file</h2>
-
-<img data-src="images/vscode_readme_edit.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="staged-the-changes-readme.md-file" class="slide level2">
-<h2>Staged the changes README.md file</h2>
-
-<img data-src="images/vscode_git_stage.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="commit-the-changes-readme.md-file" class="slide level2">
-<h2>Commit the changes README.md file</h2>
-
-<img data-src="images/vscode_git_commit.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="visualizing-all-the-files" class="slide level2">
-<h2>Visualizing all the files</h2>
-
-<img data-src="images/vscode_git_tree.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="creating-new-branch" class="slide level2">
-<h2>Creating new branch</h2>
-
-<img data-src="images/vscode_git_create_branch.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="in-the-meantime-in-github" class="slide level2">
-<h2>In the meantime in GitHub</h2>
-
-<img data-src="images/vscode_git_branch_on_gh.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="resolving-conflicts" class="slide level2">
-<h2>Resolving conflicts</h2>
-
-<img data-src="images/vscode_merge_conflict_1.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="resolving-conflicts-1" class="slide level2">
-<h2>Resolving conflicts</h2>
-
-<img data-src="images/vscode_merge_conflict_2.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="resolving-conflicts-2" class="slide level2">
-<h2>Resolving conflicts</h2>
-
-<img data-src="images/vscode_merge_conflict_3.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="resolving-conflicts-3" class="slide level2">
-<h2>Resolving conflicts</h2>
-
-<img data-src="images/vscode_merge_conflict_4.jpg" class="quarto-figure quarto-figure-center r-stretch"></section></section>
-<section>
-<section id="before-the-tutorial" class="title-slide slide level1 center">
-<h1>Before the tutorial</h1>
-<ul>
-<li><p>Please make sure you have R and Rstudio locally installed</p></li>
-<li><p>Please make sure that your GitHub is connected to VSCode and VSCode is installed.</p></li>
-</ul>
-</section>
 <section id="what-you-should-know-by-now" class="slide level2">
 <h2>What you should know by now?</h2>
 <ul>
@@ -616,13 +550,8 @@ stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
 <li>Create and merge branches</li>
 <li>Being able to solve merging conflicts</li>
 <li>Forking repos in GitHub</li>
-<li>Interact with others using pull requests on GitHub</li>
-<li>Basic operations with VSCode.</li>
+<li>Interact with others using pull requests on GitHub # We have the scaffolding ready for collaborative and reproducible reporting</li>
 </ul>
-</section></section>
-<section>
-<section id="we-have-the-scaffolding-ready-for-collaborative-and-reproducible-reporting" class="title-slide slide level1 center">
-<h1>We have the scaffolding ready for collaborative and reproducible reporting</h1>
 <p>We are now set to start using this tools and create collaborative and reproducible reports! From now on we will learn more on creating beautiful and reproducible reports!</p>
 </section>
 <section id="tutorial-and-next-lecture" class="slide level2">
@@ -649,7 +578,6 @@ stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
 <ol type="1">
 <li>More Git/GitHub tools</li>
 <li>Pull requests: a tool to collaborate with others via GitHub</li>
-<li>VSCode</li>
 </ol>
 </div>
 </div>
@@ -849,7 +777,7 @@ stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -918,190 +846,173 @@ stash@{1}: WIP on master: 50cf63b Commit message B</code></pre>
     </script>
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/rcp\.numbat\.space");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/rcp\.numbat\.space");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Michael Lydeamore">
   <meta name="dcterms.date" content="2001-02-01">
@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,8 +33,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -42,7 +46,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -95,7 +99,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-eeb5ccf5e2485fa37df59773d927e4b2.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cf6c1489a25ea9570cdd96b37dac80f5.css">
   <link rel="stylesheet" href="../assets/tachyons-addon.css">
   <link rel="stylesheet" href="../assets/custom.css">
   <link rel="stylesheet" href="../assets/lecture-01.css">
@@ -230,10 +234,10 @@
 <li>Unit structure</li>
 <li>Assessment</li>
 <li>Introduction to reproducibility</li>
-<li>Looked at R, RStudio and <code>git</code></li>
+<li>Looked at R, Positron and <code>git</code></li>
 </ol>
 <div class="fragment">
-<p>In the tutorial, you got to know more about R, and some of the available R and RStudio resources to help you through the semester.</p>
+<p>In the tutorial, you got to know more about R, and some of the available R and Positron resources to help you through the semester.</p>
 </div>
 <div class="fragment">
 <p>You were also introduced to ChatGPT that you can use to assist in your learning. We will be using ChatGPT ethically <a href="https://www.monash.edu/learnhq/build-digital-capabilities/create-online/using-artificial-intelligence">as per the University guidelines</a>.</p>
@@ -255,13 +259,12 @@
 <li>R Code Chunk Options</li>
 <li>Including images and figures</li>
 <li>Computer file architecture</li>
-<li>RStudio Projects</li>
+<li>Positron Projects</li>
 <li>Good coding practices</li>
 </ul>
 </div>
 </div>
 </div>
-<p>Second hour: hands on practice</p>
 </section>
 <section>
 <section id="scaffolding-of-reproducible-research-reporting" class="title-slide slide level1 center">
@@ -311,7 +314,6 @@
 </div></aside></section>
 <section id="stages-for-reproducible-data-analysis-and-reporting" class="slide level2">
 <h2>Stages for reproducible data analysis and reporting</h2>
-<div>
 <ul>
 <li class="fragment">Clear research questions to be investigated</li>
 <li class="fragment">Clear objectives: what is the goal of this report?</li>
@@ -320,7 +322,6 @@
 <li class="fragment">Data analysis</li>
 <li class="fragment">Results presentation</li>
 </ul>
-</div>
 <div class="fragment">
 <h4 class="center" id="all-of-the-above-needs-to-be-documented-and-tied-together">All of the above needs to be documented and tied together</h4>
 </div>
@@ -337,7 +338,7 @@
 </section></section>
 <section id="lets-talk-about-computer-paths" class="title-slide slide level1 center">
 <h1>Let’s talk about computer paths</h1>
-<p>And then RStudio Projects</p>
+<p>And then Positron Projects</p>
 </section>
 
 <section>
@@ -443,8 +444,8 @@
 <li>Remember, absolute paths are <strong>not</strong> reproducible</li>
 </ul>
 </section>
-<section id="rstudio-project-example" class="slide level2">
-<h2>RStudio Project Example</h2>
+<section id="project-example" class="slide level2">
+<h2>Project Example</h2>
 <ul>
 <li>Data folder: Contains all the data for the project</li>
 <li>Images/Figures folder: Contains all pictures not produced by your code in the qmd file</li>
@@ -454,6 +455,13 @@
 </ul>
 
 <img data-src="images/project-example.jpg" class="r-stretch"></section>
+<section id="handling-projects-in-positron" class="slide level2">
+<h2>Handling projects in Positron</h2>
+<p>In Positron, a project is simply a folder. You can create a new project by creating a new folder, and then opening that folder in Positron.</p>
+<p>You can also create projects from templates, or from git repositories.</p>
+<p>You can see what project you have open in the top right corner of the interface:</p>
+
+<img data-src="images/2026-02-27-14-54-39.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="rstudio-projects" class="slide level2">
 <h2>RStudio projects</h2>
 <p>RStudio projects automatically handle relative paths and working directories</p>
@@ -468,22 +476,10 @@
 <aside><div>
 <p>They are specific to RStudio -&gt; If you use a different IDE you need a different solution</p>
 </div></aside></section>
-<section id="creating-a-new-project" class="slide level2">
-<h2>Creating a new project</h2>
-<p>File &gt; New project &gt; Fill out the Options</p>
-
-<img data-src="images/newproject.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="rstudio-project-advantages" class="slide level2">
-<h2>RStudio Project Advantages</h2>
-<p>When you make a new RStudio Project, it:</p>
-<ul>
-<li>Creates a project file (with the <code>.Rproj</code> extension) within the project directory
-<ul>
-<li>This file can be used a as a shortcut to open the project directly</li>
-</ul></li>
-<li>Creates a hidden directory (<code>.Rproj.user</code>) where project-specific temporary fiels are stored</li>
-<li>Loads the project into RStudio and displays it’s name in the Projects toolbar</li>
-</ul>
+<section id="positron-projects" class="slide level2">
+<h2>Positron “projects”</h2>
+<p>Positron has a less formal idea of a project. It is just a folder that contains all your files, and potentially workspace-specific settings.</p>
+<p>To create a new Positron “project”, simply create a new folder and open it in Positron.</p>
 </section>
 <section id="what-is-markdown" class="slide level2">
 <h2>What is Markdown?</h2>
@@ -502,14 +498,14 @@
 </section>
 <section id="main-tools-for-combining-r-code-and-text" class="slide level2">
 <h2>Main tools for combining R code and text</h2>
-<p>Our main tool is going to be <code>R</code> and it’s packages. We will be using <code>R</code> via RStudio.</p>
+<p>Our main tool is going to be <code>R</code> and it’s packages. We will be using <code>R</code> via Positron.</p>
 <ul>
 <li><code>R</code> is structured into libraries</li>
 <li>For reproducibility, we have two libraries that are crucial</li>
 <li>Does anyone know which ones are those?</li>
 </ul>
 
-<img data-src="images/Rstudio.png" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"></section></section>
+<img data-src="images/2026-03-05-08-48-04.png" class="quarto-figure quarto-figure-center r-stretch"></section></section>
 <section>
 <section id="quarto-and-knitr" class="title-slide slide level1 center">
 <h1>Quarto and <code>knitr</code></h1>
@@ -595,20 +591,20 @@
 <section id="component-breakdown-yaml" class="slide level2">
 <h2>Component breakdown: YAML</h2>
 <p><strong>Metadata</strong> is written at the top of the file, between <code>---</code> in YAML.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a></a><span class="pp">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a></a><span class="pp">---</span></span>
 <span id="cb1-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"ETC5513"</span></span>
 <span id="cb1-3"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Michael Lydeamore"</span></span>
 <span id="cb1-4"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb1-5"><a></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="component-breakdown-text" class="slide level2">
 <h2>Component breakdown: Text</h2>
 <p><strong>Text</strong> is written in Markdown</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="fu"># This is a section header</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="fu"># This is a section header</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h3 id="this-is-a-section-header">This is a section header</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="fu">## This is a subsection header</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="fu">## This is a subsection header</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h4 id="this-is-a-subsection-header">This is a subsection header</h4>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a>In this section, something is **important**</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a>In this section, something is **important**</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this section, something is <strong>important</strong></p>
 </section>
 <section id="writing-text-hyperlinks-and-sections" class="slide level2">
@@ -619,7 +615,7 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Code:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="co">[</span><span class="ot">More info about Quarto here</span><span class="co">](https://quarto.org)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="co">[</span><span class="ot">More info about Quarto here</span><span class="co">](https://quarto.org)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <p>Result:</p>
 <p><a href="https://quarto.org">More info about Quarto here</a></p>
@@ -632,9 +628,9 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Code:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a>__bold__, **bold**,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a>__bold__, **bold**,</span>
 <span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a>_italic_, *italic*</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a></a>_italic_, *italic*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <p>Result:</p>
 <p><strong>bold</strong>, <strong>bold</strong>,</p>
@@ -646,7 +642,7 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Code:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="fu"># Header 1</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="fu"># Header 1</span></span>
 <span id="cb7-2"><a></a><span class="fu">## Header 2</span></span>
 <span id="cb7-3"><a></a></span>
 <span id="cb7-4"><a></a><span class="ss">* </span>Unordered list 1</span>
@@ -657,7 +653,7 @@
 <span id="cb7-9"><a></a></span>
 <span id="cb7-10"><a></a>**This is bold**</span>
 <span id="cb7-11"><a></a></span>
-<span id="cb7-12"><a></a><span class="ss">1. </span>Ordered list 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-12"><a></a><span class="ss">1. </span>Ordered list 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <p>Result:</p>
 <h3 id="header-1">Header 1</h3>
@@ -679,16 +675,16 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Code:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb8-2"><a></a><span class="in">#| echo: false</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a></a><span class="co">#| echo: false</span></span>
 <span id="cb8-3"><a></a></span>
-<span id="cb8-4"><a></a><span class="in">library(ggplot2)</span></span>
-<span id="cb8-5"><a></a><span class="in">ggplot(cars, </span></span>
-<span id="cb8-6"><a></a><span class="in">       aes(x = speed, </span></span>
-<span id="cb8-7"><a></a><span class="in">           y = dist)</span></span>
-<span id="cb8-8"><a></a><span class="in">       ) +</span></span>
-<span id="cb8-9"><a></a><span class="in">  geom_point()</span></span>
-<span id="cb8-10"><a></a><span class="in">```</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-5"><a></a><span class="fu">ggplot</span>(cars, </span>
+<span id="cb8-6"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> speed, </span>
+<span id="cb8-7"><a></a>           <span class="at">y =</span> dist)</span>
+<span id="cb8-8"><a></a>       ) <span class="sc">+</span></span>
+<span id="cb8-9"><a></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb8-10"><a></a><span class="in">```</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <p>Result:</p>
 <div class="cell" data-layout-align="center">
@@ -707,26 +703,26 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p>Code:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a></a><span class="in">#| echo: false</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a></a><span class="co">#| echo: false</span></span>
 <span id="cb9-3"><a></a></span>
-<span id="cb9-4"><a></a><span class="in">library(ggplot2)</span></span>
+<span id="cb9-4"><a></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb9-5"><a></a></span>
-<span id="cb9-6"><a></a><span class="in">data = data(InsectSprays)</span></span>
+<span id="cb9-6"><a></a>data <span class="ot">=</span> <span class="fu">data</span>(InsectSprays)</span>
 <span id="cb9-7"><a></a></span>
-<span id="cb9-8"><a></a><span class="in">head(InsectSprays)</span></span>
+<span id="cb9-8"><a></a><span class="fu">head</span>(InsectSprays)</span>
 <span id="cb9-9"><a></a><span class="in">```</span></span>
 <span id="cb9-10"><a></a>...</span>
 <span id="cb9-11"><a></a><span class="in">```{r}</span></span>
-<span id="cb9-12"><a></a><span class="in">#| echo: false</span></span>
-<span id="cb9-13"><a></a><span class="in">ggplot(data = InsectSprays,</span></span>
-<span id="cb9-14"><a></a><span class="in">       aes(x = spray,</span></span>
-<span id="cb9-15"><a></a><span class="in">           y = count,</span></span>
-<span id="cb9-16"><a></a><span class="in">           fill = spray)</span></span>
-<span id="cb9-17"><a></a><span class="in">       ) +</span></span>
-<span id="cb9-18"><a></a><span class="in">  geom_boxplot(alpha = 0.6) +</span></span>
-<span id="cb9-19"><a></a><span class="in">  ggtitle("Insect sprays boxplots")</span></span>
-<span id="cb9-20"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-12"><a></a><span class="co">#| echo: false</span></span>
+<span id="cb9-13"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> InsectSprays,</span>
+<span id="cb9-14"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> spray,</span>
+<span id="cb9-15"><a></a>           <span class="at">y =</span> count,</span>
+<span id="cb9-16"><a></a>           <span class="at">fill =</span> spray)</span>
+<span id="cb9-17"><a></a>       ) <span class="sc">+</span></span>
+<span id="cb9-18"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Insect sprays boxplots"</span>)</span>
+<span id="cb9-20"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <p>Result:</p>
 <div class="cell" data-layout-align="center">
@@ -740,24 +736,17 @@
 6    12     A</code></pre>
 </div>
 </div>
-<p>…</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/index.rmarkdown/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>… ::: {.cell layout-align=“center”} ::: {.cell-output-display} <img data-src="images/index.rmarkdown/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </div></div>
+<p>:::</p>
+<p>:::</p>
 </section>
 <section id="r-code-chunks" class="slide level2 smaller">
 <h2>R Code Chunks</h2>
 <p>You can quickly insert an R code chunk into your file with:</p>
 <ul>
 <li>Keyboard shortcut <span class="monash-green2">Ctrl + Alt + I</span> (Mac: Cmd + Option + I)</li>
-<li>The <span class="monash-green2">Add Chunk</span> command in the editor toolbar or</li>
+<li>The <span class="monash-green2">Quarto: Insert Code Cell</span> command in the editor toolbar or</li>
 <li>Typing the chunk delimeters (```)</li>
 </ul>
 <div class="fragment">
@@ -792,8 +781,8 @@
 <h2>Caching</h2>
 <p>Long documents can take a long time to run. Quarto has a caching system that can help manage this long execution time.</p>
 <p>You can set cache as either a chunk option (using <code>#|</code>) or globally in YAML:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb11-2"><a></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb11-2"><a></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>More info on caching is in the <a href="https://quarto.org/docs/projects/code-execution.html">Quarto manual</a></p>
 <div class="fragment">
 <p>Use these with care: It is easy to accidentally <em>not</em> refresh an updated chunk!</p>
@@ -818,9 +807,9 @@
 </section>
 <section id="rendering-quarto-to-html" class="slide level2">
 <h2>Rendering Quarto to HTML</h2>
-<p>Use the “Render” button at the top</p>
+<p>Use the “Preview” button at the top</p>
 
-<img data-src="images/quarto-export-demo.png" class="r-stretch"></section>
+<img data-src="images/2026-02-27-15-36-26.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="rendering-quarto-to-pdf" class="slide level2">
 <h2>Rendering Quarto to PDF</h2>
 <p>We can also knit to a PDF:</p>
@@ -862,7 +851,7 @@
 </section>
 <section id="lets-learn-about-yaml" class="slide level2">
 <h2>Let’s learn about YAML</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"R Notebook"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"R Notebook"</span></span>
 <span id="cb12-2"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Michael Lydeamore"</span></span>
 <span id="cb12-3"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
 <span id="cb12-4"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
@@ -871,7 +860,7 @@
 <span id="cb12-7"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
 <span id="cb12-8"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb12-9"><a></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
-<span id="cb12-10"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-10"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>toc</code>: Table of contents. You can read more abotu that <a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents">here</a></p>
 </section>
 <section id="this-is-the-resulting-html" class="slide level2">
@@ -881,16 +870,16 @@
 <section id="tables-and-captions" class="slide level2 scrollable">
 <h2>Tables and Captions</h2>
 <p>Code:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb13-2"><a></a><span class="in">library(dslabs)</span></span>
-<span id="cb13-3"><a></a><span class="in">data(murders)</span></span>
-<span id="cb13-4"><a></a><span class="in">table_data &lt;- head(murders, 5)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb13-2"><a></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb13-3"><a></a><span class="fu">data</span>(murders)</span>
+<span id="cb13-4"><a></a>table_data <span class="ot">&lt;-</span> <span class="fu">head</span>(murders, <span class="dv">5</span>)</span>
 <span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a><span class="in">knitr::kable(table_data, </span></span>
-<span id="cb13-7"><a></a><span class="in">             caption = "Gun murder data</span></span>
-<span id="cb13-8"><a></a><span class="in">             from FBI reports by state",</span></span>
-<span id="cb13-9"><a></a><span class="in">             digits = 2)</span></span>
-<span id="cb13-10"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-6"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(table_data, </span>
+<span id="cb13-7"><a></a>             <span class="at">caption =</span> <span class="st">"Gun murder data</span></span>
+<span id="cb13-8"><a></a><span class="st">             from FBI reports by state"</span>,</span>
+<span id="cb13-9"><a></a>             <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-10"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Result:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -949,16 +938,16 @@
 <section id="tables-and-captions-1" class="slide level2">
 <h2>Tables and Captions</h2>
 <p>Code:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb14-2"><a></a><span class="in">library(dslabs)</span></span>
-<span id="cb14-3"><a></a><span class="in">data(murders)</span></span>
-<span id="cb14-4"><a></a><span class="in">table_data &lt;- head(murders, 5)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb14-3"><a></a><span class="fu">data</span>(murders)</span>
+<span id="cb14-4"><a></a>table_data <span class="ot">&lt;-</span> <span class="fu">head</span>(murders, <span class="dv">5</span>)</span>
 <span id="cb14-5"><a></a></span>
-<span id="cb14-6"><a></a><span class="in">knitr::kable(table_data, </span></span>
-<span id="cb14-7"><a></a><span class="in">             caption = "Gun murder data</span></span>
-<span id="cb14-8"><a></a><span class="in">             from FBI reports by state",</span></span>
-<span id="cb14-9"><a></a><span class="in">             digits = 2)</span></span>
-<span id="cb14-10"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-6"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(table_data, </span>
+<span id="cb14-7"><a></a>             <span class="at">caption =</span> <span class="st">"Gun murder data</span></span>
+<span id="cb14-8"><a></a><span class="st">             from FBI reports by state"</span>,</span>
+<span id="cb14-9"><a></a>             <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb14-10"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For more information, type <code>knitr::kable()</code> into your R console.</p>
 </section>
 <section id="figures-and-captions" class="slide level2">
@@ -970,26 +959,26 @@
 </section>
 <section id="figures-and-captions-1" class="slide level2">
 <h2>Figures and captions</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb15-2"><a></a><span class="in">#| fig-label: cars-plot</span></span>
-<span id="cb15-3"><a></a><span class="in">#| fig-cap: "Distance taken for a car to stop, against it's speed during the test."</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb15-2"><a></a><span class="co">#| fig-label: cars-plot</span></span>
+<span id="cb15-3"><a></a><span class="co">#| fig-cap: "Distance taken for a car to stop, against it's speed during the test."</span></span>
 <span id="cb15-4"><a></a></span>
-<span id="cb15-5"><a></a><span class="in">library(ggplot2)</span></span>
-<span id="cb15-6"><a></a><span class="in">ggplot(cars, </span></span>
-<span id="cb15-7"><a></a><span class="in">       aes(x = speed, </span></span>
-<span id="cb15-8"><a></a><span class="in">           y = dist)</span></span>
-<span id="cb15-9"><a></a><span class="in">       ) +</span></span>
-<span id="cb15-10"><a></a><span class="in">  geom_point()</span></span>
-<span id="cb15-11"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-5"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-6"><a></a><span class="fu">ggplot</span>(cars, </span>
+<span id="cb15-7"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> speed, </span>
+<span id="cb15-8"><a></a>           <span class="at">y =</span> dist)</span>
+<span id="cb15-9"><a></a>       ) <span class="sc">+</span></span>
+<span id="cb15-10"><a></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb15-11"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 <img data-src="images/index.rmarkdown/unnamed-chunk-6-1.png" style="width:100.0%" class="r-stretch quarto-figure-center"><p class="caption">Distance taken for a car to stop, against it’s speed during the test.</p></section>
 <section id="inserting-external-imagesphotosfigures" class="slide level2">
 <h2>Inserting external images/photos/figures</h2>
 <p>There are two different ways to include external pictures.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb16-2"><a></a><span class="in">#| out-width: "80%"</span></span>
-<span id="cb16-3"><a></a><span class="in">knitr::include_graphics("images/R.png")</span></span>
-<span id="cb16-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a></a><span class="co">#| out-width: "80%"</span></span>
+<span id="cb16-3"><a></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/R.png"</span>)</span>
+<span id="cb16-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or</p>
 <pre><code>![](images/R.png){width="80%"}</code></pre>
 <p>I recommend the latter unless for some reason you need some specific R processing.</p>
@@ -1028,28 +1017,28 @@
 <p>Coding style is an opinion-based phenomenon</p>
 <p>There are different styles and it is important to be careful about how you write your code.</p>
 <p><strong>Bad example</strong>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb19-2"><a></a><span class="in">library(ggplot2)</span></span>
-<span id="cb19-3"><a></a><span class="in">data = data(InsectSprays)</span></span>
-<span id="cb19-4"><a></a><span class="in">ggplot(data=InsectSprays, aes(spray, count, fill=spray))+geom_boxplot(alpha=0.6)+ggtitle("Insect sprays boxplots")</span></span>
-<span id="cb19-5"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb19-2"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-3"><a></a>data <span class="ot">=</span> <span class="fu">data</span>(InsectSprays)</span>
+<span id="cb19-4"><a></a><span class="fu">ggplot</span>(<span class="at">data=</span>InsectSprays, <span class="fu">aes</span>(spray, count, <span class="at">fill=</span>spray))<span class="sc">+</span><span class="fu">geom_boxplot</span>(<span class="at">alpha=</span><span class="fl">0.6</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">"Insect sprays boxplots"</span>)</span>
+<span id="cb19-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Long lines, no spaces, no structure: makes it <em>very</em> hard to read and debug</p>
 </div>
 </section>
 <section id="good-example" class="slide level2">
 <h2>Good example</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb20-2"><a></a><span class="in">library(ggplot2)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb20-3"><a></a></span>
-<span id="cb20-4"><a></a><span class="in">ggplot(data = InsectSprays,</span></span>
-<span id="cb20-5"><a></a><span class="in">       aes(x = spray, </span></span>
-<span id="cb20-6"><a></a><span class="in">           y = count,</span></span>
-<span id="cb20-7"><a></a><span class="in">           fill = spray)</span></span>
-<span id="cb20-8"><a></a><span class="in">       ) +</span></span>
-<span id="cb20-9"><a></a><span class="in">  geom_boxplot(alpha = 0.6) +</span></span>
-<span id="cb20-10"><a></a><span class="in">  ggtitle("Insect sprays boxplots")</span></span>
-<span id="cb20-11"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-4"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> InsectSprays,</span>
+<span id="cb20-5"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> spray, </span>
+<span id="cb20-6"><a></a>           <span class="at">y =</span> count,</span>
+<span id="cb20-7"><a></a>           <span class="at">fill =</span> spray)</span>
+<span id="cb20-8"><a></a>       ) <span class="sc">+</span></span>
+<span id="cb20-9"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb20-10"><a></a>  <span class="fu">ggtitle</span>(<span class="st">"Insect sprays boxplots"</span>)</span>
+<span id="cb20-11"><a></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We will (mostly) follow the Tidyverse style guide</p>
 <ul>
 <li><a href="https://style.tidyverse.org" class="uri">https://style.tidyverse.org</a></li>
@@ -1329,7 +1318,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1359,229 +1348,174 @@
     <link rel="stylesheet" href="assets/monash-after-body.css">
     <link rel="stylesheet" href="assets/fontawesome-free-6.1.1-web/css/all.css">
     <script src="assets/fontawesome-free-6.1.1-web/js/all.js"></script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/rcp\.numbat\.space");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/rcp\.numbat\.space");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

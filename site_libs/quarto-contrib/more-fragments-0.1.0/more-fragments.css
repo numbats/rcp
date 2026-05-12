@@ -1,0 +1,976 @@
+/* More Fragments - Animate.css integration */
+
+/* ==========================================================================
+   Phase 1: Attention Seekers (CSS-only, same animation both ways)
+   ========================================================================== */
+
+/* Bounce */
+.reveal .slides section .fragment.bounce {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.bounce {
+  display: inline-block;
+}
+.reveal .slides section .fragment.bounce.current-fragment {
+  animation-name: bounce;
+  animation-duration: 1s;
+}
+
+/* Flash */
+.reveal .slides section .fragment.flash {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.flash {
+  display: inline-block;
+}
+.reveal .slides section .fragment.flash.current-fragment {
+  animation-name: flash;
+  animation-duration: 1s;
+}
+
+/* Pulse */
+.reveal .slides section .fragment.pulse {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.pulse {
+  display: inline-block;
+}
+.reveal .slides section .fragment.pulse.current-fragment {
+  animation-name: pulse;
+  animation-duration: 1s;
+}
+
+/* RubberBand */
+.reveal .slides section .fragment.rubberBand {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.rubberBand {
+  display: inline-block;
+}
+.reveal .slides section .fragment.rubberBand.current-fragment {
+  animation-name: rubberBand;
+  animation-duration: 1s;
+}
+
+/* ShakeX */
+.reveal .slides section .fragment.shakeX {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.shakeX {
+  display: inline-block;
+}
+.reveal .slides section .fragment.shakeX.current-fragment {
+  animation-name: shakeX;
+  animation-duration: 1s;
+}
+
+/* ShakeY */
+.reveal .slides section .fragment.shakeY {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.shakeY {
+  display: inline-block;
+}
+.reveal .slides section .fragment.shakeY.current-fragment {
+  animation-name: shakeY;
+  animation-duration: 1s;
+}
+
+/* HeadShake */
+.reveal .slides section .fragment.headShake {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.headShake {
+  display: inline-block;
+}
+.reveal .slides section .fragment.headShake.current-fragment {
+  animation-name: headShake;
+  animation-duration: 1s;
+}
+
+/* Swing */
+.reveal .slides section .fragment.swing {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.swing {
+  display: inline-block;
+}
+.reveal .slides section .fragment.swing.current-fragment {
+  animation-name: swing;
+  animation-duration: 1s;
+}
+
+/* Tada */
+.reveal .slides section .fragment.tada {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.tada {
+  display: inline-block;
+}
+.reveal .slides section .fragment.tada.current-fragment {
+  animation-name: tada;
+  animation-duration: 1s;
+}
+
+/* Wobble */
+.reveal .slides section .fragment.wobble {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.wobble {
+  display: inline-block;
+}
+.reveal .slides section .fragment.wobble.current-fragment {
+  animation-name: wobble;
+  animation-duration: 1s;
+}
+
+/* Jello */
+.reveal .slides section .fragment.jello {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.jello {
+  display: inline-block;
+}
+.reveal .slides section .fragment.jello.current-fragment {
+  animation-name: jello;
+  animation-duration: 1s;
+}
+
+/* HeartBeat */
+.reveal .slides section .fragment.heartBeat {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.heartBeat {
+  display: inline-block;
+}
+.reveal .slides section .fragment.heartBeat.current-fragment {
+  animation-name: heartBeat;
+  animation-duration: 1s;
+}
+
+/* ==========================================================================
+   Phase 3: Back Animations (Entrance/Exit Pairs)
+   Animation names are controlled by JavaScript for proper forward/reverse handling
+   ========================================================================== */
+
+/* Back Entrances */
+.reveal .slides section span.fragment.backInDown,
+.reveal .slides section span.fragment.backInLeft,
+.reveal .slides section span.fragment.backInRight,
+.reveal .slides section span.fragment.backInUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.backInDown,
+.reveal .slides section .fragment.backInLeft,
+.reveal .slides section .fragment.backInRight,
+.reveal .slides section .fragment.backInUp {
+  opacity: 0;
+}
+.reveal .slides section .fragment.backInDown.visible,
+.reveal .slides section .fragment.backInLeft.visible,
+.reveal .slides section .fragment.backInRight.visible,
+.reveal .slides section .fragment.backInUp.visible {
+  opacity: 1;
+}
+
+/* Back Exits */
+.reveal .slides section span.fragment.backOutDown,
+.reveal .slides section span.fragment.backOutLeft,
+.reveal .slides section span.fragment.backOutRight,
+.reveal .slides section span.fragment.backOutUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.backOutDown,
+.reveal .slides section .fragment.backOutLeft,
+.reveal .slides section .fragment.backOutRight,
+.reveal .slides section .fragment.backOutUp {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.backOutDown.visible,
+.reveal .slides section .fragment.backOutLeft.visible,
+.reveal .slides section .fragment.backOutRight.visible,
+.reveal .slides section .fragment.backOutUp.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Phase 4: Bouncing Animations (Entrance/Exit Pairs)
+   Animation names are controlled by JavaScript for proper forward/reverse handling
+   ========================================================================== */
+
+/* Bouncing Entrances */
+.reveal .slides section span.fragment.bounceIn,
+.reveal .slides section span.fragment.bounceInDown,
+.reveal .slides section span.fragment.bounceInLeft,
+.reveal .slides section span.fragment.bounceInRight,
+.reveal .slides section span.fragment.bounceInUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.bounceIn,
+.reveal .slides section .fragment.bounceInDown,
+.reveal .slides section .fragment.bounceInLeft,
+.reveal .slides section .fragment.bounceInRight,
+.reveal .slides section .fragment.bounceInUp {
+  opacity: 0;
+}
+.reveal .slides section .fragment.bounceIn.visible,
+.reveal .slides section .fragment.bounceInDown.visible,
+.reveal .slides section .fragment.bounceInLeft.visible,
+.reveal .slides section .fragment.bounceInRight.visible,
+.reveal .slides section .fragment.bounceInUp.visible {
+  opacity: 1;
+}
+
+/* Bouncing Exits */
+.reveal .slides section span.fragment.bounceOut,
+.reveal .slides section span.fragment.bounceOutDown,
+.reveal .slides section span.fragment.bounceOutLeft,
+.reveal .slides section span.fragment.bounceOutRight,
+.reveal .slides section span.fragment.bounceOutUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.bounceOut,
+.reveal .slides section .fragment.bounceOutDown,
+.reveal .slides section .fragment.bounceOutLeft,
+.reveal .slides section .fragment.bounceOutRight,
+.reveal .slides section .fragment.bounceOutUp {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.bounceOut.visible,
+.reveal .slides section .fragment.bounceOutDown.visible,
+.reveal .slides section .fragment.bounceOutLeft.visible,
+.reveal .slides section .fragment.bounceOutRight.visible,
+.reveal .slides section .fragment.bounceOutUp.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Phase 5: Fading Animations (Entrance/Exit Pairs)
+   Animation names are controlled by JavaScript for proper forward/reverse handling
+   ========================================================================== */
+
+/* Fading Entrances */
+.reveal .slides section span.fragment.fadeIn,
+.reveal .slides section span.fragment.fadeInDown,
+.reveal .slides section span.fragment.fadeInDownBig,
+.reveal .slides section span.fragment.fadeInLeft,
+.reveal .slides section span.fragment.fadeInLeftBig,
+.reveal .slides section span.fragment.fadeInRight,
+.reveal .slides section span.fragment.fadeInRightBig,
+.reveal .slides section span.fragment.fadeInUp,
+.reveal .slides section span.fragment.fadeInUpBig,
+.reveal .slides section span.fragment.fadeInTopLeft,
+.reveal .slides section span.fragment.fadeInTopRight,
+.reveal .slides section span.fragment.fadeInBottomLeft,
+.reveal .slides section span.fragment.fadeInBottomRight {
+  display: inline-block;
+}
+.reveal .slides section .fragment.fadeIn,
+.reveal .slides section .fragment.fadeInDown,
+.reveal .slides section .fragment.fadeInDownBig,
+.reveal .slides section .fragment.fadeInLeft,
+.reveal .slides section .fragment.fadeInLeftBig,
+.reveal .slides section .fragment.fadeInRight,
+.reveal .slides section .fragment.fadeInRightBig,
+.reveal .slides section .fragment.fadeInUp,
+.reveal .slides section .fragment.fadeInUpBig,
+.reveal .slides section .fragment.fadeInTopLeft,
+.reveal .slides section .fragment.fadeInTopRight,
+.reveal .slides section .fragment.fadeInBottomLeft,
+.reveal .slides section .fragment.fadeInBottomRight {
+  opacity: 0;
+}
+.reveal .slides section .fragment.fadeIn.visible,
+.reveal .slides section .fragment.fadeInDown.visible,
+.reveal .slides section .fragment.fadeInDownBig.visible,
+.reveal .slides section .fragment.fadeInLeft.visible,
+.reveal .slides section .fragment.fadeInLeftBig.visible,
+.reveal .slides section .fragment.fadeInRight.visible,
+.reveal .slides section .fragment.fadeInRightBig.visible,
+.reveal .slides section .fragment.fadeInUp.visible,
+.reveal .slides section .fragment.fadeInUpBig.visible,
+.reveal .slides section .fragment.fadeInTopLeft.visible,
+.reveal .slides section .fragment.fadeInTopRight.visible,
+.reveal .slides section .fragment.fadeInBottomLeft.visible,
+.reveal .slides section .fragment.fadeInBottomRight.visible {
+  opacity: 1;
+}
+
+/* Fading Exits */
+.reveal .slides section span.fragment.fadeOut,
+.reveal .slides section span.fragment.fadeOutDown,
+.reveal .slides section span.fragment.fadeOutDownBig,
+.reveal .slides section span.fragment.fadeOutLeft,
+.reveal .slides section span.fragment.fadeOutLeftBig,
+.reveal .slides section span.fragment.fadeOutRight,
+.reveal .slides section span.fragment.fadeOutRightBig,
+.reveal .slides section span.fragment.fadeOutUp,
+.reveal .slides section span.fragment.fadeOutUpBig,
+.reveal .slides section span.fragment.fadeOutTopLeft,
+.reveal .slides section span.fragment.fadeOutTopRight,
+.reveal .slides section span.fragment.fadeOutBottomLeft,
+.reveal .slides section span.fragment.fadeOutBottomRight {
+  display: inline-block;
+}
+.reveal .slides section .fragment.fadeOut,
+.reveal .slides section .fragment.fadeOutDown,
+.reveal .slides section .fragment.fadeOutDownBig,
+.reveal .slides section .fragment.fadeOutLeft,
+.reveal .slides section .fragment.fadeOutLeftBig,
+.reveal .slides section .fragment.fadeOutRight,
+.reveal .slides section .fragment.fadeOutRightBig,
+.reveal .slides section .fragment.fadeOutUp,
+.reveal .slides section .fragment.fadeOutUpBig,
+.reveal .slides section .fragment.fadeOutTopLeft,
+.reveal .slides section .fragment.fadeOutTopRight,
+.reveal .slides section .fragment.fadeOutBottomLeft,
+.reveal .slides section .fragment.fadeOutBottomRight {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.fadeOut.visible,
+.reveal .slides section .fragment.fadeOutDown.visible,
+.reveal .slides section .fragment.fadeOutDownBig.visible,
+.reveal .slides section .fragment.fadeOutLeft.visible,
+.reveal .slides section .fragment.fadeOutLeftBig.visible,
+.reveal .slides section .fragment.fadeOutRight.visible,
+.reveal .slides section .fragment.fadeOutRightBig.visible,
+.reveal .slides section .fragment.fadeOutUp.visible,
+.reveal .slides section .fragment.fadeOutUpBig.visible,
+.reveal .slides section .fragment.fadeOutTopLeft.visible,
+.reveal .slides section .fragment.fadeOutTopRight.visible,
+.reveal .slides section .fragment.fadeOutBottomLeft.visible,
+.reveal .slides section .fragment.fadeOutBottomRight.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Phase 6: Flippers
+   ========================================================================== */
+
+/* Flip - attention seeker style (always visible, just animates) */
+.reveal .slides section .fragment.flip {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.flip {
+  display: inline-block;
+}
+.reveal .slides section .fragment.flip.current-fragment {
+  animation-name: flip;
+  animation-duration: 1s;
+}
+
+/* Flip Entrances */
+.reveal .slides section span.fragment.flipInX,
+.reveal .slides section span.fragment.flipInY {
+  display: inline-block;
+}
+.reveal .slides section .fragment.flipInX,
+.reveal .slides section .fragment.flipInY {
+  opacity: 0;
+}
+.reveal .slides section .fragment.flipInX.visible,
+.reveal .slides section .fragment.flipInY.visible {
+  opacity: 1;
+}
+
+/* Flip Exits */
+.reveal .slides section span.fragment.flipOutX,
+.reveal .slides section span.fragment.flipOutY {
+  display: inline-block;
+}
+.reveal .slides section .fragment.flipOutX,
+.reveal .slides section .fragment.flipOutY {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.flipOutX.visible,
+.reveal .slides section .fragment.flipOutY.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Phase 7: Lightspeed
+   Animation names are controlled by JavaScript for proper forward/reverse handling
+   ========================================================================== */
+
+/* Lightspeed Entrances */
+.reveal .slides section span.fragment.lightSpeedInRight,
+.reveal .slides section span.fragment.lightSpeedInLeft {
+  display: inline-block;
+}
+.reveal .slides section .fragment.lightSpeedInRight,
+.reveal .slides section .fragment.lightSpeedInLeft {
+  opacity: 0;
+}
+.reveal .slides section .fragment.lightSpeedInRight.visible,
+.reveal .slides section .fragment.lightSpeedInLeft.visible {
+  opacity: 1;
+}
+
+/* Lightspeed Exits */
+.reveal .slides section span.fragment.lightSpeedOutRight,
+.reveal .slides section span.fragment.lightSpeedOutLeft {
+  display: inline-block;
+}
+.reveal .slides section .fragment.lightSpeedOutRight,
+.reveal .slides section .fragment.lightSpeedOutLeft {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.lightSpeedOutRight.visible,
+.reveal .slides section .fragment.lightSpeedOutLeft.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Phase 8: Rotating Animations (Entrance/Exit Pairs)
+   Animation names are controlled by JavaScript for proper forward/reverse handling
+   ========================================================================== */
+
+/* Rotating Entrances */
+.reveal .slides section span.fragment.rotateIn,
+.reveal .slides section span.fragment.rotateInDownLeft,
+.reveal .slides section span.fragment.rotateInDownRight,
+.reveal .slides section span.fragment.rotateInUpLeft,
+.reveal .slides section span.fragment.rotateInUpRight {
+  display: inline-block;
+}
+.reveal .slides section .fragment.rotateIn,
+.reveal .slides section .fragment.rotateInDownLeft,
+.reveal .slides section .fragment.rotateInDownRight,
+.reveal .slides section .fragment.rotateInUpLeft,
+.reveal .slides section .fragment.rotateInUpRight {
+  opacity: 0;
+}
+.reveal .slides section .fragment.rotateIn.visible,
+.reveal .slides section .fragment.rotateInDownLeft.visible,
+.reveal .slides section .fragment.rotateInDownRight.visible,
+.reveal .slides section .fragment.rotateInUpLeft.visible,
+.reveal .slides section .fragment.rotateInUpRight.visible {
+  opacity: 1;
+}
+
+/* Rotating Exits */
+.reveal .slides section span.fragment.rotateOut,
+.reveal .slides section span.fragment.rotateOutDownLeft,
+.reveal .slides section span.fragment.rotateOutDownRight,
+.reveal .slides section span.fragment.rotateOutUpLeft,
+.reveal .slides section span.fragment.rotateOutUpRight {
+  display: inline-block;
+}
+.reveal .slides section .fragment.rotateOut,
+.reveal .slides section .fragment.rotateOutDownLeft,
+.reveal .slides section .fragment.rotateOutDownRight,
+.reveal .slides section .fragment.rotateOutUpLeft,
+.reveal .slides section .fragment.rotateOutUpRight {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.rotateOut.visible,
+.reveal .slides section .fragment.rotateOutDownLeft.visible,
+.reveal .slides section .fragment.rotateOutDownRight.visible,
+.reveal .slides section .fragment.rotateOutUpLeft.visible,
+.reveal .slides section .fragment.rotateOutUpRight.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Phase 9: Sliding Animations (Entrance/Exit Pairs)
+   Animation names are controlled by JavaScript for proper forward/reverse handling
+   ========================================================================== */
+
+/* Sliding Entrances */
+.reveal .slides section span.fragment.slideInDown,
+.reveal .slides section span.fragment.slideInLeft,
+.reveal .slides section span.fragment.slideInRight,
+.reveal .slides section span.fragment.slideInUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.slideInDown,
+.reveal .slides section .fragment.slideInLeft,
+.reveal .slides section .fragment.slideInRight,
+.reveal .slides section .fragment.slideInUp {
+  opacity: 0;
+}
+.reveal .slides section .fragment.slideInDown.visible,
+.reveal .slides section .fragment.slideInLeft.visible,
+.reveal .slides section .fragment.slideInRight.visible,
+.reveal .slides section .fragment.slideInUp.visible {
+  opacity: 1;
+}
+
+/* Sliding Exits */
+.reveal .slides section span.fragment.slideOutDown,
+.reveal .slides section span.fragment.slideOutLeft,
+.reveal .slides section span.fragment.slideOutRight,
+.reveal .slides section span.fragment.slideOutUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.slideOutDown,
+.reveal .slides section .fragment.slideOutLeft,
+.reveal .slides section .fragment.slideOutRight,
+.reveal .slides section .fragment.slideOutUp {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.slideOutDown.visible,
+.reveal .slides section .fragment.slideOutLeft.visible,
+.reveal .slides section .fragment.slideOutRight.visible,
+.reveal .slides section .fragment.slideOutUp.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Phase 10: Zooming Animations (Entrance/Exit Pairs)
+   Animation names are controlled by JavaScript for proper forward/reverse handling
+   ========================================================================== */
+
+/* Zooming Entrances */
+.reveal .slides section span.fragment.zoomIn,
+.reveal .slides section span.fragment.zoomInDown,
+.reveal .slides section span.fragment.zoomInLeft,
+.reveal .slides section span.fragment.zoomInRight,
+.reveal .slides section span.fragment.zoomInUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.zoomIn,
+.reveal .slides section .fragment.zoomInDown,
+.reveal .slides section .fragment.zoomInLeft,
+.reveal .slides section .fragment.zoomInRight,
+.reveal .slides section .fragment.zoomInUp {
+  opacity: 0;
+}
+.reveal .slides section .fragment.zoomIn.visible,
+.reveal .slides section .fragment.zoomInDown.visible,
+.reveal .slides section .fragment.zoomInLeft.visible,
+.reveal .slides section .fragment.zoomInRight.visible,
+.reveal .slides section .fragment.zoomInUp.visible {
+  opacity: 1;
+}
+
+/* Zooming Exits */
+.reveal .slides section span.fragment.zoomOut,
+.reveal .slides section span.fragment.zoomOutDown,
+.reveal .slides section span.fragment.zoomOutLeft,
+.reveal .slides section span.fragment.zoomOutRight,
+.reveal .slides section span.fragment.zoomOutUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.zoomOut,
+.reveal .slides section .fragment.zoomOutDown,
+.reveal .slides section .fragment.zoomOutLeft,
+.reveal .slides section .fragment.zoomOutRight,
+.reveal .slides section .fragment.zoomOutUp {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.zoomOut.visible,
+.reveal .slides section .fragment.zoomOutDown.visible,
+.reveal .slides section .fragment.zoomOutLeft.visible,
+.reveal .slides section .fragment.zoomOutRight.visible,
+.reveal .slides section .fragment.zoomOutUp.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Phase 11: Specials
+   Animation names are controlled by JavaScript for proper forward/reverse handling
+   ========================================================================== */
+
+/* Hinge - entrance animation that fades in on reverse */
+.reveal .slides section span.fragment.hinge {
+  display: inline-block;
+}
+.reveal .slides section .fragment.hinge {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.hinge.visible {
+  opacity: 0;
+}
+
+/* Jack In The Box - entrance animation */
+.reveal .slides section span.fragment.jackInTheBox {
+  display: inline-block;
+}
+.reveal .slides section .fragment.jackInTheBox {
+  opacity: 0;
+}
+.reveal .slides section .fragment.jackInTheBox.visible {
+  opacity: 1;
+}
+
+/* Roll In - entrance animation */
+.reveal .slides section span.fragment.rollIn {
+  display: inline-block;
+}
+.reveal .slides section .fragment.rollIn {
+  opacity: 0;
+}
+.reveal .slides section .fragment.rollIn.visible {
+  opacity: 1;
+}
+
+/* Roll Out - exit animation */
+.reveal .slides section span.fragment.rollOut {
+  display: inline-block;
+}
+.reveal .slides section .fragment.rollOut {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.rollOut.visible {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   Speed Utility Classes
+   From Animate.css: https://animate.style/
+   ========================================================================== */
+
+.reveal .slides section .fragment.slower {
+  animation-duration: 3s;
+}
+
+.reveal .slides section .fragment.slow {
+  animation-duration: 2s;
+}
+
+.reveal .slides section .fragment.fast {
+  animation-duration: 800ms;
+}
+
+.reveal .slides section .fragment.faster {
+  animation-duration: 500ms;
+}
+
+/* ==========================================================================
+   Letter-by-Letter Animations
+   ========================================================================== */
+
+/* Container for letter animations - this is the fragment */
+.reveal .slides section .letter-container {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+/* Override default fragment visibility for letter containers */
+.reveal .slides section .letter-container.fragment {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Individual letter characters - inline-block for transforms */
+.reveal .slides section .letter-char {
+  display: inline-block;
+}
+
+/* Initial hidden state for letter entrance animations */
+.reveal .slides section .letter-char.bounceIn,
+.reveal .slides section .letter-char.bounceInDown,
+.reveal .slides section .letter-char.bounceInLeft,
+.reveal .slides section .letter-char.bounceInRight,
+.reveal .slides section .letter-char.bounceInUp,
+.reveal .slides section .letter-char.fadeIn,
+.reveal .slides section .letter-char.fadeInDown,
+.reveal .slides section .letter-char.fadeInDownBig,
+.reveal .slides section .letter-char.fadeInLeft,
+.reveal .slides section .letter-char.fadeInLeftBig,
+.reveal .slides section .letter-char.fadeInRight,
+.reveal .slides section .letter-char.fadeInRightBig,
+.reveal .slides section .letter-char.fadeInUp,
+.reveal .slides section .letter-char.fadeInUpBig,
+.reveal .slides section .letter-char.fadeInTopLeft,
+.reveal .slides section .letter-char.fadeInTopRight,
+.reveal .slides section .letter-char.fadeInBottomLeft,
+.reveal .slides section .letter-char.fadeInBottomRight,
+.reveal .slides section .letter-char.zoomIn,
+.reveal .slides section .letter-char.zoomInDown,
+.reveal .slides section .letter-char.zoomInLeft,
+.reveal .slides section .letter-char.zoomInRight,
+.reveal .slides section .letter-char.zoomInUp,
+.reveal .slides section .letter-char.rotateIn,
+.reveal .slides section .letter-char.rotateInDownLeft,
+.reveal .slides section .letter-char.rotateInDownRight,
+.reveal .slides section .letter-char.rotateInUpLeft,
+.reveal .slides section .letter-char.rotateInUpRight,
+.reveal .slides section .letter-char.slideInDown,
+.reveal .slides section .letter-char.slideInLeft,
+.reveal .slides section .letter-char.slideInRight,
+.reveal .slides section .letter-char.slideInUp,
+.reveal .slides section .letter-char.backInDown,
+.reveal .slides section .letter-char.backInLeft,
+.reveal .slides section .letter-char.backInRight,
+.reveal .slides section .letter-char.backInUp,
+.reveal .slides section .letter-char.flipInX,
+.reveal .slides section .letter-char.flipInY,
+.reveal .slides section .letter-char.lightSpeedInLeft,
+.reveal .slides section .letter-char.lightSpeedInRight,
+.reveal .slides section .letter-char.jackInTheBox,
+.reveal .slides section .letter-char.rollIn {
+  opacity: 0;
+}
+
+/* Visible state for letter characters */
+.reveal .slides section .letter-char.letter-visible {
+  opacity: 1;
+}
+
+/* Letter speed utility classes - these affect the stagger delay via JS */
+/* The classes are: letter-faster, letter-fast, letter-slow, letter-slower */
+/* Delays: 20ms, 35ms, 80ms, 120ms (default is 50ms) */
+
+/* ==========================================================================
+   Magic.css Animations
+   From: https://www.minimamente.com/project/magic/ (MIT License)
+   ========================================================================== */
+
+/* Magic.css - Bling Entrances */
+.reveal .slides section span.fragment.puffIn,
+.reveal .slides section span.fragment.vanishIn {
+  display: inline-block;
+}
+.reveal .slides section .fragment.puffIn,
+.reveal .slides section .fragment.vanishIn {
+  opacity: 0;
+}
+.reveal .slides section .fragment.puffIn.visible,
+.reveal .slides section .fragment.vanishIn.visible {
+  opacity: 1;
+}
+
+/* Magic.css - Bling Exits */
+.reveal .slides section span.fragment.puffOut,
+.reveal .slides section span.fragment.vanishOut {
+  display: inline-block;
+}
+.reveal .slides section .fragment.puffOut,
+.reveal .slides section .fragment.vanishOut {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.puffOut.visible,
+.reveal .slides section .fragment.vanishOut.visible {
+  opacity: 0;
+}
+
+/* Magic.css - Perspective Exits (rotate away from normal) */
+.reveal .slides section span.fragment.perspectiveDown,
+.reveal .slides section span.fragment.perspectiveUp,
+.reveal .slides section span.fragment.perspectiveLeft,
+.reveal .slides section span.fragment.perspectiveRight {
+  display: inline-block;
+}
+.reveal .slides section .fragment.perspectiveDown,
+.reveal .slides section .fragment.perspectiveUp,
+.reveal .slides section .fragment.perspectiveLeft,
+.reveal .slides section .fragment.perspectiveRight {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.perspectiveDown.visible,
+.reveal .slides section .fragment.perspectiveUp.visible,
+.reveal .slides section .fragment.perspectiveLeft.visible,
+.reveal .slides section .fragment.perspectiveRight.visible {
+  opacity: 0;
+}
+
+/* Magic.css - Perspective Returns (Entrances - rotate into view) */
+.reveal .slides section span.fragment.perspectiveDownReturn,
+.reveal .slides section span.fragment.perspectiveUpReturn,
+.reveal .slides section span.fragment.perspectiveLeftReturn,
+.reveal .slides section span.fragment.perspectiveRightReturn {
+  display: inline-block;
+}
+.reveal .slides section .fragment.perspectiveDownReturn,
+.reveal .slides section .fragment.perspectiveUpReturn,
+.reveal .slides section .fragment.perspectiveLeftReturn,
+.reveal .slides section .fragment.perspectiveRightReturn {
+  opacity: 0;
+}
+.reveal .slides section .fragment.perspectiveDownReturn.visible,
+.reveal .slides section .fragment.perspectiveUpReturn.visible,
+.reveal .slides section .fragment.perspectiveLeftReturn.visible,
+.reveal .slides section .fragment.perspectiveRightReturn.visible {
+  opacity: 1;
+}
+
+/* Magic.css - Space Entrances */
+.reveal .slides section span.fragment.spaceInDown,
+.reveal .slides section span.fragment.spaceInUp,
+.reveal .slides section span.fragment.spaceInLeft,
+.reveal .slides section span.fragment.spaceInRight {
+  display: inline-block;
+}
+.reveal .slides section .fragment.spaceInDown,
+.reveal .slides section .fragment.spaceInUp,
+.reveal .slides section .fragment.spaceInLeft,
+.reveal .slides section .fragment.spaceInRight {
+  opacity: 0;
+}
+.reveal .slides section .fragment.spaceInDown.visible,
+.reveal .slides section .fragment.spaceInUp.visible,
+.reveal .slides section .fragment.spaceInLeft.visible,
+.reveal .slides section .fragment.spaceInRight.visible {
+  opacity: 1;
+}
+
+/* Magic.css - Space Exits */
+.reveal .slides section span.fragment.spaceOutDown,
+.reveal .slides section span.fragment.spaceOutUp,
+.reveal .slides section span.fragment.spaceOutLeft,
+.reveal .slides section span.fragment.spaceOutRight {
+  display: inline-block;
+}
+.reveal .slides section .fragment.spaceOutDown,
+.reveal .slides section .fragment.spaceOutUp,
+.reveal .slides section .fragment.spaceOutLeft,
+.reveal .slides section .fragment.spaceOutRight {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.spaceOutDown.visible,
+.reveal .slides section .fragment.spaceOutUp.visible,
+.reveal .slides section .fragment.spaceOutLeft.visible,
+.reveal .slides section .fragment.spaceOutRight.visible {
+  opacity: 0;
+}
+
+/* Magic.css - Boing */
+.reveal .slides section span.fragment.boingInUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.boingInUp {
+  opacity: 0;
+}
+.reveal .slides section .fragment.boingInUp.visible {
+  opacity: 1;
+}
+
+.reveal .slides section span.fragment.boingOutDown {
+  display: inline-block;
+}
+.reveal .slides section .fragment.boingOutDown {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.boingOutDown.visible {
+  opacity: 0;
+}
+
+/* Magic.css - Swash */
+.reveal .slides section span.fragment.swashIn {
+  display: inline-block;
+}
+.reveal .slides section .fragment.swashIn {
+  opacity: 0;
+}
+.reveal .slides section .fragment.swashIn.visible {
+  opacity: 1;
+}
+
+.reveal .slides section span.fragment.swashOut {
+  display: inline-block;
+}
+.reveal .slides section .fragment.swashOut {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.swashOut.visible {
+  opacity: 0;
+}
+
+/* Magic.css - Tin Entrances */
+.reveal .slides section span.fragment.tinDownIn,
+.reveal .slides section span.fragment.tinUpIn,
+.reveal .slides section span.fragment.tinLeftIn,
+.reveal .slides section span.fragment.tinRightIn {
+  display: inline-block;
+}
+.reveal .slides section .fragment.tinDownIn,
+.reveal .slides section .fragment.tinUpIn,
+.reveal .slides section .fragment.tinLeftIn,
+.reveal .slides section .fragment.tinRightIn {
+  opacity: 0;
+}
+.reveal .slides section .fragment.tinDownIn.visible,
+.reveal .slides section .fragment.tinUpIn.visible,
+.reveal .slides section .fragment.tinLeftIn.visible,
+.reveal .slides section .fragment.tinRightIn.visible {
+  opacity: 1;
+}
+
+/* Magic.css - Tin Exits */
+.reveal .slides section span.fragment.tinDownOut,
+.reveal .slides section span.fragment.tinUpOut,
+.reveal .slides section span.fragment.tinLeftOut,
+.reveal .slides section span.fragment.tinRightOut {
+  display: inline-block;
+}
+.reveal .slides section .fragment.tinDownOut,
+.reveal .slides section .fragment.tinUpOut,
+.reveal .slides section .fragment.tinLeftOut,
+.reveal .slides section .fragment.tinRightOut {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section .fragment.tinDownOut.visible,
+.reveal .slides section .fragment.tinUpOut.visible,
+.reveal .slides section .fragment.tinLeftOut.visible,
+.reveal .slides section .fragment.tinRightOut.visible {
+  opacity: 0;
+}
+
+/* Magic.css - Attention Seekers */
+.reveal .slides section .fragment.magic,
+.reveal .slides section .fragment.twisterInDown,
+.reveal .slides section .fragment.twisterInUp {
+  opacity: unset;
+  visibility: unset;
+}
+.reveal .slides section span.fragment.magic,
+.reveal .slides section span.fragment.twisterInDown,
+.reveal .slides section span.fragment.twisterInUp {
+  display: inline-block;
+}
+.reveal .slides section .fragment.magic.current-fragment,
+.reveal .slides section .fragment.twisterInDown.current-fragment,
+.reveal .slides section .fragment.twisterInUp.current-fragment {
+  animation-duration: 1s;
+}
+
+/* Magic.css - Letter-by-letter support (entrances start hidden) */
+.reveal .slides section .letter-char.puffIn,
+.reveal .slides section .letter-char.vanishIn,
+.reveal .slides section .letter-char.perspectiveDownReturn,
+.reveal .slides section .letter-char.perspectiveUpReturn,
+.reveal .slides section .letter-char.perspectiveLeftReturn,
+.reveal .slides section .letter-char.perspectiveRightReturn,
+.reveal .slides section .letter-char.spaceInDown,
+.reveal .slides section .letter-char.spaceInUp,
+.reveal .slides section .letter-char.spaceInLeft,
+.reveal .slides section .letter-char.spaceInRight,
+.reveal .slides section .letter-char.boingInUp,
+.reveal .slides section .letter-char.swashIn,
+.reveal .slides section .letter-char.tinDownIn,
+.reveal .slides section .letter-char.tinUpIn,
+.reveal .slides section .letter-char.tinLeftIn,
+.reveal .slides section .letter-char.tinRightIn {
+  opacity: 0;
+}
