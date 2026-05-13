@@ -496,8 +496,6 @@
 </section>
 <section id="target-names" class="slide level2">
 <h2>Target names</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
 <p>Good target names are nouns:</p>
 <ul>
 <li><code>raw_data</code></li>
@@ -506,7 +504,6 @@
 <li><code>model_table</code></li>
 <li><code>report</code></li>
 </ul>
-</div><div class="column" style="width:50%;">
 <p>Less helpful names:</p>
 <ul>
 <li><code>step1</code></li>
@@ -514,7 +511,6 @@
 <li><code>temp</code></li>
 <li><code>final_final</code></li>
 </ul>
-</div></div>
 <div class="fragment">
 <p>The name should tell you what the target stores, not just where it sits in a script.</p>
 </div>
@@ -570,14 +566,14 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>sales <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"data/raw/sales.csv"</span>)</span>
 <span id="cb17-2"><a></a></span>
 <span id="cb17-3"><a></a>clean_sales <span class="ot">&lt;-</span> sales <span class="sc">|&gt;</span></span>
-<span id="cb17-4"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(revenue)) <span class="sc">|&gt;</span></span>
-<span id="cb17-5"><a></a>  <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">floor_date</span>(date, <span class="st">"month"</span>))</span>
+<span id="cb17-4"><a></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(revenue)) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">floor_date</span>(date, <span class="st">"month"</span>))</span>
 <span id="cb17-6"><a></a></span>
 <span id="cb17-7"><a></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(revenue <span class="sc">~</span> ad_spend <span class="sc">+</span> region, <span class="at">data =</span> clean_sales)</span>
 <span id="cb17-8"><a></a></span>
-<span id="cb17-9"><a></a>plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(clean_sales, <span class="fu">aes</span>(month, revenue)) <span class="sc">+</span></span>
-<span id="cb17-10"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb17-11"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>region)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-9"><a></a>plot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(clean_sales, ggplot2<span class="sc">::</span><span class="fu">aes</span>(month, revenue)) <span class="sc">+</span></span>
+<span id="cb17-10"><a></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb17-11"><a></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(ggplot2<span class="sc">::</span><span class="fu">vars</span>(region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>This script mixes inputs, cleaning, modelling, and plotting.</p>
 </div>
@@ -591,8 +587,8 @@
 <span id="cb18-4"><a></a></span>
 <span id="cb18-5"><a></a>clean_sales <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
 <span id="cb18-6"><a></a>  data <span class="sc">|&gt;</span></span>
-<span id="cb18-7"><a></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(revenue)) <span class="sc">|&gt;</span></span>
-<span id="cb18-8"><a></a>    <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">floor_date</span>(date, <span class="st">"month"</span>))</span>
+<span id="cb18-7"><a></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(revenue)) <span class="sc">|&gt;</span></span>
+<span id="cb18-8"><a></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">floor_date</span>(date, <span class="st">"month"</span>))</span>
 <span id="cb18-9"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Functions should take inputs as arguments and return outputs explicitly.</p>
@@ -610,9 +606,9 @@
 <span id="cb19-7"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>R/plots.R</code></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>plot_sales <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb20-2"><a></a>  <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(month, revenue)) <span class="sc">+</span></span>
-<span id="cb20-3"><a></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb20-4"><a></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>region)</span>
+<span id="cb20-2"><a></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(data, ggplot2<span class="sc">::</span><span class="fu">aes</span>(month, revenue)) <span class="sc">+</span></span>
+<span id="cb20-3"><a></a>    ggplot2<span class="sc">::</span><span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a></a>    ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(ggplot2<span class="sc">::</span><span class="fu">vars</span>(region))</span>
 <span id="cb20-5"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="then-connect-them-with-targets" class="slide level2">
@@ -840,8 +836,6 @@
 </section>
 <section id="what-goes-in-git" class="slide level2">
 <h2>What goes in git?</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
 <p>Commit:</p>
 <ul>
 <li><code>_targets.R</code></li>
@@ -850,7 +844,6 @@
 <li>Small raw data files, if appropriate</li>
 <li><code>renv.lock</code></li>
 </ul>
-</div><div class="column" style="width:50%;">
 <p>Usually do not commit:</p>
 <ul>
 <li><code>_targets/</code></li>
@@ -858,7 +851,6 @@
 <li>Private credentials</li>
 <li>The project-local package library</li>
 </ul>
-</div></div>
 <div class="fragment">
 <p>The pipeline should be rebuildable from the committed source files.</p>
 </div>
@@ -1075,8 +1067,8 @@
 <p>If this fails interactively, fix <code>clean_sales()</code>.</p>
 <div class="fragment">
 <p>Then rerun:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>targets<span class="sc">::</span><span class="fu">tar_make</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>targets<span class="sc">::</span><span class="fu">tar_make</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="useful-commands" class="slide level2">
 <h2>Useful commands</h2>
@@ -1205,7 +1197,7 @@
 </ul>
 <p>Source: <a href="https://docs.ropensci.org/targets/reference/tar_renv.html">tar_renv() documentation</a></p>
 </section>
-<section id="a-combined-workflow" class="slide level2 smaller">
+<section id="a-combined-workflow" class="slide level2">
 <h2>A combined workflow</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
 <span id="cb54-2"><a></a></span>

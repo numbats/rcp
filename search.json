@@ -7,41 +7,6 @@
     "text": "Pricing Notes\n\nAlternative milks cost 60 cents.\nExtra shots cost 90 cents.\nStudent cards receive 10 percent off before tax.\nPrices include GST at checkout."
   },
   {
-    "objectID": "student-record/parthtendulkar10.html",
-    "href": "student-record/parthtendulkar10.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m parthtendulkar10 on GitHub! Here’s my contribution to the rcp project."
-  },
-  {
-    "objectID": "student-record/Yashitta.html",
-    "href": "student-record/Yashitta.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m Yashitta Bawa on GitHub! Here’s my contribution to the rcp project."
-  },
-  {
-    "objectID": "student-record/Shayna-Yang.html",
-    "href": "student-record/Shayna-Yang.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m TZU-HSUAN YANG (Shayna) on GitHub! Here’s my contribution to the rcp project."
-  },
-  {
-    "objectID": "student-record/KimYenLe.html",
-    "href": "student-record/KimYenLe.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m Kim Yen Le on GitHub! Here’s my contribution to the rcp project."
-  },
-  {
-    "objectID": "student-record/HakimYusof.html",
-    "href": "student-record/HakimYusof.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Muhammad Nor Hakim here. Here’s my contribution and sorry for pinging your phone with my pull request. I got an error at first, this is my second attempt."
-  },
-  {
     "objectID": "week9/tutorial/index.html",
     "href": "week9/tutorial/index.html",
     "title": "ETC5513: Collaborative and Reproducible Practices",
@@ -3497,7 +3462,7 @@
     "href": "week10/index.html#etc5513-title",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "ETC5513: Reproducible and Collaborative Practices",
-    "text": "ETC5513: Reproducible and Collaborative Practices\nKeeping environments separate and reproducible\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 11\n\n\nrcp.numbat.space"
+    "text": "ETC5513: Reproducible and Collaborative Practices\nReproducible analysis pipelines with targets\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 10\n\n\nrcp.numbat.space"
   },
   {
     "objectID": "week10/index.html#open-frame",
@@ -3511,217 +3476,441 @@
     "href": "week10/index.html#recap",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Recap",
-    "text": "Recap\n\nStart learning about LaTeX\nLaTeX integration in QMD files\nUnderstand commits and SHA1 numbers\nMoving back to past commits\nReverting commits"
+    "text": "Recap\n\nRepositories need structure as projects grow\nQuarto makes reports reproducible\ngit records the history of the project\nrenv can record package versions for a project\n\n\nToday we add the missing piece: a way to run the analysis itself in the right order."
   },
   {
     "objectID": "week10/index.html#aim",
     "href": "week10/index.html#aim",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Today’s plan",
-    "text": "Today’s plan\n\n\n\n\n\n\nAim\n\n\n\nLearn how to add references and bibliography\nDealing with large files\nTags\nGitHub issues"
+    "text": "Today’s plan\n\n\n\n\n\n\nAim\n\n\n\nUnderstand why analysis pipelines are useful\nLearn the core ideas of the targets package\nWrite a simple _targets.R file\nBreak a long script into functions and targets\nRender Quarto reports with tar_quarto()\nSee where renv fits in"
   },
   {
-    "objectID": "week10/index.html#parts-of-a-latex-file",
-    "href": "week10/index.html#parts-of-a-latex-file",
+    "objectID": "week10/index.html#the-familiar-pattern",
+    "href": "week10/index.html#the-familiar-pattern",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Parts of a LaTeX file",
-    "text": "Parts of a LaTeX file\n\n\\documentclass{article} % Preamble/header: load packages, set options\n\\usepackage{amsmath}\n\\author{M. J. Lydeamore}\n\n\\begin{document} % Body starts here, and goes until corresponding 'end'\n\n\\section{Introduction}\n\n\\end{document} % \"After body\" but before end\n\nThe includes-in-* sections in Quarto go into each of these pieces of the LaTeX code."
+    "section": "The familiar pattern",
+    "text": "The familiar pattern\n# 01_download.R\n# 02_clean.R\n# 03_model.R\n# 04_plots.R\n# 05_report.R\n\nThis can work well at first.\n\n\nBut the project gets harder to trust when the order, dependencies, and outputs live mostly in our heads."
   },
   {
-    "objectID": "week10/index.html#different-ways-to-include-latex",
-    "href": "week10/index.html#different-ways-to-include-latex",
+    "objectID": "week10/index.html#the-real-problem",
+    "href": "week10/index.html#the-real-problem",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Different ways to include LaTeX",
-    "text": "Different ways to include LaTeX\n\nManually typing out the code\nUsing an input .tex file\nCustomised template file\n\n\nMany templates are available:\nJournal articles Monash templates Question/Answer templates"
+    "section": "The real problem",
+    "text": "The real problem\nAfter a few weeks, you may not know:\n\nWhich scripts need to run after a small data change\nWhether the report uses the newest model\nWhich objects were created manually in the global environment\nWhether a collaborator ran the same steps in the same order\nHow much expensive work can be skipped\n\n\nA reproducible project should be able to explain itself."
   },
   {
-    "objectID": "week10/index.html#the-bibliography-file",
-    "href": "week10/index.html#the-bibliography-file",
+    "objectID": "week10/index.html#what-a-pipeline-gives-us",
+    "href": "week10/index.html#what-a-pipeline-gives-us",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The bibliography file",
-    "text": "The bibliography file\nFirst thing we need is a place to store information about our references.\nA standard file format is called the bibliography database file (which ends in .bib)."
+    "section": "What a pipeline gives us",
+    "text": "What a pipeline gives us\nA pipeline is a set of named steps with explicit dependencies.\n\n\nBefore:\nsource(\"01_download.R\")\nsource(\"02_clean.R\")\nsource(\"03_model.R\")\nsource(\"04_plots.R\")\nquarto::quarto_render(\"report.qmd\")\n\nAfter:\ntargets::tar_make()\nThe pipeline works out:\n\nWhat is out of date\nWhat order to run in\nWhat can be skipped"
   },
   {
-    "objectID": "week10/index.html#the-bibliography-file-1",
-    "href": "week10/index.html#the-bibliography-file-1",
+    "objectID": "week10/index.html#pipelines-are-graphs",
+    "href": "week10/index.html#pipelines-are-graphs",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The bibliography file",
-    "text": "The bibliography file\n\nTo cite a paper in the text, we use the key from the bib file\nThese files are plain text, so you can open them in RStudio or VSCode\n\nTo get bib entries:\n\nGoogle Scholar\nReference manager such as Zotero or Mendeley"
+    "section": "Pipelines are graphs",
+    "text": "Pipelines are graphs\nraw_file\n   |\nraw_data\n   |\nclean_data\n   |\n   +------&gt; model ------&gt; model_table\n   |\n   +------&gt; plot  ------&gt; report\n\nIn targets, this graph is built from your R code."
   },
   {
-    "objectID": "week10/index.html#the-bibliography-file-example",
-    "href": "week10/index.html#the-bibliography-file-example",
+    "objectID": "week10/index.html#a-target-is-a-promise",
+    "href": "week10/index.html#a-target-is-a-promise",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The bibliography file: Example",
-    "text": "The bibliography file: Example\n@Manual{R-base,\n  title = {R: A Language and Environment for Statistical\n           Computing}, \n  author = {{R Core Team}},\n  organization = {R Foundation for Statistical Computing},\n  address = {Vienna, Austria},\n  year = {2019},\n  url = {https://www.R-project.org},\n}\n\nTo cite this in your quarto file, use @R-base"
+    "section": "A target is a promise",
+    "text": "A target is a promise\nA target says:\n\nHere is the name of an object or file I want\nHere is the code to make it\nHere are the upstream things it depends on\nStore the result so it can be reused later\n\ntar_target(\n  clean_data,\n  clean_sales(raw_data)\n)\n\nclean_data depends on raw_data because raw_data appears in the command."
   },
   {
-    "objectID": "week10/index.html#citing-r-packages",
-    "href": "week10/index.html#citing-r-packages",
+    "objectID": "week10/index.html#why-targets",
+    "href": "week10/index.html#why-targets",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Citing R packages",
-    "text": "Citing R packages\nYou can get the citations for R packages using toBibtex(citation(\"tidyverse\"))"
+    "section": "Why targets?",
+    "text": "Why targets?\nThe targets package is a Make-like pipeline toolkit for R analysis projects.\nIt helps you:\n\nSkip work that is already up to date\nRerun downstream results when inputs change\nStore intermediate outputs in _targets/\nInspect the pipeline graph\nRun analyses from a clean R process\nScale to larger projects later\n\nSource: targets overview"
   },
   {
-    "objectID": "week10/index.html#large-files-in-git-and-github",
-    "href": "week10/index.html#large-files-in-git-and-github",
+    "objectID": "week10/index.html#the-key-habit-change",
+    "href": "week10/index.html#the-key-habit-change",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Large files in git and GitHub",
-    "text": "Large files in git and GitHub\nWhat happens when you commit a big file on GitHub?\nFiles larger than 50mb won’t upload properly\n\nInstead, we deal with these using Git Large File Storage (lfs).\nPlease see info for installation here and make sure you install this extension.\n\n\nGitHub and BitBucket both have LFS support, and handle changes to these files much more sensibly."
+    "section": "The key habit change",
+    "text": "The key habit change\nDo not ask:\n\n\n\n\n\n\nWarning\n\n\nWhich scripts do I need to remember to run?\n\n\n\nAsk:\n\n\n\n\n\n\nTip\n\n\nWhat are the important outputs of this analysis, and what does each one depend on?"
   },
   {
-    "objectID": "week10/index.html#setup-for-git-lfs",
-    "href": "week10/index.html#setup-for-git-lfs",
+    "objectID": "week10/index.html#project-layout",
+    "href": "week10/index.html#project-layout",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Setup for git LFS",
-    "text": "Setup for git LFS\nTo set up large file storage:\n\nNavigate to the repo\nIn the CLI, type git lfs install\n\nNow, large files can be tracked using the relevant command. For example:\ngit lfs track '*.nc'\ngit lfs track '*.csv'\ngit lfs track '*.pdf'\nNote the quotes!\n\nThis will create a .gitattributes file. Make sure to add this to your repo.\nThen, use your standard workflow of add, commit, push."
+    "section": "Project layout",
+    "text": "Project layout\nsales-analysis/\n├── _targets.R\n├── R/\n│   ├── data.R\n│   ├── model.R\n│   └── plots.R\n├── data/\n│   └── raw/\n│       └── sales.csv\n├── report.qmd\n├── renv.lock\n└── README.md\n\n_targets.R defines the pipeline. The R/ folder contains your functions."
+  },
+  {
+    "objectID": "week10/index.html#create-the-starter-files",
+    "href": "week10/index.html#create-the-starter-files",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Create the starter files",
+    "text": "Create the starter files\nFrom the R console:\ninstall.packages(c(\"targets\", \"tarchetypes\"))\ntargets::use_targets()\nThis creates a starter _targets.R file.\n\nYou can also create the file by hand. It is just an R script with a special job."
+  },
+  {
+    "objectID": "week10/index.html#the-three-parts-of-_targets.r",
+    "href": "week10/index.html#the-three-parts-of-_targets.r",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The three parts of _targets.R",
+    "text": "The three parts of _targets.R\nlibrary(targets)\nlibrary(tarchetypes)\n\ntar_source()\n\ntar_option_set(\n  packages = c(\"readr\", \"dplyr\", \"ggplot2\", \"broom\")\n)\n\nlist(\n  tar_target(raw_file, \"data/raw/sales.csv\", format = \"file\"),\n  tar_target(raw_data, read_sales(raw_file)),\n  tar_target(clean_data, clean_sales(raw_data)),\n  tar_target(model, fit_sales_model(clean_data)),\n  tar_target(model_table, summarise_model(model)),\n  tar_target(sales_plot, plot_sales(clean_data))\n)"
+  },
+  {
+    "objectID": "week10/index.html#part-1-load-pipeline-tools",
+    "href": "week10/index.html#part-1-load-pipeline-tools",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part 1: Load pipeline tools",
+    "text": "Part 1: Load pipeline tools\nlibrary(targets)\nlibrary(tarchetypes)\nUse library() here for packages that define the pipeline.\n\ntargets provides tar_target(), tar_make(), tar_read(), and friends.\n\n\ntarchetypes provides extra target factories, including tar_quarto()."
+  },
+  {
+    "objectID": "week10/index.html#part-2-load-your-functions",
+    "href": "week10/index.html#part-2-load-your-functions",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part 2: Load your functions",
+    "text": "Part 2: Load your functions\ntar_source()\nBy default, tar_source() reads all .R files in the R/ folder.\n\nThis makes functions like clean_sales() and fit_sales_model() available to the pipeline.\n\n\nThe function bodies are tracked, so changing a function can invalidate the targets that use it."
+  },
+  {
+    "objectID": "week10/index.html#part-3-declare-packages-for-targets",
+    "href": "week10/index.html#part-3-declare-packages-for-targets",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part 3: Declare packages for targets",
+    "text": "Part 3: Declare packages for targets\ntar_option_set(\n  packages = c(\"readr\", \"dplyr\", \"ggplot2\", \"broom\")\n)\nThese packages are loaded when targets run.\n\nThis is different from library(dplyr) in your interactive session. tar_make() should not rely on whatever you happened to load by hand."
+  },
+  {
+    "objectID": "week10/index.html#part-4-return-a-list-of-targets",
+    "href": "week10/index.html#part-4-return-a-list-of-targets",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part 4: Return a list of targets",
+    "text": "Part 4: Return a list of targets\nlist(\n  tar_target(raw_data, read_sales(raw_file)),\n  tar_target(clean_data, clean_sales(raw_data)),\n  tar_target(model, fit_sales_model(clean_data))\n)\nEach tar_target() has:\n\nA name\nA command\nOptional settings such as format = \"file\""
+  },
+  {
+    "objectID": "week10/index.html#target-names",
+    "href": "week10/index.html#target-names",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Target names",
+    "text": "Target names\n\n\nGood target names are nouns:\n\nraw_data\nclean_data\nmodel\nmodel_table\nreport\n\n\nLess helpful names:\n\nstep1\nstuff\ntemp\nfinal_final\n\n\n\nThe name should tell you what the target stores, not just where it sits in a script."
+  },
+  {
+    "objectID": "week10/index.html#target-commands",
+    "href": "week10/index.html#target-commands",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Target commands",
+    "text": "Target commands\ntar_target(\n  clean_data,\n  clean_sales(raw_data)\n)\nThe command should usually be a function call.\n\nThis keeps _targets.R readable and pushes the analysis details into testable functions."
+  },
+  {
+    "objectID": "week10/index.html#file-targets",
+    "href": "week10/index.html#file-targets",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "File targets",
+    "text": "File targets\nRegular targets store R objects in _targets/objects/.\nFile targets track files on disk.\ntar_target(\n  raw_file,\n  \"data/raw/sales.csv\",\n  format = \"file\"\n)\n\nIf sales.csv changes, targets knows downstream targets are out of date."
+  },
+  {
+    "objectID": "week10/index.html#output-file-targets",
+    "href": "week10/index.html#output-file-targets",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Output file targets",
+    "text": "Output file targets\nIf a target creates a file, return the path and set format = \"file\".\nsave_sales_plot &lt;- function(plot) {\n  path &lt;- \"figures/sales-over-time.png\"\n  ggplot2::ggsave(path, plot, width = 8, height = 5)\n  path\n}\ntar_target(\n  plot_file,\n  save_sales_plot(sales_plot),\n  format = \"file\"\n)\n\nThe return value is the path that targets should watch."
+  },
+  {
+    "objectID": "week10/index.html#start-with-the-long-script",
+    "href": "week10/index.html#start-with-the-long-script",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Start with the long script",
+    "text": "Start with the long script\nsales &lt;- readr::read_csv(\"data/raw/sales.csv\")\n\nclean_sales &lt;- sales |&gt;\n  filter(!is.na(revenue)) |&gt;\n  mutate(month = lubridate::floor_date(date, \"month\"))\n\nmodel &lt;- lm(revenue ~ ad_spend + region, data = clean_sales)\n\nplot &lt;- ggplot(clean_sales, aes(month, revenue)) +\n  geom_line() +\n  facet_wrap(~region)\n\nThis script mixes inputs, cleaning, modelling, and plotting."
+  },
+  {
+    "objectID": "week10/index.html#move-verbs-into-functions",
+    "href": "week10/index.html#move-verbs-into-functions",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Move verbs into functions",
+    "text": "Move verbs into functions\nR/data.R\nread_sales &lt;- function(path) {\n  readr::read_csv(path, show_col_types = FALSE)\n}\n\nclean_sales &lt;- function(data) {\n  data |&gt;\n    filter(!is.na(revenue)) |&gt;\n    mutate(month = lubridate::floor_date(date, \"month\"))\n}\n\nFunctions should take inputs as arguments and return outputs explicitly."
+  },
+  {
+    "objectID": "week10/index.html#more-functions",
+    "href": "week10/index.html#more-functions",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "More functions",
+    "text": "More functions\nR/model.R\nfit_sales_model &lt;- function(data) {\n  lm(revenue ~ ad_spend + region, data = data)\n}\n\nsummarise_model &lt;- function(model) {\n  broom::tidy(model)\n}\nR/plots.R\nplot_sales &lt;- function(data) {\n  ggplot(data, aes(month, revenue)) +\n    geom_line() +\n    facet_wrap(~region)\n}"
+  },
+  {
+    "objectID": "week10/index.html#then-connect-them-with-targets",
+    "href": "week10/index.html#then-connect-them-with-targets",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Then connect them with targets",
+    "text": "Then connect them with targets\nlist(\n  tar_target(raw_file, \"data/raw/sales.csv\", format = \"file\"),\n  tar_target(raw_data, read_sales(raw_file)),\n  tar_target(clean_data, clean_sales(raw_data)),\n  tar_target(model, fit_sales_model(clean_data)),\n  tar_target(model_table, summarise_model(model)),\n  tar_target(sales_plot, plot_sales(clean_data))\n)\n\nThe target names are the nouns. The functions are the verbs."
+  },
+  {
+    "objectID": "week10/index.html#what-should-become-a-target",
+    "href": "week10/index.html#what-should-become-a-target",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What should become a target?",
+    "text": "What should become a target?\nGood target candidates:\n\nImportant intermediate datasets\nExpensive computations\nOutputs used by multiple later steps\nPublished tables, figures, and reports\nA clear boundary between stages of analysis\n\n\nNot every line needs to be a target."
+  },
+  {
+    "objectID": "week10/index.html#what-should-stay-inside-a-function",
+    "href": "week10/index.html#what-should-stay-inside-a-function",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What should stay inside a function?",
+    "text": "What should stay inside a function?\nKeep these inside functions:\n\nSmall transformations that always happen together\nTemporary variables\nRepeated calculations with one clear purpose\nImplementation details that do not need separate inspection\n\n\n\n\n\n\n\nTip\n\n\nTargets make the workflow visible. Functions keep the code readable."
+  },
+  {
+    "objectID": "week10/index.html#avoid-hidden-state",
+    "href": "week10/index.html#avoid-hidden-state",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Avoid hidden state",
+    "text": "Avoid hidden state\nThis is fragile:\nclean_sales &lt;- function() {\n  sales |&gt;\n    dplyr::filter(!is.na(revenue))\n}\nThis is better:\nclean_sales &lt;- function(data) {\n  data |&gt;\n    dplyr::filter(!is.na(revenue))\n}\n\nThe second version says exactly what it needs."
+  },
+  {
+    "objectID": "week10/index.html#avoid-doing-work-in-_targets.r",
+    "href": "week10/index.html#avoid-doing-work-in-_targets.r",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Avoid doing work in _targets.R",
+    "text": "Avoid doing work in _targets.R\nPrefer this:\ntar_target(clean_data, clean_sales(raw_data))\nInstead of this:\ntar_target(\n  clean_data,\n  raw_data |&gt;\n    dplyr::filter(!is.na(revenue)) |&gt;\n    dplyr::mutate(month = lubridate::floor_date(date, \"month\"))\n)\n\nThe second version is allowed, but it becomes hard to read as the project grows."
+  },
+  {
+    "objectID": "week10/index.html#inspect-before-running",
+    "href": "week10/index.html#inspect-before-running",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Inspect before running",
+    "text": "Inspect before running\ntargets::tar_manifest(fields = \"command\")\nShows the commands for each target.\ntargets::tar_visnetwork()\nDraws the dependency graph.\ntargets::tar_validate()\nChecks that the pipeline is valid."
+  },
+  {
+    "objectID": "week10/index.html#run-the-pipeline",
+    "href": "week10/index.html#run-the-pipeline",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Run the pipeline",
+    "text": "Run the pipeline\ntargets::tar_make()\ntar_make():\n\nReads _targets.R\nRuns targets in dependency order\nStores return values in _targets/\nSkips targets already up to date\n\nSource: tar_make() documentation"
+  },
+  {
+    "objectID": "week10/index.html#what-you-might-see",
+    "href": "week10/index.html#what-you-might-see",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What you might see",
+    "text": "What you might see\n+ raw_file dispatched\n✔ raw_file completed\n+ raw_data dispatched\n✔ raw_data completed\n+ clean_data dispatched\n✔ clean_data completed\n+ model dispatched\n✔ model completed\n+ model_table dispatched\n✔ model_table completed\n✔ ended pipeline\n\nOn the next run, up-to-date targets are skipped."
+  },
+  {
+    "objectID": "week10/index.html#read-outputs",
+    "href": "week10/index.html#read-outputs",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Read outputs",
+    "text": "Read outputs\ntargets::tar_read(model_table)\nReturns the saved value of one target.\ntargets::tar_load(clean_data)\nLoads one or more targets into your R session.\n\nUse these to inspect results. Do not rerun expensive code manually just to look at an output."
+  },
+  {
+    "objectID": "week10/index.html#check-what-is-out-of-date",
+    "href": "week10/index.html#check-what-is-out-of-date",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Check what is out of date",
+    "text": "Check what is out of date\ntargets::tar_outdated()\nCommon reasons a target becomes outdated:\n\nIts command changed\nAn upstream target changed\nA function it uses changed\nA tracked file changed\nThe target was manually invalidated"
+  },
+  {
+    "objectID": "week10/index.html#what-reruns",
+    "href": "week10/index.html#what-reruns",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What reruns?",
+    "text": "What reruns?\n\n\n\n\n\n\n\nChange\nLikely effect\n\n\n\n\ndata/raw/sales.csv changes\nraw_file and downstream targets rerun\n\n\nclean_sales() changes\nclean_data and downstream targets rerun\n\n\nfit_sales_model() changes\nmodel and downstream targets rerun\n\n\nreport.qmd changes\nthe report target reruns\n\n\nNo relevant changes\neverything is skipped"
+  },
+  {
+    "objectID": "week10/index.html#force-a-target-to-rerun",
+    "href": "week10/index.html#force-a-target-to-rerun",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Force a target to rerun",
+    "text": "Force a target to rerun\ntargets::tar_invalidate(model)\ntargets::tar_make()\nThis deletes the metadata for model, so targets treats it as out of date.\n\n\n\n\n\n\nWarning\n\n\nUse this when you need it, but first ask why the target was not already invalidated."
+  },
+  {
+    "objectID": "week10/index.html#clean-old-targets",
+    "href": "week10/index.html#clean-old-targets",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Clean old targets",
+    "text": "Clean old targets\nIf you remove targets from _targets.R, old stored results can remain in _targets/.\ntargets::tar_prune()\nFor a full reset:\ntargets::tar_destroy()\n\n\n\n\n\n\nWarning\n\n\ntar_destroy() deletes the whole target store. It is useful, but it is not gentle."
+  },
+  {
+    "objectID": "week10/index.html#what-goes-in-git",
+    "href": "week10/index.html#what-goes-in-git",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What goes in git?",
+    "text": "What goes in git?\n\n\nCommit:\n\n_targets.R\nR/ scripts\nQuarto source files\nSmall raw data files, if appropriate\nrenv.lock\n\n\nUsually do not commit:\n\n_targets/\nLarge generated outputs\nPrivate credentials\nThe project-local package library\n\n\n\nThe pipeline should be rebuildable from the committed source files."
+  },
+  {
+    "objectID": "week10/index.html#repeating-the-same-step",
+    "href": "week10/index.html#repeating-the-same-step",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Repeating the same step",
+    "text": "Repeating the same step\nSometimes we need the same operation many times:\n\nFit one model per group\nRender one report per scenario\nSimulate many parameter combinations\nProcess many raw files\n\n\nThis is where dynamic branching becomes useful."
+  },
+  {
+    "objectID": "week10/index.html#branch-over-values",
+    "href": "week10/index.html#branch-over-values",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Branch over values",
+    "text": "Branch over values\nlist(\n  tar_target(raw_file, \"data/raw/sales.csv\", format = \"file\"),\n  tar_target(raw_data, read_sales(raw_file)),\n  tar_target(clean_data, clean_sales(raw_data)),\n  tar_target(regions, sort(unique(clean_data$region))),\n  tar_target(\n    region_data,\n    dplyr::filter(clean_data, region == regions),\n    pattern = map(regions)\n  ),\n  tar_target(\n    region_model,\n    fit_sales_model(region_data),\n    pattern = map(region_data)\n  )\n)\n\nEach branch is tracked separately."
+  },
+  {
+    "objectID": "week10/index.html#why-branches-matter",
+    "href": "week10/index.html#why-branches-matter",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Why branches matter",
+    "text": "Why branches matter\nIf one group changes, targets can avoid rerunning unrelated groups.\n\n\nWithout branches:\nall_data -&gt; all_models\nOne small change can make all models rerun.\n\nWith branches:\nregion A -&gt; model A\nregion B -&gt; model B\nregion C -&gt; model C\nOnly affected branches need work."
+  },
+  {
+    "objectID": "week10/index.html#keep-branching-for-later",
+    "href": "week10/index.html#keep-branching-for-later",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Keep branching for later",
+    "text": "Keep branching for later\nDynamic branching is powerful, but the first goal is simpler:\n\n\n\n\n\n\nTip\n\n\nBuild a clear non-branching pipeline first. Add branches once the repeated structure is obvious."
+  },
+  {
+    "objectID": "week10/index.html#the-report-should-be-an-output",
+    "href": "week10/index.html#the-report-should-be-an-output",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The report should be an output",
+    "text": "The report should be an output\nThe common mistake:\n# Run the analysis...\ntargets::tar_make()\n\n# Then manually render the report...\nquarto::quarto_render(\"report.qmd\")\n\nIf the report is part of the project, make it part of the pipeline."
+  },
+  {
+    "objectID": "week10/index.html#tar_quarto",
+    "href": "week10/index.html#tar_quarto",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "tar_quarto()",
+    "text": "tar_quarto()\ntar_quarto() comes from tarchetypes.\nlibrary(targets)\nlibrary(tarchetypes)\n\ntar_source()\ntar_option_set(packages = c(\"readr\", \"dplyr\", \"ggplot2\", \"broom\"))\n\nlist(\n  tar_target(raw_file, \"data/raw/sales.csv\", format = \"file\"),\n  tar_target(raw_data, read_sales(raw_file)),\n  tar_target(clean_data, clean_sales(raw_data)),\n  tar_target(model, fit_sales_model(clean_data)),\n  tar_target(model_table, summarise_model(model)),\n  tar_target(sales_plot, plot_sales(clean_data)),\n  tar_quarto(report, path = \"report.qmd\")\n)"
+  },
+  {
+    "objectID": "week10/index.html#how-the-report-sees-targets",
+    "href": "week10/index.html#how-the-report-sees-targets",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "How the report sees targets",
+    "text": "How the report sees targets\nInside report.qmd, read target outputs directly.\n```{r}\nmodel_table &lt;- targets::tar_read(model_table)\nmodel_table\n```\n```{r}\ntargets::tar_read(sales_plot)\n```\n\nThe report consumes outputs. It should not repeat the whole analysis."
+  },
+  {
+    "objectID": "week10/index.html#what-tar_quarto-tracks",
+    "href": "week10/index.html#what-tar_quarto-tracks",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What tar_quarto() tracks",
+    "text": "What tar_quarto() tracks\ntar_quarto() creates a file target for the rendered document.\nIt also:\n\nDetects tar_read() and tar_load() calls in active R chunks\nAdds those upstream dependencies to the graph\nWatches the Quarto source and output files\nReturns relative file paths for portability\n\nSource: tar_quarto() documentation"
+  },
+  {
+    "objectID": "week10/index.html#quarto-report-pattern",
+    "href": "week10/index.html#quarto-report-pattern",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Quarto report pattern",
+    "text": "Quarto report pattern\nKeep the report focused on communication:\n\nLoad finished targets\nMake final display tables if needed\nArrange text, figures, and interpretation\nAvoid long-running cleaning or modelling chunks\n\n\n\n\n\n\n\nTip\n\n\nIf a chunk takes a long time or produces an important object, consider making it a target."
+  },
+  {
+    "objectID": "week10/index.html#quarto-gotchas",
+    "href": "week10/index.html#quarto-gotchas",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Quarto gotchas",
+    "text": "Quarto gotchas\ntar_quarto() can only detect dependencies it can see.\nPrefer:\n```{r}\ntargets::tar_read(model_table)\n```\nAvoid hiding the target read inside another function:\n```{r}\nmake_my_report_table()\n```\n\nThe hidden version may render, but the dependency graph can become incomplete."
+  },
+  {
+    "objectID": "week10/index.html#parameterised-quarto",
+    "href": "week10/index.html#parameterised-quarto",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Parameterised Quarto",
+    "text": "Parameterised Quarto\nYou can pass target values into Quarto parameters.\ntar_quarto(\n  report,\n  path = \"report.qmd\",\n  execute_params = list(model_summary = model_table)\n)\n\nFor most projects, directly using targets::tar_read() in the report is simpler."
+  },
+  {
+    "objectID": "week10/index.html#a-debugging-routine",
+    "href": "week10/index.html#a-debugging-routine",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "A debugging routine",
+    "text": "A debugging routine\nWhen the pipeline breaks:\n\nRead the error message from tar_make()\nInspect the target command in _targets.R\nLoad upstream targets with tar_load()\nRun the function call interactively\nFix the function, then rerun tar_make()\n\n\nThe bug is usually in your R function, not in targets."
+  },
+  {
+    "objectID": "week10/index.html#example",
+    "href": "week10/index.html#example",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Example",
+    "text": "Example\ntargets::tar_load(raw_data)\n\nclean_sales(raw_data)\nIf this fails interactively, fix clean_sales().\n\nThen rerun:\ntargets::tar_make()"
+  },
+  {
+    "objectID": "week10/index.html#useful-commands",
+    "href": "week10/index.html#useful-commands",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Useful commands",
+    "text": "Useful commands\n\n\n\nTask\nCommand\n\n\n\n\nInspect target commands\ntar_manifest(fields = \"command\")\n\n\nDraw the graph\ntar_visnetwork()\n\n\nRun the pipeline\ntar_make()\n\n\nList outdated targets\ntar_outdated()\n\n\nRead one target\ntar_read(target_name)\n\n\nLoad one target\ntar_load(target_name)\n\n\nRemove unused stored targets\ntar_prune()"
+  },
+  {
+    "objectID": "week10/index.html#demo-checklist",
+    "href": "week10/index.html#demo-checklist",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Demo checklist",
+    "text": "Demo checklist\n\nCreate a small project\nPut helper functions in R/\nWrite _targets.R\nRun tar_validate()\nDraw the graph with tar_visnetwork()\nRun tar_make()\nChange one function and see what reruns\nAdd tar_quarto()"
+  },
+  {
+    "objectID": "week10/index.html#reproducibility-has-layers",
+    "href": "week10/index.html#reproducibility-has-layers",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Reproducibility has layers",
+    "text": "Reproducibility has layers\n\n\n\nTool\nWhat it records\n\n\n\n\ngit\nProject history\n\n\nQuarto\nHow the report is generated\n\n\ntargets\nWhat runs, in what order, and what is up to date\n\n\nrenv\nR package versions used by the project\n\n\nDocker\nOperating system and system dependencies\n\n\n\n\nToday, targets handles the workflow. renv handles the package library."
+  },
+  {
+    "objectID": "week10/index.html#what-renv-does",
+    "href": "week10/index.html#what-renv-does",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What renv does",
+    "text": "What renv does\nrenv helps make R projects:\n\nIsolated: project-specific package libraries\nPortable: another machine can install the needed packages\nReproducible: package versions are recorded in renv.lock\n\nSource: renv documentation"
+  },
+  {
+    "objectID": "week10/index.html#basic-renv-workflow",
+    "href": "week10/index.html#basic-renv-workflow",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Basic renv workflow",
+    "text": "Basic renv workflow\nrenv::init()\nInstall or update packages as needed.\ninstall.packages(c(\"targets\", \"tarchetypes\", \"dplyr\"))\nRecord the current project library:\nrenv::snapshot()\nRestore it later:\nrenv::restore()"
+  },
+  {
+    "objectID": "week10/index.html#targets-plus-renv",
+    "href": "week10/index.html#targets-plus-renv",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "targets plus renv",
+    "text": "targets plus renv\nThere is one extra helper:\ntargets::tar_renv()\nThis writes _targets_packages.R, a generated file that helps renv detect packages declared in:\n\ntar_option_set(packages = ...)\ntar_target(packages = ...)\nstorage formats that need extra packages\n\nSource: tar_renv() documentation"
+  },
+  {
+    "objectID": "week10/index.html#a-combined-workflow",
+    "href": "week10/index.html#a-combined-workflow",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "A combined workflow",
+    "text": "A combined workflow\nrenv::init()\n\ninstall.packages(c(\"targets\", \"tarchetypes\", \"readr\", \"dplyr\"))\n\ntargets::tar_renv()\n\nrenv::snapshot()\nThen commit:\n\n_targets.R\n_targets_packages.R\nR/\nreport.qmd\nrenv.lock\n\n\nOn another computer: renv::restore(), then targets::tar_make()."
+  },
+  {
+    "objectID": "week10/index.html#what-renv-does-not-do",
+    "href": "week10/index.html#what-renv-does-not-do",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What renv does not do",
+    "text": "What renv does not do\nrenv does not decide:\n\nWhich analysis steps need to rerun\nWhether your report is up to date\nWhether a data file changed\nHow objects depend on each other\n\n\nThat is the job of targets."
+  },
+  {
+    "objectID": "week10/index.html#what-targets-does-not-do",
+    "href": "week10/index.html#what-targets-does-not-do",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What targets does not do",
+    "text": "What targets does not do\ntargets does not guarantee:\n\nYour collaborator has the same package versions\nExternal system libraries are installed\nRaw data can be downloaded again\nSecrets and credentials are available\n\n\nThat is why reproducibility needs layers."
+  },
+  {
+    "objectID": "week10/index.html#a-complete-minimal-_targets.r",
+    "href": "week10/index.html#a-complete-minimal-_targets.r",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "A complete minimal _targets.R",
+    "text": "A complete minimal _targets.R\nlibrary(targets)\nlibrary(tarchetypes)\n\ntar_source()\n\ntar_option_set(\n  packages = c(\"readr\", \"dplyr\", \"lubridate\", \"ggplot2\", \"broom\")\n)\n\nlist(\n  tar_target(raw_file, \"data/raw/sales.csv\", format = \"file\"),\n  tar_target(raw_data, read_sales(raw_file)),\n  tar_target(clean_data, clean_sales(raw_data)),\n  tar_target(model, fit_sales_model(clean_data)),\n  tar_target(model_table, summarise_model(model)),\n  tar_target(sales_plot, plot_sales(clean_data)),\n  tar_quarto(report, path = \"report.qmd\")\n)"
+  },
+  {
+    "objectID": "week10/index.html#what-success-looks-like",
+    "href": "week10/index.html#what-success-looks-like",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What success looks like",
+    "text": "What success looks like\nA good targets project should let you:\n\nStart a fresh R session\nRun renv::restore() if needed\nRun targets::tar_make()\nRebuild the whole analysis without manual steps\nExplain the workflow with tar_visnetwork()\n\n\nThat is a much stronger claim than “it worked on my computer yesterday”."
   },
   {
     "objectID": "week10/index.html#summary",
     "href": "week10/index.html#summary",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Summary",
-    "text": "Summary\n\nNavigate to the local repo and run git lfs install\n`git lfs track “*.csv”\ngit add .gitattributes\ngit add data.csv as per normal\n\n\nIt is essential you run git lfs install before committing and pushing, otherwise you will get an error message."
+    "text": "Summary\n\ntargets turns an analysis into a dependency graph\nEach target is a named output made by a command\nKeep analysis details in functions under R/\nUse file targets for inputs and generated files\nUse tar_quarto() to make reports part of the pipeline\nUse renv to record package versions"
   },
   {
-    "objectID": "week10/index.html#what-if-i-already-have-a-large-file",
-    "href": "week10/index.html#what-if-i-already-have-a-large-file",
+    "objectID": "week10/index.html#further-reading",
+    "href": "week10/index.html#further-reading",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "What if I already have a large file?",
-    "text": "What if I already have a large file?\nIf you have committed a large file, you probably got an error message you have to fix.\nRecall:\ngit reset --soft HEAD~1\nThen:\ngit lfs install\ngit add .gitattributes file.csv\ngit commit -m \"Adding data files through GIT LFS\"\ngit push origin main"
-  },
-  {
-    "objectID": "week10/index.html#more-on-committing",
-    "href": "week10/index.html#more-on-committing",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "More on committing",
-    "text": "More on committing\nSo far, we’ve used a one-line commit (although we could do with more practice on those)\n\nWe can add more text into a commit, and many times this is sensible.\nDetailed commit structure:\nFirst line\nBlank line\nRest of the text"
-  },
-  {
-    "objectID": "week10/index.html#git-tags",
-    "href": "week10/index.html#git-tags",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Git tags",
-    "text": "Git tags\ntags are custom labels or references that point to specific points in your git history\nGenerlaly used to capture a specific point in the repo history, like a release, or a report milestone.\n\n\n\n\n\n\nTip\n\n\nYou can think of a tag like a branch that doesn’t change\n\n\n\nUnlike branches, tags don’t have any further history of commits.\nGreat tutorial on tags here"
-  },
-  {
-    "objectID": "week10/index.html#git-tags-example",
-    "href": "week10/index.html#git-tags-example",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Git tags example",
-    "text": "Git tags example"
-  },
-  {
-    "objectID": "week10/index.html#types-of-tags",
-    "href": "week10/index.html#types-of-tags",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Types of tags",
-    "text": "Types of tags\nThere are two types of tags: lightweight and annotated. The difference is the metadata they come with.\nBest practice is lightweight tags for personal use, and annotated tags as marks for version releases\nAnnotated tags stores extra metadata like the tagger name, email and date\nLightweight tags are only a pointer to a commit."
-  },
-  {
-    "objectID": "week10/index.html#creating-and-sharing-tags",
-    "href": "week10/index.html#creating-and-sharing-tags",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Creating and sharing tags",
-    "text": "Creating and sharing tags\nTo create an annotated tag:\ngit tag -a v 1.0\nor\ngit tag -a v1.0 SHA1\nThis will create a new annotated tag with label v1.0. The command will open your text editor for further metadata."
-  },
-  {
-    "objectID": "week10/index.html#annotated-tag-example",
-    "href": "week10/index.html#annotated-tag-example",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Annotated tag example",
-    "text": "Annotated tag example"
-  },
-  {
-    "objectID": "week10/index.html#lightweight-tags",
-    "href": "week10/index.html#lightweight-tags",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Lightweight tags",
-    "text": "Lightweight tags\ngit tag v1.0 will create a lightweight tag\n\nCan you spot the difference?"
-  },
-  {
-    "objectID": "week10/index.html#listing-tags",
-    "href": "week10/index.html#listing-tags",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Listing tags",
-    "text": "Listing tags\ngit tag\n\ngit tag -n will also show us the associated message, or you can do git show tagname"
-  },
-  {
-    "objectID": "week10/index.html#tagging-old-commits",
-    "href": "week10/index.html#tagging-old-commits",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Tagging old commits",
-    "text": "Tagging old commits\nBy default, git tag creates a tag on HEAD\nIf you want to tag an old commit:\ngit log --oneline\ngit tag -a v1.2 15027957951b64cf874c3557a0f"
-  },
-  {
-    "objectID": "week10/index.html#sharing-tags",
-    "href": "week10/index.html#sharing-tags",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Sharing tags",
-    "text": "Sharing tags\nSharing tags is similar to pushing branches.\nBy default, git push does not push tags\ngit push origin tagname will push the tag."
-  },
-  {
-    "objectID": "week10/index.html#viewing-your-tags-on-github",
-    "href": "week10/index.html#viewing-your-tags-on-github",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Viewing your tags on GitHub",
-    "text": "Viewing your tags on GitHub"
-  },
-  {
-    "objectID": "week10/index.html#viewing-your-tags-on-github-1",
-    "href": "week10/index.html#viewing-your-tags-on-github-1",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Viewing your tags on GitHub",
-    "text": "Viewing your tags on GitHub"
-  },
-  {
-    "objectID": "week10/index.html#checking-tags",
-    "href": "week10/index.html#checking-tags",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Checking tags",
-    "text": "Checking tags\nYou can check out tags: git checkout v1.0\nThis will put you in a detached HEAD state, so commits won’t be recorded\n\nUnless??"
-  },
-  {
-    "objectID": "week10/index.html#deleting-a-tag",
-    "href": "week10/index.html#deleting-a-tag",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Deleting a tag",
-    "text": "Deleting a tag\n\ngit tag: Lists tags\ngit tag -d v1: Deletes tag v1\ngit push origin --delete v1: Deletes it from the remote"
-  },
-  {
-    "objectID": "week10/index.html#why-use-tags",
-    "href": "week10/index.html#why-use-tags",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Why use tags?",
-    "text": "Why use tags?\nWe could just use a branch (that never gets merged) instead of a tag.\nFor storing points in history, this is fine (although not the intention of a branch)\nA branch is supposed to be a “variation” on the main repository, not a point-in-time record\nTags are designed to fill that void."
-  },
-  {
-    "objectID": "week10/index.html#github-issues-1",
-    "href": "week10/index.html#github-issues-1",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "GitHub Issues",
-    "text": "GitHub Issues\nYou can create a GitHub Issue on the web:"
-  },
-  {
-    "objectID": "week10/index.html#github-issues-2",
-    "href": "week10/index.html#github-issues-2",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "GitHub Issues",
-    "text": "GitHub Issues\nYour collaborators can see the issue:"
-  },
-  {
-    "objectID": "week10/index.html#more-on-issues",
-    "href": "week10/index.html#more-on-issues",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "More on issues",
-    "text": "More on issues\n\nMore info about issues here"
-  },
-  {
-    "objectID": "week10/index.html#week-9-lesson",
-    "href": "week10/index.html#week-9-lesson",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Week 9 Lesson",
-    "text": "Week 9 Lesson\n\n\n\n\n\n\nImportant\n\n\n\nLearn how to add references and bibliography\nDealing with large files\nTags\nGitHub issues"
+    "section": "Further reading",
+    "text": "Further reading\n\ntargets overview\ntargets user manual walkthrough\ntar_quarto() reference\nrenv documentation"
   },
   {
     "objectID": "week1/workshop/index.html",
@@ -6620,61 +6809,5 @@
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "",
     "text": "What is the hash and commit message of the first bad commit?\nWhich file changed in that commit?\nWhat behaviour was the commit trying to add?\nWhat mistake caused the unexpected pricing behaviour?\nWhat extra test would have caught this bug earlier?"
-  },
-  {
-    "objectID": "student-record/BhaviSinghC.html",
-    "href": "student-record/BhaviSinghC.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, this is a practice for Tutorial Week 5."
-  },
-  {
-    "objectID": "student-record/Caoyu Shao.html",
-    "href": "student-record/Caoyu Shao.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m Michael. I’m the Chief Examiner of the unit in 2025! Hi,I’m samuel shao. I am the student."
-  },
-  {
-    "objectID": "student-record/MikeLydeamore.html",
-    "href": "student-record/MikeLydeamore.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m Michael. I’m the Chief Examiner of the unit in 2025! Hi,I’m samuel shao. I am the student."
-  },
-  {
-    "objectID": "student-record/Nutchanok.html",
-    "href": "student-record/Nutchanok.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "G’day"
-  },
-  {
-    "objectID": "student-record/SiaChawla.html",
-    "href": "student-record/SiaChawla.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m Sia Chawla on GitHub! Here’s my contribution to the rcp project."
-  },
-  {
-    "objectID": "student-record/TingTing.html",
-    "href": "student-record/TingTing.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m TingTing on GitHub! Here’s my contribution to the rcp project."
-  },
-  {
-    "objectID": "student-record/mozuqi25.html",
-    "href": "student-record/mozuqi25.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m M Zulkifli on GitHub!\nHere’s my contribution to the CRP project."
-  },
-  {
-    "objectID": "student-record/student-record-ZuxiLu.html",
-    "href": "student-record/student-record-ZuxiLu.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Hi, I’m ZuxiLu on GitHub! Here’s my contribution to the rcp project."
   }
 ]
