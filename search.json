@@ -4263,195 +4263,6 @@
     "text": "Week 1 Lesson\n\n\n\n\n\n\nSummary\n\n\n\nWhat are reproducible practices?\nWhat tools are available to us for reproducibility?\nWhen should we consider reproducible practices?\n\n\n\n\n\n\n\n\n\n\nResources\n\n\n\nLearning R: https://startr.numbat.space\ngit manual"
   },
   {
-    "objectID": "assignments/assignment-oral.html",
-    "href": "assignments/assignment-oral.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Demonstrate an understanding of git workflows\nCommunicate technical ideas clearly and effectively\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
-  },
-  {
-    "objectID": "assignments/assignment-oral.html#objectives",
-    "href": "assignments/assignment-oral.html#objectives",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Demonstrate an understanding of git workflows\nCommunicate technical ideas clearly and effectively\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
-  },
-  {
-    "objectID": "assignments/assignment-oral.html#instructions",
-    "href": "assignments/assignment-oral.html#instructions",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Instructions",
-    "text": "Instructions\nCreate a 10 minute maximum video that answers the following questions:\n\n\nWhat happens when two people edit the same file?\nHow does git handle that, and what do you need to do?\nHow does git help you recover from mistakes?\nExplain how you would undo a bad commit, and how that might differ depending on the situation.\n\nThroughout the video, you should share/record your screen and have you camera visible. You are welcome to use the screen for demonstrating the concepts you are explaining.\n\nYour goal is not just to show what to do, but to explain why you’re doing it. For example:\n\n“We revert this commit instead of resetting because the commit has already been pushed and we don’t want to rewrite public history.”\n\n\n\n\n\n\n\n\nImportant\n\n\n\nYou cannot speed up your recording — it must be delivered in real time to ensure you’re within the time limit."
-  },
-  {
-    "objectID": "assignments/assignment-oral.html#submission",
-    "href": "assignments/assignment-oral.html#submission",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Submission",
-    "text": "Submission\nPlease upload the completed video file directly to Moodle.\n\nTips\n\nYou may pre-prepare materials (e.g., set up Git repositories or branches in advance).\nSpeak as if you’re explaining these concepts to a colleague who’s familiar with Git but not very experienced.\nAim for clarity and detail, not just correctness.\nVisuals and terminal demos are recommended, but are not required — clarity of explanation matters most."
-  },
-  {
-    "objectID": "assignments/assignment-oral.html#marking-rubric",
-    "href": "assignments/assignment-oral.html#marking-rubric",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Marking rubric",
-    "text": "Marking rubric\n\nTechnical content of each question: 5 points each (total 10 points)\nExplaining “why”: 3 points\nOveral clarity and communication: 2 points\n\n1 mark is deducted for every 30 seconds over the 10 minute time limit (maximum 3 mark deduction). A 10 minute 12 second video thus has a maximum of 14 marks.\nTotal: 15 marks"
-  },
-  {
-    "objectID": "assignments/assignment-2.html",
-    "href": "assignments/assignment-2.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Work on a reproducible workbook\nPractice markdown syntax\nDemonstrate that you have a strong knowledge of git commands and usage\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
-  },
-  {
-    "objectID": "assignments/assignment-2.html#objectives",
-    "href": "assignments/assignment-2.html#objectives",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Work on a reproducible workbook\nPractice markdown syntax\nDemonstrate that you have a strong knowledge of git commands and usage\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
-  },
-  {
-    "objectID": "assignments/assignment-2.html#the-guide",
-    "href": "assignments/assignment-2.html#the-guide",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The guide",
-    "text": "The guide\nCreate a written guide which demonstrates your knowledge on git, GitHub, and the command line interface.\nThe guide should demonstrate your ability to use these tools efficiently for version control and collaboration. Make sure you explain what you are doing in each step and why.\nPlease make sure you include all of the steps described below.\nYou only need to use commands we have learned in class.\n\nCreate a new RStudio Project. In this folder, create a simple qmd file called example.qmd that can be knitted into a HTML file. Show the result of the knitted file.\nFrom the command line interface, initialise this folder as a git repository and push it to a GitHub repository.\nCreate a new branch called testbranch. Modify the file example.qmd and add the changes to both the local and remote repositories.\nCreate a folder called data, and add the data from Assignment 1 to that folder. Amend the previous commit to include the data folder. Push this amended commit to the remote.\nSwitch back to the main branch and modify example.qmd in a different way such that it will conflict with testbranch. Commit and push these changes.\nMerge the changes in testbranch onto main. Show the conflict and fixing the merge conflict. Push the changes to GitHub, showing the status and changes in GitHub.\nTag this commit v1.0 on main using an annotated tag.\nDelete branch testbranch locally and on the remote.\nShow the commit log in condensed form in the terminal.\nOn main, create a new section in example.qmd that includes an easy to make plot. Commit the changes, and demonstrate using the command line interface how to undo the commit without losing your local changes."
-  },
-  {
-    "objectID": "assignments/assignment-2.html#marking-rubric",
-    "href": "assignments/assignment-2.html#marking-rubric",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Marking Rubric",
-    "text": "Marking Rubric\nPlease upload the completed PDF guide to Moodle for marking\n\nEach of the instructions will be assessed as to whether they are successfully completed or not (2 marks each, total 20 points)\nClear commit messages used in the guide where appropriate (1 point)\nGuide has good flow and is clear (2 points)\nIssues with language and grammar: Maximum deduction of 3 points"
-  },
-  {
-    "objectID": "assignments/assignment-1.html",
-    "href": "assignments/assignment-1.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Working on a reproducible project\nProduce a html report using an qmd file and explore YAML themes to define your prefer template\nPractice markdown syntax\nPractice R coding\nExplore R chunk options to customize your report template\nCreate html tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to clone a GitHub repository locally and synchronize the changes between your local and remote repositories.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment.\nThe final PDF report can not have more than 5 pages (not including the appendix)."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#objectives",
-    "href": "assignments/assignment-1.html#objectives",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Working on a reproducible project\nProduce a html report using an qmd file and explore YAML themes to define your prefer template\nPractice markdown syntax\nPractice R coding\nExplore R chunk options to customize your report template\nCreate html tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to clone a GitHub repository locally and synchronize the changes between your local and remote repositories.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment.\nThe final PDF report can not have more than 5 pages (not including the appendix)."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#background",
-    "href": "assignments/assignment-1.html#background",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Background",
-    "text": "Background\nYou are the Head of Marketing for an online retailer. Over the last quarter we ran a personalised marketing campaign that varied how much we spent contacting individual customers (ads, emails, coupons). I want you to treat the data as the canonical record of that campaign and answer one question: did higher marketing spend per customer lead to higher purchase amounts?"
-  },
-  {
-    "objectID": "assignments/assignment-1.html#part-a-setting-up-version-control",
-    "href": "assignments/assignment-1.html#part-a-setting-up-version-control",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part A: Setting up version control",
-    "text": "Part A: Setting up version control\nIn this assignment, you need to create a project that will be able to produce a reproducible HTML report. For the report, you will each have your own unique dataset to work on. Your dataset will be in the data/ folder on the GitHub repository.\nYou can find your dataset on Moodle, in the Assignment 1 section, under Feedback.\nYour reproducible report should be created using a Quarto file and needs to be rendered into a HTML and a PDF file. The report must render without any errors.\nYou will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom here. Make sure to choose your Monash username from the list so we can find your assignment.\n\nRepository setup (6 points)\nClone the repository created by GitHub classroom onto your computer as we have done in lectures and tutorials (1 point).\nOnce you have cloned the repository to your computer, make sure to add all the files in the upcoming section, and use relevant, clear commit messages (5 points).\n\n\n\n\n\n\nCaution\n\n\n\nThe GitHub repo will appear in the GitHub classroom space. Do not work in or create a different repository for this assignment."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#part-b-creating-a-reproducible-report",
-    "href": "assignments/assignment-1.html#part-b-creating-a-reproducible-report",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part B: Creating a reproducible report",
-    "text": "Part B: Creating a reproducible report\nThere is some pre-made structure in the repository. Open the folder in Positron as we have done in class to work on.\n\nR code chunk for loading libraries (3 points)\nCreate a new Quarto file. This file is where we will create the report for the rest of this assignment, so make sure to give it a sensible name (1 point).\nLoad all the libraries you will use in the report in an R chunk located at the beginning of your Quarto file. Make sure you set the options so that you do not display any R code, messages, or warnings in the rendered HTML document (for this chunk) (1 point).\nSet the YAML so that the report will be output as a HTML and PDF file.\n\n\nIntroduction section (2 points)\nUsing markdown, write a 4 sentence maximum motivation of what you are going to research and why. Make sure it is relevant to your dataset.\n\n\nResearch Question section (2 points)\nUsing markdown, discuss in 3 sentences maximum, the specific question that you are going to investigate or answer in this report using your selected data.\n\n\nDataset Introduction section (3 points)\nIn this section, briefly describe your data (i.e. what the data is measuring or recording) in five sentences maximum using markdown.\nTo do this, you will need to clean your dataset. Include a description of this cleaning process (not the code) in the report. The code to clean the dataset must be included in the Quarto file, but not in the report.\n\n\nDataset Description subsection (5 points)\nCreate a subsection that will report details about your data. You must include the size of the dataset such as the number of observations, variables and variable types. You must include a sentence that includes inline R code describing the number of variables and observations in your dataset.\nCreate two other summaries of your data, one as a plot and one as a table. Examples include counts of certain variables in groups, or summary statistics of numeric variables. Make sure these summaries are providing a broader context to the report and are not just arbitrary commentaries."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#results-section-5-points",
-    "href": "assignments/assignment-1.html#results-section-5-points",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Results section (5 points)",
-    "text": "Results section (5 points)\nUsing visualisations of the data, discuss the answer to your research questions. You must:\n\nCreate 2 figures maximum of your data that will help you answer your research question. Each figure must have a caption using the options inside the R code chunk. Create the figures using the ggplot2 package.\nThe figures must have captions, and must be referred to in the text of the results section.\n\nAs well as the figures, you must also include a paragraph describing these results and how they link back to your research question. Remember, you can use inline code to extract certain numbers automatically."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#marking-rubric",
-    "href": "assignments/assignment-1.html#marking-rubric",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Marking Rubric",
-    "text": "Marking Rubric\nIn addition to the points as described above, you will be graded on your:\n\nIssues with spelling and grammar (up to -3 points).\nR code style (i.e. spacing, variable names) (2 points)\nReport quality: Sections in the report are connected and aligned with the research question in a coherent way (2 points).\n\nMaximum grade: 30 points."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#the-usage-of-ai",
-    "href": "assignments/assignment-1.html#the-usage-of-ai",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The usage of AI",
-    "text": "The usage of AI\nYou may use Generative AI (such as ChatGPT) to correct your English or to help with your R code (for example to find bugs or ask for enhancements to your existing code). However, you must declare your use of AI in a separate qmd file called appendix.qmd, and display screenshots of your AI queries and interactions related to this assignment. The appendix does not count towards your page limit.\nMonash University supports the responsible and ethical use of generative AI. For more info please refer to Monash Policy and practice guidance around acceptable and responsible use of AI technologies."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#assignment-submission",
-    "href": "assignments/assignment-1.html#assignment-submission",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Assignment Submission",
-    "text": "Assignment Submission\nThe report must be rendered to HTML and PDF. The PDF cannot have a length of more than 5 pages (excluding the appendix).\nYou do not need to upload anything to Moodle. All marking will occur directly from your GitHub repositories."
-  },
-  {
-    "objectID": "assignments/assignment-1.html#plagiarism",
-    "href": "assignments/assignment-1.html#plagiarism",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Plagiarism",
-    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
-  },
-  {
-    "objectID": "assignments/assignment-3.html",
-    "href": "assignments/assignment-3.html",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Working on a reproducible project\nProduce a pdf report using the template discussed in Week 7 or Week 8.\nPractice markdown syntax\nPractice R coding\nUse R chunk options to customize your report template\nCreate tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.\nShow that you can create and merge branches as well as resolve conflicts.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual and group assignment.\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.\nYou cannot use a dataset that has been used for another assignment."
-  },
-  {
-    "objectID": "assignments/assignment-3.html#objectives",
-    "href": "assignments/assignment-3.html#objectives",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "",
-    "text": "Working on a reproducible project\nProduce a pdf report using the template discussed in Week 7 or Week 8.\nPractice markdown syntax\nPractice R coding\nUse R chunk options to customize your report template\nCreate tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.\nShow that you can create and merge branches as well as resolve conflicts.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual and group assignment.\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.\nYou cannot use a dataset that has been used for another assignment."
-  },
-  {
-    "objectID": "assignments/assignment-3.html#part-a",
-    "href": "assignments/assignment-3.html#part-a",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part A",
-    "text": "Part A\n\n\n\n\n\n\nImportant\n\n\n\nJoin the GitHub Classroom for this assignment here.\nYou can choose your own group name, but make sure to submit it on the Google Form here\n\n\nAs a group, you need to agree on a topic, and select a dataset or several datasets for the assignment. You should decide how to divide up the work between you.\nYou should create branches for various sections of the report (for example, Executive Summary, Methods, Figures). Each of you can work on more than one section.\n\nTitle and authors\nTable of contents: Defining using adequate YAML syntax\nExecutive summary: Maximum of 4 sentences\nIntroduction: Maximum 10 sentences\nThe body of the report should contain the following sections:\n\nMethodology: Maximum 300 words\n\nShould include a figure and a table and those must be referenced in the text and have adequate captions\n\nResults: Maximum 200 words. Should include either a figure or a table.\nDiscussion, conclusion and recommendations\nReference section: Include at least 1 reference."
-  },
-  {
-    "objectID": "assignments/assignment-3.html#part-b",
-    "href": "assignments/assignment-3.html#part-b",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Part B",
-    "text": "Part B\nAs a team, you need to:\n\nMerge the branches: Start by merging all the branches into the main branch. You will need to get organized and do this one by one so that you can resolve the conflicts that will appear.\nResolve conflicts: Since you will be working on the same sections, conflicts may arise when the same lines of code are modified in different branches. To resolve conflicts, edit the affected files and choose which version to keep. Once you have resolved the conflicts, commit the changes.\nMake sure that the report renders into a pdf without errors each time you do a merge. If errors arise please solve them.\nReview and Revise: Carefully review the final report to ensure that it meets all the requirements of a cohesive report and is free of errors. Make any necessary revisions and edits before submitting the report. For this, you will all probably need to work on the main branch. Please ensure that any changes made are in terms of the requirements and in a coordinated fashion to avoid any problems.\n\nThe final business report must look professional, coherent and connected.\nStudents who do not participate in Part B will receive a grade of 0 for the assignment.\nTeams will not be penalised if individual students do not contribute to to the work on their respective branches."
-  },
-  {
-    "objectID": "assignments/assignment-3.html#assignment-submission",
-    "href": "assignments/assignment-3.html#assignment-submission",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Assignment Submission",
-    "text": "Assignment Submission\nThe report must be rendered to PDF. Code outputs do not need to be visible - you are creating a clean business report, so only include them in they are adding to your narrative.\n\n\n\n\n\n\nImportant\n\n\n\nThe printed final PDF report cannot exceed 16 pages for teams of three or 20 pages for teams of four (not including appendix pages)"
-  },
-  {
-    "objectID": "assignments/assignment-3.html#marking-rubric",
-    "href": "assignments/assignment-3.html#marking-rubric",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Marking Rubric",
-    "text": "Marking Rubric\nIn addition to the points for each section as described above, you will be graded on your:\n\nPart A:\n\nReport template (2 points). The default Quarto template will be granted 1 point. Remember, styling that takes away from the report is not beneficial.\nIssues with spelling and grammar (up to -3pts)\nMessages in commits are clear and informative (2 points)\n\n\n\nPart B:\n\nMethodology no more than 300 words (1 points)\nMethodology includes a figure and table, both referenced in text, with captions (2 points)\nResults no more than 200 words (1 points)\nResults contains figure and/or table, referenced in text, with caption (2 points)\nReport quality: Sections in the report are connected and aligned with the research question in a coherent way (2 points).\nReferences included (1 points)\nBranches successfully merged (3 points)\nConflicts resolved (2 points)\nReport is reproducible (2 points)\nFormat followed (3 points)\nTable of contents using YAML (1 points)\nR code style (2 points)\nReproducible tooling (2 points):\n\ngitignore\nissues\nrenv\nOr other tools\n\n\n\n\nPart C:\n\nPresentation is reproducible (2 points)\nStyling is sensible and does not detract from the presentation (1 points)\nPresentation tells a clear story (2 points)\nPresentation follows the required format (2)\n\nMaximum grade: 35 points."
-  },
-  {
-    "objectID": "assignments/assignment-3.html#assignment-submission-1",
-    "href": "assignments/assignment-3.html#assignment-submission-1",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Assignment Submission",
-    "text": "Assignment Submission\nThe presentations will take place in your tutorials in Week 12.\nMarking for Parts A & B will take place directly on GitHub classroom."
-  },
-  {
-    "objectID": "assignments/assignment-3.html#plagiarism",
-    "href": "assignments/assignment-3.html#plagiarism",
-    "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Plagiarism",
-    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
-  },
-  {
     "objectID": "assignments/mst-practice-solutions.html",
     "href": "assignments/mst-practice-solutions.html",
     "title": "ETC5513: Practice Test solutions",
@@ -4562,6 +4373,195 @@
     "title": "ETC5513: Practice Test solutions",
     "section": "Stash workflow scenario",
     "text": "Stash workflow scenario\nYou are halfway through edits on report.qmd and analysis.R, but must urgently switch to another branch to fix a bug.\nWrite a safe stash-based command sequence to:\n\nSave your current work with a message,\nSwitch to main,\nReturn to your feature branch later,\nRe-apply your saved work.\n\nAdd one short line describing the difference between using apply and pop at the final step.\ngit stash -m \"WIP: edits to report and analysis\"\ngit switch main\n...do work...\ngit switch feature-branch\ngit stash pop\nThe difference between apply and pop is that pop removes the stash entry after applying it, while apply leaves the stash entry in place so you can apply it again later if needed.\nMarking scheme:\n\n1 mark for stashing with a message\n1 mark for switching to main and switching back to the feature-branch\n1 mark for using git stash pop to re-apply the saved work. Note you can use pop or apply for the mark."
+  },
+  {
+    "objectID": "assignments/assignment-3.html",
+    "href": "assignments/assignment-3.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Working on a reproducible project\nProduce a pdf report using the template discussed in Week 7 or Week 8.\nPractice markdown syntax\nPractice R coding\nUse R chunk options to customize your report template\nCreate tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.\nShow that you can create and merge branches as well as resolve conflicts.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual and group assignment.\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.\nYou cannot use a dataset that has been used for another assignment."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#objectives",
+    "href": "assignments/assignment-3.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Working on a reproducible project\nProduce a pdf report using the template discussed in Week 7 or Week 8.\nPractice markdown syntax\nPractice R coding\nUse R chunk options to customize your report template\nCreate tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to work in groups to clone a GitHub repository locally and synchronize the changes between your local and remote repositories while using individual branches.\nShow that you can create and merge branches as well as resolve conflicts.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual and group assignment.\nThe printed final PDF report cannot exceed 16 pages for teams of four or 20 pages for teams of five (not including appendix pages). Additionally, you cannot use a dataset that has been previously used for other assignments or in other units this year or previous years.\nYou cannot use a dataset that has been used for another assignment."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#part-a",
+    "href": "assignments/assignment-3.html#part-a",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part A",
+    "text": "Part A\n\n\n\n\n\n\nImportant\n\n\n\nJoin the GitHub Classroom for this assignment here.\nYou can choose your own group name, but make sure to submit it on the Google Form here\n\n\nAs a group, you need to agree on a topic, and select a dataset or several datasets for the assignment. You should decide how to divide up the work between you.\nYou should create branches for various sections of the report (for example, Executive Summary, Methods, Figures). Each of you can work on more than one section.\n\nTitle and authors\nTable of contents: Defining using adequate YAML syntax\nExecutive summary: Maximum of 4 sentences\nIntroduction: Maximum 10 sentences\nThe body of the report should contain the following sections:\n\nMethodology: Maximum 300 words\n\nShould include a figure and a table and those must be referenced in the text and have adequate captions\n\nResults: Maximum 200 words. Should include either a figure or a table.\nDiscussion, conclusion and recommendations\nReference section: Include at least 1 reference."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#part-b",
+    "href": "assignments/assignment-3.html#part-b",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part B",
+    "text": "Part B\nAs a team, you need to:\n\nMerge the branches: Start by merging all the branches into the main branch. You will need to get organized and do this one by one so that you can resolve the conflicts that will appear.\nResolve conflicts: Since you will be working on the same sections, conflicts may arise when the same lines of code are modified in different branches. To resolve conflicts, edit the affected files and choose which version to keep. Once you have resolved the conflicts, commit the changes.\nMake sure that the report renders into a pdf without errors each time you do a merge. If errors arise please solve them.\nReview and Revise: Carefully review the final report to ensure that it meets all the requirements of a cohesive report and is free of errors. Make any necessary revisions and edits before submitting the report. For this, you will all probably need to work on the main branch. Please ensure that any changes made are in terms of the requirements and in a coordinated fashion to avoid any problems.\n\nThe final business report must look professional, coherent and connected.\nStudents who do not participate in Part B will receive a grade of 0 for the assignment.\nTeams will not be penalised if individual students do not contribute to to the work on their respective branches."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#assignment-submission",
+    "href": "assignments/assignment-3.html#assignment-submission",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Assignment Submission",
+    "text": "Assignment Submission\nThe report must be rendered to PDF. Code outputs do not need to be visible - you are creating a clean business report, so only include them in they are adding to your narrative.\n\n\n\n\n\n\nImportant\n\n\n\nThe printed final PDF report cannot exceed 16 pages for teams of three or 20 pages for teams of four (not including appendix pages)"
+  },
+  {
+    "objectID": "assignments/assignment-3.html#marking-rubric",
+    "href": "assignments/assignment-3.html#marking-rubric",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Marking Rubric",
+    "text": "Marking Rubric\nIn addition to the points for each section as described above, you will be graded on your:\n\nPart A:\n\nReport template (2 points). The default Quarto template will be granted 1 point. Remember, styling that takes away from the report is not beneficial.\nIssues with spelling and grammar (up to -3pts)\nMessages in commits are clear and informative (2 points)\n\n\n\nPart B:\n\nMethodology no more than 300 words (1 points)\nMethodology includes a figure and table, both referenced in text, with captions (2 points)\nResults no more than 200 words (1 points)\nResults contains figure and/or table, referenced in text, with caption (2 points)\nReport quality: Sections in the report are connected and aligned with the research question in a coherent way (2 points).\nReferences included (1 points)\nBranches successfully merged (3 points)\nConflicts resolved (2 points)\nReport is reproducible (2 points)\nFormat followed (3 points)\nTable of contents using YAML (1 points)\nR code style (2 points)\nReproducible tooling (2 points):\n\ngitignore\nissues\nrenv\nOr other tools\n\n\n\n\nPart C:\n\nPresentation is reproducible (2 points)\nStyling is sensible and does not detract from the presentation (1 points)\nPresentation tells a clear story (2 points)\nPresentation follows the required format (2)\n\nMaximum grade: 35 points."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#assignment-submission-1",
+    "href": "assignments/assignment-3.html#assignment-submission-1",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Assignment Submission",
+    "text": "Assignment Submission\nMarking for Parts A & B will take place directly on GitHub classroom.\nPlease upload the recording for Part C to Moodle."
+  },
+  {
+    "objectID": "assignments/assignment-3.html#plagiarism",
+    "href": "assignments/assignment-3.html#plagiarism",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Plagiarism",
+    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
+  },
+  {
+    "objectID": "assignments/assignment-1.html",
+    "href": "assignments/assignment-1.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Working on a reproducible project\nProduce a html report using an qmd file and explore YAML themes to define your prefer template\nPractice markdown syntax\nPractice R coding\nExplore R chunk options to customize your report template\nCreate html tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to clone a GitHub repository locally and synchronize the changes between your local and remote repositories.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment.\nThe final PDF report can not have more than 5 pages (not including the appendix)."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#objectives",
+    "href": "assignments/assignment-1.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Working on a reproducible project\nProduce a html report using an qmd file and explore YAML themes to define your prefer template\nPractice markdown syntax\nPractice R coding\nExplore R chunk options to customize your report template\nCreate html tables, add table captions and refer to them in the report text as described in Week 4\nCreate simple figures to visualize the data, add figure captions and refer to the figures in the report text as you learned in Week 4\nDemonstrate that you are able to clone a GitHub repository locally and synchronize the changes between your local and remote repositories.\nShow that you can create meaningful Git commits so that the changes and the history of the project can be recorded and tracked.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment.\nThe final PDF report can not have more than 5 pages (not including the appendix)."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#background",
+    "href": "assignments/assignment-1.html#background",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Background",
+    "text": "Background\nYou are the Head of Marketing for an online retailer. Over the last quarter we ran a personalised marketing campaign that varied how much we spent contacting individual customers (ads, emails, coupons). I want you to treat the data as the canonical record of that campaign and answer one question: did higher marketing spend per customer lead to higher purchase amounts?"
+  },
+  {
+    "objectID": "assignments/assignment-1.html#part-a-setting-up-version-control",
+    "href": "assignments/assignment-1.html#part-a-setting-up-version-control",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part A: Setting up version control",
+    "text": "Part A: Setting up version control\nIn this assignment, you need to create a project that will be able to produce a reproducible HTML report. For the report, you will each have your own unique dataset to work on. Your dataset will be in the data/ folder on the GitHub repository.\nYou can find your dataset on Moodle, in the Assignment 1 section, under Feedback.\nYour reproducible report should be created using a Quarto file and needs to be rendered into a HTML and a PDF file. The report must render without any errors.\nYou will be working with a GitHub repository for this assignment. We will use GitHub Classroom, where I have set up some of the structure for you. Please join the classroom here. Make sure to choose your Monash username from the list so we can find your assignment.\n\nRepository setup (6 points)\nClone the repository created by GitHub classroom onto your computer as we have done in lectures and tutorials (1 point).\nOnce you have cloned the repository to your computer, make sure to add all the files in the upcoming section, and use relevant, clear commit messages (5 points).\n\n\n\n\n\n\nCaution\n\n\n\nThe GitHub repo will appear in the GitHub classroom space. Do not work in or create a different repository for this assignment."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#part-b-creating-a-reproducible-report",
+    "href": "assignments/assignment-1.html#part-b-creating-a-reproducible-report",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Part B: Creating a reproducible report",
+    "text": "Part B: Creating a reproducible report\nThere is some pre-made structure in the repository. Open the folder in Positron as we have done in class to work on.\n\nR code chunk for loading libraries (3 points)\nCreate a new Quarto file. This file is where we will create the report for the rest of this assignment, so make sure to give it a sensible name (1 point).\nLoad all the libraries you will use in the report in an R chunk located at the beginning of your Quarto file. Make sure you set the options so that you do not display any R code, messages, or warnings in the rendered HTML document (for this chunk) (1 point).\nSet the YAML so that the report will be output as a HTML and PDF file.\n\n\nIntroduction section (2 points)\nUsing markdown, write a 4 sentence maximum motivation of what you are going to research and why. Make sure it is relevant to your dataset.\n\n\nResearch Question section (2 points)\nUsing markdown, discuss in 3 sentences maximum, the specific question that you are going to investigate or answer in this report using your selected data.\n\n\nDataset Introduction section (3 points)\nIn this section, briefly describe your data (i.e. what the data is measuring or recording) in five sentences maximum using markdown.\nTo do this, you will need to clean your dataset. Include a description of this cleaning process (not the code) in the report. The code to clean the dataset must be included in the Quarto file, but not in the report.\n\n\nDataset Description subsection (5 points)\nCreate a subsection that will report details about your data. You must include the size of the dataset such as the number of observations, variables and variable types. You must include a sentence that includes inline R code describing the number of variables and observations in your dataset.\nCreate two other summaries of your data, one as a plot and one as a table. Examples include counts of certain variables in groups, or summary statistics of numeric variables. Make sure these summaries are providing a broader context to the report and are not just arbitrary commentaries."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#results-section-5-points",
+    "href": "assignments/assignment-1.html#results-section-5-points",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Results section (5 points)",
+    "text": "Results section (5 points)\nUsing visualisations of the data, discuss the answer to your research questions. You must:\n\nCreate 2 figures maximum of your data that will help you answer your research question. Each figure must have a caption using the options inside the R code chunk. Create the figures using the ggplot2 package.\nThe figures must have captions, and must be referred to in the text of the results section.\n\nAs well as the figures, you must also include a paragraph describing these results and how they link back to your research question. Remember, you can use inline code to extract certain numbers automatically."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#marking-rubric",
+    "href": "assignments/assignment-1.html#marking-rubric",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Marking Rubric",
+    "text": "Marking Rubric\nIn addition to the points as described above, you will be graded on your:\n\nIssues with spelling and grammar (up to -3 points).\nR code style (i.e. spacing, variable names) (2 points)\nReport quality: Sections in the report are connected and aligned with the research question in a coherent way (2 points).\n\nMaximum grade: 30 points."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#the-usage-of-ai",
+    "href": "assignments/assignment-1.html#the-usage-of-ai",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The usage of AI",
+    "text": "The usage of AI\nYou may use Generative AI (such as ChatGPT) to correct your English or to help with your R code (for example to find bugs or ask for enhancements to your existing code). However, you must declare your use of AI in a separate qmd file called appendix.qmd, and display screenshots of your AI queries and interactions related to this assignment. The appendix does not count towards your page limit.\nMonash University supports the responsible and ethical use of generative AI. For more info please refer to Monash Policy and practice guidance around acceptable and responsible use of AI technologies."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#assignment-submission",
+    "href": "assignments/assignment-1.html#assignment-submission",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Assignment Submission",
+    "text": "Assignment Submission\nThe report must be rendered to HTML and PDF. The PDF cannot have a length of more than 5 pages (excluding the appendix).\nYou do not need to upload anything to Moodle. All marking will occur directly from your GitHub repositories."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#plagiarism",
+    "href": "assignments/assignment-1.html#plagiarism",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Plagiarism",
+    "text": "Plagiarism\nMonash University is committed to honesty and academic integrity. There are serious consequences for plagiarism and collusion. If plagiarism and/or collusion is detected further actions will be taken according to Monash University policy and procedures. More info here:\nhttps://www.monash.edu/students/admin/policies/academic-integrity\nYou cannot re-use assignments that have been submitted or used in other units."
+  },
+  {
+    "objectID": "assignments/assignment-2.html",
+    "href": "assignments/assignment-2.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Work on a reproducible workbook\nPractice markdown syntax\nDemonstrate that you have a strong knowledge of git commands and usage\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#objectives",
+    "href": "assignments/assignment-2.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Work on a reproducible workbook\nPractice markdown syntax\nDemonstrate that you have a strong knowledge of git commands and usage\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#the-guide",
+    "href": "assignments/assignment-2.html#the-guide",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The guide",
+    "text": "The guide\nCreate a written guide which demonstrates your knowledge on git, GitHub, and the command line interface.\nThe guide should demonstrate your ability to use these tools efficiently for version control and collaboration. Make sure you explain what you are doing in each step and why.\nPlease make sure you include all of the steps described below.\nYou only need to use commands we have learned in class.\n\nCreate a new RStudio Project. In this folder, create a simple qmd file called example.qmd that can be knitted into a HTML file. Show the result of the knitted file.\nFrom the command line interface, initialise this folder as a git repository and push it to a GitHub repository.\nCreate a new branch called testbranch. Modify the file example.qmd and add the changes to both the local and remote repositories.\nCreate a folder called data, and add the data from Assignment 1 to that folder. Amend the previous commit to include the data folder. Push this amended commit to the remote.\nSwitch back to the main branch and modify example.qmd in a different way such that it will conflict with testbranch. Commit and push these changes.\nMerge the changes in testbranch onto main. Show the conflict and fixing the merge conflict. Push the changes to GitHub, showing the status and changes in GitHub.\nTag this commit v1.0 on main using an annotated tag.\nDelete branch testbranch locally and on the remote.\nShow the commit log in condensed form in the terminal.\nOn main, create a new section in example.qmd that includes an easy to make plot. Commit the changes, and demonstrate using the command line interface how to undo the commit without losing your local changes."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#marking-rubric",
+    "href": "assignments/assignment-2.html#marking-rubric",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Marking Rubric",
+    "text": "Marking Rubric\nPlease upload the completed PDF guide to Moodle for marking\n\nEach of the instructions will be assessed as to whether they are successfully completed or not (2 marks each, total 20 points)\nClear commit messages used in the guide where appropriate (1 point)\nGuide has good flow and is clear (2 points)\nIssues with language and grammar: Maximum deduction of 3 points"
+  },
+  {
+    "objectID": "assignments/assignment-oral.html",
+    "href": "assignments/assignment-oral.html",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Demonstrate an understanding of git workflows\nCommunicate technical ideas clearly and effectively\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
+  },
+  {
+    "objectID": "assignments/assignment-oral.html#objectives",
+    "href": "assignments/assignment-oral.html#objectives",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "",
+    "text": "Demonstrate an understanding of git workflows\nCommunicate technical ideas clearly and effectively\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is an individual assignment."
+  },
+  {
+    "objectID": "assignments/assignment-oral.html#instructions",
+    "href": "assignments/assignment-oral.html#instructions",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Instructions",
+    "text": "Instructions\nCreate a 10 minute maximum video that answers the following questions:\n\n\nWhat happens when two people edit the same file?\nHow does git handle that, and what do you need to do?\nHow does git help you recover from mistakes?\nExplain how you would undo a bad commit, and how that might differ depending on the situation.\n\nThroughout the video, you should share/record your screen and have you camera visible. You are welcome to use the screen for demonstrating the concepts you are explaining.\n\nYour goal is not just to show what to do, but to explain why you’re doing it. For example:\n\n“We revert this commit instead of resetting because the commit has already been pushed and we don’t want to rewrite public history.”\n\n\n\n\n\n\n\n\nImportant\n\n\n\nYou cannot speed up your recording — it must be delivered in real time to ensure you’re within the time limit."
+  },
+  {
+    "objectID": "assignments/assignment-oral.html#submission",
+    "href": "assignments/assignment-oral.html#submission",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Submission",
+    "text": "Submission\nPlease upload the completed video file directly to Moodle.\n\nTips\n\nYou may pre-prepare materials (e.g., set up Git repositories or branches in advance).\nSpeak as if you’re explaining these concepts to a colleague who’s familiar with Git but not very experienced.\nAim for clarity and detail, not just correctness.\nVisuals and terminal demos are recommended, but are not required — clarity of explanation matters most."
+  },
+  {
+    "objectID": "assignments/assignment-oral.html#marking-rubric",
+    "href": "assignments/assignment-oral.html#marking-rubric",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Marking rubric",
+    "text": "Marking rubric\n\nTechnical content of each question: 5 points each (total 10 points)\nExplaining “why”: 3 points\nOveral clarity and communication: 2 points\n\n1 mark is deducted for every 30 seconds over the 10 minute time limit (maximum 3 mark deduction). A 10 minute 12 second video thus has a maximum of 14 marks.\nTotal: 15 marks"
   },
   {
     "objectID": "index.html",
