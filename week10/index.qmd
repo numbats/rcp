@@ -1,15 +1,15 @@
 ---
 pagetitle: "ETC5513: Reproducible and Collaborative Practices"
-subtitle: "Keeping environments separate and reproducible"
+subtitle: "Reproducible analysis pipelines with targets"
 author: "Michael Lydeamore"
 email: "michael.lydeamore@monash.edu"
-date: "Week 11"
+date: "Week 10"
 department: "Department of Econometrics and Business Statistics"
 unit-url: "rcp.numbat.space"
 footer: "ETC5513 Week 10"
-format: 
+format:
   revealjs:
-    logo: images/monash-stacked-blue-rgb-transparent.png
+    logo: ../common_images/monash-stacked-blue-rgb-transparent.png
     slide-number: c
     multiplex: false
     theme: ../assets/monash.scss
@@ -26,7 +26,6 @@ format:
 execute:
   echo: true
 ---
-
 
 ```{r, include = FALSE}
 current_file <- knitr::current_input()
@@ -45,12 +44,9 @@ knitr::opts_chunk$set(
   cache = TRUE,
   cache.path = "cache/"
 )
-
-library(tidyverse)
-library(palmerpenguins)
 ```
 
-## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="../common_images/bg-01.png"}
 
 ### `r rmarkdown::metadata$subtitle`
 
@@ -92,11 +88,14 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ## Recap
 
-* Start learning about LaTeX
-* LaTeX integration in QMD files
-* Understand commits and SHA1 numbers
-* Moving back to past commits
-* Reverting commits
+* Repositories need structure as projects grow
+* Quarto makes reports reproducible
+* `git` records the history of the project
+* `renv` can record package versions for a project
+
+::: {.fragment}
+Today we add the missing piece: a way to run the analysis itself in the right order.
+:::
 
 ## Today's plan {#aim}
 
@@ -104,336 +103,1095 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ## Aim
 
-* Learn how to add references and bibliography
-* Dealing with large files
-* Tags
-* GitHub issues
+* Understand why analysis pipelines are useful
+* Learn the core ideas of the `targets` package
+* Write a simple `_targets.R` file
+* Break a long script into functions and targets
+* Render Quarto reports with `tar_quarto()`
+* See where `renv` fits in
 
 :::
 
-## Parts of a LaTeX file
+# Why Pipelines?
 
-```{tex}
-#| eval: false
-\documentclass{article} % Preamble/header: load packages, set options
-\usepackage{amsmath}
-\author{M. J. Lydeamore}
+## The familiar pattern
 
-\begin{document} % Body starts here, and goes until corresponding 'end'
-
-\section{Introduction}
-
-\end{document} % "After body" but before end
+```r
+# 01_download.R
+# 02_clean.R
+# 03_model.R
+# 04_plots.R
+# 05_report.R
 ```
-
-The `includes-in-*` sections in Quarto go into each of these pieces of the LaTeX code.
-
-## Different ways to include LaTeX {.incremental}
-
-1. Manually typing out the code
-2. Using an input `.tex` file
-3. Customised template file
 
 ::: {.fragment}
-Many templates are available:
-
-[Journal articles](https://quarto.org/docs/journals/)
-[Monash templates](https://robjhyndman.com/hyndsight/quarto_templates.html)
-[Question/Answer templates](https://github.com/ginolhac/unilur)
+This can work well at first.
 :::
 
-# Referencing
-
-There's a system for it, _never_ do it manually!
-
-## The bibliography file
-
-First thing we need is a place to store information about our references.
-
-A standard file format is called the _bibliography database file_ (which ends in `.bib`).
-
-![](images/bib.png){fig-align="center"}
-
-## The bibliography file
-
-* To cite a paper in the text, we use the key from the bib file
-* These files are _plain text_, so you can open them in RStudio or VSCode
-
-::: {.incremental}
-To get bib entries:
-
-* Google Scholar
-* Reference manager such as Zotero or Mendeley
+::: {.fragment}
+But the project gets harder to trust when the order, dependencies, and outputs live mostly in our heads.
 :::
 
-## The bibliography file: Example
+## The real problem
 
+After a few weeks, you may not know:
+
+* Which scripts need to run after a small data change
+* Whether the report uses the newest model
+* Which objects were created manually in the global environment
+* Whether a collaborator ran the same steps in the same order
+* How much expensive work can be skipped
+
+::: {.fragment}
+A reproducible project should be able to explain itself.
+:::
+
+## What a pipeline gives us
+
+A pipeline is a set of named steps with explicit dependencies.
+
+::: {.columns}
+::: {.column width="50%"}
+Before:
+
+```r
+source("01_download.R")
+source("02_clean.R")
+source("03_model.R")
+source("04_plots.R")
+quarto::quarto_render("report.qmd")
 ```
-@Manual{R-base,
-  title = {R: A Language and Environment for Statistical
-           Computing}, 
-  author = {{R Core Team}},
-  organization = {R Foundation for Statistical Computing},
-  address = {Vienna, Austria},
-  year = {2019},
-  url = {https://www.R-project.org},
+:::
+::: {.column width="50%"}
+After:
+
+```r
+targets::tar_make()
+```
+
+The pipeline works out:
+
+* What is out of date
+* What order to run in
+* What can be skipped
+:::
+:::
+
+## Pipelines are graphs
+
+```text
+raw_file
+   |
+raw_data
+   |
+clean_data
+   |
+   +------> model ------> model_table
+   |
+   +------> plot  ------> report
+```
+
+::: {.fragment}
+In `targets`, this graph is built from your R code.
+:::
+
+## A target is a promise
+
+A target says:
+
+* Here is the name of an object or file I want
+* Here is the code to make it
+* Here are the upstream things it depends on
+* Store the result so it can be reused later
+
+```r
+tar_target(
+  clean_data,
+  clean_sales(raw_data)
+)
+```
+
+::: {.fragment}
+`clean_data` depends on `raw_data` because `raw_data` appears in the command.
+:::
+
+## Why `targets`?
+
+The `targets` package is a Make-like pipeline toolkit for R analysis projects.
+
+It helps you:
+
+* Skip work that is already up to date
+* Rerun downstream results when inputs change
+* Store intermediate outputs in `_targets/`
+* Inspect the pipeline graph
+* Run analyses from a clean R process
+* Scale to larger projects later
+
+Source: [targets overview](https://docs.ropensci.org/targets/articles/overview.html)
+
+## The key habit change
+
+Do not ask:
+
+::: {.callout-warning}
+Which scripts do I need to remember to run?
+:::
+
+Ask:
+
+::: {.callout-tip}
+What are the important outputs of this analysis, and what does each one depend on?
+:::
+
+# Anatomy Of A Targets Project
+
+## Project layout
+
+```text
+sales-analysis/
+├── _targets.R
+├── R/
+│   ├── data.R
+│   ├── model.R
+│   └── plots.R
+├── data/
+│   └── raw/
+│       └── sales.csv
+├── report.qmd
+├── renv.lock
+└── README.md
+```
+
+::: {.fragment}
+`_targets.R` defines the pipeline. The `R/` folder contains your functions.
+:::
+
+## Create the starter files
+
+From the R console:
+
+```r
+install.packages(c("targets", "tarchetypes"))
+targets::use_targets()
+```
+
+This creates a starter `_targets.R` file.
+
+::: {.fragment}
+You can also create the file by hand. It is just an R script with a special job.
+:::
+
+## The three parts of `_targets.R`
+
+```r
+library(targets)
+library(tarchetypes)
+
+tar_source()
+
+tar_option_set(
+  packages = c("readr", "dplyr", "ggplot2", "broom")
+)
+
+list(
+  tar_target(raw_file, "data/raw/sales.csv", format = "file"),
+  tar_target(raw_data, read_sales(raw_file)),
+  tar_target(clean_data, clean_sales(raw_data)),
+  tar_target(model, fit_sales_model(clean_data)),
+  tar_target(model_table, summarise_model(model)),
+  tar_target(sales_plot, plot_sales(clean_data))
+)
+```
+
+## Part 1: Load pipeline tools
+
+```r
+library(targets)
+library(tarchetypes)
+```
+
+Use `library()` here for packages that define the pipeline.
+
+::: {.fragment}
+`targets` provides `tar_target()`, `tar_make()`, `tar_read()`, and friends.
+:::
+
+::: {.fragment}
+`tarchetypes` provides extra target factories, including `tar_quarto()`.
+:::
+
+## Part 2: Load your functions
+
+```r
+tar_source()
+```
+
+By default, `tar_source()` reads all `.R` files in the `R/` folder.
+
+::: {.fragment}
+This makes functions like `clean_sales()` and `fit_sales_model()` available to the pipeline.
+:::
+
+::: {.fragment}
+The function bodies are tracked, so changing a function can invalidate the targets that use it.
+:::
+
+## Part 3: Declare packages for targets
+
+```r
+tar_option_set(
+  packages = c("readr", "dplyr", "ggplot2", "broom")
+)
+```
+
+These packages are loaded when targets run.
+
+::: {.fragment}
+This is different from `library(dplyr)` in your interactive session. `tar_make()` should not rely on whatever you happened to load by hand.
+:::
+
+## Part 4: Return a list of targets
+
+```r
+list(
+  tar_target(raw_data, read_sales(raw_file)),
+  tar_target(clean_data, clean_sales(raw_data)),
+  tar_target(model, fit_sales_model(clean_data))
+)
+```
+
+Each `tar_target()` has:
+
+* A name
+* A command
+* Optional settings such as `format = "file"`
+
+## Target names
+
+::: {.columns}
+::: {.column width='50%'}
+Good target names are nouns:
+
+* `raw_data`
+* `clean_data`
+* `model`
+* `model_table`
+* `report`
+
+:::
+::: {.column width='50%'}
+Less helpful names:
+
+* `step1`
+* `stuff`
+* `temp`
+* `final_final`
+
+:::
+:::
+
+
+
+::: {.fragment}
+The name should tell you what the target stores, not just where it sits in a script.
+:::
+
+## Target commands
+
+```r
+tar_target(
+  clean_data,
+  clean_sales(raw_data)
+)
+```
+
+The command should usually be a function call.
+
+::: {.fragment}
+This keeps `_targets.R` readable and pushes the analysis details into testable functions.
+:::
+
+## File targets
+
+Regular targets store R objects in `_targets/objects/`.
+
+File targets track files on disk.
+
+```r
+tar_target(
+  raw_file,
+  "data/raw/sales.csv",
+  format = "file"
+)
+```
+
+::: {.fragment}
+If `sales.csv` changes, `targets` knows downstream targets are out of date.
+:::
+
+## Output file targets
+
+If a target creates a file, return the path and set `format = "file"`.
+
+```r
+save_sales_plot <- function(plot) {
+  path <- "figures/sales-over-time.png"
+  ggplot2::ggsave(path, plot, width = 8, height = 5)
+  path
+}
+```
+
+```r
+tar_target(
+  plot_file,
+  save_sales_plot(sales_plot),
+  format = "file"
+)
+```
+
+::: {.fragment}
+The return value is the path that `targets` should watch.
+:::
+
+# Breaking Up Code
+
+## Start with the long script
+
+```r
+sales <- readr::read_csv("data/raw/sales.csv")
+
+clean_sales <- sales |>
+  filter(!is.na(revenue)) |>
+  mutate(month = lubridate::floor_date(date, "month"))
+
+model <- lm(revenue ~ ad_spend + region, data = clean_sales)
+
+plot <- ggplot(clean_sales, aes(month, revenue)) +
+  geom_line() +
+  facet_wrap(~region)
+```
+
+::: {.fragment}
+This script mixes inputs, cleaning, modelling, and plotting.
+:::
+
+## Move verbs into functions
+
+`R/data.R`
+
+```r
+read_sales <- function(path) {
+  readr::read_csv(path, show_col_types = FALSE)
+}
+
+clean_sales <- function(data) {
+  data |>
+    filter(!is.na(revenue)) |>
+    mutate(month = lubridate::floor_date(date, "month"))
 }
 ```
 
 ::: {.fragment}
-To cite this in your quarto file, use `@R-base`
+Functions should take inputs as arguments and return outputs explicitly.
 :::
 
+## More functions
 
-## Citing R packages
-You can get the citations for R packages using `toBibtex(citation("tidyverse"))`
+`R/model.R`
 
-![](images/citatitionrpackages.png){fig-align="center"}
+```r
+fit_sales_model <- function(data) {
+  lm(revenue ~ ad_spend + region, data = data)
+}
 
-# Demo & Practice
-
-## Large files in `git` and GitHub
-
-What happens when you commit a big file on GitHub?
-
-__Files larger than 50mb won't upload properly__
-
-::: {.fragment}
-Instead, we deal with these using Git Large File Storage (lfs).
-
-[Please see info for installation here and **make sure you install this extension**.](https://git-lfs.github.com)
-:::
-
-::: {.fragment}
-GitHub and BitBucket both have LFS support, and handle changes to these files much more sensibly.
-:::
-
-## Setup for `git` LFS
-
-To set up large file storage:
-
-* Navigate to the repo
-* In the CLI, type `git lfs install`
-
-Now, large files can be tracked using the relevant command. For example:
-
-```
-git lfs track '*.nc'
-git lfs track '*.csv'
-git lfs track '*.pdf'
+summarise_model <- function(model) {
+  broom::tidy(model)
+}
 ```
 
-**Note the quotes!**
+`R/plots.R`
+
+```r
+plot_sales <- function(data) {
+  ggplot(data, aes(month, revenue)) +
+    geom_line() +
+    facet_wrap(~region)
+}
+```
+
+## Then connect them with targets
+
+```r
+list(
+  tar_target(raw_file, "data/raw/sales.csv", format = "file"),
+  tar_target(raw_data, read_sales(raw_file)),
+  tar_target(clean_data, clean_sales(raw_data)),
+  tar_target(model, fit_sales_model(clean_data)),
+  tar_target(model_table, summarise_model(model)),
+  tar_target(sales_plot, plot_sales(clean_data))
+)
+```
 
 ::: {.fragment}
-This will create a `.gitattributes` file. Make sure to add this to your repo.
+The target names are the nouns. The functions are the verbs.
+:::
 
-Then, use your standard workflow of add, commit, push.
+## What should become a target?
+
+Good target candidates:
+
+* Important intermediate datasets
+* Expensive computations
+* Outputs used by multiple later steps
+* Published tables, figures, and reports
+* A clear boundary between stages of analysis
+
+::: {.fragment}
+Not every line needs to be a target.
+:::
+
+## What should stay inside a function?
+
+Keep these inside functions:
+
+* Small transformations that always happen together
+* Temporary variables
+* Repeated calculations with one clear purpose
+* Implementation details that do not need separate inspection
+
+::: {.callout-tip}
+Targets make the workflow visible. Functions keep the code readable.
+:::
+
+## Avoid hidden state
+
+This is fragile:
+
+```r
+clean_sales <- function() {
+  sales |>
+    dplyr::filter(!is.na(revenue))
+}
+```
+
+This is better:
+
+```r
+clean_sales <- function(data) {
+  data |>
+    dplyr::filter(!is.na(revenue))
+}
+```
+
+::: {.fragment}
+The second version says exactly what it needs.
+:::
+
+## Avoid doing work in `_targets.R`
+
+Prefer this:
+
+```r
+tar_target(clean_data, clean_sales(raw_data))
+```
+
+Instead of this:
+
+```r
+tar_target(
+  clean_data,
+  raw_data |>
+    dplyr::filter(!is.na(revenue)) |>
+    dplyr::mutate(month = lubridate::floor_date(date, "month"))
+)
+```
+
+::: {.fragment}
+The second version is allowed, but it becomes hard to read as the project grows.
+:::
+
+# Running The Pipeline
+
+## Inspect before running
+
+```r
+targets::tar_manifest(fields = "command")
+```
+
+Shows the commands for each target.
+
+```r
+targets::tar_visnetwork()
+```
+
+Draws the dependency graph.
+
+```r
+targets::tar_validate()
+```
+
+Checks that the pipeline is valid.
+
+## Run the pipeline
+
+```r
+targets::tar_make()
+```
+
+`tar_make()`:
+
+* Reads `_targets.R`
+* Runs targets in dependency order
+* Stores return values in `_targets/`
+* Skips targets already up to date
+
+Source: [tar_make() documentation](https://docs.ropensci.org/targets/reference/tar_make.html)
+
+## What you might see
+
+```text
++ raw_file dispatched
+✔ raw_file completed
++ raw_data dispatched
+✔ raw_data completed
++ clean_data dispatched
+✔ clean_data completed
++ model dispatched
+✔ model completed
++ model_table dispatched
+✔ model_table completed
+✔ ended pipeline
+```
+
+::: {.fragment}
+On the next run, up-to-date targets are skipped.
+:::
+
+## Read outputs
+
+```r
+targets::tar_read(model_table)
+```
+
+Returns the saved value of one target.
+
+```r
+targets::tar_load(clean_data)
+```
+
+Loads one or more targets into your R session.
+
+::: {.fragment}
+Use these to inspect results. Do not rerun expensive code manually just to look at an output.
+:::
+
+## Check what is out of date
+
+```r
+targets::tar_outdated()
+```
+
+Common reasons a target becomes outdated:
+
+* Its command changed
+* An upstream target changed
+* A function it uses changed
+* A tracked file changed
+* The target was manually invalidated
+
+## What reruns?
+
+| Change | Likely effect |
+| --- | --- |
+| `data/raw/sales.csv` changes | `raw_file` and downstream targets rerun |
+| `clean_sales()` changes | `clean_data` and downstream targets rerun |
+| `fit_sales_model()` changes | `model` and downstream targets rerun |
+| `report.qmd` changes | the report target reruns |
+| No relevant changes | everything is skipped |
+
+## Force a target to rerun
+
+```r
+targets::tar_invalidate(model)
+targets::tar_make()
+```
+
+This deletes the metadata for `model`, so `targets` treats it as out of date.
+
+::: {.callout-warning}
+Use this when you need it, but first ask why the target was not already invalidated.
+:::
+
+## Clean old targets
+
+If you remove targets from `_targets.R`, old stored results can remain in `_targets/`.
+
+```r
+targets::tar_prune()
+```
+
+For a full reset:
+
+```r
+targets::tar_destroy()
+```
+
+::: {.callout-warning}
+`tar_destroy()` deletes the whole target store. It is useful, but it is not gentle.
+:::
+
+## What goes in git?
+
+::: {.columns}
+::: {.column width='50%'}
+Commit:
+
+* `_targets.R`
+* `R/` scripts
+* Quarto source files
+* Small raw data files, if appropriate
+* `renv.lock`
+
+:::
+::: {.column width='50%'}
+
+
+Usually do not commit:
+
+* `_targets/`
+* Large generated outputs
+* Private credentials
+* The project-local package library
+
+:::
+:::
+
+::: {.fragment}
+The pipeline should be rebuildable from the committed source files.
+:::
+
+# Dynamic Branching
+
+## Repeating the same step
+
+Sometimes we need the same operation many times:
+
+* Fit one model per group
+* Render one report per scenario
+* Simulate many parameter combinations
+* Process many raw files
+
+::: {.fragment}
+This is where dynamic branching becomes useful.
+:::
+
+## Branch over values
+
+```r
+list(
+  tar_target(raw_file, "data/raw/sales.csv", format = "file"),
+  tar_target(raw_data, read_sales(raw_file)),
+  tar_target(clean_data, clean_sales(raw_data)),
+  tar_target(regions, sort(unique(clean_data$region))),
+  tar_target(
+    region_data,
+    dplyr::filter(clean_data, region == regions),
+    pattern = map(regions)
+  ),
+  tar_target(
+    region_model,
+    fit_sales_model(region_data),
+    pattern = map(region_data)
+  )
+)
+```
+
+::: {.fragment}
+Each branch is tracked separately.
+:::
+
+## Why branches matter
+
+If one group changes, `targets` can avoid rerunning unrelated groups.
+
+::: {.columns}
+::: {.column width="50%"}
+Without branches:
+
+```text
+all_data -> all_models
+```
+
+One small change can make all models rerun.
+:::
+::: {.column width="50%"}
+With branches:
+
+```text
+region A -> model A
+region B -> model B
+region C -> model C
+```
+
+Only affected branches need work.
+:::
+:::
+
+## Keep branching for later
+
+Dynamic branching is powerful, but the first goal is simpler:
+
+::: {.callout-tip}
+Build a clear non-branching pipeline first. Add branches once the repeated structure is obvious.
+:::
+
+# Quarto Reports In The Pipeline
+
+## The report should be an output
+
+The common mistake:
+
+```r
+# Run the analysis...
+targets::tar_make()
+
+# Then manually render the report...
+quarto::quarto_render("report.qmd")
+```
+
+::: {.fragment}
+If the report is part of the project, make it part of the pipeline.
+:::
+
+## `tar_quarto()`
+
+`tar_quarto()` comes from `tarchetypes`.
+
+```r
+library(targets)
+library(tarchetypes)
+
+tar_source()
+tar_option_set(packages = c("readr", "dplyr", "ggplot2", "broom"))
+
+list(
+  tar_target(raw_file, "data/raw/sales.csv", format = "file"),
+  tar_target(raw_data, read_sales(raw_file)),
+  tar_target(clean_data, clean_sales(raw_data)),
+  tar_target(model, fit_sales_model(clean_data)),
+  tar_target(model_table, summarise_model(model)),
+  tar_target(sales_plot, plot_sales(clean_data)),
+  tar_quarto(report, path = "report.qmd")
+)
+```
+
+## How the report sees targets
+
+Inside `report.qmd`, read target outputs directly.
+
+```{{r}}
+model_table <- targets::tar_read(model_table)
+model_table
+```
+
+```{{r}}
+targets::tar_read(sales_plot)
+```
+
+::: {.fragment}
+The report consumes outputs. It should not repeat the whole analysis.
+:::
+
+## What `tar_quarto()` tracks
+
+`tar_quarto()` creates a file target for the rendered document.
+
+It also:
+
+* Detects `tar_read()` and `tar_load()` calls in active R chunks
+* Adds those upstream dependencies to the graph
+* Watches the Quarto source and output files
+* Returns relative file paths for portability
+
+Source: [tar_quarto() documentation](https://docs.ropensci.org/tarchetypes/reference/tar_quarto.html)
+
+## Quarto report pattern
+
+Keep the report focused on communication:
+
+* Load finished targets
+* Make final display tables if needed
+* Arrange text, figures, and interpretation
+* Avoid long-running cleaning or modelling chunks
+
+::: {.callout-tip}
+If a chunk takes a long time or produces an important object, consider making it a target.
+:::
+
+## Quarto gotchas
+
+`tar_quarto()` can only detect dependencies it can see.
+
+Prefer:
+
+```{{r}}
+targets::tar_read(model_table)
+```
+
+Avoid hiding the target read inside another function:
+
+```{{r}}
+make_my_report_table()
+```
+
+::: {.fragment}
+The hidden version may render, but the dependency graph can become incomplete.
+:::
+
+## Parameterised Quarto
+
+You can pass target values into Quarto parameters.
+
+```r
+tar_quarto(
+  report,
+  path = "report.qmd",
+  execute_params = list(model_summary = model_table)
+)
+```
+
+::: {.fragment}
+For most projects, directly using `targets::tar_read()` in the report is simpler.
+:::
+
+# Debugging And Practice
+
+## A debugging routine
+
+When the pipeline breaks:
+
+1. Read the error message from `tar_make()`
+2. Inspect the target command in `_targets.R`
+3. Load upstream targets with `tar_load()`
+4. Run the function call interactively
+5. Fix the function, then rerun `tar_make()`
+
+::: {.fragment}
+The bug is usually in your R function, not in `targets`.
+:::
+
+## Example
+
+```r
+targets::tar_load(raw_data)
+
+clean_sales(raw_data)
+```
+
+If this fails interactively, fix `clean_sales()`.
+
+::: {.fragment}
+Then rerun:
+
+
+```r
+targets::tar_make()
+```
+
+:::
+
+## Useful commands
+
+| Task | Command |
+| --- | --- |
+| Inspect target commands | `tar_manifest(fields = "command")` |
+| Draw the graph | `tar_visnetwork()` |
+| Run the pipeline | `tar_make()` |
+| List outdated targets | `tar_outdated()` |
+| Read one target | `tar_read(target_name)` |
+| Load one target | `tar_load(target_name)` |
+| Remove unused stored targets | `tar_prune()` |
+
+## Demo checklist
+
+1. Create a small project
+2. Put helper functions in `R/`
+3. Write `_targets.R`
+4. Run `tar_validate()`
+5. Draw the graph with `tar_visnetwork()`
+6. Run `tar_make()`
+7. Change one function and see what reruns
+8. Add `tar_quarto()`
+
+# Where renv Fits
+
+## Reproducibility has layers
+
+| Tool | What it records |
+| --- | --- |
+| `git` | Project history |
+| Quarto | How the report is generated |
+| `targets` | What runs, in what order, and what is up to date |
+| `renv` | R package versions used by the project |
+| Docker | Operating system and system dependencies |
+
+::: {.fragment}
+Today, `targets` handles the workflow. `renv` handles the package library.
+:::
+
+## What `renv` does
+
+`renv` helps make R projects:
+
+* Isolated: project-specific package libraries
+* Portable: another machine can install the needed packages
+* Reproducible: package versions are recorded in `renv.lock`
+
+Source: [renv documentation](https://rstudio.github.io/renv/)
+
+## Basic `renv` workflow
+
+```r
+renv::init()
+```
+
+Install or update packages as needed.
+
+```r
+install.packages(c("targets", "tarchetypes", "dplyr"))
+```
+
+Record the current project library:
+
+```r
+renv::snapshot()
+```
+
+Restore it later:
+
+```r
+renv::restore()
+```
+
+## `targets` plus `renv`
+
+There is one extra helper:
+
+```r
+targets::tar_renv()
+```
+
+This writes `_targets_packages.R`, a generated file that helps `renv` detect packages declared in:
+
+* `tar_option_set(packages = ...)`
+* `tar_target(packages = ...)`
+* storage formats that need extra packages
+
+Source: [tar_renv() documentation](https://docs.ropensci.org/targets/reference/tar_renv.html)
+
+## A combined workflow {.smaller}
+
+```r
+renv::init()
+
+install.packages(c("targets", "tarchetypes", "readr", "dplyr"))
+
+targets::tar_renv()
+
+renv::snapshot()
+```
+
+Then commit:
+
+* `_targets.R`
+* `_targets_packages.R`
+* `R/`
+* `report.qmd`
+* `renv.lock`
+
+::: {.fragment}
+On another computer: `renv::restore()`, then `targets::tar_make()`.
+:::
+
+## What `renv` does not do
+
+`renv` does not decide:
+
+* Which analysis steps need to rerun
+* Whether your report is up to date
+* Whether a data file changed
+* How objects depend on each other
+
+::: {.fragment}
+That is the job of `targets`.
+:::
+
+## What `targets` does not do
+
+`targets` does not guarantee:
+
+* Your collaborator has the same package versions
+* External system libraries are installed
+* Raw data can be downloaded again
+* Secrets and credentials are available
+
+::: {.fragment}
+That is why reproducibility needs layers.
+:::
+
+# Pulling It Together
+
+## A complete minimal `_targets.R`
+
+```r
+library(targets)
+library(tarchetypes)
+
+tar_source()
+
+tar_option_set(
+  packages = c("readr", "dplyr", "lubridate", "ggplot2", "broom")
+)
+
+list(
+  tar_target(raw_file, "data/raw/sales.csv", format = "file"),
+  tar_target(raw_data, read_sales(raw_file)),
+  tar_target(clean_data, clean_sales(raw_data)),
+  tar_target(model, fit_sales_model(clean_data)),
+  tar_target(model_table, summarise_model(model)),
+  tar_target(sales_plot, plot_sales(clean_data)),
+  tar_quarto(report, path = "report.qmd")
+)
+```
+
+## What success looks like
+
+A good `targets` project should let you:
+
+* Start a fresh R session
+* Run `renv::restore()` if needed
+* Run `targets::tar_make()`
+* Rebuild the whole analysis without manual steps
+* Explain the workflow with `tar_visnetwork()`
+
+::: {.fragment}
+That is a much stronger claim than "it worked on my computer yesterday".
 :::
 
 ## Summary
 
-1. Navigate to the local repo and run `git lfs install`
-2. `git lfs track "*.csv"
-3. `git add .gitattributes`
-4. `git add data.csv` as per normal
+* `targets` turns an analysis into a dependency graph
+* Each target is a named output made by a command
+* Keep analysis details in functions under `R/`
+* Use file targets for inputs and generated files
+* Use `tar_quarto()` to make reports part of the pipeline
+* Use `renv` to record package versions
+
+## Further reading
+
+* [`targets` overview](https://docs.ropensci.org/targets/articles/overview.html)
+* [`targets` user manual walkthrough](https://books.ropensci.org/targets/walkthrough.html)
+* [`tar_quarto()` reference](https://docs.ropensci.org/tarchetypes/reference/tar_quarto.html)
+* [`renv` documentation](https://rstudio.github.io/renv/)
 
-::: {.fragment}
-It is essential you run `git lfs install` before committing and pushing, otherwise you will get an error message.
-:::
-
-## What if I already have a large file?
-
-If you have committed a large file, you probably got an error message you have to fix.
-
-Recall:
-
-```
-git reset --soft HEAD~1
-```
-
-Then:
-
-```
-git lfs install
-git add .gitattributes file.csv
-git commit -m "Adding data files through GIT LFS"
-git push origin main
-```
-
-# Demo
-
-## More on committing
-
-So far, we've used a [one-line commit]{.monash-blue} (although we could do with more practice on those)
-
-::: {.fragment}
-We can add more text into a commit, and many times this is sensible.
-
-Detailed commit structure:
-
-[First line]{.monash-green2}
-
-[Blank line]{.red}
-
-[Rest of the text]{.monash-green2}
-:::
-
-![](images/commitsexample.png){fig-align="center"}
-
-# Demo
-
-## Git tags
-
-[tags]{.monash-green2} are custom labels or references that point to specific points in your `git` history
-
-Generlaly used to capture a specific point in the repo history, like a release, or a report milestone.
-
-::: {.callout-tip}
-You can think of a tag like a branch that doesn't change
-:::
-
-Unlike branches, tags don't have any further history of commits.
-
-Great tutorial on [tags here](https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag)
-
-## Git tags example
-
-![](images/tags.png){fig-align="center"}
-
-## Types of tags
-
-There are two types of tags: [lightweight]{.monash-green2} and [annotated]{.monash-green2}. The difference is the metadata they come with.
-
-Best practice is [lightweight]{.monash-green2} tags for personal use, and [annotated tags]{.monash-green2} as marks for version releases
-
-Annotated tags stores extra metadata like the tagger name, email and date
-
-Lightweight tags are only a pointer to a commit.
-
-![](images/tagex.png){fig-align="center"}
-
-
-## Creating and sharing tags
-
-To create an annotated tag:
-
-```
-git tag -a v 1.0
-```
-
-or
-
-```
-git tag -a v1.0 SHA1
-```
-
-This will create a new _annotated_ tag with label [v1.0]{.monash-green2}. The command will open your text editor for further metadata.
-
-## Annotated tag example
-![](images/taga.png){fig-align="center"}
-
-## Lightweight tags
-
-`git tag v1.0` will create a lightweight tag
-
-::: {.fragment}
-Can you spot the difference?
-:::
-
-## Listing tags
-
-`git tag`
-
-![](images/tagslist.png){fig-align="center"}
-
-`git tag -n` will also show us the associated message, or you can do `git show tagname`
-
-## Tagging old commits
-
-By default, `git tag` creates a tag on HEAD
-
-If you want to tag an old commit:
-
-```
-git log --oneline
-git tag -a v1.2 15027957951b64cf874c3557a0f
-```
-
-## Sharing tags
-
-Sharing tags is similar to pushing branches.
-
-**By default, `git push` does not push tags**
-
-`git push origin tagname` will push the tag.
-
-## Viewing your tags on GitHub
-
-![](images/tagsgh1.png){fig-align="center"}
-
-## Viewing your tags on GitHub
-
-![](images/tagsgh2.png){fig-align="center"}
-
-## Checking tags
-
-You can check out tags: `git checkout v1.0`
-
-This will put you in a detached HEAD state, so commits won't be recorded
-
-::: {.fragment}
-Unless??
-:::
-
-## Deleting a tag
-
-* `git tag`: Lists tags
-* `git tag -d v1`: Deletes tag v1
-* `git push origin --delete v1`: Deletes it from the remote
-
-## Why use tags?
-
-We could just use a branch (that never gets merged) instead of a tag.
-
-For storing points in history, this is fine (although not the intention of a branch)
-
-A branch is supposed to be a "variation" on the main repository, not a point-in-time record
-
-Tags are designed to fill that void.
-
-![](images/branches.png){fig-align="center"}
-
-# GitHub Issues
-
-"I have a problem"
-
-## GitHub Issues
-
-You can create a GitHub Issue on the web:
-
-![](images/issue.png){fig-align="center"}
-
-## GitHub Issues
-
-Your collaborators can see the issue:
-
-![](images/collaboratorsissue.png){fig-align="center"}
-
-## More on issues
-
-![](images/issues.png){fig-align="center"}
-
-[More info about issues here](https://guides.github.com/features/issues/)
-
-# Practice time
-
-
-## Week 9 Lesson
-
-::: {.callout-important}
-* Learn how to add references and bibliography
-* Dealing with large files
-* Tags
-* GitHub issues
-:::

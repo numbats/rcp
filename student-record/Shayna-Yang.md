@@ -1,1 +1,0 @@
-Hi, I’m TZU-HSUAN YANG (Shayna) on GitHub! Here’s my contribution to the rcp project.

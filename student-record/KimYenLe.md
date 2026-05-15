@@ -1,1 +1,0 @@
-Hi, I’m Kim Yen Le on GitHub! Here’s my contribution to the rcp project.
