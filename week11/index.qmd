@@ -489,17 +489,46 @@ FROM rocker/r-ver:4.4.3
 
 WORKDIR /project
 
+ENV RENV_PATHS_LIBRARY=/opt/renv/library
+ENV RENV_PATHS_CACHE=/opt/renv/cache
+
+ARG QUARTO_VERSION=1.8.27
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && arch="$(dpkg --print-architecture)" \
+    && curl -L -o quarto.deb \
+      "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${arch}.deb" \
+    && apt-get install -y ./quarto.deb \
+    && quarto --version \
+    && rm quarto.deb \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN Rscript -e "install.packages('renv')"
 
+COPY .Rprofile .Rprofile
 COPY renv.lock renv.lock
-COPY renv/ renv/
+COPY renv/activate.R renv/activate.R
+COPY renv/settings.json renv/settings.json
 
 RUN Rscript -e "renv::restore(prompt = FALSE)"
 
 COPY . .
 
-CMD ["Rscript", "-e", "targets::tar_make()"]
+CMD ["Rscript", "-e", "renv::load('/project'); targets::tar_make()"]
 ```
+
+::: {.fragment}
+`renv::restore()` installs packages into `/opt/renv/library`. `renv::load()` makes sure that library is used when the container starts.
+:::
+
+::: {.fragment}
+Putting the library outside `/project` matters because a bind mount can replace `/project` at runtime.
+:::
+
+::: {.fragment}
+The Quarto CLI is installed separately because the R package `quarto` does not provide the `quarto` command.
+:::
 
 ## Why copy `renv.lock` first?
 
@@ -508,7 +537,10 @@ Docker builds in layers.
 If the package lockfile has not changed, Docker can reuse the package installation layer.
 
 ```dockerfile
+COPY .Rprofile .Rprofile
 COPY renv.lock renv.lock
+COPY renv/activate.R renv/activate.R
+COPY renv/settings.json renv/settings.json
 RUN Rscript -e "renv::restore(prompt = FALSE)"
 
 COPY . .
@@ -547,8 +579,10 @@ _targets.R
 R/
 data/
 report.qmd
+.Rprofile
 renv.lock
-renv/
+renv/activate.R
+renv/settings.json
 Dockerfile
 ```
 
@@ -879,15 +913,32 @@ FROM rocker/r-ver:4.4.3
 
 WORKDIR /project
 
+ENV RENV_PATHS_LIBRARY=/opt/renv/library
+ENV RENV_PATHS_CACHE=/opt/renv/cache
+
+ARG QUARTO_VERSION=1.8.27
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && arch="$(dpkg --print-architecture)" \
+    && curl -L -o quarto.deb \
+      "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${arch}.deb" \
+    && apt-get install -y ./quarto.deb \
+    && quarto --version \
+    && rm quarto.deb \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN Rscript -e "install.packages('renv')"
 
+COPY .Rprofile .Rprofile
 COPY renv.lock renv.lock
-COPY renv/ renv/
+COPY renv/activate.R renv/activate.R
+COPY renv/settings.json renv/settings.json
 RUN Rscript -e "renv::restore(prompt = FALSE)"
 
 COPY . .
 
-CMD ["Rscript", "-e", "targets::tar_make()"]
+CMD ["Rscript", "-e", "renv::load('/project'); targets::tar_make()"]
 ```
 
 Then:
@@ -1055,7 +1106,12 @@ penguins-analysis/
 |   |-- data.R
 |   `-- plots.R
 |-- report.qmd
+|-- .Rprofile
 |-- renv.lock
+|-- renv/
+|   |-- activate.R
+|   `-- settings.json
+|-- .dockerignore
 `-- Dockerfile
 ```
 
@@ -1094,15 +1150,32 @@ FROM rocker/r-ver:4.4.3
 
 WORKDIR /project
 
+ENV RENV_PATHS_LIBRARY=/opt/renv/library
+ENV RENV_PATHS_CACHE=/opt/renv/cache
+
+ARG QUARTO_VERSION=1.8.27
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && arch="$(dpkg --print-architecture)" \
+    && curl -L -o quarto.deb \
+      "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${arch}.deb" \
+    && apt-get install -y ./quarto.deb \
+    && quarto --version \
+    && rm quarto.deb \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN Rscript -e "install.packages('renv')"
 
+COPY .Rprofile .Rprofile
 COPY renv.lock renv.lock
-COPY renv/ renv/
+COPY renv/activate.R renv/activate.R
+COPY renv/settings.json renv/settings.json
 RUN Rscript -e "renv::restore(prompt = FALSE)"
 
 COPY . .
 
-CMD ["Rscript", "-e", "targets::tar_make()"]
+CMD ["Rscript", "-e", "renv::load('/project'); targets::tar_make()"]
 ```
 
 ## Build and run
@@ -1133,12 +1206,20 @@ Now rendered outputs are written to your project folder.
 This is usually what you want while developing.
 :::
 
+::: {.fragment}
+The package library still comes from the image because it is stored in `/opt/renv/library`, not under the mounted `/project` folder.
+:::
+
 # Practical Advice
 
 ## Common mistakes
 
 * Forgetting that containers are disposable
 * Copying `_targets/` into the image
+* Copying `renv/library/` into the image
+* Restoring with `renv` but not activating the project library at runtime
+* Restoring packages into `/project/renv/library` and then hiding them with a bind mount
+* Installing the R package `quarto` but forgetting the Quarto CLI
 * Relying on `latest` tags for long-term work
 * Installing packages interactively but not updating the Dockerfile or `renv.lock`
 * Using absolute paths from the host machine
