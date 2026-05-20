@@ -4974,14 +4974,14 @@
     "href": "week11/index.html#project-dockerfile-pattern",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Project Dockerfile pattern",
-    "text": "Project Dockerfile pattern\nFor an R project using renv:\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY renv.lock renv.lock\nCOPY renv/ renv/\n\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"targets::tar_make()\"]"
+    "text": "Project Dockerfile pattern\nFor an R project using renv:\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nENV RENV_PATHS_LIBRARY=/opt/renv/library\nENV RENV_PATHS_CACHE=/opt/renv/cache\n\nARG QUARTO_VERSION=1.8.27\n\nRUN apt-get update \\\n    && apt-get install -y --no-install-recommends curl ca-certificates \\\n    && arch=\"$(dpkg --print-architecture)\" \\\n    && curl -L -o quarto.deb \\\n      \"https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${arch}.deb\" \\\n    && apt-get install -y ./quarto.deb \\\n    && quarto --version \\\n    && rm quarto.deb \\\n    && rm -rf /var/lib/apt/lists/*\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY .Rprofile .Rprofile\nCOPY renv.lock renv.lock\nCOPY renv/activate.R renv/activate.R\nCOPY renv/settings.json renv/settings.json\n\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"renv::load('/project'); targets::tar_make()\"]\n\nrenv::restore() installs packages into /opt/renv/library. renv::load() makes sure that library is used when the container starts.\n\n\nPutting the library outside /project matters because a bind mount can replace /project at runtime.\n\n\nThe Quarto CLI is installed separately because the R package quarto does not provide the quarto command."
   },
   {
     "objectID": "week11/index.html#why-copy-renv.lock-first",
     "href": "week11/index.html#why-copy-renv.lock-first",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Why copy renv.lock first?",
-    "text": "Why copy renv.lock first?\nDocker builds in layers.\nIf the package lockfile has not changed, Docker can reuse the package installation layer.\nCOPY renv.lock renv.lock\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nThis makes rebuilds much faster when only your analysis code changes."
+    "text": "Why copy renv.lock first?\nDocker builds in layers.\nIf the package lockfile has not changed, Docker can reuse the package installation layer.\nCOPY .Rprofile .Rprofile\nCOPY renv.lock renv.lock\nCOPY renv/activate.R renv/activate.R\nCOPY renv/settings.json renv/settings.json\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nThis makes rebuilds much faster when only your analysis code changes."
   },
   {
     "objectID": "week11/index.html#the-.dockerignore-file",
@@ -4995,7 +4995,7 @@
     "href": "week11/index.html#copying-project-files",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Copying project files",
-    "text": "Copying project files\nA containerised analysis image might include:\n_targets.R\nR/\ndata/\nreport.qmd\nrenv.lock\nrenv/\nDockerfile\nUsually avoid copying:\n.git/\n_targets/\nrenv/library/\nprivate credentials\nlarge generated outputs"
+    "text": "Copying project files\nA containerised analysis image might include:\n_targets.R\nR/\ndata/\nreport.qmd\n.Rprofile\nrenv.lock\nrenv/activate.R\nrenv/settings.json\nDockerfile\nUsually avoid copying:\n.git/\n_targets/\nrenv/library/\nprivate credentials\nlarge generated outputs"
   },
   {
     "objectID": "week11/index.html#a-useful-rule",
@@ -5128,7 +5128,7 @@
     "href": "week11/index.html#a-containerised-targets-workflow",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "A containerised targets workflow",
-    "text": "A containerised targets workflow\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY renv.lock renv.lock\nCOPY renv/ renv/\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"targets::tar_make()\"]\nThen:\ndocker build -t my-analysis .\ndocker run --rm my-analysis"
+    "text": "A containerised targets workflow\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nENV RENV_PATHS_LIBRARY=/opt/renv/library\nENV RENV_PATHS_CACHE=/opt/renv/cache\n\nARG QUARTO_VERSION=1.8.27\n\nRUN apt-get update \\\n    && apt-get install -y --no-install-recommends curl ca-certificates \\\n    && arch=\"$(dpkg --print-architecture)\" \\\n    && curl -L -o quarto.deb \\\n      \"https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${arch}.deb\" \\\n    && apt-get install -y ./quarto.deb \\\n    && quarto --version \\\n    && rm quarto.deb \\\n    && rm -rf /var/lib/apt/lists/*\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY .Rprofile .Rprofile\nCOPY renv.lock renv.lock\nCOPY renv/activate.R renv/activate.R\nCOPY renv/settings.json renv/settings.json\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"renv::load('/project'); targets::tar_make()\"]\nThen:\ndocker build -t my-analysis .\ndocker run --rm my-analysis"
   },
   {
     "objectID": "week11/index.html#what-this-gives-the-collaborator",
@@ -5198,7 +5198,7 @@
     "href": "week11/index.html#containerise-a-small-analysis",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Containerise a small analysis",
-    "text": "Containerise a small analysis\nImagine this project:\npenguins-analysis/\n|-- _targets.R\n|-- R/\n|   |-- data.R\n|   `-- plots.R\n|-- report.qmd\n|-- renv.lock\n`-- Dockerfile\nThe goal:\ndocker run --rm penguins-analysis\nshould rebuild the analysis."
+    "text": "Containerise a small analysis\nImagine this project:\npenguins-analysis/\n|-- _targets.R\n|-- R/\n|   |-- data.R\n|   `-- plots.R\n|-- report.qmd\n|-- .Rprofile\n|-- renv.lock\n|-- renv/\n|   |-- activate.R\n|   `-- settings.json\n|-- .dockerignore\n`-- Dockerfile\nThe goal:\ndocker run --rm penguins-analysis\nshould rebuild the analysis."
   },
   {
     "objectID": "week11/index.html#targets.r",
@@ -5212,7 +5212,7 @@
     "href": "week11/index.html#dockerfile",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Dockerfile",
-    "text": "Dockerfile\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY renv.lock renv.lock\nCOPY renv/ renv/\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"targets::tar_make()\"]"
+    "text": "Dockerfile\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nENV RENV_PATHS_LIBRARY=/opt/renv/library\nENV RENV_PATHS_CACHE=/opt/renv/cache\n\nARG QUARTO_VERSION=1.8.27\n\nRUN apt-get update \\\n    && apt-get install -y --no-install-recommends curl ca-certificates \\\n    && arch=\"$(dpkg --print-architecture)\" \\\n    && curl -L -o quarto.deb \\\n      \"https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${arch}.deb\" \\\n    && apt-get install -y ./quarto.deb \\\n    && quarto --version \\\n    && rm quarto.deb \\\n    && rm -rf /var/lib/apt/lists/*\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY .Rprofile .Rprofile\nCOPY renv.lock renv.lock\nCOPY renv/activate.R renv/activate.R\nCOPY renv/settings.json renv/settings.json\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"renv::load('/project'); targets::tar_make()\"]"
   },
   {
     "objectID": "week11/index.html#build-and-run",
@@ -5226,14 +5226,14 @@
     "href": "week11/index.html#keep-outputs-on-the-host",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Keep outputs on the host",
-    "text": "Keep outputs on the host\ndocker run --rm \\\n  --mount type=bind,source=\"${PWD}\",target=/project \\\n  -w /project \\\n  penguins-analysis\nNow rendered outputs are written to your project folder.\n\nThis is usually what you want while developing."
+    "text": "Keep outputs on the host\ndocker run --rm \\\n  --mount type=bind,source=\"${PWD}\",target=/project \\\n  -w /project \\\n  penguins-analysis\nNow rendered outputs are written to your project folder.\n\nThis is usually what you want while developing.\n\n\nThe package library still comes from the image because it is stored in /opt/renv/library, not under the mounted /project folder."
   },
   {
     "objectID": "week11/index.html#common-mistakes",
     "href": "week11/index.html#common-mistakes",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Common mistakes",
-    "text": "Common mistakes\n\nForgetting that containers are disposable\nCopying _targets/ into the image\nRelying on latest tags for long-term work\nInstalling packages interactively but not updating the Dockerfile or renv.lock\nUsing absolute paths from the host machine\nCommitting secrets inside compose.yaml"
+    "text": "Common mistakes\n\nForgetting that containers are disposable\nCopying _targets/ into the image\nCopying renv/library/ into the image\nRestoring with renv but not activating the project library at runtime\nRestoring packages into /project/renv/library and then hiding them with a bind mount\nInstalling the R package quarto but forgetting the Quarto CLI\nRelying on latest tags for long-term work\nInstalling packages interactively but not updating the Dockerfile or renv.lock\nUsing absolute paths from the host machine\nCommitting secrets inside compose.yaml"
   },
   {
     "objectID": "week11/index.html#a-good-docker-readme-section",
