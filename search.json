@@ -4841,7 +4841,7 @@
     "href": "week11/index.html#a-useful-mental-model",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "A useful mental model",
-    "text": "A useful mental model\nDockerfile  ---&gt;  image  ---&gt;  container\n   recipe          frozen       running copy\n                  template\n\nAn image is like a saved template. A container is a running instance of that template."
+    "text": "A useful mental model\nDockerfile  ---&gt;  image  ---&gt;  container\n   recipe          frozen       running copy\n                  template\nAn image is like a saved template. A container is a running instance of that template."
   },
   {
     "objectID": "week11/index.html#docker-vocabulary",

@@ -306,7 +306,7 @@
 <p>Reproducibility is not only about code.</p>
 </div>
 </section>
-<section id="layers-of-reproducibility" class="slide level2">
+<section id="layers-of-reproducibility" class="slide level2 smaller">
 <h2>Layers of reproducibility</h2>
 <table class="caption-top">
 <colgroup>
@@ -397,9 +397,7 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>Dockerfile  ---&gt;  image  ---&gt;  container</span>
 <span id="cb2-2"><a></a>   recipe          frozen       running copy</span>
 <span id="cb2-3"><a></a>                  template</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="fragment">
 <p>An image is like a saved template. A container is a running instance of that template.</p>
-</div>
 </section>
 <section id="docker-vocabulary" class="slide level2">
 <h2>Docker vocabulary</h2>
@@ -670,7 +668,7 @@
 <p>The second version says exactly which R version family the image starts from.</p>
 </div>
 </section>
-<section id="project-dockerfile-pattern" class="slide level2">
+<section id="project-dockerfile-pattern" class="slide level2 smaller">
 <h2>Project Dockerfile pattern</h2>
 <p>For an R project using <code>renv</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb18-1"><a></a><span class="kw">FROM</span> rocker/r-ver:4.4.3</span>
@@ -935,7 +933,7 @@
 </tbody>
 </table>
 </section>
-<section id="permissions" class="slide level2">
+<section id="permissions" class="slide level2 smaller">
 <h2>Permissions</h2>
 <p>Bind mounts can expose permission differences between:</p>
 <ul>
