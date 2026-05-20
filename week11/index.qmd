@@ -150,7 +150,7 @@ But on someone else's machine:
 Reproducibility is not only about code.
 :::
 
-## Layers of reproducibility
+## Layers of reproducibility {.smaller}
 
 | Layer | Tool we have used | What it records |
 | --- | --- | --- |
@@ -202,9 +202,7 @@ Dockerfile  --->  image  --->  container
                   template
 ```
 
-::: {.fragment}
 An image is like a saved template. A container is a running instance of that template.
-:::
 
 ## Docker vocabulary
 
@@ -480,7 +478,7 @@ FROM rocker/r-ver:4.4.3
 The second version says exactly which R version family the image starts from.
 :::
 
-## Project Dockerfile pattern
+## Project Dockerfile pattern {.smaller}
 
 For an R project using `renv`:
 
@@ -740,7 +738,7 @@ Volumes are useful when the data belongs to the service, not directly to your pr
 | Portable across computers | Depends on path | Managed by Docker |
 | Best for | Code and project files | Databases and service state |
 
-## Permissions
+## Permissions {.smaller}
 
 Bind mounts can expose permission differences between:
 
