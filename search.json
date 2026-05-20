@@ -4778,7 +4778,7 @@
     "href": "week11/index.html#etc5513-title",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "ETC5513: Reproducible and Collaborative Practices",
-    "text": "ETC5513: Reproducible and Collaborative Practices\nDocker: The gold standard of reproducibility\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 11\n\n\nrcp.numbat.space"
+    "text": "ETC5513: Reproducible and Collaborative Practices\nDocker: portable computational environments\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 11\n\n\nrcp.numbat.space"
   },
   {
     "objectID": "week11/index.html#open-frame",
@@ -4788,235 +4788,494 @@
     "text": "Open Frame"
   },
   {
-    "objectID": "week11/index.html#reproducibility-using-docker-1",
-    "href": "week11/index.html#reproducibility-using-docker-1",
+    "objectID": "week11/index.html#recap",
+    "href": "week11/index.html#recap",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Reproducibility using Docker",
-    "text": "Reproducibility using Docker\nDocker is a program that allows to manipulate (launch and stop) multiple operating systems (called containers) on your machine (your machine will be called the host).\nSource here.\nDocker is designed to enclose environments inside an image / a container"
+    "section": "Recap",
+    "text": "Recap\n\nRepositories give a project a shared home\nQuarto makes the report reproducible\nrenv records the R package environment\ntargets records the workflow and reruns only what is needed\n\n\nToday we move one layer lower: the computer environment itself."
   },
   {
-    "objectID": "week11/index.html#what-is-a-container",
-    "href": "week11/index.html#what-is-a-container",
+    "objectID": "week11/index.html#aim",
+    "href": "week11/index.html#aim",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "What is a container?",
-    "text": "What is a container?\nA container is like a virtual machine. They have an operating system, but don’t simulate the entire computer.\nTypically these operating system’s are stripped down to the bare minimum.\nContainers are built using a set of instructions, which makes them reproducible"
+    "section": "Today’s plan",
+    "text": "Today’s plan\n\n\n\n\n\n\nAim\n\n\n\nExplain what Docker adds to reproducible research\nDistinguish images, containers, registries, mounts, and volumes\nRun an R container using the Rocker images\nWrite a small Dockerfile for an R project\nUse bind mounts and Docker Compose for a development environment\nDecide when Docker is worth using"
   },
   {
-    "objectID": "week11/index.html#why-use-a-container",
-    "href": "week11/index.html#why-use-a-container",
+    "objectID": "week11/index.html#a-note-on-assessment",
+    "href": "week11/index.html#a-note-on-assessment",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Why use a container?",
-    "text": "Why use a container?\nContainers run anyway in a (relatively) standardised way, independent of the host operating system.\nThis means you can deploy a container on Amazon AWS, Azure, or on your own PC and the behaviour should be the same.\n\nDocker is a way to set up, share, and deploy these containers, and is used very widely."
+    "section": "A note on assessment",
+    "text": "A note on assessment\n\n\n\n\n\n\nTip\n\n\nDocker is included to show you the current gold standard for portable computational environments.\n\n\n\nYou should understand the ideas and recognise the workflow.\nYou are not expected to memorise every Docker command for assessment."
   },
   {
-    "objectID": "week11/index.html#docker-desktop",
-    "href": "week11/index.html#docker-desktop",
+    "objectID": "week11/index.html#the-familiar-problem",
+    "href": "week11/index.html#the-familiar-problem",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Docker Desktop",
-    "text": "Docker Desktop\nWe will use Docker Desktop which gives us a visual interface to:\n\nBrowse and launch containers\nManage volumes\nView logs and resources\nBuild images without the terminal"
+    "section": "The familiar problem",
+    "text": "The familiar problem\n\n\nIt works on my machine.\nsource(\"analysis.R\")\nquarto::quarto_render(\"report.qmd\")\n\nBut on someone else’s machine:\n\nR is a different version\nA package was compiled differently\nA system library is missing\nThe operating system behaves differently\nThe project path is different\n\n\n\nReproducibility is not only about code."
   },
   {
-    "objectID": "week11/index.html#step-1-install-docker-desktop",
-    "href": "week11/index.html#step-1-install-docker-desktop",
+    "objectID": "week11/index.html#layers-of-reproducibility",
+    "href": "week11/index.html#layers-of-reproducibility",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Step 1: Install Docker Desktop",
-    "text": "Step 1: Install Docker Desktop\n\nDownload: https://www.docker.com/products/docker-desktop\nFollow the installation instructions for:\n\nmacOS\nWindows\n(Linux users will need Docker Engine + extensions)\n\n\nYou may need to update your path. On Mac, do this by running\nexport PATH=\"$PATH:/Applications/Docker.app/Contents/Resources/bin/\"\nin the terminal"
+    "section": "Layers of reproducibility",
+    "text": "Layers of reproducibility\n\n\n\n\n\n\n\n\nLayer\nTool we have used\nWhat it records\n\n\n\n\nCode history\ngit\nWhat changed, when, and why\n\n\nDocuments\nQuarto\nText, code, and outputs together\n\n\nR packages\nrenv\nPackage versions for the project\n\n\nWorkflow\ntargets\nWhat depends on what\n\n\nComputer environment\nDocker\nOperating system, system libraries, and commands\n\n\n\n\nDocker does not replace the earlier tools. It wraps them in a portable environment."
   },
   {
-    "objectID": "week11/index.html#step-2-run-a-container",
-    "href": "week11/index.html#step-2-run-a-container",
+    "objectID": "week11/index.html#what-docker-gives-us",
+    "href": "week11/index.html#what-docker-gives-us",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Step 2: Run a container",
-    "text": "Step 2: Run a container\nThe rocker project provides R containers that we can use.\nWe can search for these inside Docker Desktop:\n\nPress “Pull” to download the container"
+    "section": "What Docker gives us",
+    "text": "What Docker gives us\nDocker lets us describe and run a small computer environment.\nThat environment can include:\n\nAn operating system\nR and system libraries\nR packages\nProject files\nA default command to run\n\n\nThe description is plain text, so it can be committed to git."
   },
   {
-    "objectID": "week11/index.html#step-2a-running-in-the-terminal",
-    "href": "week11/index.html#step-2a-running-in-the-terminal",
+    "objectID": "week11/index.html#what-docker-is-not",
+    "href": "week11/index.html#what-docker-is-not",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Step 2a: Running in the terminal",
-    "text": "Step 2a: Running in the terminal\nWhile it is possible to run containers inside Docker Desktop, it’s much easier to run them in the terminal.\nTo run the r-base container, we can follow the instructions on the container page.\ndocker run -ti --rm r-base\nThis should launch you into a terminal R session!\n\nNote the arguments:\n\n-ti means “terminal, interactive”\n--rm means delete the container when it closes"
+    "section": "What Docker is not",
+    "text": "What Docker is not\nDocker is not:\n\nA substitute for readable code\nA substitute for tests or checks\nA place to hide manual steps\nA magic fix for missing data\nAlways worth the extra complexity\n\n\n\n\n\n\n\nTip\n\n\nUse Docker when the environment itself is part of the reproducibility problem."
   },
   {
-    "objectID": "week11/index.html#checking-if-the-container-is-running",
-    "href": "week11/index.html#checking-if-the-container-is-running",
+    "objectID": "week11/index.html#a-useful-mental-model",
+    "href": "week11/index.html#a-useful-mental-model",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Checking if the container is running",
-    "text": "Checking if the container is running\nYou should be able to see the container inside Docker Desktop\n\nAnd when you stop the container (with q()) it will disappear out of your list."
+    "section": "A useful mental model",
+    "text": "A useful mental model\nDockerfile  ---&gt;  image  ---&gt;  container\n   recipe          frozen       running copy\n                  template\n\nAn image is like a saved template. A container is a running instance of that template."
   },
   {
-    "objectID": "week11/index.html#the-dockerfile",
-    "href": "week11/index.html#the-dockerfile",
+    "objectID": "week11/index.html#docker-vocabulary",
+    "href": "week11/index.html#docker-vocabulary",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The Dockerfile",
-    "text": "The Dockerfile\nDocker containers are built using a Dockerfile. You can’t see these on Dockerhub (sadly) but most are on GitHub.\nHere is the r-base Dockerfile:\n## Emacs, make this -*- mode: sh; -*-\n\nFROM debian:testing\n\nLABEL org.opencontainers.image.licenses=\"GPL-2.0-or-later\" \\\n      org.opencontainers.image.source=\"https://github.com/rocker-org/rocker\" \\\n      org.opencontainers.image.vendor=\"Rocker Project\" \\\n      org.opencontainers.image.authors=\"Dirk Eddelbuettel &lt;edd@debian.org&gt;\"\n\n## Set a default user. Available via runtime flag `--user docker`\n## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library\n## User should also have & own a home directory (for rstudio or linked volumes to work properly).\nRUN useradd -s /bin/bash -m docker \\\n    && usermod -a -G staff docker\n\n## NB: No 'apt-get upgrade -y' in official images, see eg\n## https://github.com/docker-library/official-images/pull/13443#issuecomment-1297829291\nRUN apt-get update \\\n    && apt-get install -y --no-install-recommends \\\n        ed \\\n        less \\\n        locales \\\n        vim-tiny \\\n        wget \\\n        ca-certificates \\\n        fonts-texgyre \\\n    && rm -rf /var/lib/apt/lists/*\n\n## Configure default locale, see https://github.com/rocker-org/rocker/issues/19\nRUN echo \"en_US.UTF-8 UTF-8\" &gt;&gt; /etc/locale.gen \\\n    && locale-gen en_US.utf8 \\\n    && /usr/sbin/update-locale LANG=en_US.UTF-8\n\nENV LC_ALL=en_US.UTF-8\nENV LANG=en_US.UTF-8\n\n## Use Debian unstable via pinning -- new style via APT::Default-Release\nRUN echo \"deb http://http.debian.net/debian sid main\" &gt; /etc/apt/sources.list.d/debian-unstable.list \\\n        && echo 'APT::Default-Release \"testing\";' &gt; /etc/apt/apt.conf.d/default \\\n        && echo 'APT::Install-Recommends \"false\";' &gt; /etc/apt/apt.conf.d/90local-no-recommends\n\nENV R_BASE_VERSION=4.5.0\n\n# ## During the freeze, new (source) packages are in experimental and we place the binaries in our PPA\n# RUN echo \"deb http://deb.debian.org/debian experimental main\" &gt; /etc/apt/sources.list.d/experimental.list \\\n#    && echo \"deb [trusted=yes] https://eddelbuettel.github.io/ppaR400 ./\" &gt; /etc/apt/sources.list.d/edd-r4.list\n\n## Now install R and littler, and create a link for littler in /usr/local/bin\nRUN apt-get update \\\n        && apt-get install -y -t unstable --no-install-recommends \\\n                libopenblas0-pthread \\\n        littler \\\n                r-cran-docopt \\\n                r-cran-littler \\\n        r-base=${R_BASE_VERSION}-* \\\n        r-base-dev=${R_BASE_VERSION}-* \\\n                r-base-core=${R_BASE_VERSION}-* \\\n        r-recommended=${R_BASE_VERSION}-* \\\n    && chown root:staff \"/usr/local/lib/R/site-library\" \\\n    && chmod g+ws \"/usr/local/lib/R/site-library\" \\\n    && ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \\\n    && ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \\\n    && ln -s /usr/lib/R/site-library/littler/examples/installBioc.r /usr/local/bin/installBioc.r \\\n    && ln -s /usr/lib/R/site-library/littler/examples/installDeps.r /usr/local/bin/installDeps.r \\\n    && ln -s /usr/lib/R/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r \\\n    && ln -s /usr/lib/R/site-library/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \\\n    && rm -rf /tmp/downloaded_packages/ /tmp/*.rds \\\n    && rm -rf /var/lib/apt/lists/*\n\nCMD [\"R\"]"
+    "section": "Docker vocabulary",
+    "text": "Docker vocabulary\n\n\n\nTerm\nMeaning\n\n\n\n\nDockerfile\nA text file with instructions to build an image\n\n\nImage\nA reusable template for a container\n\n\nContainer\nA running environment created from an image\n\n\nRegistry\nA place to publish and download images\n\n\nMount\nA way to connect host files to a container\n\n\nVolume\nStorage managed by Docker"
   },
   {
-    "objectID": "week11/index.html#the-dockerfile-1",
-    "href": "week11/index.html#the-dockerfile-1",
+    "objectID": "week11/index.html#containers-and-virtual-machines",
+    "href": "week11/index.html#containers-and-virtual-machines",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The Dockerfile",
-    "text": "The Dockerfile\nIt looks scary, but we can break it down.\nFROM debian:testing\nStart from debian Linux\n\nLABEL org.opencontainers.image.licenses=\"GPL-2.0-or-later\" \\\n      org.opencontainers.image.source=\"https://github.com/rocker-org/rocker\" \\\n      org.opencontainers.image.vendor=\"Rocker Project\" \\\n      org.opencontainers.image.authors=\"Dirk Eddelbuettel &lt;edd@debian.org&gt;\"\nDo some labelling"
+    "section": "Containers and virtual machines",
+    "text": "Containers and virtual machines\nContainers are like virtual machines, but lighter.\n\n\n\nVirtual machine\nContainer\n\n\n\n\nSimulates a whole computer\nShares the host system kernel\n\n\nUsually larger\nUsually smaller\n\n\nSlower to start\nFaster to start\n\n\nStronger isolation\nEnough isolation for many data workflows\n\n\n\n\nFor reproducible R projects, containers are usually the more practical option."
   },
   {
-    "objectID": "week11/index.html#the-dockerfile-2",
-    "href": "week11/index.html#the-dockerfile-2",
+    "objectID": "week11/index.html#host-and-container",
+    "href": "week11/index.html#host-and-container",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The Dockerfile",
-    "text": "The Dockerfile\nRUN useradd -s /bin/bash -m docker \\\n    && usermod -a -G staff docker\nAdd a user\n\nRUN apt-get update \\\n    && apt-get install -y --no-install-recommends \\\n        ed \\\n        less \\\n        locales \\\n        vim-tiny \\\n        wget \\\n        ca-certificates \\\n        fonts-texgyre \\\n    && rm -rf /var/lib/apt/lists/*\nUpgrade linux stuff"
+    "section": "Host and container",
+    "text": "Host and container\nYour laptop or server\n  |\n  | docker run\n  v\nContainer\n  - Linux\n  - R\n  - packages\n  - project code\nThe container is isolated, but it can still connect to:\n\nFiles you mount from the host\nPorts you expose to the host\nThe internet, if available"
   },
   {
-    "objectID": "week11/index.html#the-dockerfile-3",
-    "href": "week11/index.html#the-dockerfile-3",
+    "objectID": "week11/index.html#install-docker-desktop",
+    "href": "week11/index.html#install-docker-desktop",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The Dockerfile",
-    "text": "The Dockerfile\nRUN apt-get update \\\n        && apt-get install -y -t unstable --no-install-recommends \\\n                libopenblas0-pthread \\\n        littler \\\n                r-cran-docopt \\\n                r-cran-littler \\\n        r-base=${R_BASE_VERSION}-* \\\n        r-base-dev=${R_BASE_VERSION}-* \\\n                r-base-core=${R_BASE_VERSION}-* \\\n        r-recommended=${R_BASE_VERSION}-* \\\nInstall R\n\nCMD [\"R\"]\nRun R"
+    "section": "Install Docker Desktop",
+    "text": "Install Docker Desktop\nDocker Desktop gives us:\n\nThe Docker engine\nA visual interface\nImage and container management\nLogs and resource information\n\nDownload: https://www.docker.com/products/docker-desktop\n\nAfter installation, open Docker Desktop before running Docker commands."
   },
   {
-    "objectID": "week11/index.html#the-dockerfile-4",
-    "href": "week11/index.html#the-dockerfile-4",
+    "objectID": "week11/index.html#check-that-docker-is-working",
+    "href": "week11/index.html#check-that-docker-is-working",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The Dockerfile",
-    "text": "The Dockerfile\nLet’s try making our own Dockerfile building on top of r-base\nFROM r-base"
+    "section": "Check that Docker is working",
+    "text": "Check that Docker is working\nIn the terminal:\ndocker --version\ndocker run hello-world\nIf Docker is working, hello-world downloads a tiny image and runs it.\n\nThis is the smallest possible “does my Docker setup work?” check."
   },
   {
-    "objectID": "week11/index.html#the-dockerfile-5",
-    "href": "week11/index.html#the-dockerfile-5",
+    "objectID": "week11/index.html#r-images-from-rocker",
+    "href": "week11/index.html#r-images-from-rocker",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The Dockerfile",
-    "text": "The Dockerfile\nLet’s try making our own Dockerfile building on top of r-base\nFROM r-base\nRUN Rscript -e \"install.packages(c('palmerpenguins','dplyr','ggplot2'))\""
+    "section": "R images from Rocker",
+    "text": "R images from Rocker\nThe Rocker project provides Docker images for R.\nCommon examples include:\n\nr-base: a minimal R image\nrocker/r-ver: versioned R images\nrocker/rstudio: RStudio Server in a browser\nrocker/verse: RStudio plus many common data science tools\n\n\nRocker saves us from writing a full Linux and R installation from scratch."
   },
   {
-    "objectID": "week11/index.html#the-dockerfile-6",
-    "href": "week11/index.html#the-dockerfile-6",
+    "objectID": "week11/index.html#search-and-pull-in-docker-desktop",
+    "href": "week11/index.html#search-and-pull-in-docker-desktop",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "The Dockerfile",
-    "text": "The Dockerfile\nLet’s try making our own Dockerfile building on top of r-base\nFROM r-base\nRUN Rscript -e \"install.packages(c('palmerpenguins','dplyr','ggplot2'))\"\nCMD [\"R\"]\n\nWe build containers using\ndocker build -t &lt;name&gt; .\nThis will take some time to install the packages\n\n\nThen launch the container with\ndocker run -ti --rm &lt;name&gt;"
+    "section": "Search and pull in Docker Desktop",
+    "text": "Search and pull in Docker Desktop\n\nDocker Desktop can search for images and download them.\n\nFor teaching, the terminal is still clearer because the command documents exactly what happened."
   },
   {
-    "objectID": "week11/index.html#copying-files-into-the-image",
-    "href": "week11/index.html#copying-files-into-the-image",
+    "objectID": "week11/index.html#run-a-basic-r-container",
+    "href": "week11/index.html#run-a-basic-r-container",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Copying files into the image",
-    "text": "Copying files into the image\nA typical use-case for Docker contains is to include the completed code with an image.\nThen, when someone else pulls the image, it will also pull the code.\nFor example:\nFROM rocker/r-ver:4.3.1\n\n# Copy code into the image\nCOPY ./my-analysis /home/rstudio/my-analysis\n\n# Install any required packages\nRUN R -e \"install.packages('renv'); renv::restore()\"\n\n# Set working directory\nWORKDIR /home/rstudio/my-analysis\n\n# Default command (optional)\nCMD [\"Rscript\", \"run-analysis.R\"]"
+    "section": "Run a basic R container",
+    "text": "Run a basic R container\ndocker run -ti --rm r-base\nThis starts R inside a container.\n\nThe prompt looks familiar, but R is running inside the container, not directly on your computer."
   },
   {
-    "objectID": "week11/index.html#rstudio-server",
-    "href": "week11/index.html#rstudio-server",
+    "objectID": "week11/index.html#command-flags",
+    "href": "week11/index.html#command-flags",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "RStudio Server",
-    "text": "RStudio Server\nRStudio Server is a browser-based version of RStudio.\nInitially developed for use ‘in the cloud’, it can be a convenient way to get RStudio to connect to Docker.\nThe Rocker project provides pre-built containers for RStudio Server: https://rocker-project.org/images/versioned/rstudio.html\nWe launch this almost the same way we’ve launched every other container:\ndocker run rocker/rstudio -d \n\nThe -d flag says ‘run in the background’\n\n\nWe have dropped the --rm flag so that the container persists between sessions - useful as a development environment!"
+    "section": "Command flags",
+    "text": "Command flags\ndocker run -ti --rm r-base\n\nrun creates and starts a container\n-t gives the container a terminal\n-i keeps input open\n--rm removes the container after it stops\nr-base is the image name\n\n\nUse q() to exit the R session."
   },
   {
-    "objectID": "week11/index.html#getting-our-files-into-the-container",
-    "href": "week11/index.html#getting-our-files-into-the-container",
+    "objectID": "week11/index.html#is-the-container-running",
+    "href": "week11/index.html#is-the-container-running",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Getting our files into the container",
-    "text": "Getting our files into the container\nOf course, we can edit files and run them in the container. We probably want to get them out in some way.\nWe could:\n\nDownload the files from the web interface\nUse git: but then we would have to put that in our Dockerfile\n“Bind” the working directory into the container"
+    "section": "Is the container running?",
+    "text": "Is the container running?\n\nYou can also check in the terminal:\ndocker ps\nFor stopped containers:\ndocker ps -a"
   },
   {
-    "objectID": "week11/index.html#binding-folders",
-    "href": "week11/index.html#binding-folders",
+    "objectID": "week11/index.html#containers-are-disposable-by-default",
+    "href": "week11/index.html#containers-are-disposable-by-default",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Binding folders",
-    "text": "Binding folders\nThere are two types of bind: soft and hard.\nToday we will only cover “soft” binding\nSoft binding is basically ‘linking’ a folder from your host system into the container. We do that as part of the docker run command\ndocker run -d -p 8787:8787 --mount type=bind,source=\"($PWD)/&lt;name&gt;\",target=/home/rstudio rocker/rstudio\n\nThis maps the directory /&lt;name&gt; into the RStudio container. Changes will persist."
+    "section": "Containers are disposable by default",
+    "text": "Containers are disposable by default\nStart a container:\ndocker run -ti --rm r-base\nInstall a package by hand inside it.\nExit the container.\nStart the container again.\n\nThe package is gone. That is a feature, not a bug."
   },
   {
-    "objectID": "week11/index.html#docker-compose",
-    "href": "week11/index.html#docker-compose",
+    "objectID": "week11/index.html#why-disposable-is-good",
+    "href": "week11/index.html#why-disposable-is-good",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "docker-compose",
-    "text": "docker-compose\nThe commands for launching a docker container can get very long\nWe may also want to deploy multiple containers running different programs\n\nA container running R\nA container running a database\nA container running a webserver\n\n\ndocker-compose is a tool that lets us set up all of our containers in a single command"
+    "section": "Why disposable is good",
+    "text": "Why disposable is good\nDisposable containers make it harder to accidentally depend on:\n\nPackages installed by hand\nObjects left in memory\nFiles saved in an unknown place\nLocal configuration on one person’s computer\n\n\n\n\n\n\n\nTip\n\n\nIf you need something every time, put it in the image or mount it from the host."
   },
   {
-    "objectID": "week11/index.html#docker-compose-format",
-    "href": "week11/index.html#docker-compose-format",
+    "objectID": "week11/index.html#a-dockerfile-is-a-recipe",
+    "href": "week11/index.html#a-dockerfile-is-a-recipe",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "docker-compose format",
-    "text": "docker-compose format\nversion: \"3.9\"\n\nservices:\n  rstudio:\n    image: rocker/rstudio\n    ports:\n      - \"8787:8787\"\n    volumes:\n      - .:/home/rstudio/project\n    environment:\n      PASSWORD: rstudio\n    init: true\n    # Optional: install git in container startup (if missing)\n    command: &gt;\n      bash -c \"\n        apt-get update &&\n        apt-get install -y git &&\n        /init\"\n\nThen run\ndocker-compose up -d"
+    "section": "A Dockerfile is a recipe",
+    "text": "A Dockerfile is a recipe\nA Dockerfile describes how to build an image.\nFROM r-base\nThis says: start from the r-base image.\n\nEvery image builds on another image, unless it starts from scratch."
   },
   {
-    "objectID": "week11/index.html#docker-compose-with-multiple-services",
-    "href": "week11/index.html#docker-compose-with-multiple-services",
+    "objectID": "week11/index.html#add-packages",
+    "href": "week11/index.html#add-packages",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "docker-compose with multiple services",
-    "text": "docker-compose with multiple services\nversion: \"3.9\"\nservices:\n  rstudio:\n    image: rocker/rstudio\n    ports:\n      - \"8787:8787\"\n    volumes:\n      - .:/home/rstudio/project\n    environment:\n      PASSWORD: rstudio\n    init: true\n\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: example"
+    "section": "Add packages",
+    "text": "Add packages\nFROM r-base\n\nRUN Rscript -e \"install.packages(c('palmerpenguins', 'dplyr', 'ggplot2'))\"\nRUN executes a command while the image is being built.\n\nAfter the image is built, these packages are part of the image."
+  },
+  {
+    "objectID": "week11/index.html#add-a-default-command",
+    "href": "week11/index.html#add-a-default-command",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Add a default command",
+    "text": "Add a default command\nFROM r-base\n\nRUN Rscript -e \"install.packages(c('palmerpenguins', 'dplyr', 'ggplot2'))\"\n\nCMD [\"R\"]\nCMD says what should happen when a container starts.\n\nHere the default behaviour is to open R."
+  },
+  {
+    "objectID": "week11/index.html#build-the-image",
+    "href": "week11/index.html#build-the-image",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Build the image",
+    "text": "Build the image\nIn the folder containing the Dockerfile:\ndocker build -t penguins-r .\nThen run it:\ndocker run -ti --rm penguins-r\n\nThe . at the end of docker build means “use this folder as the build context”."
+  },
+  {
+    "objectID": "week11/index.html#image-tags",
+    "href": "week11/index.html#image-tags",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Image tags",
+    "text": "Image tags\ndocker build -t penguins-r .\ndocker build -t penguins-r:week11 .\ndocker build -t yourname/penguins-r:week11 .\nTags are labels for images.\n\nAvoid relying on latest when you need long-term reproducibility."
+  },
+  {
+    "objectID": "week11/index.html#pin-the-base-image",
+    "href": "week11/index.html#pin-the-base-image",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Pin the base image",
+    "text": "Pin the base image\nLess reproducible:\nFROM rocker/r-ver\nMore reproducible:\nFROM rocker/r-ver:4.4.3\n\nThe second version says exactly which R version family the image starts from."
+  },
+  {
+    "objectID": "week11/index.html#project-dockerfile-pattern",
+    "href": "week11/index.html#project-dockerfile-pattern",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Project Dockerfile pattern",
+    "text": "Project Dockerfile pattern\nFor an R project using renv:\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY renv.lock renv.lock\nCOPY renv/ renv/\n\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"targets::tar_make()\"]"
+  },
+  {
+    "objectID": "week11/index.html#why-copy-renv.lock-first",
+    "href": "week11/index.html#why-copy-renv.lock-first",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Why copy renv.lock first?",
+    "text": "Why copy renv.lock first?\nDocker builds in layers.\nIf the package lockfile has not changed, Docker can reuse the package installation layer.\nCOPY renv.lock renv.lock\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nThis makes rebuilds much faster when only your analysis code changes."
+  },
+  {
+    "objectID": "week11/index.html#the-.dockerignore-file",
+    "href": "week11/index.html#the-.dockerignore-file",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The .dockerignore file",
+    "text": "The .dockerignore file\nThe build context should not include everything.\n.git\n.Rproj.user\n_targets\nrenv/library\ncache\n*.html\n*.pdf\n*.RData\n*.Rhistory\n\nThis keeps images smaller and avoids copying local machine state into the container."
+  },
+  {
+    "objectID": "week11/index.html#copying-project-files",
+    "href": "week11/index.html#copying-project-files",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Copying project files",
+    "text": "Copying project files\nA containerised analysis image might include:\n_targets.R\nR/\ndata/\nreport.qmd\nrenv.lock\nrenv/\nDockerfile\nUsually avoid copying:\n.git/\n_targets/\nrenv/library/\nprivate credentials\nlarge generated outputs"
+  },
+  {
+    "objectID": "week11/index.html#a-useful-rule",
+    "href": "week11/index.html#a-useful-rule",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "A useful rule",
+    "text": "A useful rule\n\n\n\n\n\n\nTip\n\n\nCommit the recipe, not the leftovers.\n\n\n\nIn git, keep:\n\nDockerfile\n.dockerignore\nrenv.lock\nProject source files\n\nDo not commit the built image itself."
+  },
+  {
+    "objectID": "week11/index.html#three-storage-patterns",
+    "href": "week11/index.html#three-storage-patterns",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Three storage patterns",
+    "text": "Three storage patterns\n\n\n\n\n\n\n\n\nPattern\nWhat happens\nGood for\n\n\n\n\nContainer filesystem\nFiles live inside one container\nShort experiments\n\n\nBind mount\nHost folder appears inside container\nActive development\n\n\nNamed volume\nDocker manages persistent storage\nDatabases and service data\n\n\n\n\nFor this unit, bind mounts are the most useful pattern."
+  },
+  {
+    "objectID": "week11/index.html#bind-mount-a-project-folder",
+    "href": "week11/index.html#bind-mount-a-project-folder",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Bind mount a project folder",
+    "text": "Bind mount a project folder\ndocker run -ti --rm \\\n  --mount type=bind,source=\"${PWD}\",target=/project \\\n  -w /project \\\n  rocker/r-ver:4.4.3\nThis means:\n\nThe current folder on your computer appears as /project\nThe container starts in /project\nChanges are saved on your computer"
+  },
+  {
+    "objectID": "week11/index.html#why-bind-mounts-matter",
+    "href": "week11/index.html#why-bind-mounts-matter",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Why bind mounts matter",
+    "text": "Why bind mounts matter\nWithout a bind mount:\nedit on host -&gt; not visible in container\nwrite in container -&gt; disappears when container is removed\nWith a bind mount:\nedit on host &lt;-&gt; visible in container\nwrite in container &lt;-&gt; saved on host\n\nThis is how we use Docker while still editing files normally."
+  },
+  {
+    "objectID": "week11/index.html#rstudio-server-in-docker",
+    "href": "week11/index.html#rstudio-server-in-docker",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "RStudio Server in Docker",
+    "text": "RStudio Server in Docker\nRStudio Server runs in the container and opens in your browser.\ndocker run --rm -d \\\n  -p 8787:8787 \\\n  -e PASSWORD=changeme \\\n  --mount type=bind,source=\"${PWD}\",target=/home/rstudio/project \\\n  rocker/rstudio\nThen open:\nhttp://localhost:8787"
+  },
+  {
+    "objectID": "week11/index.html#what-the-flags-mean",
+    "href": "week11/index.html#what-the-flags-mean",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What the flags mean",
+    "text": "What the flags mean\ndocker run --rm -d -p 8787:8787 -e PASSWORD=changeme rocker/rstudio\n\n-d runs the container in the background\n-p 8787:8787 maps a browser port to the container\n-e PASSWORD=changeme sets an environment variable\n--rm removes the container when it stops\n\n\nUse a stronger password for anything that is not just local teaching work."
+  },
+  {
+    "objectID": "week11/index.html#stop-the-container",
+    "href": "week11/index.html#stop-the-container",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Stop the container",
+    "text": "Stop the container\nList running containers:\ndocker ps\nStop one:\ndocker stop &lt;container-id&gt;\n\nYou only need enough of the container ID to make it unique."
+  },
+  {
+    "objectID": "week11/index.html#named-volumes",
+    "href": "week11/index.html#named-volumes",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Named volumes",
+    "text": "Named volumes\nCreate a Docker-managed volume:\ndocker volume create mydata\nUse it:\ndocker run --rm \\\n  --mount type=volume,source=mydata,target=/app/data \\\n  myimage\n\nVolumes are useful when the data belongs to the service, not directly to your project folder."
+  },
+  {
+    "objectID": "week11/index.html#bind-mounts-versus-volumes",
+    "href": "week11/index.html#bind-mounts-versus-volumes",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Bind mounts versus volumes",
+    "text": "Bind mounts versus volumes\n\n\n\nFeature\nBind mount\nNamed volume\n\n\n\n\nManaged by\nYou\nDocker\n\n\nEasy to inspect in Finder or Explorer\nYes\nLess directly\n\n\nPortable across computers\nDepends on path\nManaged by Docker\n\n\nBest for\nCode and project files\nDatabases and service state"
+  },
+  {
+    "objectID": "week11/index.html#permissions",
+    "href": "week11/index.html#permissions",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Permissions",
+    "text": "Permissions\nBind mounts can expose permission differences between:\n\nmacOS\nWindows\nLinux\nThe user inside the container\n\nSymptoms include:\n\nFiles created by the container cannot be edited on the host\nR cannot write to a mounted project folder\nPackage libraries are not writable\n\n\nThis is normal Docker friction. It is not a sign that the project is broken."
+  },
+  {
+    "objectID": "week11/index.html#the-problem-with-long-commands",
+    "href": "week11/index.html#the-problem-with-long-commands",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The problem with long commands",
+    "text": "The problem with long commands\nThis is useful, but hard to remember:\ndocker run --rm -d \\\n  -p 8787:8787 \\\n  -e PASSWORD=changeme \\\n  --mount type=bind,source=\"${PWD}\",target=/home/rstudio/project \\\n  rocker/rstudio\n\nDocker Compose lets us write this configuration once."
+  },
+  {
+    "objectID": "week11/index.html#a-compose-file",
+    "href": "week11/index.html#a-compose-file",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "A Compose file",
+    "text": "A Compose file\ncompose.yaml\nservices:\n  rstudio:\n    image: rocker/rstudio\n    ports:\n      - \"8787:8787\"\n    environment:\n      PASSWORD: changeme\n    volumes:\n      - .:/home/rstudio/project\n    working_dir: /home/rstudio/project\nRun:\ndocker compose up -d"
+  },
+  {
+    "objectID": "week11/index.html#stopping-compose-services",
+    "href": "week11/index.html#stopping-compose-services",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Stopping Compose services",
+    "text": "Stopping Compose services\ndocker compose ps\ndocker compose logs\ndocker compose down\n\nOlder examples may use docker-compose. The newer command is docker compose."
+  },
+  {
+    "objectID": "week11/index.html#multiple-services",
+    "href": "week11/index.html#multiple-services",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Multiple services",
+    "text": "Multiple services\nSome projects need more than R.\nservices:\n  rstudio:\n    image: rocker/rstudio\n    ports:\n      - \"8787:8787\"\n    environment:\n      PASSWORD: changeme\n    volumes:\n      - .:/home/rstudio/project\n\n  db:\n    image: postgres\n    environment:\n      POSTGRES_PASSWORD: example\n    volumes:\n      - pgdata:/var/lib/postgresql/data\n\nvolumes:\n  pgdata:"
+  },
+  {
+    "objectID": "week11/index.html#why-multiple-services",
+    "href": "week11/index.html#why-multiple-services",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Why multiple services?",
+    "text": "Why multiple services?\nA data science project might use:\n\nRStudio Server for analysis\nPostgreSQL for a database\nA web app for results\nA separate service for an API\n\n\nCompose describes the small system, not just one container."
   },
   {
     "objectID": "week11/index.html#environment-variables",
     "href": "week11/index.html#environment-variables",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Environment Variables",
-    "text": "Environment Variables\nYou might notice here the environment section. This is used to set environment variables.\nExample: Set RStudio password\nservices:\n  rstudio:\n    image: rocker/rstudio\n    ports:\n      - \"8787:8787\"\n    environment:\n      - PASSWORD=yourpassword\nAlso useful for: - API keys - R environment settings - Application config"
+    "section": "Environment variables",
+    "text": "Environment variables\nEnvironment variables configure software without hard-coding values.\nservices:\n  rstudio:\n    image: rocker/rstudio\n    environment:\n      PASSWORD: changeme\n      RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.posit.co/cran/latest\nCommon uses:\n\nPasswords for local services\nAPI endpoints\nR package repository settings\nApplication configuration"
   },
   {
-    "objectID": "week11/index.html#persistent-storage",
-    "href": "week11/index.html#persistent-storage",
+    "objectID": "week11/index.html#secrets-warning",
+    "href": "week11/index.html#secrets-warning",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Persistent storage",
-    "text": "Persistent storage\nSo far we’ve looked at\n\nEphemeral storage inside the container\nBind mounts on the host filesystem\n\nThere is a third option: persistent storage inside the container"
+    "section": "Secrets warning",
+    "text": "Secrets warning\n\n\n\n\n\n\nWarning\n\n\nDo not commit real passwords, API keys, or tokens to a repository.\n\n\n\nFor real projects, use:\n\n.env files that are not committed\nGitHub Actions secrets\nA password manager\nCloud secret stores"
   },
   {
-    "objectID": "week11/index.html#persistent-storage-1",
-    "href": "week11/index.html#persistent-storage-1",
+    "objectID": "week11/index.html#how-the-pieces-fit-together",
+    "href": "week11/index.html#how-the-pieces-fit-together",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Persistent storage",
-    "text": "Persistent storage\n\n\n\n\n\n\n\n\nFeature\nNamed Volume\nBind Mount\n\n\n\n\nLifecycle\nManaged by Docker\nDepends on host filesystem\n\n\nPortability\nPortable\nNot portable\n\n\nPerformance\nSlightly better in some cases\nDepends on host OS\n\n\nUse case\nContainer data\nDev code or custom config"
+    "section": "How the pieces fit together",
+    "text": "How the pieces fit together\ngit\n  records project source\n\nrenv\n  records R packages\n\ntargets\n  records the analysis workflow\n\nDocker\n  records the computer environment\n\nThe strongest projects use these tools together, each doing a different job."
   },
   {
-    "objectID": "week11/index.html#persistent-storage-2",
-    "href": "week11/index.html#persistent-storage-2",
+    "objectID": "week11/index.html#a-containerised-targets-workflow",
+    "href": "week11/index.html#a-containerised-targets-workflow",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Persistent storage",
-    "text": "Persistent storage\nCreating a volume:\ndocker volume create --name mydata\nAnd use it in a container:\ndocker run -v mydata:/app/data myimage"
+    "section": "A containerised targets workflow",
+    "text": "A containerised targets workflow\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY renv.lock renv.lock\nCOPY renv/ renv/\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"targets::tar_make()\"]\nThen:\ndocker build -t my-analysis .\ndocker run --rm my-analysis"
   },
   {
-    "objectID": "week11/index.html#persistent-storage-3",
-    "href": "week11/index.html#persistent-storage-3",
+    "objectID": "week11/index.html#what-this-gives-the-collaborator",
+    "href": "week11/index.html#what-this-gives-the-collaborator",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Persistent storage",
-    "text": "Persistent storage\nYou can also do this in a docker-compose\nversion: \"3\"\nservices:\n  rstudio:\n    image: rocker/rstudio\n    volumes:\n      - mydata:/home/rstudio/data\n\nvolumes:\n  mydata:"
+    "section": "What this gives the collaborator",
+    "text": "What this gives the collaborator\nInstead of saying:\nInstall R, install packages, maybe install system libraries,\nthen run these scripts in this order.\nYou can say:\ndocker build -t my-analysis .\ndocker run --rm my-analysis\n\nThat is a much smaller surface area for mistakes."
   },
   {
-    "objectID": "week11/index.html#use-case-sharing-r-packages",
-    "href": "week11/index.html#use-case-sharing-r-packages",
+    "objectID": "week11/index.html#but-docker-is-not-enough",
+    "href": "week11/index.html#but-docker-is-not-enough",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Use-case: Sharing R Packages",
-    "text": "Use-case: Sharing R Packages\nYou might have multiple containers that should have identical packages installed.\n\nCreate the volume\n\ndocker create volume rlibs\n\nInstall packages using a container with rlibs mounted\nMount the volume in your container\n\nvolumes:\n  - rlibs:/usr/local/lib/R/site-library"
+    "section": "But Docker is not enough",
+    "text": "But Docker is not enough\nA Docker image can still fail if:\n\nRequired data are missing\nPrivate credentials are unavailable\nThe analysis uses absolute paths\nThe Dockerfile depends on changing remote resources\nResults depend on randomness without fixed seeds\nThe instructions are not documented\n\n\nDocker reduces environment drift. It does not remove the need for good project design."
   },
   {
-    "objectID": "week11/index.html#use-case-sharing-r-packages-1",
-    "href": "week11/index.html#use-case-sharing-r-packages-1",
+    "objectID": "week11/index.html#when-docker-is-worth-it",
+    "href": "week11/index.html#when-docker-is-worth-it",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Use-case: Sharing R Packages",
-    "text": "Use-case: Sharing R Packages\nThis is actually not a great idea, as it relies on:\n\nAll containers using the same R version\nAll containers using the same operating system\nPermissions have to be broad in the containers\nContainers are not isolated: installing new packages could be problematic\n\n\nA better idea would be to create a new Docker image with the packages you need pre-installed."
+    "section": "When Docker is worth it",
+    "text": "When Docker is worth it\nUse Docker when:\n\nCollaborators have different operating systems\nThe project needs system libraries\nYou need to deploy an analysis or app\nA journal, client, or supervisor needs a runnable environment\nYou want automated checks to run in the same environment every time"
   },
   {
-    "objectID": "week11/index.html#sharing-containers",
-    "href": "week11/index.html#sharing-containers",
+    "objectID": "week11/index.html#when-docker-may-be-too-much",
+    "href": "week11/index.html#when-docker-may-be-too-much",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Sharing containers",
-    "text": "Sharing containers\nWe have so far built containers locally using\ndocker build\nWe push our built containers to Dockerhub, much like we push our git repos to GitHub."
+    "section": "When Docker may be too much",
+    "text": "When Docker may be too much\nFor a small class project, you may be fine with:\n\nA clear folder structure\nA Quarto report\nrenv.lock\nA short README\nA targets pipeline for larger analyses\n\n\n\n\n\n\n\nTip\n\n\nChoose the simplest tool that makes the project trustworthy."
   },
   {
-    "objectID": "week11/index.html#sharing-containers-1",
-    "href": "week11/index.html#sharing-containers-1",
+    "objectID": "week11/index.html#registries",
+    "href": "week11/index.html#registries",
     "title": "ETC5513: Collaborative and Reproducible Practices",
-    "section": "Sharing containers",
-    "text": "Sharing containers\nFirst, login with\ndocker login\nBuild your container as follows:\ndocker build -t &lt;your-username&gt;/&lt;image-name&gt;\nThen push your container:\ndocker push &lt;your-username&gt;/&lt;image-name&gt;\n\nOthers can then pull your container using\ndocker pull &lt;your-username&gt;/&lt;image-name&gt;\njust like we have done with the rocker/rstudio image!"
+    "section": "Registries",
+    "text": "Registries\nA registry stores Docker images.\nCommon options:\n\nDocker Hub\nGitHub Container Registry\nA private registry inside an organisation\n\n\nThis is like GitHub for built environments, but the object being shared is an image."
+  },
+  {
+    "objectID": "week11/index.html#push-an-image",
+    "href": "week11/index.html#push-an-image",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Push an image",
+    "text": "Push an image\nLogin:\ndocker login\nBuild with a registry-ready name:\ndocker build -t yourname/my-analysis:week11 .\nPush:\ndocker push yourname/my-analysis:week11"
+  },
+  {
+    "objectID": "week11/index.html#pull-and-run",
+    "href": "week11/index.html#pull-and-run",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Pull and run",
+    "text": "Pull and run\nSomeone else can run:\ndocker pull yourname/my-analysis:week11\ndocker run --rm yourname/my-analysis:week11\n\nFor long-term projects, also keep the Dockerfile in the repository so the image can be rebuilt."
+  },
+  {
+    "objectID": "week11/index.html#images-can-get-large",
+    "href": "week11/index.html#images-can-get-large",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Images can get large",
+    "text": "Images can get large\nImages include operating system files, libraries, R, packages, and maybe project files.\nWays to keep them manageable:\n\nUse .dockerignore\nAvoid copying large generated outputs\nStart from an appropriate base image\nClean package manager caches when installing system libraries\nRebuild only when needed"
   },
   {
     "objectID": "week11/index.html#cleaning-up",
     "href": "week11/index.html#cleaning-up",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Cleaning up",
-    "text": "Cleaning up\nOver time, your docker contains will probably accumulate. This includes:\n\nContainers\nVolumes\nImages\nNetwork mappings\n\nWe can clean these up with\ndocker system prune\n\n\n\n\n\n\nWarning\n\n\nUse with caution: deletes stopped containers and dangling images!"
+    "text": "Cleaning up\nDocker can accumulate:\n\nStopped containers\nOld images\nUnused volumes\nBuild cache\n\nInspect first:\ndocker system df\nClean cautiously:\ndocker system prune\n\n\n\n\n\n\nWarning\n\n\ndocker system prune deletes stopped containers and unused build objects. Read the prompt before confirming."
+  },
+  {
+    "objectID": "week11/index.html#containerise-a-small-analysis",
+    "href": "week11/index.html#containerise-a-small-analysis",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Containerise a small analysis",
+    "text": "Containerise a small analysis\nImagine this project:\npenguins-analysis/\n|-- _targets.R\n|-- R/\n|   |-- data.R\n|   `-- plots.R\n|-- report.qmd\n|-- renv.lock\n`-- Dockerfile\nThe goal:\ndocker run --rm penguins-analysis\nshould rebuild the analysis."
+  },
+  {
+    "objectID": "week11/index.html#targets.r",
+    "href": "week11/index.html#targets.r",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "_targets.R",
+    "text": "_targets.R\nlibrary(targets)\nlibrary(tarchetypes)\n\ntar_source()\n\ntar_option_set(\n  packages = c(\"palmerpenguins\", \"dplyr\", \"ggplot2\")\n)\n\nlist(\n  tar_target(raw_data, palmerpenguins::penguins),\n  tar_target(clean_data, clean_penguins(raw_data)),\n  tar_target(species_plot, plot_species(clean_data)),\n  tar_quarto(report, \"report.qmd\")\n)"
+  },
+  {
+    "objectID": "week11/index.html#dockerfile",
+    "href": "week11/index.html#dockerfile",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Dockerfile",
+    "text": "Dockerfile\nFROM rocker/r-ver:4.4.3\n\nWORKDIR /project\n\nRUN Rscript -e \"install.packages('renv')\"\n\nCOPY renv.lock renv.lock\nCOPY renv/ renv/\nRUN Rscript -e \"renv::restore(prompt = FALSE)\"\n\nCOPY . .\n\nCMD [\"Rscript\", \"-e\", \"targets::tar_make()\"]"
+  },
+  {
+    "objectID": "week11/index.html#build-and-run",
+    "href": "week11/index.html#build-and-run",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Build and run",
+    "text": "Build and run\ndocker build -t penguins-analysis .\ndocker run --rm penguins-analysis\nIf the report is written inside the container, remember:\n\nWithout a mount, the output stays inside the container and disappears when the container is removed."
+  },
+  {
+    "objectID": "week11/index.html#keep-outputs-on-the-host",
+    "href": "week11/index.html#keep-outputs-on-the-host",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Keep outputs on the host",
+    "text": "Keep outputs on the host\ndocker run --rm \\\n  --mount type=bind,source=\"${PWD}\",target=/project \\\n  -w /project \\\n  penguins-analysis\nNow rendered outputs are written to your project folder.\n\nThis is usually what you want while developing."
+  },
+  {
+    "objectID": "week11/index.html#common-mistakes",
+    "href": "week11/index.html#common-mistakes",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Common mistakes",
+    "text": "Common mistakes\n\nForgetting that containers are disposable\nCopying _targets/ into the image\nRelying on latest tags for long-term work\nInstalling packages interactively but not updating the Dockerfile or renv.lock\nUsing absolute paths from the host machine\nCommitting secrets inside compose.yaml"
+  },
+  {
+    "objectID": "week11/index.html#a-good-docker-readme-section",
+    "href": "week11/index.html#a-good-docker-readme-section",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "A good Docker README section",
+    "text": "A good Docker README section\n## Reproduce with Docker\n\nBuild the image:\n\n```bash\ndocker build -t my-analysis .\n```\n\nRun the analysis:\n\n```bash\ndocker run --rm \\\n  --mount type=bind,source=\"${PWD}\",target=/project \\\n  -w /project \\\n  my-analysis\n```\n\nMake the default path easy for a new person to follow."
+  },
+  {
+    "objectID": "week11/index.html#minimal-project-checklist",
+    "href": "week11/index.html#minimal-project-checklist",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Minimal project checklist",
+    "text": "Minimal project checklist\nBefore sharing a Dockerised project, check:\n\nDockerfile builds from a clean clone\n.dockerignore excludes local state\nrenv.lock is current\ntargets::tar_make() runs inside the container\nOutputs can be written somewhere useful\nREADME explains build and run commands"
+  },
+  {
+    "objectID": "week11/index.html#how-to-debug-a-container",
+    "href": "week11/index.html#how-to-debug-a-container",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "How to debug a container",
+    "text": "How to debug a container\nOpen a shell inside the image:\ndocker run -ti --rm my-analysis bash\nThen inspect:\npwd\nls\nR --version\nRscript -e \"renv::status()\"\nRscript -e \"targets::tar_validate()\"\n\nDebug the environment first, then the analysis."
+  },
+  {
+    "objectID": "week11/index.html#the-main-trade-off",
+    "href": "week11/index.html#the-main-trade-off",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The main trade-off",
+    "text": "The main trade-off\n\n\nDocker costs:\n\nMore files\nMore concepts\nLarger downloads\nMore setup time\nOccasional permissions issues\n\n\nDocker buys:\n\nPortable environments\nFewer “works on my machine” problems\nDeployment readiness\nStronger automated checks\nA clear computational record"
   },
   {
     "objectID": "week11/index.html#summary",
     "href": "week11/index.html#summary",
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Summary",
-    "text": "Summary\n\nDocker containerises our work, allowing others to deploy the container seamlessly.\nWhen paired with the code copying, others will get an (almost) exact copy of your analysis.\nDocker is used incredibly broadly, and some familiarity will put you ahead"
+    "text": "Summary\n\nDocker describes and runs portable computational environments\nImages are templates; containers are running instances\nDockerfile records how an image is built\nBind mounts connect project files to containers\nDocker Compose records longer container configurations\nDocker complements git, Quarto, renv, and targets"
+  },
+  {
+    "objectID": "week11/index.html#final-thought",
+    "href": "week11/index.html#final-thought",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Final thought",
+    "text": "Final thought\n\n\n\n\n\n\nTip\n\n\nReproducibility is a ladder. Docker is one of the higher rungs, not the first one.\n\n\n\nStart with clear code, relative paths, version control, package management, and a runnable workflow.\nThen use Docker when the environment needs to be part of the project."
   },
   {
     "objectID": "week11/tutorial/solution.html",
