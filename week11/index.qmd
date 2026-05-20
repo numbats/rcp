@@ -1,15 +1,15 @@
 ---
 pagetitle: "ETC5513: Reproducible and Collaborative Practices"
-subtitle: "Docker: The gold standard of reproducibility"
+subtitle: "Docker: portable computational environments"
 author: "Michael Lydeamore"
 email: "michael.lydeamore@monash.edu"
 date: "Week 11"
 department: "Department of Econometrics and Business Statistics"
 unit-url: "rcp.numbat.space"
 footer: "ETC5513 Week 11"
-format: 
+format:
   revealjs:
-    logo: images/monash-stacked-blue-rgb-transparent.png
+    logo: ../common_images/monash-stacked-blue-rgb-transparent.png
     slide-number: c
     multiplex: false
     theme: ../assets/monash.scss
@@ -26,7 +26,6 @@ format:
 execute:
   echo: true
 ---
-
 
 ```{r, include = FALSE}
 current_file <- knitr::current_input()
@@ -47,7 +46,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="images/bg-01.png"}
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="../common_images/bg-01.png"}
 
 ### `r rmarkdown::metadata$subtitle`
 
@@ -87,610 +86,1160 @@ Lecturer: *`r rmarkdown::metadata$author`*
 
 ![](images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
 
-# Reproducibility using Docker
+## Recap
 
-This is just for your information and it is not part of the material that is going to be examined.
-
-## Reproducibility using Docker
-
-Docker is a program that allows to manipulate (launch and stop) multiple operating systems (called containers) on your machine (your machine will be called the host). 
-
-Source [here](https://colinfay.me/docker-r-reproducibility/). 
-
-Docker is designed to enclose environments inside an image / a container
-
-## What is a container?
-
-A container is like a virtual machine. They have an operating system, but don't simulate the entire computer.
-
-Typically these operating system's are stripped down to the bare minimum.
-
-Containers are built using a set of instructions, which makes them reproducible
-
-## Why use a container?
-
-Containers run anyway in a (relatively) standardised way, independent of the host operating system.
-
-This means you can _deploy_ a container on Amazon AWS, Azure, or on your own PC and the behaviour should be the same.
+* Repositories give a project a shared home
+* Quarto makes the report reproducible
+* `renv` records the R package environment
+* `targets` records the workflow and reruns only what is needed
 
 ::: {.fragment}
-Docker is a way to set up, share, and deploy these containers, and is used very widely.
+Today we move one layer lower: the computer environment itself.
 :::
 
-## Docker Desktop
+## Today's plan {#aim}
 
-We will use Docker **Desktop** which gives us a visual interface to:
+::: {.callout-important}
 
-- Browse and launch containers
-- Manage volumes
-- View logs and resources
-- Build images without the terminal
+## Aim
 
-## Step 1: Install Docker Desktop
+* Explain what Docker adds to reproducible research
+* Distinguish images, containers, registries, mounts, and volumes
+* Run an R container using the Rocker images
+* Write a small `Dockerfile` for an R project
+* Use bind mounts and Docker Compose for a development environment
+* Decide when Docker is worth using
 
-- Download: [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
-- Follow the installation instructions for:
-  - macOS
-  - Windows
-  - (Linux users will need Docker Engine + extensions)
+:::
 
-You may need to update your path. On Mac, do this by running
+## A note on assessment
 
-```bash
-export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+::: {.callout-tip}
+Docker is included to show you the current gold standard for portable computational environments.
+:::
+
+You should understand the ideas and recognise the workflow.
+
+You are not expected to memorise every Docker command for assessment.
+
+# Why Docker?
+
+## The familiar problem
+
+::: {.columns}
+::: {.column width="48%"}
+It works on my machine.
+
+```r
+source("analysis.R")
+quarto::quarto_render("report.qmd")
+```
+:::
+::: {.column width="52%"}
+But on someone else's machine:
+
+* R is a different version
+* A package was compiled differently
+* A system library is missing
+* The operating system behaves differently
+* The project path is different
+:::
+:::
+
+::: {.fragment}
+Reproducibility is not only about code.
+:::
+
+## Layers of reproducibility
+
+| Layer | Tool we have used | What it records |
+| --- | --- | --- |
+| Code history | `git` | What changed, when, and why |
+| Documents | Quarto | Text, code, and outputs together |
+| R packages | `renv` | Package versions for the project |
+| Workflow | `targets` | What depends on what |
+| Computer environment | Docker | Operating system, system libraries, and commands |
+
+::: {.fragment}
+Docker does not replace the earlier tools. It wraps them in a portable environment.
+:::
+
+## What Docker gives us
+
+Docker lets us describe and run a small computer environment.
+
+That environment can include:
+
+* An operating system
+* R and system libraries
+* R packages
+* Project files
+* A default command to run
+
+::: {.fragment}
+The description is plain text, so it can be committed to `git`.
+:::
+
+## What Docker is not
+
+Docker is not:
+
+* A substitute for readable code
+* A substitute for tests or checks
+* A place to hide manual steps
+* A magic fix for missing data
+* Always worth the extra complexity
+
+::: {.callout-tip}
+Use Docker when the environment itself is part of the reproducibility problem.
+:::
+
+## A useful mental model
+
+```text
+Dockerfile  --->  image  --->  container
+   recipe          frozen       running copy
+                  template
 ```
 
-in the terminal
+::: {.fragment}
+An image is like a saved template. A container is a running instance of that template.
+:::
 
-## Step 2: Run a container
+## Docker vocabulary
 
-The [rocker project](https://rocker-project.org/) provides R containers that we can use.
+| Term | Meaning |
+| --- | --- |
+| `Dockerfile` | A text file with instructions to build an image |
+| Image | A reusable template for a container |
+| Container | A running environment created from an image |
+| Registry | A place to publish and download images |
+| Mount | A way to connect host files to a container |
+| Volume | Storage managed by Docker |
 
-We can search for these inside Docker Desktop:
+## Containers and virtual machines
+
+Containers are like virtual machines, but lighter.
+
+| Virtual machine | Container |
+| --- | --- |
+| Simulates a whole computer | Shares the host system kernel |
+| Usually larger | Usually smaller |
+| Slower to start | Faster to start |
+| Stronger isolation | Enough isolation for many data workflows |
+
+::: {.fragment}
+For reproducible R projects, containers are usually the more practical option.
+:::
+
+## Host and container
+
+```text
+Your laptop or server
+  |
+  | docker run
+  v
+Container
+  - Linux
+  - R
+  - packages
+  - project code
+```
+
+The container is isolated, but it can still connect to:
+
+* Files you mount from the host
+* Ports you expose to the host
+* The internet, if available
+
+# Running Containers
+
+## Install Docker Desktop
+
+Docker Desktop gives us:
+
+* The Docker engine
+* A visual interface
+* Image and container management
+* Logs and resource information
+
+Download: <https://www.docker.com/products/docker-desktop>
+
+::: {.fragment}
+After installation, open Docker Desktop before running Docker commands.
+:::
+
+## Check that Docker is working
+
+In the terminal:
+
+```bash
+docker --version
+docker run hello-world
+```
+
+If Docker is working, `hello-world` downloads a tiny image and runs it.
+
+::: {.fragment}
+This is the smallest possible "does my Docker setup work?" check.
+:::
+
+## R images from Rocker
+
+The [Rocker project](https://rocker-project.org/) provides Docker images for R.
+
+Common examples include:
+
+* `r-base`: a minimal R image
+* `rocker/r-ver`: versioned R images
+* `rocker/rstudio`: RStudio Server in a browser
+* `rocker/verse`: RStudio plus many common data science tools
+
+::: {.fragment}
+Rocker saves us from writing a full Linux and R installation from scratch.
+:::
+
+## Search and pull in Docker Desktop
 
 ![](images/2025-05-15-12-37-47.png){fig-align="center"}
 
-Press "Pull" to download the container
+Docker Desktop can search for images and download them.
 
-## Step 2a: Running in the terminal
+::: {.fragment}
+For teaching, the terminal is still clearer because the command documents exactly what happened.
+:::
 
-While it is possible to run containers inside Docker Desktop, it's much easier to run them in the terminal.
-
-To run the `r-base` container, we can follow the instructions on the container page.
+## Run a basic R container
 
 ```bash
 docker run -ti --rm r-base
 ```
 
-This should launch you into a terminal R session!
+This starts R inside a container.
 
 ::: {.fragment}
-Note the arguments:
-
-* `-ti` means "terminal, interactive"
-* `--rm` means delete the container when it closes
+The prompt looks familiar, but R is running inside the container, not directly on your computer.
 :::
 
-## Checking if the container is running
+## Command flags
 
-You should be able to see the container inside Docker Desktop
+```bash
+docker run -ti --rm r-base
+```
+
+* `run` creates and starts a container
+* `-t` gives the container a terminal
+* `-i` keeps input open
+* `--rm` removes the container after it stops
+* `r-base` is the image name
+
+::: {.fragment}
+Use `q()` to exit the R session.
+:::
+
+## Is the container running?
 
 ![](images/2025-05-15-12-40-16.png){fig-align="center"}
 
-And when you stop the container (with `q()`) it will disappear out of your list.
+You can also check in the terminal:
 
-## The Dockerfile
-
-Docker containers are built using a Dockerfile. You can't see these on Dockerhub (sadly) but most are on GitHub.
-
-Here is the `r-base` Dockerfile:
-
+```bash
+docker ps
 ```
-## Emacs, make this -*- mode: sh; -*-
 
-FROM debian:testing
+For stopped containers:
 
-LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
-      org.opencontainers.image.source="https://github.com/rocker-org/rocker" \
-      org.opencontainers.image.vendor="Rocker Project" \
-      org.opencontainers.image.authors="Dirk Eddelbuettel <edd@debian.org>"
+```bash
+docker ps -a
+```
 
-## Set a default user. Available via runtime flag `--user docker`
-## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
-## User should also have & own a home directory (for rstudio or linked volumes to work properly).
-RUN useradd -s /bin/bash -m docker \
-	&& usermod -a -G staff docker
+## Containers are disposable by default
 
-## NB: No 'apt-get upgrade -y' in official images, see eg
-## https://github.com/docker-library/official-images/pull/13443#issuecomment-1297829291
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		ed \
-		less \
-		locales \
-		vim-tiny \
-		wget \
-		ca-certificates \
-		fonts-texgyre \
-	&& rm -rf /var/lib/apt/lists/*
+Start a container:
 
-## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
-RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-	&& locale-gen en_US.utf8 \
-	&& /usr/sbin/update-locale LANG=en_US.UTF-8
+```bash
+docker run -ti --rm r-base
+```
 
-ENV LC_ALL=en_US.UTF-8
-ENV LANG=en_US.UTF-8
+Install a package by hand inside it.
 
-## Use Debian unstable via pinning -- new style via APT::Default-Release
-RUN echo "deb http://http.debian.net/debian sid main" > /etc/apt/sources.list.d/debian-unstable.list \
-        && echo 'APT::Default-Release "testing";' > /etc/apt/apt.conf.d/default \
-        && echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf.d/90local-no-recommends
+Exit the container.
 
-ENV R_BASE_VERSION=4.5.0
+Start the container again.
 
-# ## During the freeze, new (source) packages are in experimental and we place the binaries in our PPA
-# RUN echo "deb http://deb.debian.org/debian experimental main" > /etc/apt/sources.list.d/experimental.list \
-#    && echo "deb [trusted=yes] https://eddelbuettel.github.io/ppaR400 ./" > /etc/apt/sources.list.d/edd-r4.list
+::: {.fragment}
+The package is gone. That is a feature, not a bug.
+:::
 
-## Now install R and littler, and create a link for littler in /usr/local/bin
-RUN apt-get update \
-        && apt-get install -y -t unstable --no-install-recommends \
-                libopenblas0-pthread \
-		littler \
-                r-cran-docopt \
-                r-cran-littler \
-		r-base=${R_BASE_VERSION}-* \
-		r-base-dev=${R_BASE_VERSION}-* \
-                r-base-core=${R_BASE_VERSION}-* \
-		r-recommended=${R_BASE_VERSION}-* \
-	&& chown root:staff "/usr/local/lib/R/site-library" \
-	&& chmod g+ws "/usr/local/lib/R/site-library" \
-	&& ln -s /usr/lib/R/site-library/littler/examples/install.r /usr/local/bin/install.r \
-	&& ln -s /usr/lib/R/site-library/littler/examples/install2.r /usr/local/bin/install2.r \
-	&& ln -s /usr/lib/R/site-library/littler/examples/installBioc.r /usr/local/bin/installBioc.r \
-	&& ln -s /usr/lib/R/site-library/littler/examples/installDeps.r /usr/local/bin/installDeps.r \
-	&& ln -s /usr/lib/R/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r \
-	&& ln -s /usr/lib/R/site-library/littler/examples/testInstalled.r /usr/local/bin/testInstalled.r \
-	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
-	&& rm -rf /var/lib/apt/lists/*
+## Why disposable is good
+
+Disposable containers make it harder to accidentally depend on:
+
+* Packages installed by hand
+* Objects left in memory
+* Files saved in an unknown place
+* Local configuration on one person's computer
+
+::: {.callout-tip}
+If you need something every time, put it in the image or mount it from the host.
+:::
+
+# Images And Dockerfiles
+
+## A Dockerfile is a recipe
+
+A `Dockerfile` describes how to build an image.
+
+```dockerfile
+FROM r-base
+```
+
+This says: start from the `r-base` image.
+
+::: {.fragment}
+Every image builds on another image, unless it starts from scratch.
+:::
+
+## Add packages
+
+```dockerfile
+FROM r-base
+
+RUN Rscript -e "install.packages(c('palmerpenguins', 'dplyr', 'ggplot2'))"
+```
+
+`RUN` executes a command while the image is being built.
+
+::: {.fragment}
+After the image is built, these packages are part of the image.
+:::
+
+## Add a default command
+
+```dockerfile
+FROM r-base
+
+RUN Rscript -e "install.packages(c('palmerpenguins', 'dplyr', 'ggplot2'))"
 
 CMD ["R"]
 ```
 
----
-
-## The Dockerfile
-
-It looks scary, but we can break it down.
-
-```
-FROM debian:testing
-```
-
-Start from debian Linux
+`CMD` says what should happen when a container starts.
 
 ::: {.fragment}
-
-
-```
-LABEL org.opencontainers.image.licenses="GPL-2.0-or-later" \
-      org.opencontainers.image.source="https://github.com/rocker-org/rocker" \
-      org.opencontainers.image.vendor="Rocker Project" \
-      org.opencontainers.image.authors="Dirk Eddelbuettel <edd@debian.org>"
-```
-
-Do some labelling
+Here the default behaviour is to open R.
 :::
 
+## Build the image
 
-
-## The Dockerfile
-
-```
-RUN useradd -s /bin/bash -m docker \
-	&& usermod -a -G staff docker
-```
-
-Add a user
-
-::: {.fragment}
-```
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		ed \
-		less \
-		locales \
-		vim-tiny \
-		wget \
-		ca-certificates \
-		fonts-texgyre \
-	&& rm -rf /var/lib/apt/lists/*
-```
-
-Upgrade linux stuff
-
-:::
-
-
-## The Dockerfile
-
-```
-RUN apt-get update \
-        && apt-get install -y -t unstable --no-install-recommends \
-                libopenblas0-pthread \
-		littler \
-                r-cran-docopt \
-                r-cran-littler \
-		r-base=${R_BASE_VERSION}-* \
-		r-base-dev=${R_BASE_VERSION}-* \
-                r-base-core=${R_BASE_VERSION}-* \
-		r-recommended=${R_BASE_VERSION}-* \
-```
-
-Install R
-
-::: {.fragment}
-```
-CMD ["R"]
-```
-
-Run R
-:::
-
----
-
-## The Dockerfile
-
-Let's try making our own Dockerfile building on top of `r-base`
-
-```
-FROM r-base
-```
-
-## The Dockerfile 
-
-Let's try making our own Dockerfile building on top of `r-base`
-
-```
-FROM r-base
-RUN Rscript -e "install.packages(c('palmerpenguins','dplyr','ggplot2'))"
-```
-
-## The Dockerfile
-
-Let's try making our own Dockerfile building on top of `r-base`
-
-```
-FROM r-base
-RUN Rscript -e "install.packages(c('palmerpenguins','dplyr','ggplot2'))"
-CMD ["R"]
-```
-
-::: {.fragment}
-We build containers using
+In the folder containing the `Dockerfile`:
 
 ```bash
-docker build -t <name> .
+docker build -t penguins-r .
 ```
 
-This will take some time to install the packages
-:::
-
-::: {.fragment}
-Then launch the container with 
+Then run it:
 
 ```bash
-docker run -ti --rm <name>
+docker run -ti --rm penguins-r
 ```
+
+::: {.fragment}
+The `.` at the end of `docker build` means "use this folder as the build context".
 :::
 
-## Copying files into the image
-
-A typical use-case for Docker contains is to include the completed code with an image. 
-
-Then, when someone else pulls the image, it will also pull the code.
-
-For example:
-
-```
-FROM rocker/r-ver:4.3.1
-
-# Copy code into the image
-COPY ./my-analysis /home/rstudio/my-analysis
-
-# Install any required packages
-RUN R -e "install.packages('renv'); renv::restore()"
-
-# Set working directory
-WORKDIR /home/rstudio/my-analysis
-
-# Default command (optional)
-CMD ["Rscript", "run-analysis.R"]
-```
-
-## RStudio Server
-
-RStudio Server is a browser-based version of RStudio.
-
-Initially developed for use 'in the cloud', it can be a convenient way to get RStudio to connect to Docker.
-
-The Rocker project provides pre-built containers for RStudio Server: <https://rocker-project.org/images/versioned/rstudio.html>
-
-We launch this _almost_ the same way we've launched every other container:
+## Image tags
 
 ```bash
-docker run rocker/rstudio -d 
+docker build -t penguins-r .
+docker build -t penguins-r:week11 .
+docker build -t yourname/penguins-r:week11 .
+```
+
+Tags are labels for images.
+
+::: {.fragment}
+Avoid relying on `latest` when you need long-term reproducibility.
+:::
+
+## Pin the base image
+
+Less reproducible:
+
+```dockerfile
+FROM rocker/r-ver
+```
+
+More reproducible:
+
+```dockerfile
+FROM rocker/r-ver:4.4.3
 ```
 
 ::: {.fragment}
-The `-d` flag says 'run in the background'
+The second version says exactly which R version family the image starts from.
 :::
+
+## Project Dockerfile pattern
+
+For an R project using `renv`:
+
+```dockerfile
+FROM rocker/r-ver:4.4.3
+
+WORKDIR /project
+
+RUN Rscript -e "install.packages('renv')"
+
+COPY renv.lock renv.lock
+COPY renv/ renv/
+
+RUN Rscript -e "renv::restore(prompt = FALSE)"
+
+COPY . .
+
+CMD ["Rscript", "-e", "targets::tar_make()"]
+```
+
+## Why copy `renv.lock` first?
+
+Docker builds in layers.
+
+If the package lockfile has not changed, Docker can reuse the package installation layer.
+
+```dockerfile
+COPY renv.lock renv.lock
+RUN Rscript -e "renv::restore(prompt = FALSE)"
+
+COPY . .
+```
 
 ::: {.fragment}
-We have dropped the `--rm` flag so that the container _persists_ between sessions - useful as a development environment!
+This makes rebuilds much faster when only your analysis code changes.
 :::
 
-## Getting our files into the container
+## The `.dockerignore` file
 
-Of course, we can edit files and run them in the container. We probably want to get them _out_ in some way.
+The build context should not include everything.
 
-We could:
+```text
+.git
+.Rproj.user
+_targets
+renv/library
+cache
+*.html
+*.pdf
+*.RData
+*.Rhistory
+```
 
-1. Download the files from the web interface
-2. Use `git`: but then we would have to put that in our Dockerfile
-2. "Bind" the working directory into the container
+::: {.fragment}
+This keeps images smaller and avoids copying local machine state into the container.
+:::
 
-## Binding folders
+## Copying project files
 
-There are two types of bind: soft and hard.
+A containerised analysis image might include:
 
-Today we will only cover "soft" binding
+```text
+_targets.R
+R/
+data/
+report.qmd
+renv.lock
+renv/
+Dockerfile
+```
 
-Soft binding is basically 'linking' a folder from your host system into the container. We do that as part of the `docker run` command
+Usually avoid copying:
+
+```text
+.git/
+_targets/
+renv/library/
+private credentials
+large generated outputs
+```
+
+## A useful rule
+
+::: {.callout-tip}
+Commit the recipe, not the leftovers.
+:::
+
+In `git`, keep:
+
+* `Dockerfile`
+* `.dockerignore`
+* `renv.lock`
+* Project source files
+
+Do not commit the built image itself.
+
+# Getting Work In And Out
+
+## Three storage patterns
+
+| Pattern | What happens | Good for |
+| --- | --- | --- |
+| Container filesystem | Files live inside one container | Short experiments |
+| Bind mount | Host folder appears inside container | Active development |
+| Named volume | Docker manages persistent storage | Databases and service data |
+
+::: {.fragment}
+For this unit, bind mounts are the most useful pattern.
+:::
+
+## Bind mount a project folder
 
 ```bash
-docker run -d -p 8787:8787 --mount type=bind,source="($PWD)/<name>",target=/home/rstudio rocker/rstudio
+docker run -ti --rm \
+  --mount type=bind,source="${PWD}",target=/project \
+  -w /project \
+  rocker/r-ver:4.4.3
+```
+
+This means:
+
+* The current folder on your computer appears as `/project`
+* The container starts in `/project`
+* Changes are saved on your computer
+
+## Why bind mounts matter
+
+Without a bind mount:
+
+```text
+edit on host -> not visible in container
+write in container -> disappears when container is removed
+```
+
+With a bind mount:
+
+```text
+edit on host <-> visible in container
+write in container <-> saved on host
 ```
 
 ::: {.fragment}
-
-This maps the directory `/<name>` into the RStudio container. Changes will persist.
+This is how we use Docker while still editing files normally.
 :::
 
-## `docker-compose`
+## RStudio Server in Docker
 
-The commands for launching a docker container can get very long
+RStudio Server runs in the container and opens in your browser.
 
-We may also want to deploy multiple containers running different programs
+```bash
+docker run --rm -d \
+  -p 8787:8787 \
+  -e PASSWORD=changeme \
+  --mount type=bind,source="${PWD}",target=/home/rstudio/project \
+  rocker/rstudio
+```
 
-* A container running R
-* A container running a database
-* A container running a webserver
+Then open:
+
+```text
+http://localhost:8787
+```
+
+## What the flags mean
+
+```bash
+docker run --rm -d -p 8787:8787 -e PASSWORD=changeme rocker/rstudio
+```
+
+* `-d` runs the container in the background
+* `-p 8787:8787` maps a browser port to the container
+* `-e PASSWORD=changeme` sets an environment variable
+* `--rm` removes the container when it stops
 
 ::: {.fragment}
-`docker-compose` is a tool that lets us set up all of our containers in a single command
+Use a stronger password for anything that is not just local teaching work.
 :::
 
-## `docker-compose` format
+## Stop the container
+
+List running containers:
+
+```bash
+docker ps
+```
+
+Stop one:
+
+```bash
+docker stop <container-id>
+```
+
+::: {.fragment}
+You only need enough of the container ID to make it unique.
+:::
+
+## Named volumes
+
+Create a Docker-managed volume:
+
+```bash
+docker volume create mydata
+```
+
+Use it:
+
+```bash
+docker run --rm \
+  --mount type=volume,source=mydata,target=/app/data \
+  myimage
+```
+
+::: {.fragment}
+Volumes are useful when the data belongs to the service, not directly to your project folder.
+:::
+
+## Bind mounts versus volumes
+
+| Feature | Bind mount | Named volume |
+| --- | --- | --- |
+| Managed by | You | Docker |
+| Easy to inspect in Finder or Explorer | Yes | Less directly |
+| Portable across computers | Depends on path | Managed by Docker |
+| Best for | Code and project files | Databases and service state |
+
+## Permissions
+
+Bind mounts can expose permission differences between:
+
+* macOS
+* Windows
+* Linux
+* The user inside the container
+
+Symptoms include:
+
+* Files created by the container cannot be edited on the host
+* R cannot write to a mounted project folder
+* Package libraries are not writable
+
+::: {.fragment}
+This is normal Docker friction. It is not a sign that the project is broken.
+:::
+
+# Docker Compose
+
+## The problem with long commands
+
+This is useful, but hard to remember:
+
+```bash
+docker run --rm -d \
+  -p 8787:8787 \
+  -e PASSWORD=changeme \
+  --mount type=bind,source="${PWD}",target=/home/rstudio/project \
+  rocker/rstudio
+```
+
+::: {.fragment}
+Docker Compose lets us write this configuration once.
+:::
+
+## A Compose file
+
+`compose.yaml`
 
 ```yaml
-version: "3.9"
-
 services:
   rstudio:
     image: rocker/rstudio
     ports:
       - "8787:8787"
+    environment:
+      PASSWORD: changeme
     volumes:
       - .:/home/rstudio/project
-    environment:
-      PASSWORD: rstudio
-    init: true
-    # Optional: install git in container startup (if missing)
-    command: >
-      bash -c "
-        apt-get update &&
-        apt-get install -y git &&
-        /init"
+    working_dir: /home/rstudio/project
+```
+
+Run:
+
+```bash
+docker compose up -d
+```
+
+## Stopping Compose services
+
+```bash
+docker compose ps
+docker compose logs
+docker compose down
 ```
 
 ::: {.fragment}
-Then run
-
-```bash
-docker-compose up -d
-```
+Older examples may use `docker-compose`. The newer command is `docker compose`.
 :::
 
-## `docker-compose` with multiple services
+## Multiple services
+
+Some projects need more than R.
 
 ```yaml
-version: "3.9"
 services:
   rstudio:
     image: rocker/rstudio
     ports:
       - "8787:8787"
+    environment:
+      PASSWORD: changeme
     volumes:
       - .:/home/rstudio/project
-    environment:
-      PASSWORD: rstudio
-    init: true
 
   db:
     image: postgres
     environment:
       POSTGRES_PASSWORD: example
-```
-
-
-## Environment Variables
-
-You might notice here the `environment` section. This is used to set _environment variables_.
-
-Example: Set RStudio password
-
-```yaml
-services:
-  rstudio:
-    image: rocker/rstudio
-    ports:
-      - "8787:8787"
-    environment:
-      - PASSWORD=yourpassword
-```
-
-Also useful for:
-- API keys
-- R environment settings
-- Application config
-
----
-
-## Persistent storage
-
-So far we've looked at
-
-* Ephemeral storage inside the container
-* Bind mounts on the host filesystem
-
-There is a third option: persistent storage inside the container
-
-## Persistent storage
-
-| Feature     | Named Volume                  | Bind Mount                 |
-| ----------- | ----------------------------- | -------------------------- |
-| Lifecycle   | Managed by Docker             | Depends on host filesystem |
-| Portability | Portable                      | Not portable               |
-| Performance | Slightly better in some cases | Depends on host OS         |
-| Use case    | Container data                | Dev code or custom config  |
-
-## Persistent storage
-
-Creating a volume:
-
-```bash
-docker volume create --name mydata
-```
-
-And use it in a container:
-
-```bash
-docker run -v mydata:/app/data myimage
-```
-
-## Persistent storage
-
-You can also do this in a `docker-compose`
-
-```yaml
-version: "3"
-services:
-  rstudio:
-    image: rocker/rstudio
     volumes:
-      - mydata:/home/rstudio/data
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  mydata:
+  pgdata:
 ```
 
-## Use-case: Sharing R Packages
+## Why multiple services?
 
-You might have multiple containers that should have _identical_ packages installed.
+A data science project might use:
 
-1. Create the volume
-
-```bash
-docker create volume rlibs
-```
-
-2. Install packages using a container with `rlibs` mounted
-
-3. Mount the volume in your container
-
-```yaml
-volumes:
-  - rlibs:/usr/local/lib/R/site-library
-```
-
-## Use-case: Sharing R Packages
-
-This is actually not a great idea, as it relies on:
-
-* All containers using the same R version
-* All containers using the same operating system
-* Permissions have to be broad in the containers
-* Containers are not isolated: installing new packages could be problematic
+* RStudio Server for analysis
+* PostgreSQL for a database
+* A web app for results
+* A separate service for an API
 
 ::: {.fragment}
-A better idea would be to create a new Docker image with the packages you need pre-installed.
+Compose describes the small system, not just one container.
 :::
 
-## Sharing containers
+## Environment variables
 
-We have so far built containers locally using
+Environment variables configure software without hard-coding values.
 
-```bash
-docker build
+```yaml
+services:
+  rstudio:
+    image: rocker/rstudio
+    environment:
+      PASSWORD: changeme
+      RENV_CONFIG_REPOS_OVERRIDE: https://packagemanager.posit.co/cran/latest
 ```
 
-We push our built containers to Dockerhub, much like we push our git repos to GitHub.
+Common uses:
 
-## Sharing containers
+* Passwords for local services
+* API endpoints
+* R package repository settings
+* Application configuration
 
-First, login with
+## Secrets warning
+
+::: {.callout-warning}
+Do not commit real passwords, API keys, or tokens to a repository.
+:::
+
+For real projects, use:
+
+* `.env` files that are not committed
+* GitHub Actions secrets
+* A password manager
+* Cloud secret stores
+
+# Docker In A Reproducible Workflow
+
+## How the pieces fit together
+
+```text
+git
+  records project source
+
+renv
+  records R packages
+
+targets
+  records the analysis workflow
+
+Docker
+  records the computer environment
+```
+
+::: {.fragment}
+The strongest projects use these tools together, each doing a different job.
+:::
+
+## A containerised targets workflow
+
+```dockerfile
+FROM rocker/r-ver:4.4.3
+
+WORKDIR /project
+
+RUN Rscript -e "install.packages('renv')"
+
+COPY renv.lock renv.lock
+COPY renv/ renv/
+RUN Rscript -e "renv::restore(prompt = FALSE)"
+
+COPY . .
+
+CMD ["Rscript", "-e", "targets::tar_make()"]
+```
+
+Then:
+
+```bash
+docker build -t my-analysis .
+docker run --rm my-analysis
+```
+
+## What this gives the collaborator
+
+Instead of saying:
+
+```text
+Install R, install packages, maybe install system libraries,
+then run these scripts in this order.
+```
+
+You can say:
+
+```bash
+docker build -t my-analysis .
+docker run --rm my-analysis
+```
+
+::: {.fragment}
+That is a much smaller surface area for mistakes.
+:::
+
+## But Docker is not enough
+
+A Docker image can still fail if:
+
+* Required data are missing
+* Private credentials are unavailable
+* The analysis uses absolute paths
+* The Dockerfile depends on changing remote resources
+* Results depend on randomness without fixed seeds
+* The instructions are not documented
+
+::: {.fragment}
+Docker reduces environment drift. It does not remove the need for good project design.
+:::
+
+## When Docker is worth it
+
+Use Docker when:
+
+* Collaborators have different operating systems
+* The project needs system libraries
+* You need to deploy an analysis or app
+* A journal, client, or supervisor needs a runnable environment
+* You want automated checks to run in the same environment every time
+
+## When Docker may be too much
+
+For a small class project, you may be fine with:
+
+* A clear folder structure
+* A Quarto report
+* `renv.lock`
+* A short README
+* A `targets` pipeline for larger analyses
+
+::: {.callout-tip}
+Choose the simplest tool that makes the project trustworthy.
+:::
+
+# Sharing Images
+
+## Registries
+
+A registry stores Docker images.
+
+Common options:
+
+* Docker Hub
+* GitHub Container Registry
+* A private registry inside an organisation
+
+::: {.fragment}
+This is like GitHub for built environments, but the object being shared is an image.
+:::
+
+## Push an image
+
+Login:
 
 ```bash
 docker login
 ```
 
-Build your container as follows:
+Build with a registry-ready name:
 
 ```bash
-docker build -t <your-username>/<image-name>
+docker build -t yourname/my-analysis:week11 .
 ```
 
-Then push your container:
+Push:
 
 ```bash
-docker push <your-username>/<image-name>
+docker push yourname/my-analysis:week11
+```
+
+## Pull and run
+
+Someone else can run:
+
+```bash
+docker pull yourname/my-analysis:week11
+docker run --rm yourname/my-analysis:week11
 ```
 
 ::: {.fragment}
-Others can then pull your container using
-
-```bash
-docker pull <your-username>/<image-name>
-```
-
-just like we have done with the `rocker/rstudio` image!
-
+For long-term projects, also keep the `Dockerfile` in the repository so the image can be rebuilt.
 :::
+
+## Images can get large
+
+Images include operating system files, libraries, R, packages, and maybe project files.
+
+Ways to keep them manageable:
+
+* Use `.dockerignore`
+* Avoid copying large generated outputs
+* Start from an appropriate base image
+* Clean package manager caches when installing system libraries
+* Rebuild only when needed
 
 ## Cleaning up
 
-Over time, your docker contains will probably accumulate. This includes:
+Docker can accumulate:
 
-* Containers
-* Volumes
-* Images
-* Network mappings
+* Stopped containers
+* Old images
+* Unused volumes
+* Build cache
 
-We can clean these up with
+Inspect first:
+
+```bash
+docker system df
+```
+
+Clean cautiously:
 
 ```bash
 docker system prune
 ```
 
 ::: {.callout-warning}
-Use with caution: deletes **stopped** containers and **dangling** images!
+`docker system prune` deletes stopped containers and unused build objects. Read the prompt before confirming.
+:::
+
+# Worked Example
+
+## Containerise a small analysis
+
+Imagine this project:
+
+```text
+penguins-analysis/
+|-- _targets.R
+|-- R/
+|   |-- data.R
+|   `-- plots.R
+|-- report.qmd
+|-- renv.lock
+`-- Dockerfile
+```
+
+The goal:
+
+```bash
+docker run --rm penguins-analysis
+```
+
+should rebuild the analysis.
+
+## `_targets.R`
+
+```r
+library(targets)
+library(tarchetypes)
+
+tar_source()
+
+tar_option_set(
+  packages = c("palmerpenguins", "dplyr", "ggplot2")
+)
+
+list(
+  tar_target(raw_data, palmerpenguins::penguins),
+  tar_target(clean_data, clean_penguins(raw_data)),
+  tar_target(species_plot, plot_species(clean_data)),
+  tar_quarto(report, "report.qmd")
+)
+```
+
+## `Dockerfile`
+
+```dockerfile
+FROM rocker/r-ver:4.4.3
+
+WORKDIR /project
+
+RUN Rscript -e "install.packages('renv')"
+
+COPY renv.lock renv.lock
+COPY renv/ renv/
+RUN Rscript -e "renv::restore(prompt = FALSE)"
+
+COPY . .
+
+CMD ["Rscript", "-e", "targets::tar_make()"]
+```
+
+## Build and run
+
+```bash
+docker build -t penguins-analysis .
+docker run --rm penguins-analysis
+```
+
+If the report is written inside the container, remember:
+
+::: {.fragment}
+Without a mount, the output stays inside the container and disappears when the container is removed.
+:::
+
+## Keep outputs on the host
+
+```bash
+docker run --rm \
+  --mount type=bind,source="${PWD}",target=/project \
+  -w /project \
+  penguins-analysis
+```
+
+Now rendered outputs are written to your project folder.
+
+::: {.fragment}
+This is usually what you want while developing.
+:::
+
+# Practical Advice
+
+## Common mistakes
+
+* Forgetting that containers are disposable
+* Copying `_targets/` into the image
+* Relying on `latest` tags for long-term work
+* Installing packages interactively but not updating the Dockerfile or `renv.lock`
+* Using absolute paths from the host machine
+* Committing secrets inside `compose.yaml`
+
+## A good Docker README section
+
+````markdown
+## Reproduce with Docker
+
+Build the image:
+
+```bash
+docker build -t my-analysis .
+```
+
+Run the analysis:
+
+```bash
+docker run --rm \
+  --mount type=bind,source="${PWD}",target=/project \
+  -w /project \
+  my-analysis
+```
+````
+
+::: {.fragment}
+Make the default path easy for a new person to follow.
+:::
+
+## Minimal project checklist
+
+Before sharing a Dockerised project, check:
+
+* `Dockerfile` builds from a clean clone
+* `.dockerignore` excludes local state
+* `renv.lock` is current
+* `targets::tar_make()` runs inside the container
+* Outputs can be written somewhere useful
+* README explains build and run commands
+
+## How to debug a container
+
+Open a shell inside the image:
+
+```bash
+docker run -ti --rm my-analysis bash
+```
+
+Then inspect:
+
+```bash
+pwd
+ls
+R --version
+Rscript -e "renv::status()"
+Rscript -e "targets::tar_validate()"
+```
+
+::: {.fragment}
+Debug the environment first, then the analysis.
+:::
+
+## The main trade-off
+
+::: {.columns}
+::: {.column width="50%"}
+Docker costs:
+
+* More files
+* More concepts
+* Larger downloads
+* More setup time
+* Occasional permissions issues
+:::
+::: {.column width="50%"}
+Docker buys:
+
+* Portable environments
+* Fewer "works on my machine" problems
+* Deployment readiness
+* Stronger automated checks
+* A clear computational record
+:::
 :::
 
 ## Summary
 
-* Docker _containerises_ our work, allowing others to deploy the container seamlessly.
-* When paired with the code copying, others will get an (almost) exact copy of your analysis.
-* Docker is used incredibly broadly, and some familiarity will put you ahead
+* Docker describes and runs portable computational environments
+* Images are templates; containers are running instances
+* `Dockerfile` records how an image is built
+* Bind mounts connect project files to containers
+* Docker Compose records longer container configurations
+* Docker complements `git`, Quarto, `renv`, and `targets`
 
+## Final thought
+
+::: {.callout-tip}
+Reproducibility is a ladder. Docker is one of the higher rungs, not the first one.
+:::
+
+Start with clear code, relative paths, version control, package management, and a runnable workflow.
+
+Then use Docker when the environment needs to be part of the project.
