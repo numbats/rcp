@@ -1,0 +1,507 @@
+---
+pagetitle: "ETC5513: Reproducible and Collaborative Practices"
+subtitle: "Reproducibility in the wild: a capstone case study"
+author: "Michael Lydeamore"
+email: "michael.lydeamore@monash.edu"
+date: "Week 12"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "rcp.numbat.space"
+footer: "ETC5513 Week 12"
+format:
+  revealjs:
+    logo: ../common_images/monash-stacked-blue-rgb-transparent.png
+    slide-number: c
+    multiplex: false
+    theme: ../assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 750
+    html-math-method: katex
+    css: [../assets/tachyons-addon.css, ../assets/custom.css, ../assets/lecture-01.css]
+    include-after-body: "../assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+execute:
+  echo: true
+---
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".[Rq]md$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue .title} {#etc5513-title background-image="../common_images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li>
+
+[<i class="fas fa-envelope"></i>]{.fa-li}`r rmarkdown::metadata$email`
+
+</li>
+
+<li>
+
+[<i class="fas fa-calendar-alt"></i>]{.fa-li} `r rmarkdown::metadata$date`
+
+</li>
+
+<li>
+
+[<i class="fa-solid fa-globe"></i>]{.fa-li}<a href="`r rmarkdown::metadata[["unit-url"]]`">`r rmarkdown::metadata[["unit-url"]]`</a>
+
+</li>
+
+</ul>
+
+<br>
+:::
+
+## Open Frame
+
+![](../week11/images/kelly-sikkema-mdADGzyXCVE-unsplash.jpg){fig-align="center"}
+
+## Recap
+
+* Quarto puts prose, code, and output in one document
+* `git` records project history
+* GitHub helps coordinate collaboration
+* `renv` records package versions
+* `targets` records the analysis workflow
+* Docker can record the computer environment
+
+::: {.fragment}
+Today is about judgement: using the right layer at the right time.
+:::
+
+## Today's plan {#aim}
+
+::: {.callout-important}
+
+## Aim
+
+* Inherit a broken analysis project
+* Audit its reproducibility claims
+* Repair the project structure
+* Turn a script into functions
+* Write a `targets` pipeline from scratch
+* Finish with a reproducible handoff
+
+:::
+
+# The Case
+
+## The handoff
+
+You have inherited a project from a previous analyst.
+
+The team needs a final report.
+
+The README says:
+
+```bash
+quarto render report.qmd
+```
+
+::: {.fragment}
+That is a claim. Today we test it.
+:::
+
+## Files for today
+
+```text
+week12/case-study/
+|-- broken/
+|   |-- README.md
+|   |-- analysis.R
+|   |-- data/raw/cafe_sales.csv
+|   `-- report.qmd
+`-- solution/
+    |-- _targets.R
+    |-- R/
+    |-- data/raw/cafe_sales.csv
+    `-- report.qmd
+```
+
+Instructor notes: `week12/guided-notes.qmd`
+
+## First run
+
+From the project root:
+
+```bash
+cd week12/case-study/broken
+quarto render report.qmd
+```
+
+::: {.fragment}
+If it fails, that is useful evidence.
+:::
+
+## Then inspect the fallback
+
+The README also says:
+
+```r
+source("analysis.R")
+```
+
+::: {.fragment}
+Before editing, read the script and ask: what assumptions does it make?
+:::
+
+## What we are looking for
+
+* Missing files
+* Wrong paths
+* Output names that do not match the report
+* Columns that do not exist
+* Manual state hidden in the analyst's computer
+* Packages that are used but not recorded
+* Steps that must happen in a particular order
+
+## The deeper problem
+
+The project does not have one clear answer to:
+
+::: {.callout-warning}
+How do I rebuild the final report from the raw data?
+:::
+
+::: {.fragment}
+That is the reproducibility question underneath all the symptoms.
+:::
+
+# Audit
+
+## Do not start by fixing code
+
+Start by finding the shape of the project.
+
+```bash
+ls
+find . -maxdepth 3 -type f
+```
+
+Then read:
+
+```bash
+cat README.md
+```
+
+::: {.fragment}
+The README is part of the software.
+:::
+
+## Audit checklist {.smaller}
+
+| Question | Evidence |
+| --- | --- |
+| Can the report render? | `quarto render report.qmd` |
+| Can the script run? | `source("analysis.R")` |
+| Are paths project-relative? | Look for absolute paths and mismatched folders |
+| Are raw and derived files separate? | Inspect `data/`, `output/`, `outputs/` |
+| Are packages recorded? | Look for `renv.lock`, `DESCRIPTION`, README |
+| Is the workflow explicit? | Look for `_targets.R` or one rebuild command |
+
+## A useful repair order
+
+1. Make the current failure visible
+2. Fix the smallest path and naming errors
+3. Identify the real analysis steps
+4. Move reusable work into functions
+5. Write the pipeline
+6. Make the report depend on generated outputs
+7. Update the README
+
+::: {.fragment}
+Small wins first; structure second.
+:::
+
+## What not to do yet
+
+* Do not rewrite the statistical analysis
+* Do not add Docker before the local workflow works
+* Do not hide manual steps in the README
+* Do not treat stale output files as evidence
+
+::: {.fragment}
+First make the project honest.
+:::
+
+# Repair
+
+## What the script is doing
+
+The inherited script mixes several jobs:
+
+* Read data
+* Clean data
+* Summarise by week
+* Summarise by campus
+* Make a plot
+* Write report inputs
+
+::: {.fragment}
+Those are natural pipeline targets.
+:::
+
+## From script to functions
+
+Move the work into small functions:
+
+```text
+R/
+|-- data.R
+|-- summaries.R
+|-- plots.R
+`-- report.R
+```
+
+::: {.fragment}
+Functions are easier to test, reuse, and connect.
+:::
+
+## A function boundary
+
+Before:
+
+```r
+sales <- read_csv("data/orders.csv")
+sales$date <- as.Date(sales$date, format = "%d/%m/%Y")
+clean_sales <- filter(sales, cancelled == "No")
+```
+
+After:
+
+```r
+read_sales <- function(path) {
+  readr::read_csv(path, show_col_types = FALSE)
+}
+
+clean_sales <- function(sales) {
+  sales |>
+    dplyr::mutate(date = as.Date(date)) |>
+    dplyr::filter(cancelled == "No")
+}
+```
+
+## Name the outputs
+
+The report needs:
+
+```text
+outputs/campus_summary.csv
+outputs/weekly_summary.csv
+outputs/revenue_by_week.png
+```
+
+::: {.fragment}
+If the report depends on these files, the pipeline should create these files.
+:::
+
+## Now write `_targets.R`
+
+Start with an empty file.
+
+```r
+library(targets)
+
+tar_source()
+
+tar_option_set(
+  packages = c("dplyr", "readr", "ggplot2", "scales", "knitr")
+)
+```
+
+::: {.fragment}
+No half-built pipeline. We write the contract ourselves.
+:::
+
+## Add the raw file
+
+```r
+list(
+  tar_target(raw_sales_file, "data/raw/cafe_sales.csv", format = "file")
+)
+```
+
+::: {.fragment}
+File targets tell `targets` to watch the file itself.
+:::
+
+## Add data objects
+
+```r
+list(
+  tar_target(raw_sales_file, "data/raw/cafe_sales.csv", format = "file"),
+  tar_target(raw_sales, read_sales(raw_sales_file)),
+  tar_target(clean_sales_data, clean_sales(raw_sales))
+)
+```
+
+::: {.fragment}
+Each target is a named promise: this object can be rebuilt.
+:::
+
+## Add summaries
+
+```r
+tar_target(campus_summary, summarise_by_campus(clean_sales_data)),
+tar_target(weekly_summary, summarise_by_week(clean_sales_data))
+```
+
+::: {.fragment}
+The order comes from dependencies, not from memory.
+:::
+
+## Add output files
+
+```r
+tar_target(
+  campus_summary_file,
+  write_output_csv(campus_summary, "outputs/campus_summary.csv"),
+  format = "file"
+)
+```
+
+::: {.fragment}
+Generated files can also be targets.
+:::
+
+## Add the report
+
+```r
+tar_target(
+  report,
+  render_report(
+    input = "report.qmd",
+    dependencies = c(campus_summary_file, weekly_summary_file, weekly_revenue_plot)
+  ),
+  format = "file"
+)
+```
+
+::: {.fragment}
+The report should not render until its inputs exist.
+:::
+
+# Handoff
+
+## The final test
+
+From the repaired project folder:
+
+```r
+targets::tar_make()
+```
+
+Then run it again:
+
+```r
+targets::tar_make()
+```
+
+::: {.fragment}
+The second run should skip work that is already up to date.
+:::
+
+## Inspect the workflow
+
+```r
+targets::tar_manifest()
+targets::tar_visnetwork()
+```
+
+::: {.fragment}
+A good project can explain how it rebuilds itself.
+:::
+
+## Update the README
+
+The README should say:
+
+```r
+install.packages(c("targets", "dplyr", "readr", "ggplot2", "scales", "knitr"))
+targets::tar_make()
+```
+
+And it should explain:
+
+* Where raw data lives
+* Which outputs are generated
+* What the one rebuild command is
+
+## What each layer did {.smaller}
+
+| Layer | In this case |
+| --- | --- |
+| Quarto | Final report |
+| Git | History of the repair |
+| GitHub Issues | Work that could be assigned |
+| `renv` | Package versions, if this were being handed to a new machine |
+| `targets` | Rebuild order and stale output detection |
+| Docker | Only needed if R/system environment becomes the problem |
+
+## What can we now claim?
+
+Before:
+
+> The report worked on the previous analyst's laptop.
+
+After:
+
+> From the project folder, one command rebuilds the derived files and final report from the raw data.
+
+::: {.fragment}
+That is a stronger and more testable claim.
+:::
+
+## Debrief questions
+
+* Which failure was easiest to diagnose?
+* Which failure was most dangerous?
+* What should have been in the README?
+* Where would `renv` add value?
+* When would Docker be justified?
+
+## Summary
+
+* Reproducibility is a claim you test
+* Broken projects are usually broken at the joins
+* Reports should not depend on mystery files
+* Scripts become safer when turned into functions
+* Pipelines make the rebuild contract explicit
+* A good handoff tells the next person exactly what to run
+
+## Files
+
+* Broken project: `week12/case-study/broken`
+* Working version: `week12/case-study/solution`
+* Guided notes: [guided-notes.html](guided-notes.html)

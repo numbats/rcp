@@ -4,6 +4,9 @@ project:
   - "*.qmd"
   - "*.md"
   - "!quiz/*"
+  - "!week12/case-study/**"
+  resources:
+  - "week12/case-study/**"
 
 knitr:
   opts_chunk:
@@ -43,7 +46,8 @@ website:
             text: "Keeping environments separate and reproducible"
           - file: week11/index.qmd
             text: "Week 11: Docker: The gold standard of reproducibility"
-          - week12/index.qmd
+          - file: week12/index.qmd
+            text: "Week 12: Reproducibility in the wild"
       - text: Discussion
         icon: chat-fill
         href: "https://learning.monash.edu/mod/forum/view.php?id=1366128"

@@ -1,0 +1,145 @@
+---
+title: "Week 12 Guided Notes"
+subtitle: "Reproducibility in the wild"
+format:
+  html:
+    toc: true
+    embed-resources: true
+---
+
+## Session shape
+
+Use the slides as a map, not as the main event.
+
+Suggested timing:
+
+| Time | Activity |
+| ---: | --- |
+| 10 min | Case briefing and first failed render |
+| 20 min | Audit the inherited project |
+| 25 min | Fix the immediate path/name problems |
+| 30 min | Refactor the script into functions |
+| 25 min | Write `_targets.R` from scratch |
+| 10 min | Run the final handoff test and debrief |
+
+## Instructor setup
+
+Work from the broken project:
+
+```bash
+cd week12/case-study/broken
+```
+
+First show that the README claim fails:
+
+```bash
+quarto render report.qmd
+```
+
+Then show that the fallback script also fails:
+
+```r
+source("analysis.R")
+```
+
+Expected problems:
+
+| Symptom | Cause |
+| --- | --- |
+| `outputs/campus_summary.csv` is missing | The report expects generated files that do not exist |
+| `data/orders.csv` is missing | The raw file is actually `data/raw/cafe_sales.csv` |
+| Date parsing is wrong | The data uses ISO dates, not day/month/year text |
+| `site` is missing | The data column is called `campus` |
+| `output/` and `outputs/` disagree | The script and report write/read different folders |
+| There is no `_targets.R` | The rebuild order is not explicit |
+
+## Live repair path
+
+1. Ask students what the README promises.
+2. Run `quarto render report.qmd`.
+3. Run `source("analysis.R")`.
+4. Read the file tree and locate the actual raw data.
+5. Fix only enough to understand the intended workflow.
+6. Create `R/data.R`, `R/summaries.R`, `R/plots.R`, and `R/report.R`.
+7. Move each analysis step into a function.
+8. Create `_targets.R` from an empty file.
+9. Run `targets::tar_make()`.
+10. Run it a second time to show that the pipeline skips current targets.
+
+## Minimal target sequence
+
+Use this order when building `_targets.R` live:
+
+```r
+library(targets)
+
+tar_source()
+
+tar_option_set(
+  packages = c("dplyr", "readr", "ggplot2", "scales", "knitr")
+)
+
+list(
+  tar_target(raw_sales_file, "data/raw/cafe_sales.csv", format = "file"),
+  tar_target(raw_sales, read_sales(raw_sales_file)),
+  tar_target(clean_sales_data, clean_sales(raw_sales)),
+  tar_target(campus_summary, summarise_by_campus(clean_sales_data)),
+  tar_target(weekly_summary, summarise_by_week(clean_sales_data)),
+  tar_target(
+    campus_summary_file,
+    write_output_csv(campus_summary, "outputs/campus_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    weekly_summary_file,
+    write_output_csv(weekly_summary, "outputs/weekly_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    weekly_revenue_plot,
+    plot_weekly_revenue(weekly_summary, "outputs/revenue_by_week.png"),
+    format = "file"
+  ),
+  tar_target(
+    report,
+    render_report(
+      input = "report.qmd",
+      dependencies = c(campus_summary_file, weekly_summary_file, weekly_revenue_plot)
+    ),
+    format = "file"
+  )
+)
+```
+
+## Final comparison
+
+The complete repaired project is in:
+
+```text
+week12/case-study/solution
+```
+
+To run it:
+
+```r
+install.packages(c("targets", "dplyr", "readr", "ggplot2", "scales", "knitr"))
+targets::tar_make()
+```
+
+Then show:
+
+```r
+targets::tar_manifest()
+targets::tar_visnetwork()
+```
+
+## Debrief prompts
+
+- What broke because of paths?
+- What broke because of naming?
+- What broke because output files were assumed to exist?
+- What should the previous analyst have committed?
+- Where would `renv` help?
+- What extra problem would justify Docker?
+
+The closing message: reproducibility is not a feeling that the project is tidy. It is a testable claim about what another person can rebuild.
