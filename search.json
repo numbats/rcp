@@ -2513,6 +2513,55 @@
     "text": "Week 2 Lesson\n\n\n\n\n\n\nSummary\n\n\n\nQuarto documents\nR Code Chunk Options\nIncluding figures, tables, captions\nRStudio projects\nGood Coding Practices\n\n\n\n\n\n\n\n\n\n\nResources\n\n\n\nhttps://quarto.org/\nhttps://www.markdownguide.org/getting-started/\nhttps://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects\nhttps://style.tidyverse.org"
   },
   {
+    "objectID": "week12/guided-notes.html",
+    "href": "week12/guided-notes.html",
+    "title": "Week 12 Guided Notes",
+    "section": "",
+    "text": "Use the slides as a map, not as the main event.\nSuggested timing:\n\n\n\nTime\nActivity\n\n\n\n\n10 min\nCase briefing and first failed render\n\n\n20 min\nAudit the inherited project\n\n\n25 min\nFix the immediate path/name problems\n\n\n30 min\nRefactor the script into functions\n\n\n25 min\nWrite _targets.R from scratch\n\n\n10 min\nRun the final handoff test and debrief"
+  },
+  {
+    "objectID": "week12/guided-notes.html#session-shape",
+    "href": "week12/guided-notes.html#session-shape",
+    "title": "Week 12 Guided Notes",
+    "section": "",
+    "text": "Use the slides as a map, not as the main event.\nSuggested timing:\n\n\n\nTime\nActivity\n\n\n\n\n10 min\nCase briefing and first failed render\n\n\n20 min\nAudit the inherited project\n\n\n25 min\nFix the immediate path/name problems\n\n\n30 min\nRefactor the script into functions\n\n\n25 min\nWrite _targets.R from scratch\n\n\n10 min\nRun the final handoff test and debrief"
+  },
+  {
+    "objectID": "week12/guided-notes.html#instructor-setup",
+    "href": "week12/guided-notes.html#instructor-setup",
+    "title": "Week 12 Guided Notes",
+    "section": "Instructor setup",
+    "text": "Instructor setup\nWork from the broken project:\ncd week12/case-study/broken\nFirst show that the README claim fails:\nquarto render report.qmd\nThen show that the fallback script also fails:\nsource(\"analysis.R\")\nExpected problems:\n\n\n\n\n\n\n\nSymptom\nCause\n\n\n\n\noutputs/campus_summary.csv is missing\nThe report expects generated files that do not exist\n\n\ndata/orders.csv is missing\nThe raw file is actually data/raw/cafe_sales.csv\n\n\nDate parsing is wrong\nThe data uses ISO dates, not day/month/year text\n\n\nsite is missing\nThe data column is called campus\n\n\noutput/ and outputs/ disagree\nThe script and report write/read different folders\n\n\nThere is no _targets.R\nThe rebuild order is not explicit"
+  },
+  {
+    "objectID": "week12/guided-notes.html#live-repair-path",
+    "href": "week12/guided-notes.html#live-repair-path",
+    "title": "Week 12 Guided Notes",
+    "section": "Live repair path",
+    "text": "Live repair path\n\nAsk students what the README promises.\nRun quarto render report.qmd.\nRun source(\"analysis.R\").\nRead the file tree and locate the actual raw data.\nFix only enough to understand the intended workflow.\nCreate R/data.R, R/summaries.R, R/plots.R, and R/report.R.\nMove each analysis step into a function.\nCreate _targets.R from an empty file.\nRun targets::tar_make().\nRun it a second time to show that the pipeline skips current targets."
+  },
+  {
+    "objectID": "week12/guided-notes.html#minimal-target-sequence",
+    "href": "week12/guided-notes.html#minimal-target-sequence",
+    "title": "Week 12 Guided Notes",
+    "section": "Minimal target sequence",
+    "text": "Minimal target sequence\nUse this order when building _targets.R live:\nlibrary(targets)\n\ntar_source()\n\ntar_option_set(\n  packages = c(\"dplyr\", \"readr\", \"ggplot2\", \"scales\", \"knitr\")\n)\n\nlist(\n  tar_target(raw_sales_file, \"data/raw/cafe_sales.csv\", format = \"file\"),\n  tar_target(raw_sales, read_sales(raw_sales_file)),\n  tar_target(clean_sales_data, clean_sales(raw_sales)),\n  tar_target(campus_summary, summarise_by_campus(clean_sales_data)),\n  tar_target(weekly_summary, summarise_by_week(clean_sales_data)),\n  tar_target(\n    campus_summary_file,\n    write_output_csv(campus_summary, \"outputs/campus_summary.csv\"),\n    format = \"file\"\n  ),\n  tar_target(\n    weekly_summary_file,\n    write_output_csv(weekly_summary, \"outputs/weekly_summary.csv\"),\n    format = \"file\"\n  ),\n  tar_target(\n    weekly_revenue_plot,\n    plot_weekly_revenue(weekly_summary, \"outputs/revenue_by_week.png\"),\n    format = \"file\"\n  ),\n  tar_target(\n    report,\n    render_report(\n      input = \"report.qmd\",\n      dependencies = c(campus_summary_file, weekly_summary_file, weekly_revenue_plot)\n    ),\n    format = \"file\"\n  )\n)"
+  },
+  {
+    "objectID": "week12/guided-notes.html#final-comparison",
+    "href": "week12/guided-notes.html#final-comparison",
+    "title": "Week 12 Guided Notes",
+    "section": "Final comparison",
+    "text": "Final comparison\nThe complete repaired project is in:\nweek12/case-study/solution\nTo run it:\ninstall.packages(c(\"targets\", \"dplyr\", \"readr\", \"ggplot2\", \"scales\", \"knitr\"))\ntargets::tar_make()\nThen show:\ntargets::tar_manifest()\ntargets::tar_visnetwork()"
+  },
+  {
+    "objectID": "week12/guided-notes.html#debrief-prompts",
+    "href": "week12/guided-notes.html#debrief-prompts",
+    "title": "Week 12 Guided Notes",
+    "section": "Debrief prompts",
+    "text": "Debrief prompts\n\nWhat broke because of paths?\nWhat broke because of naming?\nWhat broke because output files were assumed to exist?\nWhat should the previous analyst have committed?\nWhere would renv help?\nWhat extra problem would justify Docker?\n\nThe closing message: reproducibility is not a feeling that the project is tidy. It is a testable claim about what another person can rebuild."
+  },
+  {
     "objectID": "week11/week11.html",
     "href": "week11/week11.html",
     "title": "Making sure your code is transportable",
@@ -5339,6 +5388,230 @@
     "title": "ETC5513: Collaborative and Reproducible Practices",
     "section": "Part 3: Run a Local Chatbot with Open WebUI + Ollama (Bundled)",
     "text": "Part 3: Run a Local Chatbot with Open WebUI + Ollama (Bundled)\nIn this section, we will run a local chatbot using ollama and open-webui.\n\n1. Create a new folder and inside it, add this docker-compose.yml:\nservices:\n  open-webui:\n    image: ghcr.io/open-webui/open-webui:ollama\n    ports:\n      - 3000:8080\n    volumes:\n      - open-webui-data:/app/backend/data\n\nvolumes:\n  open-webui-data:\n\nThis setup includes Ollama already inside the container and will download models as needed.\n\n\n\n\n2. Run the chatbot:\nFrom the terminal in that folder:\ndocker compose up -d\nOnce it finishes setting up, visit:\nhttp://localhost:3000\nSet up a local account, and select model llama3.2. This will take some time to download!\n\n\n\n3. Try it out!\n\nAsk the model some questions.\nOpen multiple tabs to simulate multiple sessions.\nTry using larger models like llava or codellama if you’re curious (and have RAM to spare).\n\nTo stop the server:\ndocker compose down\n\nNote: This bundled version is great for local experimentation, and includes both the LLM and a clean interface. It is entirely possible to run ollama separately from open-webui:\nYou do not need to do this step in the workshop\n\n\n1. Install Ollama\n\nGo to https://ollama.com and install for your OS\n\n\n\n2. Run ollama in the background:\nollama serve\nThen pull a model like:\nollama run llama2\nKeep this running!\n\n\n3. Set up open-webui with Docker Compose\nCreate another folder and add this docker-compose.yml:\nservices:\n  open-webui:\n    image: ghcr.io/open-webui/open-webui:main\n    ports:\n      - 3000:3000\n    volumes:\n      - open-webui-data:/app/backend/data\n    environment:\n      - OLLAMA_BASE_URL=http://host.docker.internal:11434\n\nvolumes:\n  open-webui-data:\nThen run:\ndocker compose up -d\nVisit: http://localhost:3000"
+  },
+  {
+    "objectID": "week12/index.html#etc5513-title",
+    "href": "week12/index.html#etc5513-title",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "ETC5513: Reproducible and Collaborative Practices",
+    "text": "ETC5513: Reproducible and Collaborative Practices\nReproducibility in the wild: a capstone case study\nLecturer: Michael Lydeamore\nDepartment of Econometrics and Business Statistics\n\n\n\n\nmichael.lydeamore@monash.edu\n\n\n Week 12\n\n\nrcp.numbat.space"
+  },
+  {
+    "objectID": "week12/index.html#open-frame",
+    "href": "week12/index.html#open-frame",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Open Frame",
+    "text": "Open Frame"
+  },
+  {
+    "objectID": "week12/index.html#recap",
+    "href": "week12/index.html#recap",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Recap",
+    "text": "Recap\n\nQuarto puts prose, code, and output in one document\ngit records project history\nGitHub helps coordinate collaboration\nrenv records package versions\ntargets records the analysis workflow\nDocker can record the computer environment\n\n\nToday is about judgement: using the right layer at the right time."
+  },
+  {
+    "objectID": "week12/index.html#aim",
+    "href": "week12/index.html#aim",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Today’s plan",
+    "text": "Today’s plan\n\n\n\n\n\n\nAim\n\n\n\nInherit a broken analysis project\nAudit its reproducibility claims\nRepair the project structure\nTurn a script into functions\nWrite a targets pipeline from scratch\nFinish with a reproducible handoff"
+  },
+  {
+    "objectID": "week12/index.html#the-handoff",
+    "href": "week12/index.html#the-handoff",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The handoff",
+    "text": "The handoff\nYou have inherited a project from a previous analyst.\nThe team needs a final report.\nThe README says:\nquarto render report.qmd\n\nThat is a claim. Today we test it."
+  },
+  {
+    "objectID": "week12/index.html#files-for-today",
+    "href": "week12/index.html#files-for-today",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Files for today",
+    "text": "Files for today\nweek12/case-study/\n|-- broken/\n|   |-- README.md\n|   |-- analysis.R\n|   |-- data/raw/cafe_sales.csv\n|   `-- report.qmd\n`-- solution/\n    |-- _targets.R\n    |-- R/\n    |-- data/raw/cafe_sales.csv\n    `-- report.qmd\nInstructor notes: week12/guided-notes.qmd"
+  },
+  {
+    "objectID": "week12/index.html#first-run",
+    "href": "week12/index.html#first-run",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "First run",
+    "text": "First run\nFrom the project root:\ncd week12/case-study/broken\nquarto render report.qmd\n\nIf it fails, that is useful evidence."
+  },
+  {
+    "objectID": "week12/index.html#then-inspect-the-fallback",
+    "href": "week12/index.html#then-inspect-the-fallback",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Then inspect the fallback",
+    "text": "Then inspect the fallback\nThe README also says:\nsource(\"analysis.R\")\n\nBefore editing, read the script and ask: what assumptions does it make?"
+  },
+  {
+    "objectID": "week12/index.html#what-we-are-looking-for",
+    "href": "week12/index.html#what-we-are-looking-for",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What we are looking for",
+    "text": "What we are looking for\n\nMissing files\nWrong paths\nOutput names that do not match the report\nColumns that do not exist\nManual state hidden in the analyst’s computer\nPackages that are used but not recorded\nSteps that must happen in a particular order"
+  },
+  {
+    "objectID": "week12/index.html#the-deeper-problem",
+    "href": "week12/index.html#the-deeper-problem",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The deeper problem",
+    "text": "The deeper problem\nThe project does not have one clear answer to:\n\n\n\n\n\n\nWarning\n\n\nHow do I rebuild the final report from the raw data?\n\n\n\n\nThat is the reproducibility question underneath all the symptoms."
+  },
+  {
+    "objectID": "week12/index.html#do-not-start-by-fixing-code",
+    "href": "week12/index.html#do-not-start-by-fixing-code",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Do not start by fixing code",
+    "text": "Do not start by fixing code\nStart by finding the shape of the project.\nls\nfind . -maxdepth 3 -type f\nThen read:\ncat README.md\n\nThe README is part of the software."
+  },
+  {
+    "objectID": "week12/index.html#audit-checklist",
+    "href": "week12/index.html#audit-checklist",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Audit checklist",
+    "text": "Audit checklist\n\n\n\n\n\n\n\nQuestion\nEvidence\n\n\n\n\nCan the report render?\nquarto render report.qmd\n\n\nCan the script run?\nsource(\"analysis.R\")\n\n\nAre paths project-relative?\nLook for absolute paths and mismatched folders\n\n\nAre raw and derived files separate?\nInspect data/, output/, outputs/\n\n\nAre packages recorded?\nLook for renv.lock, DESCRIPTION, README\n\n\nIs the workflow explicit?\nLook for _targets.R or one rebuild command"
+  },
+  {
+    "objectID": "week12/index.html#a-useful-repair-order",
+    "href": "week12/index.html#a-useful-repair-order",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "A useful repair order",
+    "text": "A useful repair order\n\nMake the current failure visible\nFix the smallest path and naming errors\nIdentify the real analysis steps\nMove reusable work into functions\nWrite the pipeline\nMake the report depend on generated outputs\nUpdate the README\n\n\nSmall wins first; structure second."
+  },
+  {
+    "objectID": "week12/index.html#what-not-to-do-yet",
+    "href": "week12/index.html#what-not-to-do-yet",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What not to do yet",
+    "text": "What not to do yet\n\nDo not rewrite the statistical analysis\nDo not add Docker before the local workflow works\nDo not hide manual steps in the README\nDo not treat stale output files as evidence\n\n\nFirst make the project honest."
+  },
+  {
+    "objectID": "week12/index.html#what-the-script-is-doing",
+    "href": "week12/index.html#what-the-script-is-doing",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What the script is doing",
+    "text": "What the script is doing\nThe inherited script mixes several jobs:\n\nRead data\nClean data\nSummarise by week\nSummarise by campus\nMake a plot\nWrite report inputs\n\n\nThose are natural pipeline targets."
+  },
+  {
+    "objectID": "week12/index.html#from-script-to-functions",
+    "href": "week12/index.html#from-script-to-functions",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "From script to functions",
+    "text": "From script to functions\nMove the work into small functions:\nR/\n|-- data.R\n|-- summaries.R\n|-- plots.R\n`-- report.R\n\nFunctions are easier to test, reuse, and connect."
+  },
+  {
+    "objectID": "week12/index.html#a-function-boundary",
+    "href": "week12/index.html#a-function-boundary",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "A function boundary",
+    "text": "A function boundary\nBefore:\nsales &lt;- read_csv(\"data/orders.csv\")\nsales$date &lt;- as.Date(sales$date, format = \"%d/%m/%Y\")\nclean_sales &lt;- filter(sales, cancelled == \"No\")\nAfter:\nread_sales &lt;- function(path) {\n  readr::read_csv(path, show_col_types = FALSE)\n}\n\nclean_sales &lt;- function(sales) {\n  sales |&gt;\n    dplyr::mutate(date = as.Date(date)) |&gt;\n    dplyr::filter(cancelled == \"No\")\n}"
+  },
+  {
+    "objectID": "week12/index.html#name-the-outputs",
+    "href": "week12/index.html#name-the-outputs",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Name the outputs",
+    "text": "Name the outputs\nThe report needs:\noutputs/campus_summary.csv\noutputs/weekly_summary.csv\noutputs/revenue_by_week.png\n\nIf the report depends on these files, the pipeline should create these files."
+  },
+  {
+    "objectID": "week12/index.html#now-write-_targets.r",
+    "href": "week12/index.html#now-write-_targets.r",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Now write _targets.R",
+    "text": "Now write _targets.R\nStart with an empty file.\nlibrary(targets)\n\ntar_source()\n\ntar_option_set(\n  packages = c(\"dplyr\", \"readr\", \"ggplot2\", \"scales\", \"knitr\")\n)\n\nNo half-built pipeline. We write the contract ourselves."
+  },
+  {
+    "objectID": "week12/index.html#add-the-raw-file",
+    "href": "week12/index.html#add-the-raw-file",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Add the raw file",
+    "text": "Add the raw file\nlist(\n  tar_target(raw_sales_file, \"data/raw/cafe_sales.csv\", format = \"file\")\n)\n\nFile targets tell targets to watch the file itself."
+  },
+  {
+    "objectID": "week12/index.html#add-data-objects",
+    "href": "week12/index.html#add-data-objects",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Add data objects",
+    "text": "Add data objects\nlist(\n  tar_target(raw_sales_file, \"data/raw/cafe_sales.csv\", format = \"file\"),\n  tar_target(raw_sales, read_sales(raw_sales_file)),\n  tar_target(clean_sales_data, clean_sales(raw_sales))\n)\n\nEach target is a named promise: this object can be rebuilt."
+  },
+  {
+    "objectID": "week12/index.html#add-summaries",
+    "href": "week12/index.html#add-summaries",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Add summaries",
+    "text": "Add summaries\ntar_target(campus_summary, summarise_by_campus(clean_sales_data)),\ntar_target(weekly_summary, summarise_by_week(clean_sales_data))\n\nThe order comes from dependencies, not from memory."
+  },
+  {
+    "objectID": "week12/index.html#add-output-files",
+    "href": "week12/index.html#add-output-files",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Add output files",
+    "text": "Add output files\ntar_target(\n  campus_summary_file,\n  write_output_csv(campus_summary, \"outputs/campus_summary.csv\"),\n  format = \"file\"\n)\n\nGenerated files can also be targets."
+  },
+  {
+    "objectID": "week12/index.html#add-the-report",
+    "href": "week12/index.html#add-the-report",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Add the report",
+    "text": "Add the report\ntar_target(\n  report,\n  render_report(\n    input = \"report.qmd\",\n    dependencies = c(campus_summary_file, weekly_summary_file, weekly_revenue_plot)\n  ),\n  format = \"file\"\n)\n\nThe report should not render until its inputs exist."
+  },
+  {
+    "objectID": "week12/index.html#the-final-test",
+    "href": "week12/index.html#the-final-test",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "The final test",
+    "text": "The final test\nFrom the repaired project folder:\ntargets::tar_make()\nThen run it again:\ntargets::tar_make()\n\nThe second run should skip work that is already up to date."
+  },
+  {
+    "objectID": "week12/index.html#inspect-the-workflow",
+    "href": "week12/index.html#inspect-the-workflow",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Inspect the workflow",
+    "text": "Inspect the workflow\ntargets::tar_manifest()\ntargets::tar_visnetwork()\n\nA good project can explain how it rebuilds itself."
+  },
+  {
+    "objectID": "week12/index.html#update-the-readme",
+    "href": "week12/index.html#update-the-readme",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Update the README",
+    "text": "Update the README\nThe README should say:\ninstall.packages(c(\"targets\", \"dplyr\", \"readr\", \"ggplot2\", \"scales\", \"knitr\"))\ntargets::tar_make()\nAnd it should explain:\n\nWhere raw data lives\nWhich outputs are generated\nWhat the one rebuild command is"
+  },
+  {
+    "objectID": "week12/index.html#what-each-layer-did",
+    "href": "week12/index.html#what-each-layer-did",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What each layer did",
+    "text": "What each layer did\n\n\n\n\n\n\n\nLayer\nIn this case\n\n\n\n\nQuarto\nFinal report\n\n\nGit\nHistory of the repair\n\n\nGitHub Issues\nWork that could be assigned\n\n\nrenv\nPackage versions, if this were being handed to a new machine\n\n\ntargets\nRebuild order and stale output detection\n\n\nDocker\nOnly needed if R/system environment becomes the problem"
+  },
+  {
+    "objectID": "week12/index.html#what-can-we-now-claim",
+    "href": "week12/index.html#what-can-we-now-claim",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "What can we now claim?",
+    "text": "What can we now claim?\nBefore:\n\nThe report worked on the previous analyst’s laptop.\n\nAfter:\n\nFrom the project folder, one command rebuilds the derived files and final report from the raw data.\n\n\nThat is a stronger and more testable claim."
+  },
+  {
+    "objectID": "week12/index.html#debrief-questions",
+    "href": "week12/index.html#debrief-questions",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Debrief questions",
+    "text": "Debrief questions\n\nWhich failure was easiest to diagnose?\nWhich failure was most dangerous?\nWhat should have been in the README?\nWhere would renv add value?\nWhen would Docker be justified?"
+  },
+  {
+    "objectID": "week12/index.html#summary",
+    "href": "week12/index.html#summary",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Summary",
+    "text": "Summary\n\nReproducibility is a claim you test\nBroken projects are usually broken at the joins\nReports should not depend on mystery files\nScripts become safer when turned into functions\nPipelines make the rebuild contract explicit\nA good handoff tells the next person exactly what to run"
+  },
+  {
+    "objectID": "week12/index.html#files",
+    "href": "week12/index.html#files",
+    "title": "ETC5513: Collaborative and Reproducible Practices",
+    "section": "Files",
+    "text": "Files\n\nBroken project: week12/case-study/broken\nWorking version: week12/case-study/solution\nGuided notes: guided-notes.html"
   },
   {
     "objectID": "week2/tutorial/solution.html",

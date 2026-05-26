@@ -1,0 +1,40 @@
+---
+title: "Campus Cafe Sales"
+subtitle: "Six-week handoff report"
+format: html
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+library(readr)
+library(dplyr)
+library(knitr)
+
+campus_summary <- read_csv("outputs/campus_summary.csv")
+weekly_summary <- read_csv("outputs/weekly_summary.csv")
+```
+
+## Overview
+
+This report summarises cafe sales by campus for the first six weeks of semester.
+
+Across the analysis period, the cafes recorded `r sum(campus_summary$orders)` completed orders and total revenue of `$` `r format(round(sum(campus_summary$revenue), 0), big.mark = ",")`.
+
+## Campus summary
+
+```{r}
+campus_summary |>
+  arrange(desc(revenue)) |>
+  kable(digits = 2)
+```
+
+## Weekly revenue
+
+![](outputs/revenue_by_week.png)
+
+## Interpretation
+
+Revenue increased through the middle of the period, with the city campus contributing the largest share of sales.
