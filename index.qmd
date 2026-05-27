@@ -54,16 +54,27 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 #| echo: false
 #| output: asis
 schedule |>
+  mutate(
+    Has_Workshop = purrr::map_lgl(
+      Week,
+      \(week) !is.na(week) && dir.exists(file.path(paste0("week", week), "workshop"))
+    ),
+    Has_Tutorial = purrr::map_lgl(
+      Week,
+      \(week) !is.na(week) && dir.exists(file.path(paste0("week", week), "tutorial"))
+    )
+  ) |>
   transmute(
     Week = Week,
     Date = format(Date, "%d %b"),
     Show = (!is.na(Week) & Week <= 12) & !grepl("University Holiday", Topic),
-    Show_Tutorial = !is.na(Week) & Week <= 12,
+    Show_Workshop = Show & Has_Workshop,
+    Show_Tutorial = Show & Has_Tutorial,
     Topic = if_else(!Show, Topic, glue::glue('[{{Topic}}](./week{{Week}}/index.html){target="_blank"}', .open="{{", .close="}}")),
-    Workshop = if_else(!Show, "", glue::glue('[Workshop {{{Week}}}](./week{{{Week}}}/workshop/index.html){target="_blank"}', .open="{{{", .close="}}}")),
+    Workshop = if_else(!Show_Workshop, "", glue::glue('[Workshop {{{Week}}}](./week{{{Week}}}/workshop/index.html){target="_blank"}', .open="{{{", .close="}}}")),
     Tutorial = if_else(!Show_Tutorial, "", glue::glue('[Tutorial {{{Week}}}](./week{{{Week}}}/tutorial/index.html){target="_blank"}', .open="{{{", .close="}}}")),
   ) |>
-  select(-Show, -Show_Tutorial) |>
+  select(-Show, -Show_Workshop, -Show_Tutorial) |>
   knitr::kable(format = "markdown")
 ```
 

@@ -15,7 +15,8 @@ files <- list.files(
   pattern = "^index\\.qmd$",
   recursive = TRUE,
   full.names = TRUE
-)
+) |>
+    stringr::str_subset("^\\./week[0-9]+/index\\.qmd$")
 
 titles <- sapply(files, function(f) {
   meta <- yaml_front_matter(f)
